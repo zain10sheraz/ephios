@@ -15,4 +15,6 @@ Status values: `captured` (file exists, produced by a real run), `verified` (a g
 | EV-007 | Hand-calculated V(G) vs tool | `docs/team/CYCLOMATIC_COMPLEXITY.md`, `scripts/cyclomatic_ast.py` | 2026-11-23 | captured |
 | EV-008 | Login page, Planner view of event list (real app) | **TO TAKE by Zain**: http://localhost:8000/accounts/login/ then log in as planner@sqe.test -> `reports/evidence/EV-008_planner_event_list.png` | – | pending |
 | EV-009 | Volunteer view of the same event | **TO TAKE by Zain**: log in as volunteer@sqe.test, open "Concert Medical Service" -> `reports/evidence/EV-009_volunteer_event.png` | – | pending |
-| EV-010 | Mutation run output (Cosmic Ray) | `reports/mutation/` | in progress | pending |
+| EV-010 | Mutation round 1 raw data (3 modules) | `reports/mutation/round1_*.jsonl`, summary in `docs/team/MUTATION.md` | 2026-11-24 | captured (round 2 pending) |
+| EV-011 | Risk register + exit criteria draft | `docs/team/RISK_REGISTER.md` | 2026-11-24 | draft - team review pending |
+| EV-012 | CI workflow (not yet run on GitHub) | `.github/workflows/team-quality-gate.yml` | 2026-11-24 | written, UNTESTED on GitHub |
