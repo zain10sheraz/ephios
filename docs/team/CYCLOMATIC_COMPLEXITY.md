@@ -50,6 +50,18 @@ Formula 2: predicate nodes + 1 = (N2, N3, N4, N6, N8) 5 + 1 = **6** ✔ (matches
 
 All six are exercised by `tests/team/unit/test_signup_rules.py` (BR2 decision table and BR3 tests).
 
-## SonarQube comparison
-See the SonarQube section of the report (value read from the SonarQube API after the scan;
-filled in only from the actual tool output).
+## SonarQube comparison (real values, scan of 2026-11-23)
+SonarQube reports cyclomatic complexity per **file**, not per function (no per-function value in its API).
+
+| Check | Hand/AST value | SonarQube | Result |
+|---|---|---|---|
+| `check_participation_state` V(G) by CFG (E−N+2P) | **6** | n/a (file-level only) | – |
+| Same function via `scripts/cyclomatic_ast.py` (Sonar-style counting) | **6** | n/a | equals hand value |
+| `core/signup/stats.py` file total | 17 | **17** | exact match |
+| `structure/common.py` file total | 36 | **34** | my count +2 |
+| `participant_validation.py` file total | 45 | **42** | my count +3 |
+
+Interpretation: the counting rule matches Sonar exactly on one file and over-counts by 2-3 on the others,
+so Sonar evidently does not count some construct I count (not identified; likely nested/closure or
+`not`-chain handling). The hand-calculated function value (6) is derived from the CFG independently of
+either tool. We do not claim a per-function Sonar match because Sonar does not expose one.
