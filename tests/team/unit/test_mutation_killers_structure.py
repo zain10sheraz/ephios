@@ -38,7 +38,7 @@ def context_for(shift, user):
 
 
 # ---- L54: capacity must count ONLY confirmed participations
-def test_capacity_counts_only_confirmed(shift, volunteer, planner, manager, superuser):
+def test_capacity_counts_only_confirmed(shift, volunteer, planner, manager, superuser, qualified_volunteer):
     structure_conf(
         shift, flow="instant_confirmation",
         minimum_number_of_participants=0, maximum_number_of_participants=2,
@@ -46,6 +46,7 @@ def test_capacity_counts_only_confirmed(shift, volunteer, planner, manager, supe
     LocalParticipation.objects.create(shift=shift, user=planner, state=S.CONFIRMED)
     LocalParticipation.objects.create(shift=shift, user=manager, state=S.USER_DECLINED)
     LocalParticipation.objects.create(shift=shift, user=superuser, state=S.RESPONSIBLE_REJECTED)
+    LocalParticipation.objects.create(shift=shift, user=qualified_volunteer, state=S.REQUESTED)
     errors = shift.signup_flow.signup_action_validator_class(
         shift, volunteer.as_participant()
     ).get_signup_errors()
@@ -68,12 +69,14 @@ def test_maximum_participants_form_boundary(shift, value, valid):
 # ---- L83 / L84 / L85: empty-spot computation in the shift state context
 @pytest.mark.parametrize(
     "minimum, confirmed, expected_empty",
-    [(None, 0, 0), (0, 0, 0), (0, 1, 0), (3, 1, 2), (3, 3, 0), (2, 0, 2)],
-    ids=["min_none", "min0_none", "min0_one", "min3_one", "min3_full", "min2_none"],
+    [(None, 0, 0), (0, 0, 0), (0, 1, 0), (3, 1, 2), (3, 3, 0), (2, 0, 2), (5, 2, 3)],
+    ids=["min_none", "min0_none", "min0_one", "min3_one", "min3_full", "min2_none", "min5_two"],
 )
-def test_empty_spots(shift, planner, volunteer, manager, superuser, minimum, confirmed, expected_empty):
+def test_empty_spots(
+    shift, planner, volunteer, manager, superuser, qualified_volunteer, minimum, confirmed, expected_empty
+):
     structure_conf(shift, minimum_number_of_participants=minimum, maximum_number_of_participants=None)
-    for user in [volunteer, manager, superuser][:confirmed]:
+    for user in [volunteer, manager, superuser, qualified_volunteer][:confirmed]:
         LocalParticipation.objects.create(shift=shift, user=user, state=S.CONFIRMED)
     assert len(context_for(shift, planner)["empty_spots"]) == expected_empty
 
@@ -96,3 +99,25 @@ def test_export_rows(shift, volunteer, minimum, maximum, confirmed, expected_row
     if confirmed:
         LocalParticipation.objects.create(shift=shift, user=volunteer, state=S.CONFIRMED)
     assert len(shift.structure.get_list_export_data()) == expected_rows
+
+
+# ---- L19 / L71 / L74 / L115: optional fields and the minimum-age limits (3-point BVA)
+@pytest.mark.parametrize(
+    "value, valid",
+    [("-1", False), ("0", True), ("1", True), ("998", True), ("999", True), ("1000", False)],
+)
+def test_minimum_age_form_boundaries(shift, value, valid):
+    assert ("minimum_age" not in form_errors(shift, minimum_age=value)) is valid
+
+
+@pytest.mark.parametrize(
+    "field",
+    [
+        "minimum_age",
+        "minimum_number_of_participants",
+        "maximum_number_of_participants",
+        "required_qualification_ids",
+    ],
+)
+def test_configuration_fields_are_optional(shift, field):
+    assert field not in form_errors(shift)
