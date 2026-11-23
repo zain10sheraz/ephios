@@ -16,7 +16,7 @@ Raw output: `reports/sonar_metrics_run1_core_profile.txt`, `reports/sonar_metric
 | Coverage (whole scope) | 9.5 % line / 100 % branch* | same | most of the scope is not unit tested by us (yet) |
 | Coverage of the 3 tested modules | 100 % line, 100 % branch each | same | `participant_validation.py`, `structure/common.py`, `stats.py` |
 
-*Branch figure covers only the branches Sonar could attribute in the reported files; do not quote it as scope-wide.
+*Sonar reports 100 % branch coverage next to 7.9 % line coverage; we did not investigate the reason, so do not quote the branch figure as scope-wide.
 Highest-complexity files: `core/models/events.py` (66), `named_teams.py` (66), `core/views/event.py` (63).
 Top smell rules: python:S9073 (5), S1192 duplicated string literal (4), S117 naming (3), S6553 (2).
 
