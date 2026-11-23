@@ -24,3 +24,10 @@ Top smell rules: python:S9073 (5), S1192 duplicated string literal (4), S117 nam
 - The first scans failed (bind-mount file loss, Docker out of memory); only the final successful runs are reported.
 - Whole-scope coverage of 9.5 % is **low**; the 100 % claim applies only to the three modules above.
 - Quality profile choice matters (0 vs 18 smells); we report both.
+
+## Quality gate (from Zain's screenshots EV-005a/b)
+Default "Sonar way" gate: **FAILED**, 2 conditions: (1) 13 issues on new code (gate requires 0) and
+(2) 9.5 % coverage on new code (required >= 80 %). On a first analysis all code counts as "new code".
+Interpretation: the failure is genuine for the scoped modules - most of the scoped code is not unit tested by us yet.
+The CI gate thresholds (see CI section) will be set from this evidence, not copied from the default.
+Sonar also warns the embedded H2 database is for evaluation only (acceptable for a local course instance).
