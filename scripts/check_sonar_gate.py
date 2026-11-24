@@ -23,6 +23,8 @@ FULLY_COVERED = [  # files that must stay at 100 % line coverage
     "src/ephios/core/signup/flow/participant_validation.py",
     "src/ephios/core/signup/stats.py",
     "src/ephios/plugins/baseshiftstructures/structure/common.py",
+    "src/ephios/core/forms/events.py",
+    "src/ephios/core/models/events.py",
 ]
 
 
