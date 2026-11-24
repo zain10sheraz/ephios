@@ -239,18 +239,25 @@ class ShiftForm(forms.ModelForm):
             DerivedFieldsLogRecorder(lambda shift: shift.get_signup_info()),
         )
 
+    def _require_valid_date(self):
+        # fields are cleaned in order; if the date failed validation it is missing from cleaned_data
+        if "date" not in self.cleaned_data:
+            raise ValidationError(_("Please enter a valid date."))
+        return self.cleaned_data["date"]
+
     def clean_meeting_time(self):
-        return from_current_timezone(
-            datetime.combine(self.cleaned_data["date"], self.cleaned_data["meeting_time"])
-        )
+        date = self._require_valid_date()
+        return from_current_timezone(datetime.combine(date, self.cleaned_data["meeting_time"]))
 
     def clean_start_time(self):
-        return from_current_timezone(
-            datetime.combine(self.cleaned_data["date"], self.cleaned_data["start_time"])
-        )
+        date = self._require_valid_date()
+        return from_current_timezone(datetime.combine(date, self.cleaned_data["start_time"]))
 
     def clean_end_time(self):
-        end_time = datetime.combine(self.cleaned_data["date"], self.cleaned_data["end_time"])
+        date = self._require_valid_date()
+        if "start_time" not in self.cleaned_data:
+            raise ValidationError(_("Please enter a valid start time."))
+        end_time = datetime.combine(date, self.cleaned_data["end_time"])
         if make_aware(end_time) <= self.cleaned_data["start_time"]:
             end_time += timedelta(days=1)
         return from_current_timezone(end_time)
