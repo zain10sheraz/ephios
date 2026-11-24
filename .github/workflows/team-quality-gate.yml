@@ -26,7 +26,7 @@ jobs:
           uv run manage.py build
       - name: Run team tests with statement and branch coverage
         run: |
-          INC="src/ephios/core/signup/flow/participant_validation.py,src/ephios/plugins/baseshiftstructures/structure/common.py,src/ephios/core/signup/stats.py,src/ephios/core/forms/events.py,src/ephios/core/models/events.py"
+          INC="$(tr -d '\r' < scripts/gate_modules.txt | paste -sd, -)"
           uv run coverage run --include="$INC" -m pytest tests/team -q -p no:cacheprovider
           uv run coverage report -m --fail-under=100
 
@@ -85,7 +85,7 @@ jobs:
           uv run manage.py build
       - name: Coverage report for SonarQube
         run: |
-          INC="src/ephios/core/signup/flow/participant_validation.py,src/ephios/plugins/baseshiftstructures/structure/common.py,src/ephios/core/signup/stats.py,src/ephios/core/forms/events.py,src/ephios/core/models/events.py"
+          INC="$(tr -d '\r' < scripts/gate_modules.txt | paste -sd, -)"
           mkdir -p reports
           uv run coverage run --include="$INC" -m pytest tests/team -q -p no:cacheprovider
           uv run coverage xml -o reports/coverage.xml

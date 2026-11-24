@@ -5,6 +5,7 @@ Usage: python scripts/check_sonar_gate.py http://localhost:9000 <token> [project
 
 import base64
 import json
+import os
 import sys
 import urllib.request
 
@@ -19,13 +20,12 @@ THRESHOLDS = {  # metric: maximum allowed
     "code_smells": 14,  # ratchet: 14 smells are all upstream-owned code in scope (13 + 1 when forms/events.py joined the scope); our own code must add none
     "duplicated_lines_density": 3.0,
 }
-FULLY_COVERED = [  # files that must stay at 100 % line coverage
-    "src/ephios/core/signup/flow/participant_validation.py",
-    "src/ephios/core/signup/stats.py",
-    "src/ephios/plugins/baseshiftstructures/structure/common.py",
-    "src/ephios/core/forms/events.py",
-    "src/ephios/core/models/events.py",
-]
+with open(
+    os.path.join(os.path.dirname(__file__), "gate_modules.txt"), encoding="utf-8"
+) as modules_file:
+    FULLY_COVERED = [
+        line.strip() for line in modules_file if line.strip()
+    ]  # files that must stay at 100 % coverage
 
 
 def get(path):
