@@ -79,10 +79,6 @@ def test_fragments_need_change_permission(client, volunteer, event):
 
 
 # ------------------------------------------------------------ fragments: DEFECT-004
-@pytest.mark.xfail(
-    strict=True,
-    reason="DEFECT-004 (issue #7): unknown slug / non-numeric shift_id raise an unhandled ValueError",
-)
 @pytest.mark.parametrize(
     "builder, args",
     [

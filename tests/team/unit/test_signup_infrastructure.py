@@ -66,10 +66,6 @@ def test_is_minor_boundary_at_18(days_after_18th_birthday, expected_minor):
     assert abstract_participant(born).is_minor is expected_minor
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="DEFECT-003 (issue #6): is_minor uses `if age := get_age()`, so age 0 is treated like unknown",
-)
 def test_a_newborn_is_a_minor():
     assert abstract_participant(timezone.now().date()).is_minor is True
 
