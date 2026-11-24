@@ -193,7 +193,6 @@ def test_br4_no_maximum_means_unlimited(shift, volunteer, planner):
 
 
 # ------------------------------------------------------------ other checkers
-@pytest.mark.xfail(strict=True, reason="DEFECT-001: check_event_is_active returns instead of raises")
 def test_event_inactive_blocks_signup(shift, volunteer):
     """Expectation from the checker's own error text: 'The event is not active.'"""
     shift.event.active = False
