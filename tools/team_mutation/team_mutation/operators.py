@@ -8,8 +8,8 @@ RuleBoundaryShift  - BR1/BR4/age limit: shifts `>`<->`>=` and `<`<->`<=` but ONL
                      involve the signup window, capacity or age (identified by name).
 """
 
-import parso.python.tree
-from cosmic_ray.operators.operator import Example, Operator
+import parso.python.tree  # ty: ignore[import-not-found]  (mutation-only dependency, not installed in lint)
+from cosmic_ray.operators.operator import Example, Operator  # ty: ignore[import-not-found]
 
 STATES = ["REQUESTED", "CONFIRMED", "USER_DECLINED", "RESPONSIBLE_REJECTED", "GETTING_DISPATCHED"]
 BOUNDARY_HINTS = (
