@@ -1,0 +1,6 @@
+login: 302 sessionid cookie set: True
+valid input (control)        -> HTTP 302
+date empty                   -> HTTP 200
+date invalid text            -> HTTP 200
+start_time empty             -> HTTP 200
+start_time invalid 25:99     -> HTTP 200
