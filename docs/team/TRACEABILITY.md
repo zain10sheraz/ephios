@@ -7,19 +7,20 @@ Requirement text and rule definitions: `REQUIREMENTS.md`. Test names are real py
 ## Functional requirements
 | ID | Requirement (short) | U | I | A | E | Main tests (examples) | Status |
 |---|---|---|---|---|---|---|---|
-| FR-01 | Planner creates an event | P | - | - | - | `test_new_event_form_assigns_permissions`, `test_event_form_for_planner_without_publish_rights_disables_visibility` | partial (form level only) |
-| FR-02 | Planner adds a shift with times | P | - | - | - | `test_meeting_time_boundary`, `test_end_time_rolls_over_to_next_day`, `test_missing_or_invalid_date_or_start_is_a_form_error_not_an_exception` (DEFECT-002) | covered at unit level |
-| FR-03 | Configure flow/structure (max participants, min age, qualifications) | P | - | - | - | `test_maximum_participants_form_boundary`, `test_minimum_age_form_boundaries`, `test_configuration_fields_are_optional` | covered at unit level |
-| FR-04 | Events/shifts readable via REST API | - | - | - | - | none yet (Manan) | **gap** |
-| FR-05 | Volunteer signs up (instant -> CONFIRMED, request -> REQUESTED) | P | partial | - | - | `test_br4_*`, `test_br3_*`, `test_signup_post_on_inactive_event_creates_no_participation` | partial (validators; HTTP create path not asserted) |
-| FR-06 | Volunteer declines where permitted | P | - | - | - | `test_br2_confirmed_decline_decision_table`, `test_getting_dispatched_may_still_decline` | covered at unit level |
-| FR-07 | Rule violation rejected with message, nothing created | P | partial | - | - | `test_br1_signup_until_boundary`, `test_rejected_blocks_signup_even_when_decline_forbidden`, `test_conflict_with_confirmed_overlapping_shift_blocks` | covered at unit level |
-| FR-08 | Repeated signup creates no duplicate | - | - | - | - | none yet | **gap** |
-| FR-09 | WF1 configuration changes affect WF2 (capacity, deadline, active flag) | partial | partial | - | - | `test_br4_maximum_participants_instant_flow` (config -> validator), `test_event_inactive_blocks_signup` | partial |
+| FR-01 | Planner creates an event | P | P | - | - | `test_planner_creates_an_event_and_is_sent_on_to_add_a_shift`, `test_creating_events_needs_the_add_event_permission`, `test_new_event_form_assigns_permissions` | covered (unit + HTTP) |
+| FR-02 | Planner adds a shift with times | P | P | - | - | `test_saving_the_first_shift_activates_the_event`, `test_meeting_time_boundary`, `test_end_time_rolls_over_to_next_day`, DEFECT-002 tests | covered (unit + HTTP) |
+| FR-03 | Configure flow/structure (max participants, min age, qualifications) | P | P | - | - | `test_shift_is_stored_with_the_posted_configuration`, `test_maximum_participants_form_boundary`, `test_minimum_age_form_boundaries` | covered (unit + HTTP) |
+| FR-04 | Events/shifts readable via REST API | - | - | - | - | none yet (Manan, area 2) | **gap** |
+| FR-05 | Volunteer signs up (instant -> CONFIRMED, request -> REQUESTED) | P | P | - | - | `test_request_flow_signup_creates_requested_participation`, `test_instant_flow_signup_creates_confirmed_participation` | covered (unit + HTTP) |
+| FR-06 | Volunteer declines where permitted | P | P | - | - | `test_decline_of_confirmed_participation_when_allowed`, `test_br2_confirmed_decline_decision_table` | covered (unit + HTTP) |
+| FR-07 | Rule violation rejected with message, nothing created | P | P | - | - | `test_signup_after_deadline_is_rejected_and_leaves_no_participation`, `test_signup_beyond_capacity_is_rejected_and_count_stays`, `test_failing_flow_action_rolls_back_and_reports_the_error` | covered (unit + HTTP) |
+| FR-08 | Repeated signup creates no duplicate | - | P | - | - | `test_repeated_signup_creates_no_duplicate_and_is_rejected`, `test_signup_after_decline_reuses_the_same_participation`, `test_retry_after_failure_succeeds_without_duplicates` | covered (HTTP) |
+| FR-09 | WF1 configuration changes affect WF2 | P | P | - | - | `tests/team/integration/test_cross_workflow.py` (capacity raise/lower, deadline set/clear, flow switch, min age, volunteer cannot edit) | covered (HTTP, shared record read back) |
 
-**Requirements coverage (unit level only):** 4 requirements fully covered (FR-02, FR-03, FR-06, FR-07), 3 partially covered
-(FR-01, FR-05, FR-09), 2 with no test (FR-04, FR-08). Counting a partial as half: (4 + 3 x 0.5) / 9 = 5.5 / 9 = **61 %**.
-Strict count (only fully covered): 4 / 9 = 44 %. API and E2E tests by the other members are expected to close the gaps.
+**Requirements coverage (unit + HTTP integration levels):** 8 of 9 requirements have executed passing tests (FR-01..03, 05..09);
+1 has none (FR-04, REST read, needs Manan's API tests). Requirements coverage = **8 / 9 = 89 %** (strict, no half credit).
+Earlier today it was 61 % (4 full + 3 partial of 9); the HTTP tests closed FR-01, 05, 08 and 09.
+E2E (Sujawal) and API-level tests (Manan) are still outstanding and are not counted here.
 
 ## Business rules
 | ID | Rule | Tests (all executed, all passing on `zain`) | Techniques |
@@ -36,6 +37,11 @@ Strict count (only fully covered): 4 / 9 = 44 %. API and E2E tests by the other 
 | BR-W4 | Event save assigns/removes permissions | `test_new_event_form_assigns_permissions`, `test_edit_keeps_locked_groups_and_participants_visible`, `test_edit_removes_access_of_users_no_longer_responsible` | decision |
 | BR-W5 | Event type colour #RRGGBB | `test_event_type_colour_validation` | EP |
 | BR-V | Who sees participant data | `test_*_setting_*` in `test_wf1_models_visibility.py` (decision table, 7 tests) | decision table |
+| BR-W6 | Saving a shift activates its event | `test_saving_the_first_shift_activates_the_event`, `test_planner_can_activate_an_inactive_event` | state change |
+| BR-W7 | Last shift cannot be deleted | `test_last_shift_cannot_be_deleted`, `test_a_shift_can_be_deleted_when_the_event_has_two` | 2-point BVA (1 vs 2 shifts) |
+| BR-W8 | Inactive events visible only to users who may add events | `test_volunteer_sees_an_active_event_but_not_an_inactive_one`, `test_planner_sees_inactive_events` | role decision |
+| BR-W9 | Event delete needs delete AND change; create needs add | `test_deleting_needs_both_delete_and_change_permission`, `test_creating_events_needs_the_add_event_permission` | decision table / role matrix |
+| BR-F | Event list filters (search, type, date direction, participation state) | `test_search_matches_*`, `test_date_filter_boundaries`, `test_participation_state_filter` | EP + 3-point BVA |
 
 ## Risks -> evidence
 PR-01 -> DEFECT-001 tests + fix; PR-02 -> BR1 tests; PR-03 -> BR4 tests (concurrency untested); PR-04 -> BR3; PR-05 -> BR6; PR-11 (shift time input validation) -> DEFECT-002 tests.
@@ -46,5 +52,6 @@ PR-01 -> DEFECT-001 tests + fix; PR-02 -> BR1 tests; PR-03 -> BR4 tests (concurr
 | `core/signup/flow/participant_validation.py` | 100 % / 100 % | 98.3 % (100 % in CI after DEFECT-001 fix) |
 | `plugins/baseshiftstructures/structure/common.py` | 100 % / 100 % | 94.4 % |
 | `core/signup/stats.py` | 100 % / 100 % | 100 % |
-| `core/forms/events.py` | 100 % / 100 % | not run |
+| `core/forms/events.py` | 100 % / 100 % | see `MUTATION.md` (WF1 forms run) |
 | `core/models/events.py` | 100 % / 100 % | not run |
+| 11 further signup-path modules | 100 % / 100 % (see `COVERAGE_SCOPE.md`) | not run |

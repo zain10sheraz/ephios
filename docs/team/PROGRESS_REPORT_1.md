@@ -59,3 +59,19 @@ Quality-gate indicators: SonarQube comprehensive profile 18 smells initially, 13
 2. Chase the two teammates; review the shared documents together (all three are examined on them).
 3. Start the final PDF skeleton; collect remaining screenshots (EV-008, EV-009, EV-015b, EV-016).
 4. Update estimates versus actuals and the risk register once API/E2E/security/performance results exist.
+
+---
+## Update 2026-11-24 late evening (same reporting period, after the first version of this report)
+| Item | Earlier today | Now |
+|---|---|---|
+| Team tests | 197 | **333** (unit + HTTP integration; run in CI) |
+| Modules at 100 % statement+branch | 5 | **16** (1,344 statements, 176 branches; `COVERAGE_SCOPE.md`) |
+| MCC / MC-DC | 2 decisions | **every compound decision of the critical module** (D1-D8 + error routing table) |
+| Defects | 2 (1 fixed) | **4, all fixed and closed** (#1, #4, #6, #7), each through a PR with green CI |
+| Requirements coverage | 61 % (5.5 / 9) | **89 % (8 / 9)**; only FR-04 (REST read) has no test |
+| Mutation | 3 modules, 97.3 % | WF1 forms run in progress (136 mutants) |
+| CI | PRs #2 (green after block), #3 (blocked), #5 | + PR #8 all green on the 16-module gate (unit 1m19, sonar 2m44, mutation 9m03) |
+
+GQM update: defect density 4 / 4.747 KLOC = **0.84 per KLOC**; reopen rate 0 / 4 = **0 %**; severity mix 2 major / 2 minor.
+Pareto by root cause: input/partition not handled 3 of 4 defects (75 %).
+Remaining schedule risk unchanged: Manan's (API) and Sujawal's (E2E, usability, security, performance) areas not started.

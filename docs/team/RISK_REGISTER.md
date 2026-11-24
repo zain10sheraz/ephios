@@ -18,6 +18,7 @@ are plain expectations and are labelled so.
 | PR-09 | Slow signup under concurrent users | 2 | 3 | 6 | Low | k6 1 vs 5 VUs, p95 target | not yet run |
 | PR-10 | WF1 changes (capacity/deadline) not reflected in WF2 (shared-record inconsistency) | 3 | 4 | 12 | Medium | Cross-workflow integration tests with read-back | not yet run |
 | PR-11 | Invalid shift date/time input crashes the form (HTTP 500) instead of showing an error | 3 | 3 | 9 | Medium | EP with one invalid value per field, live-server probe | **Confirmed and fixed: DEFECT-002 (Issue #4, PR #5)**; live probe 500 -> 200 |
+| PR-12 | Helper endpoints and derived values mishandle unusual input (HTTP 500, wrong age rule) | 3 | 2 | 6 | Low | EP with invalid values per parameter; live-server probes | **Confirmed and fixed: DEFECT-003 (#6), DEFECT-004 (#7), PR #8** |
 
 ## Project risks
 | ID | Risk | L | I | Score | Level | Mitigation | Evidence so far |
@@ -29,8 +30,8 @@ are plain expectations and are labelled so.
 ## Exit criteria (measurable; tied to highest risks)
 | ID | Criterion | Target | Tied to | Actual (to fill from runs) |
 |---|---|---|---|---|
-| EC-01 | Statement and branch coverage of signup validation modules | 100 % | PR-01, PR-02, PR-04 | 100 % / 100 % on 5 modules (EV-001, EV-019) |
-| EC-02 | No open defect of severity major or critical | 0 open | PR-01, PR-02, PR-03 | DEFECT-001 (PR #2) and DEFECT-002 (PR #5) fixed, issues #1 and #4 closed; 0 open major defects at this moment -> MET (re-check at the end) |
+| EC-01 | Statement and branch coverage of signup validation modules | 100 % | PR-01, PR-02, PR-04 | 100 % / 100 % on 16 modules (`docs/team/COVERAGE_SCOPE.md`) |
+| EC-02 | No open defect of severity major or critical | 0 open | PR-01, PR-02, PR-03 | DEFECT-001 (PR #2), DEFECT-002 (PR #5), DEFECT-003/004 (PR #8) fixed, issues #1, #4, #6, #7 closed; 0 open defects of any severity at this moment -> MET (re-check at the end) |
 | EC-03 | Mutation kill rate on business-rule modules | >= 90 % | PR-02, PR-03, PR-05 | 98.3 % / 94.4 % / 100 % on the 3 modules after killer tests (97.3 % overall); MET |
 | EC-04 | Performance: signup p95 and failure rate at 5 users | p95 <= 500 ms, < 1 % failures | PR-09 | not run |
 | EC-05 | Role matrix: denied actions actually denied | 100 % of >= 4 checks | PR-06 | not run |

@@ -30,3 +30,7 @@ Status values: `captured` (file exists, produced by a real run), `verified` (a g
 | EV-021 | Issue #4 closed with evidence | https://github.com/zain10sheraz/ephios/issues/4 | 2026-11-24 | **TO SCREENSHOT by Zain** |
 | EV-022 | Live probe before/after DEFECT-002 | `reports/defect002_live_probe_before_fix.txt` (500 x4), `reports/defect002_live_probe_after_fix.txt` (200 x4) | 2026-11-24 | captured |
 | EV-023 | RCA, test plan, RTM, progress report 1 | `docs/team/RCA.md`, `TEST_PLAN.md`, `TRACEABILITY.md`, `PROGRESS_REPORT_1.md` | 2026-11-24 | draft - team review pending |
+| EV-024 | DEFECT-003/004 before/after tests and live probe | `reports/defect003_004_before_fix.txt` (5 failed), `reports/defect003_004_after_fix.txt` (57 passed), `reports/defect004_live_probe_before_fix.txt` (500 x4), `reports/defect004_live_probe_after_fix.txt` (404 x2, 200 x2), `reports/defect003_004_regression.txt` | 2026-11-24 | captured |
+| EV-025 | PR #8 all checks green; issues #6, #7 closed | https://github.com/zain10sheraz/ephios/pull/8 | 2026-11-24 | **TO SCREENSHOT by Zain** |
+| EV-026 | Coverage scope + 16-module 100 % run | `docs/team/COVERAGE_SCOPE.md`, rerun `scripts/run_unit_coverage.ps1` | 2026-11-24 | captured (rerun by Claude; not yet verified by a member) |
+| EV-027 | Complete MCC/MC-DC tables | `docs/team/MCC_MCDC.md`, `tests/team/unit/test_mcc_mcdc_validation.py` | 2026-11-24 | captured |

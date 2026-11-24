@@ -15,3 +15,6 @@ Efforts are approximate (reconstructed from session time) and will be marked as 
 | 2026-11-24 | Zain / WF1 unit tests | forms and models tests, 100 % on 2 more modules, DEFECT-002 found | 2.0 |
 | 2026-11-24 | Zain / DEFECT-002 | live probe, fix, PR #5 with 2 real Sonar blocks, merge | 2.0 (incl. ~0.5 h GitHub outage) |
 | 2026-11-24 | Shared docs | RCA, test plan, RTM, progress report | 1.5 |
+| 2026-11-24 | Zain / complete MCC-MC/DC | enumerate decisions, tables, 17 tests | 1.5 |
+| 2026-11-24 | Zain / signup-path HTTP tests + coverage scope | 11 modules to 100 %, fallbacks, scope document | 4.0 (incl. long stalls from memory pressure) |
+| 2026-11-24 | Zain / WF1 HTTP tests, cross-workflow tests | 32 + 29 + 6 tests; DEFECT-003/004 found, fixed, PR #8 | 3.5 |

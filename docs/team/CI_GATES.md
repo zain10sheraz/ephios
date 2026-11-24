@@ -9,12 +9,12 @@ the final merge into `main` must pass the gate.
 ## Gates and why these thresholds
 | Job | Gate | Threshold | Justification (from our own evidence) |
 |---|---|---|---|
-| unit-tests-100pct-coverage | team tests pass; statement+branch coverage of 5 business-logic modules (signup validation, shift structures, SignupStats, event/shift forms, event/shift models) | 100 % | We reached 100 % (EV-001); the assignment targets 100 % of business logic; anything lower means untested rule code |
+| unit-tests-100pct-coverage | team tests pass; statement+branch coverage of 16 business-logic modules listed in `scripts/gate_modules.txt` (rationale: `COVERAGE_SCOPE.md`) | 100 % | We reached 100 % (EV-001); the assignment targets 100 % of business logic; anything lower means untested rule code |
 | mutation-score | Cosmic Ray kill rate on `participant_validation.py` | >= 90 % | Round 1 = 91.4 %, round 2 = 98.3 %, CI after the fix = 100 % (118/118). 90 % blocks a real regression (deleting a killer test drops below) but tolerates equivalent mutants; 100 % would be unachievable in general |
 | sonarqube-thresholds | bugs, vulnerabilities, hotspots | 0 | none exist in scope |
 | | code smells | <= 14 | all 14 smells are upstream-owned code in scope; our own code must add none (ratchet). History: 18 -> 13 after we fixed our own smells -> 14 when `forms/events.py` joined the Sonar scope (its one smell, `not a <= b` at line 267, is upstream's, confirmed with `git blame` and a local scan) |
 | | duplicated lines | <= 3 % | measured 0.5 % |
-| | line coverage of the 5 modules | 100 % each | same as the unit gate, measured independently by Sonar |
+| | line coverage of the 16 modules | 100 % each | same as the unit gate, measured independently by Sonar |
 
 ## Real run history (all on https://github.com/zain10sheraz/ephios)
 | When (UTC, 2026-11-24) | PR | Result | What it shows |
@@ -30,7 +30,7 @@ the final merge into `main` must pass the gate.
 
 ## Observations / limitations
 - Upstream's own workflows (`lint`, a 12-job `test` matrix, CodeQL) also run on PRs to `main` and are NOT required checks. On PR #3 they failed (tests: because our new tests fail; `lint`: our files broke upstream's ruff rules - 9 files to reformat, 16 findings). **We fixed the ruff findings afterwards** (commit following 84d59b33) so the final PR to `main` is not red for style.
-- The 100 % gate covers five modules (WF2 signup validation + WF1 event/shift forms and models). Views, REST serializers and plugin code are outside the unit gate and will be covered by API/E2E tests.
+- The 100 % gate covers 16 modules (WF2 signup validation, view, form, flows, participants; WF1 event/shift forms and models). WF1 list/calendar and copy views, REST serializers and alternative plugins are outside it and justified in `COVERAGE_SCOPE.md`.
 - CI timings: unit 50-54 s, sonar 1m47-2m20, mutation 7-8.5 min (runner is faster than the local machine).
 - The Sonar gate script (`scripts/check_sonar_gate.py`) is custom because a SonarQube Community server in CI starts with the default gate, which fails on first analysis (as seen locally: coverage 9.5 % < 80 %).
 
@@ -40,3 +40,6 @@ the final merge into `main` must pass the gate.
 | 1 | sonar FAIL: `coverage forms/events.py = None` | gate required coverage of a file that was not in `sonar.sources` (our configuration slip, caught by the gate) |
 | 2 | sonar FAIL: `code_smells = 14 (max 13)` | scope now included upstream `forms/events.py` with 1 upstream smell; ratchet raised to 14 with the justification above |
 Unit tests passed (1m) and mutation passed (10m39s) in both runs.
+
+## PR #8 run (DEFECT-003 + DEFECT-004 fix, first run on the 16-module gate)
+All three checks passed on the first run: unit-tests 1m19 (16 modules at 100 %), sonarqube-thresholds 2m44 (smells still <= 14: the new test files added none after the pre-emptive cleanup), mutation-score 9m03. PR #8 merged into `zain`; issues #6 and #7 closed. The coverage list now lives in one file (`scripts/gate_modules.txt`) read by the workflow, the Sonar gate script, `sonar-project.properties` and the local script, so they cannot drift apart.
