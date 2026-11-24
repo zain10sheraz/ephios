@@ -57,17 +57,17 @@ Honesty note: estimates for Zain's areas below were written **after** the work (
 | Area | O | M | P | E | Actual so far | Basis |
 |---|---|---|---|---|---|---|
 | Setup and environment | 1 | 2 | 4 | 2.2 | 1.0 (+ ~3 h Docker/RAM trouble) | worklog (retrospective) |
-| White-box unit tests + coverage + MCC/MC-DC | 3 | 5 | 9 | 5.3 | ~5.5 | worklog (retrospective) |
+| White-box unit tests + coverage + MCC/MC-DC (+ HTTP tests added later) | 3 | 5 | 9 | 5.3 | **~13.5** (scope grew from 5 to 16 modules and from unit to HTTP tests) | worklog (retrospective) |
 | SonarQube + complexity | 1 | 2 | 4 | 2.2 | ~2.5 | worklog (retrospective) |
-| Mutation testing + analysis | 3 | 5 | 8 | 5.2 | ~6 | worklog (retrospective) |
-| CI gate + PRs | 2 | 4 | 7 | 4.2 | ~3.5 | worklog (retrospective) |
+| Mutation testing + analysis | 3 | 5 | 8 | 5.2 | ~8.5 (4 modules, 113 survivors analysed) | worklog (retrospective) |
+| CI gate + PRs | 2 | 4 | 7 | 4.2 | ~8 (four PR cycles incl. real blocks and a GitHub outage) | worklog (retrospective) |
 | API tests + generator + OpenAPI (Manan) | 5 | 8 | 14 | 8.5 | not started | prospective |
 | E2E + use cases (Sujawal) | 5 | 8 | 12 | 8.2 | not started | prospective |
 | Usability/accessibility | 2 | 3 | 5 | 3.2 | not started | prospective |
 | Security | 2 | 3 | 5 | 3.2 | not started | prospective |
 | Performance + recovery | 2 | 4 | 6 | 4.0 | not started | prospective |
-| Documents + PDF | 4 | 6 | 10 | 6.3 | ~3 so far | prospective |
-The actual-versus-estimate comparison is completed in the test completion report.
+| Documents + PDF | 4 | 6 | 10 | 6.3 | ~6 so far, PDF not started | prospective |
+Reading: for Zain's area the actual effort (about 38 h, approximate and reconstructed from session activity) is well above the retrospective three-point total (about 17 h) because the scope grew during the work (more modules, HTTP tests, four defect cycles) and because machine stalls from RAM pressure cost hours. The final actual-versus-estimate comparison, including the other members' areas, belongs in the test completion report.
 
 ## 10. Plan changes
 - 2026-11-24: SonarQube scope narrowed from the whole app to the business-logic folders (the whole app froze the machine); mutmut replaced by Cosmic Ray (needs fork(), no Windows support); upstream's CI workflows also run on PRs to `main` and are not required checks.
