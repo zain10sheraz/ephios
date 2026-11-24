@@ -30,7 +30,7 @@ are plain expectations and are labelled so.
 |---|---|---|---|---|
 | EC-01 | Statement and branch coverage of signup validation modules | 100 % | PR-01, PR-02, PR-04 | 100 % / 100 % on 3 modules (EV-001) |
 | EC-02 | No open defect of severity major or critical | 0 open | PR-01, PR-02, PR-03 | 1 major open (DEFECT-001) -> currently NOT MET |
-| EC-03 | Mutation kill rate on business-rule modules | >= 90 % | PR-02, PR-03, PR-05 | module 1: 91.4 % (round 1) |
+| EC-03 | Mutation kill rate on business-rule modules | >= 90 % | PR-02, PR-03, PR-05 | 98.3 % / 94.4 % / 100 % on the 3 modules after killer tests (97.3 % overall); MET |
 | EC-04 | Performance: signup p95 and failure rate at 5 users | p95 <= 500 ms, < 1 % failures | PR-09 | not run |
 | EC-05 | Role matrix: denied actions actually denied | 100 % of >= 4 checks | PR-06 | not run |
 
