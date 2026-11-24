@@ -16,7 +16,7 @@ THRESHOLDS = {  # metric: maximum allowed
     "bugs": 0,
     "vulnerabilities": 0,
     "security_hotspots": 0,
-    "code_smells": 18,  # ratchet: baseline measured 2026-11-23 with 'Sonar way comprehensive'
+    "code_smells": 13,  # ratchet: 13 smells are upstream-owned code in scope; our own code must add none
     "duplicated_lines_density": 3.0,
 }
 FULLY_COVERED = [  # files that must stay at 100 % line coverage

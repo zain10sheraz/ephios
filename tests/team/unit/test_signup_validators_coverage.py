@@ -178,8 +178,11 @@ def test_abstract_validators_defaults(shift, volunteer):
 def test_stats_free_and_helpers():
     unlimited = SignupStats(0, 3, 0, None, None, None)
     limited = SignupStats(1, 3, 2, 4, 5, 7)
-    assert unlimited.has_free() and unlimited.full_count is None
-    assert limited.has_free() and limited.full_count == 7 and limited.required_count == 5
+    assert unlimited.has_free()
+    assert unlimited.full_count is None
+    assert limited.has_free()
+    assert limited.full_count == 7
+    assert limited.required_count == 5
     assert not SignupStats(0, 2, 0, 0, 0, 2).has_free()
     assert limited.replace(free=0).free == 0
 
@@ -192,7 +195,8 @@ def test_stats_zero_and_reduce():
 
 def test_stats_min_none_both_sides():
     s = SignupStats(0, 0, 0, None, None, None) + SignupStats(0, 0, 0, None, None, None)
-    assert s.min_count is None and s.max_count is None
+    assert s.min_count is None
+    assert s.max_count is None
 
 
 def test_shift_signup_stats_from_database(shift, volunteer, planner, manager):
@@ -209,7 +213,8 @@ def test_shift_signup_stats_without_limits(shift):
     save(shift, structure_configuration=dict(
         minimum_number_of_participants=None, maximum_number_of_participants=None))
     stats = shift.get_signup_stats()
-    assert stats.missing == 0 and stats.free is None
+    assert stats.missing == 0
+    assert stats.free is None
 
 
 # ------------------------------------------------------------ structure exports / rendering

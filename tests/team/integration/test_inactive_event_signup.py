@@ -9,7 +9,6 @@ from django.urls import reverse
 from ephios.core.models import AbstractParticipation, Event, LocalParticipation
 
 
-@pytest.mark.xfail(strict=True, reason="DEFECT-001: inactive event accepts signup via POST")
 @pytest.mark.django_db
 def test_signup_post_on_inactive_event_creates_no_participation(client, event, volunteer):
     Event.all_objects.filter(pk=event.pk).update(active=False)

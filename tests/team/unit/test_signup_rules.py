@@ -115,7 +115,8 @@ def test_br2_confirmed_decline_decision_table(
 # ------------------------------------------------------------ BR3: state transitions
 def test_br3_no_participation_can_sign_up_and_decline(shift, volunteer):
     v = validator(shift, volunteer)
-    assert v.can_sign_up() and v.can_decline()
+    assert v.can_sign_up()
+    assert v.can_decline()
 
 
 def test_br3_requested_cannot_sign_up_again_but_may_decline(shift, volunteer):
@@ -193,7 +194,6 @@ def test_br4_no_maximum_means_unlimited(shift, volunteer, planner):
 
 
 # ------------------------------------------------------------ other checkers
-@pytest.mark.xfail(strict=True, reason="DEFECT-001: check_event_is_active returns instead of raises")
 def test_event_inactive_blocks_signup(shift, volunteer):
     """Expectation from the checker's own error text: 'The event is not active.'"""
     shift.event.active = False

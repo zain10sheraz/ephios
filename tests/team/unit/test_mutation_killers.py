@@ -47,7 +47,8 @@ def test_declined_state_reports_its_own_message_when_decline_forbidden(shift, vo
     configure(shift, user_can_decline_confirmed=False)
     LocalParticipation.objects.create(shift=shift, user=volunteer, state=S.USER_DECLINED)
     text = messages(validator(shift, volunteer).get_decline_errors())
-    assert "already declined" in text and "by yourself" not in text
+    assert "already declined" in text
+    assert "by yourself" not in text
 
 
 def test_rejected_blocks_signup_even_when_decline_forbidden(shift, volunteer):
@@ -63,7 +64,8 @@ def test_getting_dispatched_may_still_decline(shift, volunteer):
     configure(shift, user_can_decline_confirmed=True)
     LocalParticipation.objects.create(shift=shift, user=volunteer, state=S.GETTING_DISPATCHED)
     v = validator(shift, volunteer)
-    assert v.can_decline() and not v.get_decline_errors()
+    assert v.can_decline()
+    assert not v.get_decline_errors()
 
 
 # ---- L85 / L101 / L102 / L119: conflict query defaults (missing tests: only called with all args)
@@ -109,5 +111,6 @@ def test_missing_customize_flag_defaults_to_strict_conflicts(
     del flow.configuration.user_can_customize_signup_times
     from ephios.core.signup.flow.participant_validation import SignupDisallowedError
 
+    participant = volunteer.as_participant()
     with pytest.raises(SignupDisallowedError):
-        check_conflicting_participations(shift, volunteer.as_participant())
+        check_conflicting_participations(shift, participant)
