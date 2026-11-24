@@ -12,3 +12,6 @@
 | 2026-11-24 | Shared | risk register + exit criteria draft | 0.5 |
 
 Efforts are approximate (reconstructed from session time) and will be marked as such in the report.
+| 2026-11-24 | Zain / WF1 unit tests | forms and models tests, 100 % on 2 more modules, DEFECT-002 found | 2.0 |
+| 2026-11-24 | Zain / DEFECT-002 | live probe, fix, PR #5 with 2 real Sonar blocks, merge | 2.0 (incl. ~0.5 h GitHub outage) |
+| 2026-11-24 | Shared docs | RCA, test plan, RTM, progress report | 1.5 |

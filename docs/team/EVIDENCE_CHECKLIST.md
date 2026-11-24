@@ -26,3 +26,7 @@ Status values: `captured` (file exists, produced by a real run), `verified` (a g
 
 | EV-018 | DEFECT-002 live probe against the running app (HTTP 500 on invalid date/start_time; valid input 302) | `reports/defect002_live_probe_before_fix.txt`, `scripts/probe_shift_form_live.py`, issue https://github.com/zain10sheraz/ephios/issues/4 | 2026-11-24 | captured (real HTTP requests to localhost:8000) |
 | EV-019 | WF1 unit tests: 100 % statement+branch on forms/events.py and models/events.py | rerun `scripts/run_unit_coverage.ps1` | 2026-11-24 | captured (rerun by Claude; not yet verified by a member) |
+| EV-020 | PR #5 (DEFECT-002 fix), all checks green after two real Sonar blocks | https://github.com/zain10sheraz/ephios/pull/5 ; CI run 45425449929 | 2026-11-24 | captured; **TO SCREENSHOT by Zain**: PR #5 Checks tab |
+| EV-021 | Issue #4 closed with evidence | https://github.com/zain10sheraz/ephios/issues/4 | 2026-11-24 | **TO SCREENSHOT by Zain** |
+| EV-022 | Live probe before/after DEFECT-002 | `reports/defect002_live_probe_before_fix.txt` (500 x4), `reports/defect002_live_probe_after_fix.txt` (200 x4) | 2026-11-24 | captured |
+| EV-023 | RCA, test plan, RTM, progress report 1 | `docs/team/RCA.md`, `TEST_PLAN.md`, `TRACEABILITY.md`, `PROGRESS_REPORT_1.md` | 2026-11-24 | draft - team review pending |
