@@ -115,7 +115,8 @@ def test_br2_confirmed_decline_decision_table(
 # ------------------------------------------------------------ BR3: state transitions
 def test_br3_no_participation_can_sign_up_and_decline(shift, volunteer):
     v = validator(shift, volunteer)
-    assert v.can_sign_up() and v.can_decline()
+    assert v.can_sign_up()
+    assert v.can_decline()
 
 
 def test_br3_requested_cannot_sign_up_again_but_may_decline(shift, volunteer):
