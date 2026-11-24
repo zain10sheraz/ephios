@@ -31,3 +31,20 @@ Default "Sonar way" gate: **FAILED**, 2 conditions: (1) 13 issues on new code (g
 Interpretation: the failure is genuine for the scoped modules - most of the scoped code is not unit tested by us yet.
 The CI gate thresholds (see CI section) will be set from this evidence, not copied from the default.
 Sonar also warns the embedded H2 database is for evaluation only (acceptable for a local course instance).
+
+## Final scan (2026-11-24, after all unit/HTTP tests; `reports/sonar_metrics_final.txt`)
+Scope grew to 148 files / 5,010 ncloc (adds `core/forms/events.py`; sources unchanged otherwise). Profile: Sonar way comprehensive. The first attempt of this scan failed
+(`Fail to download plugin [python]`: the SonarQube server was starved of RAM while a 6-minute test run was active) and was repeated once the machine was quiet; only the successful scan is reported.
+
+| Metric | First report (2026-11-23) | Final | Reading |
+|---|---|---|---|
+| Code smells | 18 | **14** | all 14 are upstream-owned code; our own code adds none |
+| Bugs / vulnerabilities / hotspots | 0 / 0 / 0 | 0 / 0 / 0 | |
+| Technical debt | 104 min | **81 min** | |
+| Ratings (reliability / security / maintainability) | A / A / A | A / A / A | |
+| Cyclomatic / cognitive complexity | 707 / 419 | 741 / 442 | grew because one more file joined the scope |
+| Duplication | 0.5 % | 0.5 % (2 blocks) | |
+| Coverage of the whole scope | 9.5 % | **48.3 %** (line 45.2 %, branch 100 % as reported by Sonar) | only code outside our 16 tested modules is uncovered (calendar/copy views, disposition, REST layer, alternative structures; see `COVERAGE_SCOPE.md`) |
+| Coverage of the 16 gate modules | 3 modules at 100 % | **16 of 16 at 100 %** | `scripts/check_sonar_gate.py` exits 0 |
+
+The default SonarQube "Sonar way" quality gate would still FAIL on coverage of new code (< 80 %) because the scope includes untested upstream code; our custom thresholds (`docs/team/CI_GATES.md`) are what CI enforces.
