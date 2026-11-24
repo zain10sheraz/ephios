@@ -64,12 +64,12 @@ Quality-gate indicators: SonarQube comprehensive profile 18 smells initially, 13
 ## Update 2026-11-24 late evening (same reporting period, after the first version of this report)
 | Item | Earlier today | Now |
 |---|---|---|
-| Team tests | 197 | **333** (unit + HTTP integration; run in CI) |
+| Team tests | 197 | **367** (unit + HTTP integration; run in CI) |
 | Modules at 100 % statement+branch | 5 | **16** (1,344 statements, 176 branches; `COVERAGE_SCOPE.md`) |
 | MCC / MC-DC | 2 decisions | **every compound decision of the critical module** (D1-D8 + error routing table) |
 | Defects | 2 (1 fixed) | **4, all fixed and closed** (#1, #4, #6, #7), each through a PR with green CI |
 | Requirements coverage | 61 % (5.5 / 9) | **89 % (8 / 9)**; only FR-04 (REST read) has no test |
-| Mutation | 3 modules, 97.3 % | WF1 forms run in progress (136 mutants) |
+| Mutation | 3 modules, 97.3 % | **4 modules, 551 mutants, 79.3 % -> 97.6 %**; 113 survivors analysed (100 killed, 13 equivalent) |
 | CI | PRs #2 (green after block), #3 (blocked), #5 | + PR #8 all green on the 16-module gate (unit 1m19, sonar 2m44, mutation 9m03) |
 
 GQM update: defect density 4 / 4.747 KLOC = **0.84 per KLOC**; reopen rate 0 / 4 = **0 %**; severity mix 2 major / 2 minor.

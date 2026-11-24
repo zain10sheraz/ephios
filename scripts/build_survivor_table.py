@@ -20,6 +20,7 @@ MODULES = {
     "participant_validation": "core/signup/flow/participant_validation.py",
     "structure_common": "plugins/baseshiftstructures/structure/common.py",
     "stats": "core/signup/stats.py",
+    "wf1_forms": "core/forms/events.py",
 }
 
 # (module, line) -> (killable rationale, equivalent rationale or None)
@@ -126,6 +127,83 @@ WHY = {
     ),
     ("stats", 102): ("Weak test data -> test_counts_are_added", None),
     ("stats", 103): ("Weak test data -> test_counts_are_added", None),
+    ("wf1_forms", 48): (
+        "Missing test: optional responsible users -> test_each_optional_selection_may_be_left_empty",
+        None,
+    ),
+    ("wf1_forms", 55): (
+        "Missing test: optional responsible groups -> test_each_optional_selection_may_be_left_empty",
+        None,
+    ),
+    ("wf1_forms", 71): (
+        "Missing test: initial responsible users are direct users only -> test_edit_form_initial_values_exclude_group_members_and_global_permissions",
+        None,
+    ),
+    ("wf1_forms", 74): (
+        "Missing test: initial responsible groups exclude global permissions -> same test",
+        None,
+    ),
+    ("wf1_forms", 77): (
+        "Missing test: initial visible groups exclude global permissions -> same test",
+        None,
+    ),
+    ("wf1_forms", 92): (
+        "Weak test data: preference and publishable group coincided -> test_new_event_initial_visible_for_uses_the_event_type_preference (two publishable groups)",
+        None,
+    ),
+    ("wf1_forms", 96): (
+        "Missing test: preference users united with the creator -> test_new_event_initial_responsible_users_combine_preference_and_creator, test_new_event_creator_stays_responsible_when_already_in_the_preference",
+        None,
+    ),
+    ("wf1_forms", 123): (
+        "Missing test: save is atomic -> test_failure_while_assigning_permissions_rolls_back_the_event",
+        None,
+    ),
+    ("wf1_forms", 148): (
+        "Missing test: union not symmetric difference -> test_group_that_is_visible_and_responsible_gets_both_permissions",
+        None,
+    ),
+    ("wf1_forms", 149): (
+        "Missing test -> test_locked_group_that_is_also_made_responsible_keeps_view_access",
+        None,
+    ),
+    ("wf1_forms", 165): (
+        "Missing test -> test_user_that_is_responsible_and_participating_gets_direct_view_access",
+        None,
+    ),
+    ("wf1_forms", 168): (
+        "-",
+        "Equivalent: values_list(flat=...) inside a subquery; Django uses the single column either way",
+    ),
+    ("wf1_forms", 209): (
+        "Weak assertion: normal flows offered once -> test_shift_form_offers_each_enabled_flow_and_structure_exactly_once",
+        None,
+    ),
+    ("wf1_forms", 212): (
+        "Weak assertion: same uniqueness test (predicted equivalent, was actually killable)",
+        None,
+    ),
+    ("wf1_forms", 223): ("Weak assertion: structures offered once -> same test", None),
+    ("wf1_forms", 226): (
+        "Weak assertion: same uniqueness test (predicted equivalent, was actually killable)",
+        None,
+    ),
+    ("wf1_forms", 267): (
+        "-",
+        "Equivalent: `<=` vs `<` on a field-name set; cleaned_data always has more keys than the two tested, so the sets are never equal",
+    ),
+    ("wf1_forms", 284): (
+        "Missing test: shift copy picks the hour, event copy does not -> test_shift_copy_form_lets_the_user_pick_the_hour_but_event_copy_does_not",
+        None,
+    ),
+    ("wf1_forms", 301): (
+        "Weak assertion: only validity was asserted; the message differs -> test_invalid_colour_reports_the_specific_message (custom operator RaiseToReturn survivor)",
+        None,
+    ),
+    ("wf1_forms", 304): (
+        "Missing test: save() persists by default -> test_event_type_form_save_persists_by_default",
+        None,
+    ),
 }
 
 

@@ -32,7 +32,7 @@ are plain expectations and are labelled so.
 |---|---|---|---|---|
 | EC-01 | Statement and branch coverage of signup validation modules | 100 % | PR-01, PR-02, PR-04 | 100 % / 100 % on 16 modules (`docs/team/COVERAGE_SCOPE.md`) |
 | EC-02 | No open defect of severity major or critical | 0 open | PR-01, PR-02, PR-03 | DEFECT-001 (PR #2), DEFECT-002 (PR #5), DEFECT-003/004 (PR #8) fixed, issues #1, #4, #6, #7 closed; 0 open defects of any severity at this moment -> MET (re-check at the end) |
-| EC-03 | Mutation kill rate on business-rule modules | >= 90 % | PR-02, PR-03, PR-05 | 98.3 % / 94.4 % / 100 % on the 3 modules after killer tests (97.3 % overall); MET |
+| EC-03 | Mutation kill rate on business-rule modules | >= 90 % | PR-02, PR-03, PR-05 | 98.3 % / 94.4 % / 100 % / 98.5 % on 4 modules after killer tests (97.6 % overall, 551 mutants); MET |
 | EC-04 | Performance: signup p95 and failure rate at 5 users | p95 <= 500 ms, < 1 % failures | PR-09 | not run |
 | EC-05 | Role matrix: denied actions actually denied | 100 % of >= 4 checks | PR-06 | not run |
 

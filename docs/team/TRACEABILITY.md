@@ -52,6 +52,6 @@ PR-01 -> DEFECT-001 tests + fix; PR-02 -> BR1 tests; PR-03 -> BR4 tests (concurr
 | `core/signup/flow/participant_validation.py` | 100 % / 100 % | 98.3 % (100 % in CI after DEFECT-001 fix) |
 | `plugins/baseshiftstructures/structure/common.py` | 100 % / 100 % | 94.4 % |
 | `core/signup/stats.py` | 100 % / 100 % | 100 % |
-| `core/forms/events.py` | 100 % / 100 % | see `MUTATION.md` (WF1 forms run) |
+| `core/forms/events.py` | 100 % / 100 % | 98.5 % |
 | `core/models/events.py` | 100 % / 100 % | not run |
 | 11 further signup-path modules | 100 % / 100 % (see `COVERAGE_SCOPE.md`) | not run |
