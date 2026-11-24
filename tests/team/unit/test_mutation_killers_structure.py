@@ -38,10 +38,14 @@ def context_for(shift, user):
 
 
 # ---- L54: capacity must count ONLY confirmed participations
-def test_capacity_counts_only_confirmed(shift, volunteer, planner, manager, superuser, qualified_volunteer):
+def test_capacity_counts_only_confirmed(
+    shift, volunteer, planner, manager, superuser, qualified_volunteer
+):
     structure_conf(
-        shift, flow="instant_confirmation",
-        minimum_number_of_participants=0, maximum_number_of_participants=2,
+        shift,
+        flow="instant_confirmation",
+        minimum_number_of_participants=0,
+        maximum_number_of_participants=2,
     )
     LocalParticipation.objects.create(shift=shift, user=planner, state=S.CONFIRMED)
     LocalParticipation.objects.create(shift=shift, user=manager, state=S.USER_DECLINED)
@@ -56,14 +60,18 @@ def test_capacity_counts_only_confirmed(shift, volunteer, planner, manager, supe
 # ---- L71 / L74: form limits, 3-point BVA
 @pytest.mark.parametrize("value, valid", [("-1", False), ("0", True), ("1", True)])
 def test_minimum_participants_form_boundary(shift, value, valid):
-    assert ("minimum_number_of_participants" not in form_errors(
-        shift, minimum_number_of_participants=value)) is valid
+    assert (
+        "minimum_number_of_participants"
+        not in form_errors(shift, minimum_number_of_participants=value)
+    ) is valid
 
 
 @pytest.mark.parametrize("value, valid", [("0", False), ("1", True), ("2", True)])
 def test_maximum_participants_form_boundary(shift, value, valid):
-    assert ("maximum_number_of_participants" not in form_errors(
-        shift, maximum_number_of_participants=value)) is valid
+    assert (
+        "maximum_number_of_participants"
+        not in form_errors(shift, maximum_number_of_participants=value)
+    ) is valid
 
 
 # ---- L83 / L84 / L85: empty-spot computation in the shift state context
@@ -73,9 +81,19 @@ def test_maximum_participants_form_boundary(shift, value, valid):
     ids=["min_none", "min0_none", "min0_one", "min3_one", "min3_full", "min2_none", "min5_two"],
 )
 def test_empty_spots(
-    shift, planner, volunteer, manager, superuser, qualified_volunteer, minimum, confirmed, expected_empty
+    shift,
+    planner,
+    volunteer,
+    manager,
+    superuser,
+    qualified_volunteer,
+    minimum,
+    confirmed,
+    expected_empty,
 ):
-    structure_conf(shift, minimum_number_of_participants=minimum, maximum_number_of_participants=None)
+    structure_conf(
+        shift, minimum_number_of_participants=minimum, maximum_number_of_participants=None
+    )
     for user in [volunteer, manager, superuser, qualified_volunteer][:confirmed]:
         LocalParticipation.objects.create(shift=shift, user=user, state=S.CONFIRMED)
     assert len(context_for(shift, planner)["empty_spots"]) == expected_empty

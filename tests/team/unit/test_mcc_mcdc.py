@@ -79,14 +79,17 @@ def test_d1_age_mcc_rows(event, row):
 
 def test_d1_infeasible_mcc_rows_are_really_not_formable(event):
     """Rows (F,T,*) with A false: C = age < None is not evaluable (TypeError in Python)."""
+    age, minimum_age = 30, None
     with pytest.raises(TypeError):
-        _ = 30 < None  # noqa: B015  (documents why C is undefined when A is false)
+        _ = age < minimum_age
 
 
 # MC/DC independence pairs (masking MC/DC): rows that differ in one condition flip outcome.
-D1_MCDC_PAIRS = {"A": ("D1-1 F,-,-", "D1-4 T,T,T"),
-                 "B": ("D1-2 T,F,-", "D1-4 T,T,T"),
-                 "C": ("D1-3 T,T,F", "D1-4 T,T,T")}
+D1_MCDC_PAIRS = {
+    "A": ("D1-1 F,-,-", "D1-4 T,T,T"),
+    "B": ("D1-2 T,F,-", "D1-4 T,T,T"),
+    "C": ("D1-3 T,T,F", "D1-4 T,T,T"),
+}
 
 
 @pytest.mark.parametrize("cond", ["A", "B", "C"])
@@ -142,9 +145,11 @@ def test_d2_capacity_mcc_rows(event, row):
         assert checker(shift, None) is None
 
 
-D2_MCDC_PAIRS = {"A": ("D2-1 F,-,-", "D2-4 T,T,T"),
-                 "B": ("D2-2 T,F,-", "D2-4 T,T,T"),
-                 "C": ("D2-3 T,T,F", "D2-4 T,T,T")}
+D2_MCDC_PAIRS = {
+    "A": ("D2-1 F,-,-", "D2-4 T,T,T"),
+    "B": ("D2-2 T,F,-", "D2-4 T,T,T"),
+    "C": ("D2-3 T,T,F", "D2-4 T,T,T"),
+}
 
 
 @pytest.mark.parametrize("cond", ["A", "B", "C"])

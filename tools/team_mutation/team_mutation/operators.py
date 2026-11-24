@@ -12,8 +12,15 @@ import parso.python.tree
 from cosmic_ray.operators.operator import Example, Operator
 
 STATES = ["REQUESTED", "CONFIRMED", "USER_DECLINED", "RESPONSIBLE_REJECTED", "GETTING_DISPATCHED"]
-BOUNDARY_HINTS = ("timezone.now", "signup_until", "end_time", "maximum_number_of_participants",
-                  "minimum_age", "current_count", "age")
+BOUNDARY_HINTS = (
+    "timezone.now",
+    "signup_until",
+    "end_time",
+    "maximum_number_of_participants",
+    "minimum_age",
+    "current_count",
+    "age",
+)
 
 
 class RaiseToReturn(Operator):
@@ -31,7 +38,9 @@ class RaiseToReturn(Operator):
 
     @classmethod
     def examples(cls):
-        return (Example("def f():\n    raise ValueError('x')", "def f():\n    return ValueError('x')"),)
+        return (
+            Example("def f():\n    raise ValueError('x')", "def f():\n    return ValueError('x')"),
+        )
 
 
 class StateConstantSwap(Operator):

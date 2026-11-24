@@ -47,11 +47,15 @@ for metric, limit in THRESHOLDS.items():
     if not ok:
         failed.append(metric)
 
-tree = get(f"/api/measures/component_tree?component={key}&metricKeys=coverage&qualifiers=FIL&ps=500")
-coverage = {c["path"]: float(c["measures"][0]["value"]) for c in tree["components"] if c["measures"]}
+tree = get(
+    f"/api/measures/component_tree?component={key}&metricKeys=coverage&qualifiers=FIL&ps=500"
+)
+coverage = {
+    c["path"]: float(c["measures"][0]["value"]) for c in tree["components"] if c["measures"]
+}
 for path in FULLY_COVERED:
     value = coverage.get(path)
-    ok = value == 100.0
+    ok = value is not None and value >= 100.0
     print(f"{'OK  ' if ok else 'FAIL'} coverage {path} = {value} (required 100)")
     if not ok:
         failed.append(path)

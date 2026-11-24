@@ -87,7 +87,9 @@ def test_general_required_qualification_blocks_unqualified(shift, volunteer, qua
     )
 
 
-def test_general_required_qualification_allows_qualified(shift, qualified_volunteer, qualifications):
+def test_general_required_qualification_allows_qualified(
+    shift, qualified_volunteer, qualifications
+):
     shift.event.type.preferences["general_required_qualifications"] = Qualification.objects.filter(
         pk=qualifications.nfs.pk
     )
@@ -157,9 +159,7 @@ def test_manual_flow_shows_custom_explanation(shift, volunteer):
         signup_flow_slug="manual",
         signup_flow_configuration=dict(no_selfservice_explanation="Call the dispatcher."),
     )
-    assert "Call the dispatcher." in messages(
-        make_validator(shift, volunteer).get_action_errors()
-    )
+    assert "Call the dispatcher." in messages(make_validator(shift, volunteer).get_action_errors())
 
 
 def test_abstract_validators_defaults(shift, volunteer):
@@ -188,7 +188,10 @@ def test_stats_free_and_helpers():
 
 
 def test_stats_zero_and_reduce():
-    assert SignupStats.ZERO == SignupStats(0, 0, 0, 0, None, None) or SignupStats.ZERO.confirmed_count == 0
+    assert (
+        SignupStats.ZERO == SignupStats(0, 0, 0, 0, None, None)
+        or SignupStats.ZERO.confirmed_count == 0
+    )
     a, b = SignupStats(1, 2, 0, 1, 1, 3), SignupStats(0, 1, 1, 2, 2, 3)
     assert SignupStats.reduce([a, b]) == a + b
 
@@ -200,8 +203,12 @@ def test_stats_min_none_both_sides():
 
 
 def test_shift_signup_stats_from_database(shift, volunteer, planner, manager):
-    save(shift, structure_configuration=dict(
-        minimum_number_of_participants=3, maximum_number_of_participants=4))
+    save(
+        shift,
+        structure_configuration=dict(
+            minimum_number_of_participants=3, maximum_number_of_participants=4
+        ),
+    )
     LocalParticipation.objects.create(shift=shift, user=volunteer, state=S.CONFIRMED)
     LocalParticipation.objects.create(shift=shift, user=planner, state=S.REQUESTED)
     stats = shift.get_signup_stats()
@@ -210,8 +217,12 @@ def test_shift_signup_stats_from_database(shift, volunteer, planner, manager):
 
 
 def test_shift_signup_stats_without_limits(shift):
-    save(shift, structure_configuration=dict(
-        minimum_number_of_participants=None, maximum_number_of_participants=None))
+    save(
+        shift,
+        structure_configuration=dict(
+            minimum_number_of_participants=None, maximum_number_of_participants=None
+        ),
+    )
     stats = shift.get_signup_stats()
     assert stats.missing == 0
     assert stats.free is None
@@ -219,20 +230,34 @@ def test_shift_signup_stats_without_limits(shift):
 
 # ------------------------------------------------------------ structure exports / rendering
 def test_sort_key_orders_confirmed_first_and_empty_last(shift, volunteer, planner):
-    states = [S.REQUESTED, S.CONFIRMED, S.USER_DECLINED, S.RESPONSIBLE_REJECTED, S.GETTING_DISPATCHED]
+    states = [
+        S.REQUESTED,
+        S.CONFIRMED,
+        S.USER_DECLINED,
+        S.RESPONSIBLE_REJECTED,
+        S.GETTING_DISPATCHED,
+    ]
     entries = [
         {"participation": LocalParticipation(shift=shift, user=volunteer, state=s)} for s in states
     ]
     ordered = sorted(entries, key=participation_entry_sort_key)
     assert [e["participation"].state for e in ordered] == [
-        S.CONFIRMED, S.REQUESTED, S.USER_DECLINED, S.RESPONSIBLE_REJECTED, S.GETTING_DISPATCHED,
+        S.CONFIRMED,
+        S.REQUESTED,
+        S.USER_DECLINED,
+        S.RESPONSIBLE_REJECTED,
+        S.GETTING_DISPATCHED,
     ]
     assert participation_entry_sort_key({"participation": None}) == 1000
 
 
 def test_list_export_pads_to_minimum_participants(shift, volunteer):
-    save(shift, structure_configuration=dict(
-        minimum_number_of_participants=3, maximum_number_of_participants=3))
+    save(
+        shift,
+        structure_configuration=dict(
+            minimum_number_of_participants=3, maximum_number_of_participants=3
+        ),
+    )
     LocalParticipation.objects.create(shift=shift, user=volunteer, state=S.CONFIRMED)
     data = shift.structure.get_list_export_data()
     assert len(data) == 3
@@ -241,42 +266,58 @@ def test_list_export_pads_to_minimum_participants(shift, volunteer):
 
 
 def test_list_export_without_padding_when_full(shift, volunteer):
-    save(shift, structure_configuration=dict(
-        minimum_number_of_participants=0, maximum_number_of_participants=1))
+    save(
+        shift,
+        structure_configuration=dict(
+            minimum_number_of_participants=0, maximum_number_of_participants=1
+        ),
+    )
     LocalParticipation.objects.create(shift=shift, user=volunteer, state=S.CONFIRMED)
     assert len(shift.structure.get_list_export_data()) == 1
 
 
 def test_structure_configuration_form_has_limit_fields(shift):
     form = shift.structure.get_configuration_form(request=RequestFactory().get("/"))
-    for name in ("minimum_number_of_participants", "maximum_number_of_participants",
-                 "minimum_age", "required_qualification_ids"):
+    for name in (
+        "minimum_number_of_participants",
+        "maximum_number_of_participants",
+        "minimum_age",
+        "required_qualification_ids",
+    ):
         assert name in form.fields
 
 
 def test_qualification_form_formats_ids(shift, qualifications):
     form_class = shift.structure.configuration_form_class
-    assert qualifications.nfs.title in form_class.format_required_qualification_ids(
-        [qualifications.nfs.pk]
-    )
+    assert qualifications.nfs.title in form_class.format_required_qualification_ids([
+        qualifications.nfs.pk
+    ])
 
 
 def test_qualification_form_help_text_with_general_qualification(shift, qualifications):
     shift.event.type.preferences["general_required_qualifications"] = Qualification.objects.filter(
         pk=qualifications.nfs.pk
     )
-    form = shift.structure.get_configuration_form(event=shift.event, request=RequestFactory().get("/"))
+    form = shift.structure.get_configuration_form(
+        event=shift.event, request=RequestFactory().get("/")
+    )
     assert qualifications.nfs.title in str(form.fields["required_qualification_ids"].help_text)
 
 
 def test_event_detail_renders_shift_state_for_planner(client, event, planner, qualifications):
     shift = event.shifts.get()
-    save(shift, structure_configuration=dict(
-        minimum_number_of_participants=2, maximum_number_of_participants=3,
-        required_qualification_ids=[qualifications.nfs.pk]))
+    save(
+        shift,
+        structure_configuration=dict(
+            minimum_number_of_participants=2,
+            maximum_number_of_participants=3,
+            required_qualification_ids=[qualifications.nfs.pk],
+        ),
+    )
     client.force_login(planner)
-    response = client.get(reverse("core:event_detail", kwargs=dict(pk=event.pk, slug="x")),
-                          follow=True)
+    response = client.get(
+        reverse("core:event_detail", kwargs=dict(pk=event.pk, slug="x")), follow=True
+    )
     assert response.status_code == 200
     assert "Fission Festival" in response.content.decode()
 
@@ -315,4 +356,4 @@ def test_base_structure_slug_is_abstract(event):
         description = "no slug defined"
 
     with pytest.raises(NotImplementedError):
-        Incomplete(None, event=event).slug
+        _ = Incomplete(None, event=event).slug

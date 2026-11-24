@@ -18,4 +18,8 @@ Status values: `captured` (file exists, produced by a real run), `verified` (a g
 | EV-010 | Mutation round 1 raw data (3 modules) | `reports/mutation/round1_*.jsonl`, summary in `docs/team/MUTATION.md` | 2026-11-24 | captured |
 | EV-013 | Mutation round 2 raw data and survivor analysis CSV | `reports/mutation/round2_*.jsonl`, `reports/mutation/survivor_analysis.csv` | 2026-11-24 | captured |
 | EV-011 | Risk register + exit criteria draft | `docs/team/RISK_REGISTER.md` | 2026-11-24 | draft - team review pending |
-| EV-012 | CI workflow (not yet run on GitHub) | `.github/workflows/team-quality-gate.yml` | 2026-11-24 | written, UNTESTED on GitHub |
+| EV-012 | CI workflow + gate scripts | `.github/workflows/team-quality-gate.yml`, `docs/team/CI_GATES.md` | 2026-11-24 | captured (ran on GitHub) |
+| EV-014 | Fix PR #2 (red Sonar run -> green) | https://github.com/zain10sheraz/ephios/pull/2 | 2026-11-24 | **TO SCREENSHOT by Zain**: Checks tab showing the red then green runs |
+| EV-015 | Blocked PR #3 (merge blocked by required checks) | https://github.com/zain10sheraz/ephios/pull/3 | 2026-11-24 | **TO SCREENSHOT by Zain**: bottom of the conversation showing 'Merging is blocked' |
+| EV-016 | Issue #1 closed with evidence | https://github.com/zain10sheraz/ephios/issues/1 | 2026-11-24 | **TO SCREENSHOT by Zain** |
+| EV-017 | DEFECT-001 before/after test output | `reports/defect001_before_fix.txt`, `reports/defect001_after_fix.txt` | 2026-11-24 | captured |

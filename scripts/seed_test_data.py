@@ -6,6 +6,7 @@ Accounts (all synthetic, local only):
   volunteer@sqe.test     / Volunteer#2026 Volunteers group - role "Volunteer"
   volunteer2@sqe.test    / Volunteer#2026 Volunteers group - second volunteer
 """
+
 import os
 import sys
 from datetime import date
@@ -13,16 +14,16 @@ from datetime import date
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ephios.settings")
 
-import django  # noqa: E402
+import django
 
 django.setup()
 
-from django.contrib.auth.hashers import make_password  # noqa: E402
-from django.contrib.auth.models import Group  # noqa: E402
-from django.db import transaction  # noqa: E402
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import Group
+from django.db import transaction
 
-from ephios.core.management.commands.devdata import create_objects  # noqa: E402
-from ephios.core.models import UserProfile  # noqa: E402
+from ephios.core.management.commands.devdata import create_objects
+from ephios.core.models import UserProfile
 
 
 def make_user(email, name, password, groups):
