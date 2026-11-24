@@ -43,9 +43,8 @@ class AbstractParticipant:
 
     @property
     def is_minor(self):
-        if age := self.get_age():
-            return age < 18
-        return False
+        age = self.get_age()
+        return age is not None and age < 18
 
     def __str__(self):
         return self.display_name
