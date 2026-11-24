@@ -83,11 +83,6 @@ def test_valid_shift_form_combines_date_with_times():
     [("date", ""), ("date", "not-a-date"), ("start_time", ""), ("start_time", "25:99")],
     ids=["date_empty", "date_invalid", "start_empty", "start_invalid"],
 )
-@pytest.mark.xfail(
-    strict=True,
-    raises=KeyError,
-    reason="DEFECT-002 (issue #4): clean_*_time read cleaned_data keys that may be missing",
-)
 def test_missing_or_invalid_date_or_start_is_a_form_error_not_an_exception(field, value):
     form = shift_form(**{field: value})
     assert form.is_valid() is False
