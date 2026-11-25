@@ -45,7 +45,7 @@ class ImproperlyConfiguredError(ActionDisallowedError):
 
 def check_event_is_active(shift, participant):
     if not shift.event.active:
-        return ActionDisallowedError(_("The event is not active."))
+        raise ActionDisallowedError(_("The event is not active."))
 
 
 def check_participation_state(shift, participant):

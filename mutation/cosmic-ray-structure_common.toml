@@ -1,0 +1,8 @@
+[cosmic-ray]
+module-path = "src/ephios/plugins/baseshiftstructures/structure/common.py"
+timeout = 120.0
+excluded-modules = []
+test-command = "C:/Users/Admin/OneDrive/Desktop/ephios/.venv/Scripts/python.exe -m pytest tests/team/unit/test_signup_rules.py tests/team/unit/test_signup_validators_coverage.py tests/team/unit/test_mcc_mcdc.py tests/team/unit/test_mutation_killers.py tests/team/unit/test_mutation_killers_structure.py tests/team/unit/test_stats_mutation_killers.py -x -q -p no:cacheprovider --ds=tests.team.settings_mutation --reuse-db"
+
+[cosmic-ray.distributor]
+name = "local"

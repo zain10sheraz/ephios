@@ -1,0 +1,1 @@
+regression (team + upstream signup/event/model tests): 425 passed, 1 failed - tests/core/test_models.py::test_user_qualifications fails because it builds datetime(2090,4,1).astimezone(Europe/Berlin) from a naive datetime, i.e. depends on the machine timezone (unrelated to these fixes)

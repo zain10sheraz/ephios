@@ -1,0 +1,15 @@
+branch_coverage 100.0
+bugs 0
+code_smells 18
+cognitive_complexity 419
+complexity 707
+coverage 9.5
+duplicated_blocks 2
+duplicated_lines_density 0.5
+ncloc 4747
+reliability_rating 1.0
+security_hotspots 0
+security_rating 1.0
+sqale_index 104
+sqale_rating 1.0
+vulnerabilities 0
