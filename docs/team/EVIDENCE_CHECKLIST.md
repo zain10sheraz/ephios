@@ -35,3 +35,4 @@ Status values: `captured` (file exists, produced by a real run), `verified` (a g
 | EV-026 | Coverage scope + 16-module 100 % run | `docs/team/COVERAGE_SCOPE.md`, rerun `scripts/run_unit_coverage.ps1` | 2026-11-24 | captured (rerun by Claude; not yet verified by a member) |
 | EV-027 | Complete MCC/MC-DC tables | `docs/team/MCC_MCDC.md`, `tests/team/unit/test_mcc_mcdc_validation.py` | 2026-11-24 | captured |
 | EV-028 | WF1 forms mutation (136 mutants) rounds, survivor CSV with 113 rows | `reports/mutation/round{1,2}_wf1_forms.*`, `reports/mutation/survivor_analysis.csv` | 2026-11-24 | captured |
+| EV-029 | GitHub API exports of PRs #2 #3 #5 #8 #9, issues #1 #4 #6 #7, branch protection, workflow runs | `reports/evidence/github/` (README there) | 2026-11-25 | captured (machine export; screenshots EV-015b, EV-016, EV-020, EV-021, EV-025 are still welcome and not yet supplied) |
