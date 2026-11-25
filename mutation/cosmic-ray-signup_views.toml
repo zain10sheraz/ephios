@@ -2,7 +2,7 @@
 module-path = "src/ephios/core/signup/views.py"
 timeout = 180.0
 excluded-modules = []
-test-command = "C:/Users/Admin/OneDrive/Desktop/ephios/.venv/Scripts/python.exe -m pytest tests/team/integration/test_signup_http.py -x -q -p no:cacheprovider --ds=tests.team.settings_mutation --reuse-db"
+test-command = "C:/Users/Admin/OneDrive/Desktop/ephios/.venv/Scripts/python.exe -m pytest tests/team/integration/test_signup_http.py tests/team/integration/test_signup_form_mutation_killers.py -x -q -p no:cacheprovider --ds=tests.team.settings_mutation --reuse-db"
 
 [cosmic-ray.distributor]
 name = "local"
