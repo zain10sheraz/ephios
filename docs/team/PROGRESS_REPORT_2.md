@@ -6,7 +6,7 @@ Author: Zain Sheraz with Claude Code assistance. Status time: 2026-11-25 midday.
 | Plan item | Owner | Status | Evidence |
 |---|---|---|---|
 | Setup, scope, requirements, risks | all | done | `SETUP.md`, `REQUIREMENTS.md`, `RISK_REGISTER.md` |
-| Unit tests, coverage, MCC/MC-DC | Zain | **done**: 385 tests, all passing; 16 modules at 100 % statement+branch (1,343 statements, 174 branches) | `COVERAGE_SCOPE.md`, `MCC_MCDC.md` |
+| Unit tests, coverage, MCC/MC-DC | Zain | **done**: 458 tests, all passing; 16 modules at 100 % statement+branch (1,343 statements, 174 branches) | `COVERAGE_SCOPE.md`, `MCC_MCDC.md` |
 | SonarQube + complexity | Zain | **done**: final scan, 16/16 gate modules at 100 %, 14 upstream smells | `SONARQUBE.md`, `reports/sonar_metrics_final.txt` |
 | Mutation + custom operators + survivor analysis | Zain | **done for 8 modules** (1,079 mutants, 78.2 % -> 97.7 %); all 235 round-1 survivors analysed (210 killed, 23 equivalent, 2 unresolved) | `MUTATION.md` |
 | CI gate, fix PR, blocked PR | Zain | **done**; early check of the final merge (draft PR #9) passed everything, upstream workflows included | `CI_GATES.md`, `reports/evidence/github/` |

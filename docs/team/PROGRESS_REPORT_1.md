@@ -65,7 +65,7 @@ Quality-gate indicators: SonarQube comprehensive profile 18 smells initially, 13
 | Item | Earlier today | Now |
 |---|---|---|
 | Team tests | 197 | **367** (unit + HTTP integration; run in CI) |
-| Modules at 100 % statement+branch | 5 | **16** (1,344 statements, 176 branches; `COVERAGE_SCOPE.md`) |
+| Modules at 100 % statement+branch | 5 | **16** (1,343 statements, 174 branches after the later defect fixes; `COVERAGE_SCOPE.md`) |
 | MCC / MC-DC | 2 decisions | **every compound decision of the critical module** (D1-D8 + error routing table) |
 | Defects | 2 (1 fixed) | **4, all fixed and closed** (#1, #4, #6, #7), each through a PR with green CI |
 | Requirements coverage | 61 % (5.5 / 9) | **89 % (8 / 9)**; only FR-04 (REST read) has no test |

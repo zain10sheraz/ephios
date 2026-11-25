@@ -9,7 +9,7 @@ The code that implements the rules of our two workflows (WF1 event/shift managem
 validators and state rules, forms and their validation, models and their query/decision methods, the signup
 view and signup flows, participants (age rules), and shift structures used by the selected `uniform` structure.
 
-## 2. Inside the 100 % gate: 16 modules, 1,344 statements, 176 branches, **100 % statement and 100 % branch**
+## 2. Inside the 100 % gate: 16 modules, 1,343 statements, 174 branches (re-measured 2026-11-25 with 458 tests, after the defect fixes), **100 % statement and 100 % branch**
 | Module | Role | Statements | Branches |
 |---|---|---|---|
 | `core/signup/flow/participant_validation.py` | critical module: all signup rules (BR1-BR5) | 98 | 30 |
