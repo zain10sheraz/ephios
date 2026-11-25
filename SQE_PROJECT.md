@@ -9,7 +9,7 @@ folders listed below; upstream source is modified only where a documented defect
 | Application | Ephios, shift management for medical services (Python / Django) |
 | Upstream | https://github.com/ephios-dev/ephios |
 | Licence | MIT (`LICENSE`) |
-| **Baseline commit** | `d12e76cd2b5b422177176506b0b6b9393dbc10e5` (2026-11-09); `main` of this fork still points here |
+| **Baseline commit** | `d12e76cd2b5b422177176506b0b6b9393dbc10e5` (2026-11-09), permanently referenced by the tag `baseline-upstream-d12e76cd` and by the history of `main` (`git merge-base --is-ancestor d12e76cd main`) |
 | Fork (public) | https://github.com/zain10sheraz/ephios |
 | Selected scope | module "events and signup": WF1 Event and Shift Management, WF2 Participant Signup (details: `docs/team/REQUIREMENTS.md`) |
 
@@ -19,7 +19,9 @@ folders listed below; upstream source is modified only where a documented defect
 | Zain Sheraz | zain10sheraz | 1: static analysis, white-box, mutation, CI | `zain` |
 | Manan | MannanJaffery | 2: API testing and data generation | `manan` |
 | Sujawal | sajawalkhan01 | 3: use cases, usability, accessibility, security, performance | `sajawal` |
-Test management documents are shared. Branches are merged into `main` only at the end, through a pull request that must pass the quality gate.
+Test management documents are shared. Branches are merged into `main` only through a pull request that must pass the quality gate.
+
+**Merge status of `main` (2026-11-25):** Zain's area was merged by PR #11 (merge commit `520edca3`) after the three required checks passed. `manan` and `sajawal` are still at the baseline and are merged the same way when their work is ready.
 
 ## Where things are
 | Path | Content |

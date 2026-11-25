@@ -42,3 +42,5 @@ PR-01/PR-11/PR-12 are confirmed and fixed; EC-01, EC-02, EC-03 are met; EC-04 (p
 1. Get area 2 and area 3 started (the only real schedule risk).
 2. (done) remaining mutation runs finished and reported.
 3. After the other branches land: refresh coverage, Sonar and mutation numbers, write the test completion report, compare estimates with actual effort, assemble the PDF and ZIP, and run the final merge to `main` (only when the group asks).
+
+**Update 2026-11-25 evening:** Zain's area was merged into `main` by PR #11 (merge commit `520edca3`; required checks unit-tests, mutation-score and sonarqube-thresholds passed; all 20 checks completed, none failed). The baseline is preserved by the tag `baseline-upstream-d12e76cd`. Areas 2 and 3 are still not started.
