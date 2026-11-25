@@ -312,3 +312,9 @@ def test_public_event_shows_a_guests_own_participation_exactly_once(event, shift
     guest._pks = (own.pk,)
     qs = AbstractParticipation.objects.filter(pk=own.pk)
     assert qs.viewable_by(guest).count() == 1  # PUBLIC and "own participation" both apply
+
+
+def test_optional_text_fields_may_be_stored_as_null():
+    """full_clean skips blank-allowed fields, so the database-level null flag is asserted directly."""
+    assert Event._meta.get_field("description").null is True
+    assert EventType._meta.get_field("default_description").null is True

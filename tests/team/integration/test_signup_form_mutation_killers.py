@@ -9,6 +9,8 @@ from unittest.mock import patch
 
 import pytest
 from django import forms
+from django.utils.formats import date_format
+from django.utils.timezone import localtime
 
 from ephios.core.models import AbstractParticipation, LocalParticipation
 from ephios.core.models.events import ParticipationComment
@@ -184,6 +186,8 @@ def test_customising_back_to_the_default_end_time_reports_the_end_time_change(
     claims = notification.send.call_args.args[1]
     assert len(claims) == 1
     assert "Individual end time was changed" in claims[0]
+    # the new end is the shift's own end time (localtime(None) would silently give "now" instead)
+    assert date_format(localtime(shift.end_time), format="TIME_FORMAT") in claims[0]
 
 
 # ---- overlap rules inside the form

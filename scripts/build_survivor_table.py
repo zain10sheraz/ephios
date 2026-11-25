@@ -472,6 +472,19 @@ WHY = {
     ),
 }
 
+WHY[("models_events", 207)] = (
+    WHY[("models_events", 207)][0],
+    "UNRESOLVED (not proven equivalent): the targeted test passes even with the XOR mutant; Django's XOR over these joined Q terms returned the same rows in our scenario, for a reason that was not established",
+)
+WHY[("models_events", 209)] = (
+    WHY[("models_events", 209)][0],
+    "UNRESOLVED (not proven equivalent): same as line 207",
+)
+WHY[("models_events", 542)] = (
+    WHY[("models_events", 542)][0],
+    "Equivalent (is not / <): small ints are interned and GETTING_DISPATCHED (4) is the largest state value, so both behave like !=",
+)
+
 
 def load(name, rnd):
     out = {}
@@ -479,10 +492,15 @@ def load(name, rnd):
         for line in fh:
             work, result = json.loads(line)
             m = work["mutations"][0]
-            out[(m["operator_name"], m["occurrence"])] = (
-                m["start_pos"][0],
-                result["test_outcome"] if result else None,
-            )
+            kind = result["test_outcome"] if result else None
+            output = (result.get("output") or "") if result else ""
+            if (
+                kind == "incompetent"
+                and "UnicodeDecodeError" in output
+                and "TestOutcome.KILLED" in output
+            ):
+                kind = "killed"  # tool artefact: decoding crashed on the output of a run that had failed
+            out[(m["operator_name"], m["occurrence"])] = (m["start_pos"][0], kind)
     return out
 
 
@@ -499,7 +517,12 @@ for name, path in MODULES.items():
         if outcome2 == "killed":
             category, rationale = "killable (missing test / weak assertion)", kill_why
         else:
-            category, rationale = "equivalent", equiv_why
+            category = (
+                "unresolved (not killed, not proven equivalent)"
+                if str(equiv_why).startswith("UNRESOLVED")
+                else "equivalent"
+            )
+            rationale = equiv_why
             if rationale is None:
                 sys.exit(
                     f"UNEXPECTED survivor without equivalence justification: {name} {key} line {line}"

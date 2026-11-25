@@ -17,7 +17,15 @@ counts = collections.Counter()
 for line in sys.stdin:
     work, result = json.loads(line)
     if result:
-        counts[result["test_outcome"]] += 1
+        kind = result["test_outcome"]
+        output = result.get("output") or ""
+        if (
+            kind == "incompetent"
+            and "UnicodeDecodeError" in output
+            and "TestOutcome.KILLED" in output
+        ):
+            kind = "killed"  # Cosmic Ray crashed decoding the output of a test run that had failed = a kill
+        counts[kind] += 1
 
 valid = counts["killed"] + counts["survived"] + counts["timeout"]
 if valid == 0:

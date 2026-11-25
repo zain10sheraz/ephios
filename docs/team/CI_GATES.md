@@ -10,7 +10,7 @@ the final merge into `main` must pass the gate.
 | Job | Gate | Threshold | Justification (from our own evidence) |
 |---|---|---|---|
 | unit-tests-100pct-coverage | team tests pass; statement+branch coverage of 16 business-logic modules listed in `scripts/gate_modules.txt` (rationale: `COVERAGE_SCOPE.md`) | 100 % | We reached 100 % (EV-001); the assignment targets 100 % of business logic; anything lower means untested rule code |
-| mutation-score | Cosmic Ray kill rate on `participant_validation.py` | >= 90 % | Round 1 = 91.4 %, round 2 = 98.3 %, CI after the fix = 100 % (118/118). 90 % blocks a real regression (deleting a killer test drops below) but tolerates equivalent mutants; 100 % would be unachievable in general |
+| mutation-score | Cosmic Ray kill rate on `participant_validation.py` | >= 90 % | Local rounds 91.5 % then 98.3 %, CI after the fix = 100 % (118/118). 90 % blocks a real regression (deleting a killer test drops below) but tolerates equivalent mutants; 100 % would be unachievable in general |
 | sonarqube-thresholds | bugs, vulnerabilities, hotspots | 0 | none exist in scope |
 | | code smells | <= 14 | all 14 smells are upstream-owned code in scope; our own code must add none (ratchet). History: 18 -> 13 after we fixed our own smells -> 14 when `forms/events.py` joined the Sonar scope (its one smell, `not a <= b` at line 267, is upstream's, confirmed with `git blame` and a local scan) |
 | | duplicated lines | <= 3 % | measured 0.5 % |
