@@ -11,3 +11,4 @@ state at export time; they do not replace a screenshot a member took, and no mem
 | `issue_1.json`, `issue_4.json`, `issue_6.json`, `issue_7.json` | the four defects: CLOSED, with severity / priority / category labels |
 | `branch_protection_main.json` | required checks (3), enforce_admins true, no force pushes |
 | `workflow_runs.json` | the last 40 workflow runs with conclusions and timestamps |
+| `pr_10.json` | second draft early-check PR zain -> main on the final commit: all checks SUCCESS; closed unmerged |
