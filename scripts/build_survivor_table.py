@@ -21,6 +21,10 @@ MODULES = {
     "structure_common": "plugins/baseshiftstructures/structure/common.py",
     "stats": "core/signup/stats.py",
     "wf1_forms": "core/forms/events.py",
+    "signup_views": "core/signup/views.py",
+    "participants": "core/signup/participants.py",
+    "signup_forms": "core/signup/forms.py",
+    "models_events": "core/models/events.py",
 }
 
 # (module, line) -> (killable rationale, equivalent rationale or None)
@@ -202,6 +206,268 @@ WHY = {
     ),
     ("wf1_forms", 304): (
         "Missing test: save() persists by default -> test_event_type_form_save_persists_by_default",
+        None,
+    ),
+    # ---- signup/views.py
+    ("signup_views", 81): (
+        "Missing test of re-signup after customising -> test_quick_resignup_keeps_the_previously_customized_times",
+        "Equivalent: the quick-action data is only passed to plugin signal receivers; the core flows ignore the individual times in it",
+    ),
+    ("signup_views", 82): ("Same as line 81 (end time)", "Equivalent: same reason as line 81"),
+    ("signup_views", 84): (
+        "Missing tests: quick decline/customize with an overlap -> test_quick_decline_is_allowed_even_when_shifts_overlap, test_quick_customize_with_an_overlapping_shift_redirects_to_the_form",
+        None,
+    ),
+    ("signup_views", 92): (
+        "Missing test: partial overlap in the quick action -> test_quick_signup_with_a_partial_overlap_is_not_done_silently",
+        None,
+    ),
+    ("signup_views", 142): (
+        "Missing tests: customise notification sent/not sent -> test_customizing_times_notifies_the_responsibles_with_the_changes and two siblings",
+        "Equivalent (<= only): 'customize' is the alphabetically smallest valid choice, so <= behaves like ==",
+    ),
+    # ---- participants.py
+    ("participants", 42): (
+        "Weak test data: year - year equals year % year for realistic dates -> test_age_arithmetic_is_correct_for_very_old_birth_dates",
+        None,
+    ),
+    ("participants", 47): (
+        "Missing test: adults over 18 -> test_adults_over_18_are_not_minors",
+        None,
+    ),
+    ("participants", 75): (
+        "Missing test: exact qualification set -> test_exact_qualification_set_satisfies_the_requirement, test_no_requirement_is_satisfied_by_a_participant_without_qualifications",
+        None,
+    ),
+    ("participants", 115): (
+        "-",
+        "Equivalent: PlaceholderParticipant adds no fields, so the dataclass decorator is redundant (inherits the parent's)",
+    ),
+    # ---- signup/forms.py
+    ("signup_forms", 28): (
+        "Missing test: comment length BVA -> test_comment_length_boundary",
+        None,
+    ),
+    ("signup_forms", 46): (
+        "Missing test: comment visibility -> test_comment_visibility_follows_the_checkbox",
+        None,
+    ),
+    ("signup_forms", 60): (
+        "Missing test: direct save is atomic -> test_form_save_rolls_back_the_participation_when_the_comment_cannot_be_stored",
+        None,
+    ),
+    ("signup_forms", 61): (
+        "-",
+        "Equivalent: the commit parameter of save() is never used (super().save() is called without it)",
+    ),
+    ("signup_forms", 102): (
+        "Missing test: previous comments are not required -> test_a_participant_with_earlier_comments_can_submit_again",
+        None,
+    ),
+    ("signup_forms", 112): (
+        "Weak coverage of the notification text (test command lacked the view tests) -> test_customizing_times_notifies_the_responsibles_with_the_changes",
+        None,
+    ),
+    ("signup_forms", 113): ("Same as line 112", None),
+    ("signup_forms", 121): (
+        "Missing test: customising back to the default end time -> test_customising_back_to_the_default_end_time_reports_the_end_time_change",
+        None,
+    ),
+    ("signup_forms", 140): (
+        "Missing test: signup_choice is required -> test_posting_without_a_signup_choice_is_invalid",
+        None,
+    ),
+    ("signup_forms", 144): (
+        "Missing test: layout excludes only signup_choice -> test_field_layout_renders_every_field_except_signup_choice",
+        "Equivalent (is not): CPython interns both strings, so `is not` behaves like `!=`",
+    ),
+    ("signup_forms", 166): (
+        "Missing test: decline button only when possible -> test_decline_button_is_shown_only_when_declining_is_possible",
+        None,
+    ),
+    ("signup_forms", 186): (
+        "Missing test: flow without the setting -> test_times_are_locked_when_the_flow_does_not_define_the_setting",
+        None,
+    ),
+    ("signup_forms", 189): (
+        "Missing test: end time locked too -> test_both_time_fields_are_disabled_when_customising_is_not_allowed, test_a_forged_end_time_is_ignored_when_times_are_locked",
+        None,
+    ),
+    ("signup_forms", 203): (
+        "Missing test: customise into an overlap -> test_customising_into_an_overlap_with_another_confirmed_shift_is_rejected",
+        "Equivalent (<= only): 'decline' compared with itself; other choices are rejected earlier",
+    ),
+    ("signup_forms", 207): (
+        "Missing test: chosen start avoids the overlap -> test_chosen_start_after_the_conflict_avoids_the_overlap",
+        None,
+    ),
+    ("signup_forms", 208): (
+        "Missing test: chosen end avoids the overlap -> test_chosen_end_before_the_conflict_avoids_the_overlap",
+        None,
+    ),
+    ("signup_forms", 210): (
+        "Missing test: partial overlap via the form -> test_partial_overlap_is_rejected_by_the_form",
+        None,
+    ),
+    ("signup_forms", 236): (
+        "Test command lacked the unit test of the form context -> test_configuration_form_context_exposes_request_event_and_shift",
+        None,
+    ),
+    # ---- models/events.py
+    ("models_events", 55): (
+        "Missing test: EventType registered for logging -> tests/team/unit/test_models_events_mutation_killers.py::test_models_are_registered_for_logging_or_explicitly_excluded",
+        None,
+    ),
+    ("models_events", 61): (
+        "Missing test: persisted enum values -> test_stored_enum_values_never_change",
+        None,
+    ),
+    ("models_events", 63): (
+        "Missing test: title length BVA -> test_event_type_title_length_limit, test_event_title_and_location_length_limits",
+        None,
+    ),
+    ("models_events", 64): (
+        "Missing test: colour length BVA -> test_event_type_color_length_limit",
+        None,
+    ),
+    ("models_events", 76): (
+        "Missing test: default description optional -> test_event_type_default_description_may_be_empty_or_missing",
+        None,
+    ),
+    ("models_events", 90): (
+        "Missing test: event title length BVA -> test_event_title_and_location_length_limits",
+        None,
+    ),
+    ("models_events", 91): (
+        "Missing test: event description optional -> test_event_description_may_be_empty_or_missing",
+        None,
+    ),
+    ("models_events", 92): (
+        "Missing test: location length BVA -> test_event_title_and_location_length_limits",
+        None,
+    ),
+    ("models_events", 94): (
+        "Missing test: new events are inactive -> test_new_objects_start_with_safe_defaults",
+        None,
+    ),
+    ("models_events", 184): (
+        "Missing test: PUBLIC and own participation both apply -> test_public_event_shows_a_guests_own_participation_exactly_once",
+        None,
+    ),
+    ("models_events", 200): (
+        "Missing test only if two terms can both be true",
+        "Equivalent: `|` -> `^` between INSTANCE_USERS and PUBLIC; one event type cannot have both values",
+    ),
+    ("models_events", 203): (
+        "Missing test only if two terms can both be true",
+        "Equivalent: `|` -> `^` between PUBLIC and CONFIRMED-with-participation; one event type cannot have both values",
+    ),
+    ("models_events", 207): (
+        "Missing test: responsible and setting both apply -> test_responsible_planner_sees_all_even_when_the_setting_already_shows_everything",
+        None,
+    ),
+    ("models_events", 208): (
+        "Missing test: own participation and another condition apply -> test_responsible_planner_sees_own_participation_when_only_responsibles_may_see, test_volunteer_sees_own_participation_when_the_setting_shows_everything",
+        None,
+    ),
+    ("models_events", 209): (
+        "Missing test: user-profile permission and setting both apply -> test_user_managers_see_participants_even_when_the_setting_already_shows_everything",
+        None,
+    ),
+    ("models_events", 250): (
+        "Missing test: AbstractParticipation explicitly excluded from logging -> test_models_are_registered_for_logging_or_explicitly_excluded",
+        None,
+    ),
+    ("models_events", 253): (
+        "Missing test: persisted enum values -> test_stored_enum_values_never_change",
+        None,
+    ),
+    ("models_events", 257): (
+        "Missing test: persisted enum values -> test_stored_enum_values_never_change",
+        None,
+    ),
+    ("models_events", 273): (
+        "Missing test: default state of a new participation -> test_new_objects_start_with_safe_defaults",
+        None,
+    ),
+    ("models_events", 282): (
+        "Missing test: individual start may be NULL -> test_individual_times_may_be_stored_as_null",
+        None,
+    ),
+    ("models_events", 283): (
+        "Missing test: individual end may be NULL -> test_individual_times_may_be_stored_as_null",
+        None,
+    ),
+    ("models_events", 289): (
+        "Missing test: finished defaults to False -> test_new_objects_start_with_safe_defaults",
+        None,
+    ),
+    ("models_events", 297): (
+        "Missing test: decision table of has_customized_signup -> test_has_customized_signup_decision_table",
+        None,
+    ),
+    ("models_events", 307): (
+        "Weak assertion (custom operator RaiseToReturn survivor): str() only asserted truthy -> test_abstract_participation_falls_back_to_django_default_string",
+        None,
+    ),
+    ("models_events", 328): (
+        "Missing test: ParticipationComment registered for logging -> test_models_are_registered_for_logging_or_explicitly_excluded",
+        None,
+    ),
+    ("models_events", 338): (
+        "Missing test: persisted enum values -> test_stored_enum_values_never_change",
+        None,
+    ),
+    ("models_events", 340): (
+        "Missing test: persisted enum values -> test_stored_enum_values_never_change",
+        None,
+    ),
+    ("models_events", 351): (
+        "Missing test: comment author optional -> test_comment_author_is_optional",
+        None,
+    ),
+    ("models_events", 359): (
+        "Missing test: comment length BVA -> test_comment_text_and_shift_label_length_limits",
+        None,
+    ),
+    ("models_events", 385): (
+        "Missing test: shift label length BVA -> test_comment_text_and_shift_label_length_limits",
+        None,
+    ),
+    ("models_events", 513): (
+        "Missing test: readable flow name in the shift log -> test_shift_log_records_readable_flow_and_structure_names",
+        None,
+    ),
+    ("models_events", 514): (
+        "Missing test: flow name lookup incl. unknown slug -> test_shift_log_records_readable_flow_and_structure_names, test_shift_log_names_are_none_for_unknown_slugs",
+        None,
+    ),
+    ("models_events", 516): (
+        "Missing test: readable structure name in the shift log -> test_shift_log_records_readable_flow_and_structure_names",
+        None,
+    ),
+    ("models_events", 517): (
+        "Missing test: structure name lookup incl. unknown slug -> same tests",
+        None,
+    ),
+    ("models_events", 540): (
+        "Missing test: view permission granted by a participation -> test_saving_a_participation_grants_event_view_access_except_when_dispatched",
+        None,
+    ),
+    ("models_events", 541): (
+        "Missing test: users who already may view get no extra permission -> test_no_extra_object_permission_when_the_user_may_already_view_the_event",
+        None,
+    ),
+    ("models_events", 542): (
+        "Missing test: no grant for GETTING_DISPATCHED, grant for the other four states -> test_saving_a_participation_grants_event_view_access_except_when_dispatched",
+        None,
+    ),
+    ("models_events", 564): (
+        "Missing test: display name length BVA -> test_placeholder_display_name_length_limit",
+        None,
+    ),
+    ("models_events", 589): (
+        "Missing test: EventTypePreference explicitly excluded from logging -> test_models_are_registered_for_logging_or_explicitly_excluded",
         None,
     ),
 }

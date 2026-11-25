@@ -57,6 +57,25 @@ Root causes of the 100 (feeds the defect/RCA section): (1) tests used zeros and 
 Equivalence is argued by reading the code, not formally proven. One prediction was wrong and is recorded: forms/events lines 212 and 226 (`and` -> `or`) were first judged
 equivalent and were actually killable (a test that each installed flow is offered exactly once kills them).
 
+## Second batch: four more modules (528 mutants) - INTERIM, 2026-11-25
+Same method (Cosmic Ray, isolated workdir, round 1 then survivors-only reruns after killer tests). Raw data: `reports/mutation/round{1,2}_{signup_views,participants,signup_forms,models_events}.*`.
+
+| Module | Mutants | Round 1 | After killer tests | Status |
+|---|---|---|---|---|
+| `core/signup/views.py` | 38 | 23 killed, 14 survived -> **62.2 %** | 34 killed, 3 survived -> **91.9 %** | final; the 3 survivors are equivalent (see below) |
+| `core/signup/participants.py` | 88 | 77 killed, 4 survived -> **95.1 %** | 79 killed, 1 survived -> **98.8 %** | final; 1 equivalent |
+| `core/signup/forms.py` | 101 | 69 killed, 31 survived -> **69.0 %** | round 2 running (88 of 101 done, 1 survivor so far) | **in progress** |
+| `core/models/events.py` | 301 | 209 killed, 73 survived -> **74.1 %** | round 2 queued | **in progress** |
+
+Why round 1 was low for the view and the form: the existing tests asserted outcomes but not side effects such as the customise notification to responsibles (9 survivors on one line),
+comment visibility, atomic saves and locked time fields; 11 form survivors were only alive because that module's mutation test command had not included the unit test that already covered them.
+`models/events.py` survivors are mostly model-field definitions (the test database is built from migrations, so max_length/null/blank/default changes were invisible until `full_clean` was asserted),
+the rule that a participation grants event view access (14 mutants, never tested) and `|` -> `^` variants in the participant-visibility query.
+One custom-operator mutant survived here as well (`RaiseToReturn` in `AbstractParticipation.participant`) because a test asserted only that `str()` was truthy.
+
+Equivalent survivors so far: views line 81 and 82 (`or` -> `and` on the quick-action defaults, whose individual times are only forwarded to plugin signal receivers and ignored by the core flows) and line 142 (`==` -> `<=` while "customize" is the alphabetically smallest valid choice); participants line 115 (redundant `@dataclass` on a subclass that adds no fields).
+The final numbers and the per-mutant table for all eight modules replace this section when the remaining runs finish.
+
 ## CI gate threshold (justified from this evidence)
 Gate: kill rate on `participant_validation.py` >= **90 %** (`scripts/check_mutation_score.py --min 90`, job `mutation-score`).
 Round 1 gave 91.4 %, the final round 98.3 %, and CI after the DEFECT-001 fix 100 % (118/118). 90 % blocks a real regression (deleting a killer test drops below)
