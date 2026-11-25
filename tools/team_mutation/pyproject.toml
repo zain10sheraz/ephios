@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "team-mutation"
+version = "0.1.0"
+description = "Custom Cosmic Ray mutation operators derived from the Ephios SQE business rules"
+requires-python = ">=3.11"
+dependencies = ["cosmic-ray"]
+
+[project.entry-points."cosmic_ray.operator_providers"]
+team = "team_mutation.provider:TeamProvider"
+
+[tool.setuptools]
+packages = ["team_mutation"]

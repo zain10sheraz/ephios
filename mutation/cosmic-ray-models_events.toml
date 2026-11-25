@@ -1,0 +1,8 @@
+[cosmic-ray]
+module-path = "src/ephios/core/models/events.py"
+timeout = 180.0
+excluded-modules = []
+test-command = "C:/Users/Admin/OneDrive/Desktop/ephios/.venv/Scripts/python.exe -m pytest tests/team/unit/test_wf1_models_visibility.py tests/team/unit/test_wf1_event_shift.py tests/team/unit/test_wf1_mutation_killers.py tests/team/unit/test_signup_rules.py tests/team/unit/test_models_events_mutation_killers.py -x -q -p no:cacheprovider --ds=tests.team.settings_mutation --reuse-db"
+
+[cosmic-ray.distributor]
+name = "local"

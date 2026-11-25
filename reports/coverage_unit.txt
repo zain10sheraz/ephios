@@ -1,0 +1,9 @@
+Run: 2026-11-23T19:21:32+05:00
+Commit base: 401c2c63
+Name                                                         Stmts   Miss Branch BrPart  Cover   Missing
+--------------------------------------------------------------------------------------------------------
+src\ephios\core\signup\flow\participant_validation.py           98      0     30      0   100%
+src\ephios\core\signup\stats.py                                 34      0      2      0   100%
+src\ephios\plugins\baseshiftstructures\structure\common.py      84      0     16      0   100%
+--------------------------------------------------------------------------------------------------------
+TOTAL                                                          216      0     48      0   100%

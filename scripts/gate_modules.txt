@@ -1,0 +1,16 @@
+src/ephios/core/signup/flow/participant_validation.py
+src/ephios/plugins/baseshiftstructures/structure/common.py
+src/ephios/core/signup/stats.py
+src/ephios/core/forms/events.py
+src/ephios/core/models/events.py
+src/ephios/core/signup/views.py
+src/ephios/core/signup/flow/base.py
+src/ephios/core/signup/flow/abstract.py
+src/ephios/core/signup/forms.py
+src/ephios/core/signup/participants.py
+src/ephios/core/signup/fallback.py
+src/ephios/core/signup/structure/base.py
+src/ephios/core/signup/structure/abstract.py
+src/ephios/core/views/signup.py
+src/ephios/plugins/basesignupflows/flow/participant.py
+src/ephios/plugins/basesignupflows/flow/manual.py

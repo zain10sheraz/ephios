@@ -1,0 +1,126 @@
+name: team-quality-gate
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  unit-tests:
+    name: unit-tests-100pct-coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext
+          uv sync --dev --inexact --all-extras
+      - name: Prepare files
+        run: |
+          cp .env.example .env
+          uv run manage.py build
+      - name: Run team tests with statement and branch coverage
+        run: |
+          INC="$(tr -d '\r' < scripts/gate_modules.txt | paste -sd, -)"
+          uv run coverage run --include="$INC" -m pytest tests/team -q -p no:cacheprovider
+          uv run coverage report -m --fail-under=100
+
+  mutation:
+    name: mutation-score
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext
+          uv sync --dev --inexact --all-extras
+          uv pip install cosmic-ray ./tools/team_mutation
+      - name: Prepare files
+        run: |
+          cp .env.example .env
+          uv run manage.py build
+      - name: Create isolated mutation workdir
+        run: MUT_WORK="$RUNNER_TEMP/mut" bash scripts/setup_mutation_workdir.sh
+      - name: Run Cosmic Ray on participant_validation.py
+        working-directory: ${{ runner.temp }}/mut
+        run: |
+          source "$GITHUB_WORKSPACE/.venv/bin/activate"
+          sed -E 's#^test-command = "[^ ]*python.exe#test-command = "python#' cosmic-ray.toml > ci.toml
+          cosmic-ray init ci.toml session.sqlite
+          cosmic-ray baseline ci.toml
+          cosmic-ray exec ci.toml session.sqlite
+          cosmic-ray dump session.sqlite > dump.jsonl
+          python "$GITHUB_WORKSPACE/scripts/check_mutation_score.py" --min 90 < dump.jsonl
+
+  sonarqube:
+    name: sonarqube-thresholds
+    runs-on: ubuntu-latest
+    services:
+      sonarqube:
+        image: sonarqube:community
+        ports:
+          - 9000:9000
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext
+          uv sync --dev --inexact --all-extras
+      - name: Prepare files
+        run: |
+          cp .env.example .env
+          uv run manage.py build
+      - name: Coverage report for SonarQube
+        run: |
+          INC="$(tr -d '\r' < scripts/gate_modules.txt | paste -sd, -)"
+          mkdir -p reports
+          uv run coverage run --include="$INC" -m pytest tests/team -q -p no:cacheprovider
+          uv run coverage xml -o reports/coverage.xml
+      - name: Wait for SonarQube and create token
+        run: |
+          for i in $(seq 1 90); do
+            curl -sf http://localhost:9000/api/system/status | grep -q '"status":"UP"' && break
+            sleep 5
+          done
+          curl -sf http://localhost:9000/api/system/status | grep -q '"status":"UP"'
+          PW="Ci-$(openssl rand -hex 8)-Aa1!"
+          curl -sf -u admin:admin -X POST http://localhost:9000/api/users/change_password \
+            -d login=admin -d previousPassword=admin --data-urlencode "password=$PW"
+          TOKEN=$(curl -sf -u "admin:$PW" -X POST http://localhost:9000/api/user_tokens/generate \
+            -d name=ci | python3 -c "import sys,json; print(json.load(sys.stdin)['token'])")
+          echo "::add-mask::$TOKEN"
+          echo "SONAR_TOKEN=$TOKEN" >> "$GITHUB_ENV"
+          echo "SONAR_ADMIN_PW=$PW" >> "$GITHUB_ENV"
+      - name: Use the comprehensive quality profile
+        run: |
+          curl -sf -u "admin:$SONAR_ADMIN_PW" -X POST http://localhost:9000/api/projects/create \
+            -d project=ephios-sqe -d name="Ephios SQE"
+          curl -sf -u "admin:$SONAR_ADMIN_PW" -X POST http://localhost:9000/api/qualityprofiles/add_project \
+            -d "qualityProfile=Sonar way comprehensive" -d language=py -d project=ephios-sqe
+      - name: Run scanner
+        run: |
+          docker run --rm --network host -e SONAR_HOST_URL=http://localhost:9000 \
+            -e SONAR_TOKEN="$SONAR_TOKEN" -v "$GITHUB_WORKSPACE:/usr/src" \
+            sonarsource/sonar-scanner-cli -Dsonar.scm.disabled=true
+      - name: Wait for background analysis task
+        run: |
+          for i in $(seq 1 60); do
+            curl -sf -u "$SONAR_TOKEN:" "http://localhost:9000/api/ce/component?component=ephios-sqe" \
+              | python3 -c "import sys,json; d=json.load(sys.stdin); sys.exit(1 if d.get('queue') else 0)" && break
+            sleep 5
+          done
+      - name: Enforce thresholds
+        run: python3 scripts/check_sonar_gate.py http://localhost:9000 "$SONAR_TOKEN"

@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 
 from django.contrib import messages
 from django.core.exceptions import ValidationError
+from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
@@ -130,11 +131,18 @@ class AbstractShiftConfigurationFormView(CustomPermissionRequiredMixin, SingleOb
     pk_url_kwarg = "event_id"
 
     def get(self, request, *args, **kwargs):
+        event = self.get_object()
         try:
-            shift = self.get_object().shifts.get(pk=request.GET.get("shift_id") or None)
-        except Shift.DoesNotExist:
+            shift = event.shifts.get(pk=request.GET.get("shift_id") or None)
+        except (
+            Shift.DoesNotExist,
+            ValueError,
+        ):  # unknown or malformed shift_id: treat as new shift
             shift = None
-        form = self.get_form(self.request, self.get_object(), shift=shift)
+        try:
+            form = self.get_form(self.request, event, shift=shift)
+        except ValueError as error:  # unknown signup flow / shift structure slug
+            raise Http404(str(error)) from error
         return render(
             request,
             "core/fragments/shift_signup_config_form.html",
