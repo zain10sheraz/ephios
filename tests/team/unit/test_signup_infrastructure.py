@@ -201,3 +201,31 @@ def test_base_signup_flow_helpers(event):
         request=RequestFactory().get("/"), shift=None
     )
     assert "signup_until" in detached_form.fields
+
+
+# ------------------------------------------------------------ killers for surviving mutants of participants.py
+def test_age_arithmetic_is_correct_for_very_old_birth_dates():
+    """year - year only equals year % year while the birth year is above half of today's year."""
+    assert abstract_participant(date(1000, 1, 1)).get_age(date(2020, 1, 1)) == 1020
+
+
+@pytest.mark.parametrize("years", [19, 30, 70], ids=["19", "30", "70"])
+def test_adults_over_18_are_not_minors(years):
+    today = timezone.now().date()
+    born = today - relativedelta(years=years)
+    assert abstract_participant(born).is_minor is False
+
+
+def test_exact_qualification_set_satisfies_the_requirement(qualifications):
+    participant = AbstractParticipant(
+        display_name="Medic", qualifications=[qualifications.nfs], date_of_birth=None, email=None
+    )
+    everything_the_participant_has = list(participant.collect_all_qualifications())
+    assert participant.has_qualifications(everything_the_participant_has)  # equal sets count
+
+
+def test_no_requirement_is_satisfied_by_a_participant_without_qualifications():
+    participant = AbstractParticipant(
+        display_name="Nobody", qualifications=[], date_of_birth=None, email=None
+    )
+    assert participant.has_qualifications([])

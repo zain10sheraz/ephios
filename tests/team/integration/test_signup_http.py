@@ -513,3 +513,113 @@ def test_quick_signup_reuses_the_previously_chosen_team(
     participation = participations(named_teams_shift, qualified_volunteer).get()
     assert participation.state == S.REQUESTED
     assert participation.structure_data["preferred_team_uuid"] == TEAM_UUID
+
+
+# ------------------------------------------------------------ killers for surviving mutants of signup/views.py
+def narrow_conflicting_shift(conflicting_event):
+    other = conflicting_event.shifts.get()
+    other.end_time = other.start_time + timedelta(hours=1)  # overlaps only the start of `shift`
+    other.save()
+
+
+def test_quick_decline_is_allowed_even_when_shifts_overlap(
+    client, shift, volunteer, conflicting_event
+):
+    client.force_login(volunteer)
+    quick(client, shift, "decline")
+    assert participations(shift, volunteer).get().state == S.USER_DECLINED
+
+
+def test_quick_customize_with_an_overlapping_shift_redirects_to_the_form(
+    client, shift, volunteer, conflicting_event
+):
+    client.force_login(volunteer)
+    response = quick(client, shift, "customize")
+    assert response.status_code == 302
+    assert response.url == url(shift)
+    assert "overlap" in messages_of(response).lower()
+
+
+def test_quick_signup_with_a_partial_overlap_is_not_done_silently(
+    client, shift, volunteer, conflicting_event
+):
+    narrow_conflicting_shift(conflicting_event)
+    client.force_login(volunteer)
+    response = quick(client, shift, "sign_up")
+    assert response.url == url(shift)  # partial overlaps must be checked by the participant
+    assert "overlap" in messages_of(response).lower()
+    assert participations(shift, volunteer).count() == 0
+
+
+def test_quick_resignup_keeps_the_previously_customized_times(client, shift, volunteer):
+    configure(shift, flow_conf=dict(user_can_customize_signup_times=True))
+    start = shift.start_time + timedelta(hours=1)
+    end = shift.end_time - timedelta(hours=1)
+    client.force_login(volunteer)
+    client.post(url(shift), {"signup_choice": "sign_up", **form_times(start, end)})
+    quick(client, shift, "decline")
+    quick(client, shift, "sign_up")
+    participation = participations(shift, volunteer).get()
+    assert participation.state == S.REQUESTED
+    assert participation.individual_start_time.replace(second=0, microsecond=0) == start.replace(
+        second=0, microsecond=0
+    )
+    assert participation.individual_end_time.replace(second=0, microsecond=0) == end.replace(
+        second=0, microsecond=0
+    )
+
+
+NOTIFICATION = "ephios.core.signup.views.ResponsibleConfirmedParticipationCustomizedNotification"
+
+
+def confirmed_customizable(client, shift, volunteer):
+    configure(
+        shift,
+        flow="instant_confirmation",
+        flow_conf=dict(user_can_customize_signup_times=True, user_can_decline_confirmed=True),
+        structure_conf=dict(minimum_number_of_participants=0, maximum_number_of_participants=5),
+    )
+    client.force_login(volunteer)
+    quick(client, shift, "sign_up")
+
+
+def test_customizing_times_notifies_the_responsibles_with_the_changes(client, shift, volunteer):
+    from unittest.mock import patch
+
+    confirmed_customizable(client, shift, volunteer)
+    new_start = shift.start_time + timedelta(hours=2)
+    with patch(NOTIFICATION) as notification:
+        client.post(
+            url(shift), {"signup_choice": "customize", **form_times(new_start, shift.end_time)}
+        )
+    assert notification.send.call_count == 1
+    participation, claims = notification.send.call_args.args
+    assert participation.pk == participations(shift, volunteer).get().pk
+    assert len(claims) == 1
+    assert "was changed" in claims[0]
+
+
+def test_customizing_without_changing_times_sends_no_notification(client, shift, volunteer):
+    from unittest.mock import patch
+
+    confirmed_customizable(client, shift, volunteer)
+    with patch(NOTIFICATION) as notification:
+        client.post(
+            url(shift),
+            {"signup_choice": "customize", **form_times(shift.start_time, shift.end_time)},
+        )
+    assert notification.send.call_count == 0
+
+
+def test_signing_up_with_changed_times_sends_no_customize_notification(client, shift, volunteer):
+    from unittest.mock import patch
+
+    configure(shift, flow_conf=dict(user_can_customize_signup_times=True))
+    client.force_login(volunteer)
+    new_start = shift.start_time + timedelta(hours=2)
+    with patch(NOTIFICATION) as notification:
+        client.post(
+            url(shift), {"signup_choice": "sign_up", **form_times(new_start, shift.end_time)}
+        )
+    assert notification.send.call_count == 0
+    assert participations(shift, volunteer).count() == 1
