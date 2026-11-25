@@ -25,7 +25,7 @@ are plain expectations and are labelled so.
 |---|---|---|---|---|---|---|---|
 | PJ-01 | Tooling overloads the 7.7 GB laptop (SonarQube + Docker + mutation) | 5 | 3 | 15 | High | WSL memory cap, run heavy tools sequentially, scope scans, record effort | **Occurred**: Docker engine hung twice; SonarQube scan failed twice before success |
 | PJ-02 | Four-day deadline: not all rubric items finish | 4 | 4 | 16 | High | Daily plan, report NOT RUN honestly, cut scope on 100 % "all logic" claim first | tracked in WORKLOG.md |
-| PJ-03 | Teammates' areas (API, E2E, security, performance) not started yet, integration late | 3 | 4 | 12 | Medium | Branches created; interface = docs/team/REQUIREMENTS.md | manan/sajawal branches still at baseline |
+| PJ-03 | Teammates' areas (API, E2E, security, performance) not started yet, integration late | 5 | 5 | 25 | High | Branches created; interface = docs/team/REQUIREMENTS.md | **Occurred**: manan and sajawal have 0 commits after two project days (checked 2026-11-25) |
 
 ## Exit criteria (measurable; tied to highest risks)
 | ID | Criterion | Target | Tied to | Actual (to fill from runs) |
