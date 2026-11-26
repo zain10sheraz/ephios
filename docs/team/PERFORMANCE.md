@@ -8,7 +8,7 @@
 
 ## 2. Method
 1 virtual user and 5 virtual users, **each configuration twice, 60 s per run** (4 runs, one after the other, no other load on the machine). Each virtual user repeats the request in a loop without think time (a worst-case, closed-loop load). Login once in `setup()`.
-Environment: Windows 11 laptop, 7.7 GB RAM, Django `runserver` (development server), SQLite, about 50 events in the database; k6 on the same machine. Results are therefore **relative indicators for this environment**, not production capacity.
+Environment: Windows 11 laptop, 7.7 GB RAM, Django `runserver` (development server), SQLite, 16 events and 15 shifts in the database (small data set: with more data the list would be slower); k6 on the same machine. Results are therefore **relative indicators for this environment**, not production capacity.
 
 ## 3. Results (`reports/performance/k6_vus*_run*.json`, summary `k6_summary.md`)
 | VUs | run | requests | req/s | avg ms | p95 ms | max ms | failed % | limits |
