@@ -12,7 +12,7 @@ Ephios has a **read-only JSON REST API** (`/api/...`, DRF) and **write endpoints
 | EP and 3-point BVA generator | `scripts/generate_api_data.py` -> `test_data/api_cases.json` (80 inputs, 409 cases: 324 EP, 85 BVA, 182 invalid) |
 | Regeneration for a changed specification | `scripts/demo_regeneration.py` -> `reports/api/regeneration_demo.txt` |
 | Test harness: starts the real app (temporary SQLite DB, migrate, seed, `runserver`), logs in like a browser, sends CSRF token | `tests/team/api/support.py`, `conftest.py` |
-| Tests | `tests/team/api/` (462 tests, below) |
+| Tests | `tests/team/api/` (476 tests, below) |
 | API coverage against the spec | `scripts/api_coverage.py` -> `reports/api/api_coverage.md` |
 | CI | job `api-tests-black-box` in `team-quality-gate.yml` (excluded from the unit gate with `--ignore=tests/team/api` because it needs a server) |
 
@@ -24,6 +24,10 @@ Ephios has a **read-only JSON REST API** (`/api/...`, DRF) and **write endpoints
 | `test_cross_workflow_api.py` | 11 | WF1 change -> WF2 effect, WF2 signup -> WF1 view (capacity raise/lower, deadline, flow switch, delete shift/event, last-shift rule, permissions) |
 | `test_access_control_api.py` | 11 | anonymous / volunteer refused, nothing stored |
 | `test_spec_and_generator.py` | 7 | spec refs resolve, operation ids unique, committed cases equal a fresh generation, 3-point BVA present, constraint change changes cases |
+| `test_rest_filters_api.py` | 5 | REST read: participation state filter, title ordering both ways, `start_time_after/before`, limit/offset paging, offset beyond the last record |
+| `test_concurrency_api.py` | 2 | simultaneous signups for the last place; the same volunteer clicking twice at once |
+| `test_combined_invalid_api.py` | 4 | several invalid values in one request (event, shift, time fields, signup) |
+| `test_transitions_api.py` | 3 | decline then sign up again reuses the record; declining twice; decline after the window closed
 
 ## 2. Techniques
 * **EP**: every input has a valid class and one invalid class per way of being invalid (non-numeric, decimal, empty, unknown option, wrong type, non-existent id, ...).
@@ -38,7 +42,7 @@ Ephios has a **read-only JSON REST API** (`/api/...`, DRF) and **write endpoints
 * **Cross-workflow**: see the table above; each test changes something through WF1 and reads the effect on WF2 through the REST API and vice versa.
 
 ## 3. Results (one clean run, 2026-11-26)
-`reports/api/pytest_full_run.txt`: **462 passed, 0 failed** in 7 min 39 s (`reports/api/junit.xml`).
+`reports/api/pytest_full_run.txt`: **476 passed, 0 failed** in 14 min 21 s on the 7.7 GB laptop (`reports/api/junit.xml`); the first clean run before the later additions had 462 passed in 7 min 39 s.
 `reports/api/api_coverage.md`: **operation coverage 14/14 = 100 %**, **documented-response coverage 46/46 = 100 %**, **input coverage 80/80**.
 
 ## 4. What the first runs found (honest account)
@@ -60,8 +64,8 @@ No source code of the application was changed in area 2. Root cause class for al
 
 ## 6. Limits and what was not done
 * Business rule BR5 (inactive event rejects signup) cannot be reached over HTTP: saving a shift activates its event, and an event without a shift has nothing to sign up for. It stays covered by `tests/team/integration/test_inactive_event_signup.py` (DEFECT-001).
-* No concurrency (race) test of capacity over HTTP; no load test (area 3).
-* The generated tests send one value at a time; combinations of several invalid values are not covered.
+* Concurrency over HTTP is tested only with two simultaneous requests. On SQLite one of two truly simultaneous writes can fail with `database is locked` (HTTP 500); that is a property of SQLite, so the test tolerates a 500 and asserts the stored state instead (never more confirmed participants than places, never two records for one volunteer). It was observed once in the first concurrency run; the application runs on PostgreSQL/MySQL in production, which was not tested here. No load test (area 3).
+* The generated tests send one value at a time; `test_combined_invalid_api.py` adds only four combined-value cases, not pairwise coverage.
 * `api-tests-black-box` is not a required check on `main`; the three required checks are unchanged.
 
 ## 7. Re-run
