@@ -22,3 +22,7 @@ Efforts are approximate (reconstructed from session time) and will be marked as 
 | 2026-11-26 | Manan / API test harness and tests | real-server harness, 462 tests, 29 first-run failures analysed and corrected, post-conditions | 5.0 (approximate, includes long server runs) |
 | 2026-11-26 | Manan / API docs, issues #12-#14, coverage | `API_TESTING.md`, viva notes, coverage script | 1.5 (approximate) |
 | 2026-11-26 | Manan / follow-up tests | REST filters, concurrency, combined invalid values, state transitions (14 tests), rerun 476 passed | 2.0 (approximate, includes a 14 min suite run) |
+| 2026-11-26 | Sujawal / use cases, e2e harness | `USE_CASES.md`, Playwright set-up, 12 flow tests, usability, keyboard, access matrix, recovery | 4.0 (approximate, includes tool downloads) |
+| 2026-11-26 | Sujawal / accessibility | axe + Lighthouse before/after, fix, regression test, report | 2.5 (approximate) |
+| 2026-11-26 | Sujawal / performance, security | k6 runs, pip-audit, security report | 2.0 (approximate, includes 4 minutes of load runs) |
+| 2026-11-27 | Sujawal / management items | issues #17-#23, RCA, risk register, traceability, progress report 4, viva notes, CI job | 2.0 (approximate) |
