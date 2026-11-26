@@ -15,7 +15,7 @@
 | listOwnParticipations | GET /api/users/me/participations/ | 200, 400, 403 | 200, 400, 403 | - |
 | listParticipations | GET /api/participations/ | 200, 400, 403 | 200, 400, 403 | - |
 | listShifts | GET /api/shifts/ | 200, 400, 403 | 200, 400, 403 | - |
-| signup | POST /shifts/{pk}/signup/ | 200, 302, 403, 404 | 200, 302, 403, 404 | - |
+| signup | POST /shifts/{pk}/signup/ | 200, 302, 403, 404 | 200, 302, 403, 404, 500 | - |
 
 - Operation coverage: 14/14 = 100 %
 - Status-code coverage: 46/46 = 100 % of the documented responses
