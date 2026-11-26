@@ -24,7 +24,7 @@ Techniques applied wherever they fit: equivalence partitioning (one invalid valu
 | Member | Area | Deliverables |
 |---|---|---|
 | Zain Sheraz (zain10sheraz) | 1: static analysis, white-box, mutation, CI | SonarQube, complexity, unit tests, MCC/MC-DC, Cosmic Ray, CI gate, defects #1 #4 |
-| Manan (MannanJaffery) | 2: API testing and data generation | OpenAPI spec, EP/BVA generator, API + integration tests, cross-workflow checks |
+| Manan (MannanJafferyyy) | 2: API testing and data generation | OpenAPI spec, EP/BVA generator, API + integration tests, cross-workflow checks |
 | Sujawal (sajawalkhan01; branch `sajawal`) | 3: use cases, usability, accessibility, security, performance | 4 use cases with 2 alt + 2 exception flows, Playwright, Lighthouse/axe, ZAP, pip-audit, k6, recovery test |
 Shared: requirements, test plan, estimates, risks, traceability, reports, RCA, final PDF/ZIP.
 
@@ -61,7 +61,7 @@ Honesty note: estimates for Zain's areas below were written **after** the work (
 | SonarQube + complexity | 1 | 2 | 4 | 2.2 | ~2.5 | worklog (retrospective) |
 | Mutation testing + analysis | 3 | 5 | 8 | 5.2 | ~8.5 (4 modules, 113 survivors analysed) | worklog (retrospective) |
 | CI gate + PRs | 2 | 4 | 7 | 4.2 | ~8 (four PR cycles incl. real blocks and a GitHub outage) | worklog (retrospective) |
-| API tests + generator + OpenAPI (Manan) | 5 | 8 | 14 | 8.5 | not started | prospective |
+| API tests + generator + OpenAPI (Manan) | 5 | 8 | 14 | 8.5 | done; about 8.5 h actual (approximate, session time) | prospective estimate, actual approximate |
 | E2E + use cases (Sujawal) | 5 | 8 | 12 | 8.2 | not started | prospective |
 | Usability/accessibility | 2 | 3 | 5 | 3.2 | not started | prospective |
 | Security | 2 | 3 | 5 | 3.2 | not started | prospective |

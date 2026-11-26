@@ -18,3 +18,6 @@ Efforts are approximate (reconstructed from session time) and will be marked as 
 | 2026-11-24 | Zain / complete MCC-MC/DC | enumerate decisions, tables, 17 tests | 1.5 |
 | 2026-11-24 | Zain / signup-path HTTP tests + coverage scope | 11 modules to 100 %, fallbacks, scope document | 4.0 (incl. long stalls from memory pressure) |
 | 2026-11-24 | Zain / WF1 HTTP tests, cross-workflow tests | 32 + 29 + 6 tests; DEFECT-003/004 found, fixed, PR #8 | 3.5 |
+| 2026-11-26 | Manan / OpenAPI + generator | spec of 14 operations, EP/BVA generator, regeneration demo | 2.0 (approximate) |
+| 2026-11-26 | Manan / API test harness and tests | real-server harness, 462 tests, 29 first-run failures analysed and corrected, post-conditions | 5.0 (approximate, includes long server runs) |
+| 2026-11-26 | Manan / API docs, issues #12-#14, coverage | `API_TESTING.md`, viva notes, coverage script | 1.5 (approximate) |

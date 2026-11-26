@@ -21,3 +21,7 @@ Limitations observed: AI initially mis-specified a Sonar API parameter, a bind-m
 skipped files, and an unverified explanation in the Sonar notes (corrected). Each was caught by checking real output.
 
 Further corrections of AI mistakes caught by checking real output (2026-11-24): a regex replacement that silently corrupted the CI workflow YAML (caught by validating it); a wrong test-count figure written before verifying (333 vs real 367); a wrong GitHub username typed for a teammate (fixed); several predicted-equivalent mutants that were actually killable (recorded in MUTATION.md); a `pytest.raises` pattern that Sonar flags (found by a local scan). The AI also attempted `gh pr merge` on the deliberately-blocked demo PR and was correctly denied by the permission layer; verification was done with read-only queries instead.
+
+| 2026-11-26 | Manan (assisted by Claude Code) | OpenAPI spec, EP/BVA generator, API harness and 462 tests, API docs, issues #12-#14 | to be reviewed and understood by Manan before the viva |
+
+AI mistakes caught by checking real output (2026-11-26): a spec that claimed a length limit on `search` the application does not have; a generator that produced a wrong-case class for integer enums and ignored cross-field time order; tests that reused one date so signups overlapped and invalid cases passed for the wrong reason; a wrong expectation that PUT on a create endpoint returns 405. Each was found by running against the real server and corrected from the observed behaviour, never by weakening an assertion.

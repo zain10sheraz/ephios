@@ -17,7 +17,7 @@ folders listed below; upstream source is modified only where a documented defect
 | Member | GitHub | Area | Branch |
 |---|---|---|---|
 | Zain Sheraz | zain10sheraz | 1: static analysis, white-box, mutation, CI | `zain` |
-| Manan | MannanJaffery | 2: API testing and data generation | `manan` |
+| Manan | MannanJafferyyy | 2: API testing, integration, OpenAPI, EP/BVA generator, cross-workflow validation | `manan` |
 | Sujawal | sajawalkhan01 | 3: use cases, usability, accessibility, security, performance | `sajawal` |
 Test management documents are shared. Branches are merged into `main` only through a pull request that must pass the quality gate.
 

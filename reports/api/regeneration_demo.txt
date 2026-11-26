@@ -1,0 +1,25 @@
+cases before: 409, after: 409
+
+createEvent.title
+  - removed maxLength_above        value='x'*255      expected=invalid
+  - removed maxLength_at           value='x'*254      expected=valid
+  - removed maxLength_below        value='x'*253      expected=valid
+  + added   maxLength_above        value='x'*101      expected=invalid
+  + added   maxLength_at           value='x'*100      expected=valid
+  + added   maxLength_below        value='x'*99       expected=valid
+
+createShift.maximum_number_of_participants
+  - removed minimum_above          value='2'          expected=valid
+  - removed minimum_at             value='1'          expected=valid
+  - removed minimum_below          value='0'          expected=invalid
+  + added   minimum_above          value='4'          expected=valid
+  + added   minimum_at             value='3'          expected=valid
+  + added   minimum_below          value='2'          expected=invalid
+
+editShift.maximum_number_of_participants
+  - removed minimum_above          value='2'          expected=valid
+  - removed minimum_at             value='1'          expected=valid
+  - removed minimum_below          value='0'          expected=invalid
+  + added   minimum_above          value='4'          expected=valid
+  + added   minimum_at             value='3'          expected=valid
+  + added   minimum_below          value='2'          expected=invalid
