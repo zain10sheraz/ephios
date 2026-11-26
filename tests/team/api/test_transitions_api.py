@@ -19,3 +19,21 @@ def test_decline_then_sign_up_again_reuses_the_same_participation(planner, volun
     assert mine(volunteer, shift) == [(participation, 2)]
     volunteer.post(f"/shifts/{shift}/signup/", SIGN_UP)
     assert mine(volunteer, shift) == [(participation, 1)]
+
+
+def test_declining_twice_keeps_the_declined_state_and_one_record(planner, volunteer):
+    _, shift = planner.new_shift()
+    volunteer.post(f"/shifts/{shift}/signup/", SIGN_UP)
+    volunteer.post(f"/shifts/{shift}/signup/", DECLINE)
+    volunteer.post(f"/shifts/{shift}/signup/", DECLINE)
+    assert [state for _, state in mine(volunteer, shift)] == [2]
+
+
+def test_decline_after_the_window_closed_is_refused_and_state_stays_confirmed(planner, volunteer):
+    _, shift = planner.new_shift()
+    volunteer.post(f"/shifts/{shift}/signup/", SIGN_UP)
+    day = planner.rest(f"/api/shifts/{shift}/")["start_time"][:10]
+    closed = {**VALID_SHIFT, "date": day, "signup_until_0": "2000-01-01", "signup_until_1": "08:00"}
+    assert planner.post(f"/shifts/{shift}/edit/", closed).status_code == 302
+    volunteer.post(f"/shifts/{shift}/signup/", DECLINE)
+    assert [state for _, state in mine(volunteer, shift)] == [1]
