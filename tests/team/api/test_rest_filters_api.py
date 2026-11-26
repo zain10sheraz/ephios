@@ -60,3 +60,11 @@ def test_paging_with_limit_and_offset_walks_through_the_same_records(planner):
     second = planner.rest("/api/events/", search=token, ordering="title", limit=1, offset=1)
     assert first["count"] == second["count"] == 3
     assert [first["results"][0]["id"], second["results"][0]["id"]] == [events["p1"], events["p2"]]
+
+
+def test_offset_beyond_the_last_record_gives_an_empty_page(planner):
+    token = "pagebeyond"
+    titled_events(planner, token, ["only"])
+    page = planner.rest("/api/events/", search=token, limit=10, offset=50)
+    assert page["count"] == 1
+    assert page["results"] == []
