@@ -1,6 +1,7 @@
 """Tests of the test basis itself (no server needed): the OpenAPI spec is consistent and the generator output is
 reproducible and contains the boundary points the technique requires."""
 
+import importlib
 import json
 import sys
 from pathlib import Path
@@ -10,7 +11,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import generate_api_data as generator
+generator = importlib.import_module("generate_api_data")
 
 SPEC_PATH = ROOT / "test_specs" / "openapi.yaml"
 CASES_PATH = ROOT / "test_data" / "api_cases.json"

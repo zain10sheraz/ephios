@@ -124,9 +124,9 @@ def test_generated_case(op_id, op, name, location, item, planner, volunteer, ids
         if item["expected"] != "invalid":
             # observed rule: a well-formed custom window is accepted iff it starts before it ends (it may extend
             # beyond the shift); a window with start >= end is rejected
-            data[name] = value
-            start = (data["individual_start_time_0"], data["individual_start_time_1"])
-            end = (data["individual_end_time_0"], data["individual_end_time_1"])
+            window = {**data, name: value}
+            start = (window["individual_start_time_0"], window["individual_start_time_1"])
+            end = (window["individual_end_time_0"], window["individual_end_time_1"])
             want = 302 if start < end else 200
     if location == "path":
         key = next(iter(path_params))
