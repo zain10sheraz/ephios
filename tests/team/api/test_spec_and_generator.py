@@ -56,7 +56,9 @@ def test_committed_cases_match_a_fresh_generation():
 
 
 def test_generator_is_deterministic():
-    assert generator.generate(str(SPEC_PATH)) == generator.generate(str(SPEC_PATH))
+    first_run = generator.generate(str(SPEC_PATH))
+    second_run = generator.generate(str(SPEC_PATH))
+    assert first_run == second_run
 
 
 def test_three_point_bva_for_every_numeric_limit():
