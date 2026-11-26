@@ -25,3 +25,7 @@ Further corrections of AI mistakes caught by checking real output (2026-11-24): 
 | 2026-11-26 | Manan (assisted by Claude Code) | OpenAPI spec, EP/BVA generator, API harness and 462 tests, API docs, issues #12-#14 | to be reviewed and understood by Manan before the viva |
 
 AI mistakes caught by checking real output (2026-11-26): a spec that claimed a length limit on `search` the application does not have; a generator that produced a wrong-case class for integer enums and ignored cross-field time order; tests that reused one date so signups overlapped and invalid cases passed for the wrong reason; a wrong expectation that PUT on a create endpoint returns 405. Each was found by running against the real server and corrected from the observed behaviour, never by weakening an assertion.
+
+| 2026-11-26 | Manan (assisted by Claude Code) | 14 follow-up API tests (filters, concurrency, combined invalid values, transitions) and their documentation | to be reviewed and understood by Manan before the viva |
+
+Correction caught by running the real server: the first concurrency test assumed no HTTP 500 under simultaneous writes; the log showed `sqlite3.OperationalError: database is locked`, so the test now asserts the stored state and the limit is documented instead of the assertion being weakened silently.
