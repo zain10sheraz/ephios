@@ -47,3 +47,8 @@ Status values: `captured` (file exists, produced by a real run), `verified` (a g
 
 Still missing screenshots (not yet supplied): the closed issues #1, #4, #6, #7 (EV-016, EV-021); their GitHub API exports exist under `reports/evidence/github/`.
 | EV-034 | PR #3 'Files changed' view of one commit inside it (810c390, the DEFECT-001 fix: `return` -> `raise` in `participant_validation.py`, commit status 2/3) | `reports/evidence/EV-034_pr3_files_changed_commit_810c390_fix_diff.png` | 2026-11-25 | captured by Zain. Note: PR #3's *last* commit (e268535) restores the buggy `return`, so the PR as a whole keeps the defect; this screenshot shows an intermediate commit of the branch, not the net diff |
+| EV-035 | PR #11 zain -> main merged (merge commit 520edca3), 20 checks, none failed; baseline tag created | `reports/evidence/github/pr_11.json`, https://github.com/zain10sheraz/ephios/pull/11, tag `baseline-upstream-d12e76cd` | 2026-11-25 | captured (machine export; screenshot welcome) |
+| EV-036 | API test suite, one clean run: 462 passed, 0 failed (7 min 39 s) | `reports/api/pytest_full_run.txt`, `reports/api/junit.xml` | 2026-11-26 | captured (machine output) |
+| EV-037 | API coverage against the spec: 14/14 operations, 46/46 documented responses, 80/80 inputs | `reports/api/api_coverage.md`, `reports/api/observed_raw.json` | 2026-11-26 | captured (machine output) |
+| EV-038 | Generator output and regeneration demo (constraint change -> changed cases) | `test_data/api_cases.json`, `reports/api/regeneration_demo.txt` | 2026-11-26 | captured (machine output) |
+| EV-039 | Issues #12, #13, #14 (API weaknesses, minor, open) | https://github.com/zain10sheraz/ephios/issues/12 (13, 14) | 2026-11-26 | created by Manan; screenshot not yet taken |

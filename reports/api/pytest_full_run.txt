@@ -1,0 +1,18 @@
+........................................................................ [ 15%]
+........................................................................ [ 31%]
+........................................................................ [ 46%]
+........................................................................ [ 62%]
+........................................................................ [ 77%]
+........................................................................ [ 93%]
+..............................                                           [100%]
+============================== warnings summary ===============================
+..\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\importlib\metadata\__init__.py:467
+  C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\importlib\metadata\__init__.py:467: DeprecationWarning: Implicit None on return values is deprecated and will raise KeyErrors.
+    return self.metadata['Version']
+
+..\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\django\conf\__init__.py:190
+  C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\django\conf\__init__.py:190: RemovedInDjango60Warning: The FORMS_URLFIELD_ASSUME_HTTPS transitional setting is deprecated.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+462 passed, 2 warnings in 459.83s (0:07:39)

@@ -16,7 +16,7 @@ are plain expectations and are labelled so.
 | PR-07 | Session/CSRF weaknesses on state-changing POSTs | 2 | 4 | 8 | Medium | ZAP passive scan, cookie attribute review | one CSRF error seen on first login in a normal browser (stale cookie suspected, not reproduced in incognito) |
 | PR-08 | Key screens inaccessible (missing labels, contrast, keyboard) | 3 | 3 | 9 | Medium | Lighthouse + axe-core, keyboard test | not yet run |
 | PR-09 | Slow signup under concurrent users | 2 | 3 | 6 | Low | k6 1 vs 5 VUs, p95 target | not yet run |
-| PR-10 | WF1 changes (capacity/deadline) not reflected in WF2 (shared-record inconsistency) | 3 | 4 | 12 | Medium | Cross-workflow integration tests with read-back | not yet run |
+| PR-10 | WF1 changes (capacity/deadline) not reflected in WF2 (shared-record inconsistency) | 3 | 4 | 12 | Medium | Cross-workflow integration tests with read-back | **Covered 2026-11-26**: 11 cross-workflow API tests over HTTP, all pass; no inconsistency found (`API_TESTING.md`) |
 | PR-11 | Invalid shift date/time input crashes the form (HTTP 500) instead of showing an error | 3 | 3 | 9 | Medium | EP with one invalid value per field, live-server probe | **Confirmed and fixed: DEFECT-002 (Issue #4, PR #5)**; live probe 500 -> 200 |
 | PR-12 | Helper endpoints and derived values mishandle unusual input (HTTP 500, wrong age rule) | 3 | 2 | 6 | Low | EP with invalid values per parameter; live-server probes | **Confirmed and fixed: DEFECT-003 (#6), DEFECT-004 (#7), PR #8** |
 

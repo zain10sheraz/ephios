@@ -1,0 +1,3835 @@
+{
+ "operations": {
+  "activateEvent": {
+   "inputs": {
+    "pk": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "activateEvent.pk.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "invalid",
+       "id": "activateEvent.pk.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "activateEvent.pk.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "activateEvent.pk.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "activateEvent.pk.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "path",
+     "required": true
+    }
+   },
+   "method": "POST",
+   "path": "/events/{pk}/activate/"
+  },
+  "createEvent": {
+   "inputs": {
+    "description": {
+     "baseline": "Created through the API tests",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createEvent.description.01.valid_text",
+       "partition": "valid_text",
+       "technique": "EP",
+       "value": "Created through the API tests"
+      },
+      {
+       "expected": "valid",
+       "id": "createEvent.description.02.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "location": {
+     "baseline": "Test hall",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createEvent.location.01.valid_text",
+       "partition": "valid_text",
+       "technique": "EP",
+       "value": "Test hall"
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.location.02.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.location.03.invalid_whitespace_only",
+       "partition": "invalid_whitespace_only",
+       "technique": "EP",
+       "value": "   "
+      },
+      {
+       "boundary": {
+        "limit": "maxLength",
+        "point": "below",
+        "value": 254
+       },
+       "expected": "valid",
+       "id": "createEvent.location.04.maxLength_below",
+       "partition": "maxLength_below",
+       "technique": "BVA",
+       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      {
+       "boundary": {
+        "limit": "maxLength",
+        "point": "at",
+        "value": 254
+       },
+       "expected": "valid",
+       "id": "createEvent.location.05.maxLength_at",
+       "partition": "maxLength_at",
+       "technique": "BVA",
+       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      {
+       "boundary": {
+        "limit": "maxLength",
+        "point": "above",
+        "value": 254
+       },
+       "expected": "invalid",
+       "id": "createEvent.location.06.maxLength_above",
+       "partition": "maxLength_above",
+       "technique": "BVA",
+       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      }
+     ],
+     "location": "body",
+     "required": true
+    },
+    "responsible_groups": {
+     "baseline": 2,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createEvent.responsible_groups.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "2"
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.responsible_groups.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.responsible_groups.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.responsible_groups.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.responsible_groups.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "title": {
+     "baseline": "API created event",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createEvent.title.01.valid_text",
+       "partition": "valid_text",
+       "technique": "EP",
+       "value": "API created event"
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.title.02.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.title.03.invalid_whitespace_only",
+       "partition": "invalid_whitespace_only",
+       "technique": "EP",
+       "value": "   "
+      },
+      {
+       "boundary": {
+        "limit": "maxLength",
+        "point": "below",
+        "value": 254
+       },
+       "expected": "valid",
+       "id": "createEvent.title.04.maxLength_below",
+       "partition": "maxLength_below",
+       "technique": "BVA",
+       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      {
+       "boundary": {
+        "limit": "maxLength",
+        "point": "at",
+        "value": 254
+       },
+       "expected": "valid",
+       "id": "createEvent.title.05.maxLength_at",
+       "partition": "maxLength_at",
+       "technique": "BVA",
+       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      {
+       "boundary": {
+        "limit": "maxLength",
+        "point": "above",
+        "value": 254
+       },
+       "expected": "invalid",
+       "id": "createEvent.title.06.maxLength_above",
+       "partition": "maxLength_above",
+       "technique": "BVA",
+       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      }
+     ],
+     "location": "body",
+     "required": true
+    },
+    "type": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createEvent.type.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.type.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.type.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.type.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.type.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "path",
+     "required": true
+    },
+    "visible_for": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createEvent.visible_for.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.visible_for.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.visible_for.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.visible_for.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "createEvent.visible_for.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "body",
+     "required": false
+    }
+   },
+   "method": "POST",
+   "path": "/events/create/{type}/"
+  },
+  "createShift": {
+   "inputs": {
+    "date": {
+     "baseline": "2099-06-30",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createShift.date.01.valid_date",
+       "partition": "valid_date",
+       "technique": "EP",
+       "value": "2099-06-30"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.date.02.valid_leap_day",
+       "partition": "valid_leap_day",
+       "technique": "EP",
+       "value": "2096-02-29"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.date.03.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "not-a-date"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.date.04.invalid_month_13",
+       "partition": "invalid_month_13",
+       "technique": "EP",
+       "value": "2099-13-45"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.date.05.invalid_leap_day_in_common_year",
+       "partition": "invalid_leap_day_in_common_year",
+       "technique": "EP",
+       "value": "2099-02-29"
+      }
+     ],
+     "location": "body",
+     "required": true
+    },
+    "end_time": {
+     "baseline": "16:00",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createShift.end_time.01.valid_time",
+       "partition": "valid_time",
+       "technique": "EP",
+       "value": "16:00"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.end_time.02.time_upper_edge",
+       "partition": "time_upper_edge",
+       "technique": "BVA",
+       "value": "23:59"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.end_time.03.time_just_above_upper_edge",
+       "partition": "time_just_above_upper_edge",
+       "technique": "BVA",
+       "value": "24:00"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.end_time.04.invalid_minutes",
+       "partition": "invalid_minutes",
+       "technique": "EP",
+       "value": "12:60"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.end_time.05.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "body",
+     "required": true
+    },
+    "label": {
+     "baseline": "Night shift",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createShift.label.01.valid_text",
+       "partition": "valid_text",
+       "technique": "EP",
+       "value": "Night shift"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.label.02.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "maxLength",
+        "point": "below",
+        "value": 255
+       },
+       "expected": "valid",
+       "id": "createShift.label.03.maxLength_below",
+       "partition": "maxLength_below",
+       "technique": "BVA",
+       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      {
+       "boundary": {
+        "limit": "maxLength",
+        "point": "at",
+        "value": 255
+       },
+       "expected": "valid",
+       "id": "createShift.label.04.maxLength_at",
+       "partition": "maxLength_at",
+       "technique": "BVA",
+       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      {
+       "boundary": {
+        "limit": "maxLength",
+        "point": "above",
+        "value": 255
+       },
+       "expected": "invalid",
+       "id": "createShift.label.05.maxLength_above",
+       "partition": "maxLength_above",
+       "technique": "BVA",
+       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "maximum_number_of_participants": {
+     "baseline": 5,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createShift.maximum_number_of_participants.01.valid_in_range",
+       "partition": "valid_in_range",
+       "technique": "EP",
+       "value": "5"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.maximum_number_of_participants.02.invalid_non_numeric",
+       "partition": "invalid_non_numeric",
+       "technique": "EP",
+       "value": "abc"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.maximum_number_of_participants.03.invalid_decimal",
+       "partition": "invalid_decimal",
+       "technique": "EP",
+       "value": "1.5"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.maximum_number_of_participants.04.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "below",
+        "value": 1
+       },
+       "expected": "invalid",
+       "id": "createShift.maximum_number_of_participants.05.minimum_below",
+       "partition": "minimum_below",
+       "technique": "BVA",
+       "value": "0"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "at",
+        "value": 1
+       },
+       "expected": "valid",
+       "id": "createShift.maximum_number_of_participants.06.minimum_at",
+       "partition": "minimum_at",
+       "technique": "BVA",
+       "value": "1"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "above",
+        "value": 1
+       },
+       "expected": "valid",
+       "id": "createShift.maximum_number_of_participants.07.minimum_above",
+       "partition": "minimum_above",
+       "technique": "BVA",
+       "value": "2"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "meeting_time": {
+     "baseline": "09:00",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createShift.meeting_time.01.valid_time",
+       "partition": "valid_time",
+       "technique": "EP",
+       "value": "09:00"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.meeting_time.02.time_lower_edge",
+       "partition": "time_lower_edge",
+       "technique": "BVA",
+       "value": "00:00"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.meeting_time.03.time_just_above_upper_edge",
+       "partition": "time_just_above_upper_edge",
+       "technique": "BVA",
+       "value": "24:00"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.meeting_time.04.invalid_minutes",
+       "partition": "invalid_minutes",
+       "technique": "EP",
+       "value": "12:60"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.meeting_time.05.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "body",
+     "required": true
+    },
+    "minimum_age": {
+     "baseline": 18,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createShift.minimum_age.01.valid_in_range",
+       "partition": "valid_in_range",
+       "technique": "EP",
+       "value": "18"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.minimum_age.02.invalid_non_numeric",
+       "partition": "invalid_non_numeric",
+       "technique": "EP",
+       "value": "abc"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.minimum_age.03.invalid_decimal",
+       "partition": "invalid_decimal",
+       "technique": "EP",
+       "value": "1.5"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.minimum_age.04.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "below",
+        "value": 0
+       },
+       "expected": "invalid",
+       "id": "createShift.minimum_age.05.minimum_below",
+       "partition": "minimum_below",
+       "technique": "BVA",
+       "value": "-1"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "at",
+        "value": 0
+       },
+       "expected": "valid",
+       "id": "createShift.minimum_age.06.minimum_at",
+       "partition": "minimum_at",
+       "technique": "BVA",
+       "value": "0"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "above",
+        "value": 0
+       },
+       "expected": "valid",
+       "id": "createShift.minimum_age.07.minimum_above",
+       "partition": "minimum_above",
+       "technique": "BVA",
+       "value": "1"
+      },
+      {
+       "boundary": {
+        "limit": "maximum",
+        "point": "below",
+        "value": 999
+       },
+       "expected": "valid",
+       "id": "createShift.minimum_age.08.maximum_below",
+       "partition": "maximum_below",
+       "technique": "BVA",
+       "value": "998"
+      },
+      {
+       "boundary": {
+        "limit": "maximum",
+        "point": "at",
+        "value": 999
+       },
+       "expected": "valid",
+       "id": "createShift.minimum_age.09.maximum_at",
+       "partition": "maximum_at",
+       "technique": "BVA",
+       "value": "999"
+      },
+      {
+       "boundary": {
+        "limit": "maximum",
+        "point": "above",
+        "value": 999
+       },
+       "expected": "invalid",
+       "id": "createShift.minimum_age.10.maximum_above",
+       "partition": "maximum_above",
+       "technique": "BVA",
+       "value": "1000"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "minimum_number_of_participants": {
+     "baseline": 0,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createShift.minimum_number_of_participants.01.valid_in_range",
+       "partition": "valid_in_range",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.minimum_number_of_participants.02.invalid_non_numeric",
+       "partition": "invalid_non_numeric",
+       "technique": "EP",
+       "value": "abc"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.minimum_number_of_participants.03.invalid_decimal",
+       "partition": "invalid_decimal",
+       "technique": "EP",
+       "value": "1.5"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.minimum_number_of_participants.04.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "below",
+        "value": 0
+       },
+       "expected": "invalid",
+       "id": "createShift.minimum_number_of_participants.05.minimum_below",
+       "partition": "minimum_below",
+       "technique": "BVA",
+       "value": "-1"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "at",
+        "value": 0
+       },
+       "expected": "valid",
+       "id": "createShift.minimum_number_of_participants.06.minimum_at",
+       "partition": "minimum_at",
+       "technique": "BVA",
+       "value": "0"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "above",
+        "value": 0
+       },
+       "expected": "valid",
+       "id": "createShift.minimum_number_of_participants.07.minimum_above",
+       "partition": "minimum_above",
+       "technique": "BVA",
+       "value": "1"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "pk": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createShift.pk.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.pk.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.pk.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.pk.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.pk.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "path",
+     "required": true
+    },
+    "signup_flow_slug": {
+     "baseline": "instant_confirmation",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createShift.signup_flow_slug.01.valid_enum_request_confirm",
+       "partition": "valid_enum_request_confirm",
+       "technique": "EP",
+       "value": "request_confirm"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.signup_flow_slug.02.valid_enum_instant_confirmation",
+       "partition": "valid_enum_instant_confirmation",
+       "technique": "EP",
+       "value": "instant_confirmation"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.signup_flow_slug.03.valid_enum_manual",
+       "partition": "valid_enum_manual",
+       "technique": "EP",
+       "value": "manual"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.signup_flow_slug.04.invalid_not_an_option",
+       "partition": "invalid_not_an_option",
+       "technique": "EP",
+       "value": "not-an-option"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.signup_flow_slug.05.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.signup_flow_slug.06.invalid_wrong_case",
+       "partition": "invalid_wrong_case",
+       "technique": "EP",
+       "value": "REQUEST_CONFIRM"
+      }
+     ],
+     "location": "body",
+     "required": true
+    },
+    "signup_until_0": {
+     "baseline": "2099-06-29",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createShift.signup_until_0.01.valid_date",
+       "partition": "valid_date",
+       "technique": "EP",
+       "value": "2099-06-29"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.signup_until_0.02.valid_leap_day",
+       "partition": "valid_leap_day",
+       "technique": "EP",
+       "value": "2096-02-29"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.signup_until_0.03.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "not-a-date"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.signup_until_0.04.invalid_month_13",
+       "partition": "invalid_month_13",
+       "technique": "EP",
+       "value": "2099-13-45"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.signup_until_0.05.invalid_leap_day_in_common_year",
+       "partition": "invalid_leap_day_in_common_year",
+       "technique": "EP",
+       "value": "2099-02-29"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "signup_until_1": {
+     "baseline": "08:00",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createShift.signup_until_1.01.valid_time",
+       "partition": "valid_time",
+       "technique": "EP",
+       "value": "08:00"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.signup_until_1.02.time_lower_edge",
+       "partition": "time_lower_edge",
+       "technique": "BVA",
+       "value": "00:00"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.signup_until_1.03.time_upper_edge",
+       "partition": "time_upper_edge",
+       "technique": "BVA",
+       "value": "23:59"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.signup_until_1.04.time_just_above_upper_edge",
+       "partition": "time_just_above_upper_edge",
+       "technique": "BVA",
+       "value": "24:00"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.signup_until_1.05.invalid_minutes",
+       "partition": "invalid_minutes",
+       "technique": "EP",
+       "value": "12:60"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.signup_until_1.06.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "start_time": {
+     "baseline": "10:00",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createShift.start_time.01.valid_time",
+       "partition": "valid_time",
+       "technique": "EP",
+       "value": "10:00"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.start_time.02.time_just_above_upper_edge",
+       "partition": "time_just_above_upper_edge",
+       "technique": "BVA",
+       "value": "24:00"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.start_time.03.invalid_minutes",
+       "partition": "invalid_minutes",
+       "technique": "EP",
+       "value": "12:60"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.start_time.04.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "body",
+     "required": true
+    },
+    "structure_slug": {
+     "baseline": "uniform",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createShift.structure_slug.01.valid_enum_uniform",
+       "partition": "valid_enum_uniform",
+       "technique": "EP",
+       "value": "uniform"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.structure_slug.02.invalid_not_an_option",
+       "partition": "invalid_not_an_option",
+       "technique": "EP",
+       "value": "not-an-option"
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.structure_slug.03.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "expected": "invalid",
+       "id": "createShift.structure_slug.04.invalid_wrong_case",
+       "partition": "invalid_wrong_case",
+       "technique": "EP",
+       "value": "UNIFORM"
+      }
+     ],
+     "location": "body",
+     "required": true
+    },
+    "user_can_customize_signup_times": {
+     "baseline": true,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createShift.user_can_customize_signup_times.01.checked_on",
+       "partition": "checked_on",
+       "technique": "EP",
+       "value": "on"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.user_can_customize_signup_times.02.explicit_true",
+       "partition": "explicit_true",
+       "technique": "EP",
+       "value": "true"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.user_can_customize_signup_times.03.explicit_false",
+       "partition": "explicit_false",
+       "technique": "EP",
+       "value": "false"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.user_can_customize_signup_times.04.absent",
+       "partition": "absent",
+       "technique": "EP",
+       "value": null
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "user_can_decline_confirmed": {
+     "baseline": true,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "createShift.user_can_decline_confirmed.01.checked_on",
+       "partition": "checked_on",
+       "technique": "EP",
+       "value": "on"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.user_can_decline_confirmed.02.explicit_true",
+       "partition": "explicit_true",
+       "technique": "EP",
+       "value": "true"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.user_can_decline_confirmed.03.explicit_false",
+       "partition": "explicit_false",
+       "technique": "EP",
+       "value": "false"
+      },
+      {
+       "expected": "valid",
+       "id": "createShift.user_can_decline_confirmed.04.absent",
+       "partition": "absent",
+       "technique": "EP",
+       "value": null
+      }
+     ],
+     "location": "body",
+     "required": false
+    }
+   },
+   "method": "POST",
+   "path": "/events/{pk}/createshift/"
+  },
+  "deleteEvent": {
+   "inputs": {
+    "pk": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "deleteEvent.pk.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "invalid",
+       "id": "deleteEvent.pk.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "deleteEvent.pk.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "deleteEvent.pk.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "deleteEvent.pk.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "path",
+     "required": true
+    }
+   },
+   "method": "POST",
+   "path": "/events/{pk}/delete/"
+  },
+  "deleteShift": {
+   "inputs": {
+    "pk": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "deleteShift.pk.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "invalid",
+       "id": "deleteShift.pk.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "deleteShift.pk.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "deleteShift.pk.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "deleteShift.pk.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "path",
+     "required": true
+    }
+   },
+   "method": "POST",
+   "path": "/shifts/{pk}/delete/"
+  },
+  "editShift": {
+   "inputs": {
+    "date": {
+     "baseline": "2099-06-30",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "editShift.date.01.valid_date",
+       "partition": "valid_date",
+       "technique": "EP",
+       "value": "2099-06-30"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.date.02.valid_leap_day",
+       "partition": "valid_leap_day",
+       "technique": "EP",
+       "value": "2096-02-29"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.date.03.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "not-a-date"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.date.04.invalid_month_13",
+       "partition": "invalid_month_13",
+       "technique": "EP",
+       "value": "2099-13-45"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.date.05.invalid_leap_day_in_common_year",
+       "partition": "invalid_leap_day_in_common_year",
+       "technique": "EP",
+       "value": "2099-02-29"
+      }
+     ],
+     "location": "body",
+     "required": true
+    },
+    "end_time": {
+     "baseline": "16:00",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "editShift.end_time.01.valid_time",
+       "partition": "valid_time",
+       "technique": "EP",
+       "value": "16:00"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.end_time.02.time_upper_edge",
+       "partition": "time_upper_edge",
+       "technique": "BVA",
+       "value": "23:59"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.end_time.03.time_just_above_upper_edge",
+       "partition": "time_just_above_upper_edge",
+       "technique": "BVA",
+       "value": "24:00"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.end_time.04.invalid_minutes",
+       "partition": "invalid_minutes",
+       "technique": "EP",
+       "value": "12:60"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.end_time.05.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "body",
+     "required": true
+    },
+    "label": {
+     "baseline": "Night shift",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "editShift.label.01.valid_text",
+       "partition": "valid_text",
+       "technique": "EP",
+       "value": "Night shift"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.label.02.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "maxLength",
+        "point": "below",
+        "value": 255
+       },
+       "expected": "valid",
+       "id": "editShift.label.03.maxLength_below",
+       "partition": "maxLength_below",
+       "technique": "BVA",
+       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      {
+       "boundary": {
+        "limit": "maxLength",
+        "point": "at",
+        "value": 255
+       },
+       "expected": "valid",
+       "id": "editShift.label.04.maxLength_at",
+       "partition": "maxLength_at",
+       "technique": "BVA",
+       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      {
+       "boundary": {
+        "limit": "maxLength",
+        "point": "above",
+        "value": 255
+       },
+       "expected": "invalid",
+       "id": "editShift.label.05.maxLength_above",
+       "partition": "maxLength_above",
+       "technique": "BVA",
+       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "maximum_number_of_participants": {
+     "baseline": 5,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "editShift.maximum_number_of_participants.01.valid_in_range",
+       "partition": "valid_in_range",
+       "technique": "EP",
+       "value": "5"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.maximum_number_of_participants.02.invalid_non_numeric",
+       "partition": "invalid_non_numeric",
+       "technique": "EP",
+       "value": "abc"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.maximum_number_of_participants.03.invalid_decimal",
+       "partition": "invalid_decimal",
+       "technique": "EP",
+       "value": "1.5"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.maximum_number_of_participants.04.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "below",
+        "value": 1
+       },
+       "expected": "invalid",
+       "id": "editShift.maximum_number_of_participants.05.minimum_below",
+       "partition": "minimum_below",
+       "technique": "BVA",
+       "value": "0"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "at",
+        "value": 1
+       },
+       "expected": "valid",
+       "id": "editShift.maximum_number_of_participants.06.minimum_at",
+       "partition": "minimum_at",
+       "technique": "BVA",
+       "value": "1"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "above",
+        "value": 1
+       },
+       "expected": "valid",
+       "id": "editShift.maximum_number_of_participants.07.minimum_above",
+       "partition": "minimum_above",
+       "technique": "BVA",
+       "value": "2"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "meeting_time": {
+     "baseline": "09:00",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "editShift.meeting_time.01.valid_time",
+       "partition": "valid_time",
+       "technique": "EP",
+       "value": "09:00"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.meeting_time.02.time_lower_edge",
+       "partition": "time_lower_edge",
+       "technique": "BVA",
+       "value": "00:00"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.meeting_time.03.time_just_above_upper_edge",
+       "partition": "time_just_above_upper_edge",
+       "technique": "BVA",
+       "value": "24:00"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.meeting_time.04.invalid_minutes",
+       "partition": "invalid_minutes",
+       "technique": "EP",
+       "value": "12:60"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.meeting_time.05.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "body",
+     "required": true
+    },
+    "minimum_age": {
+     "baseline": 18,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "editShift.minimum_age.01.valid_in_range",
+       "partition": "valid_in_range",
+       "technique": "EP",
+       "value": "18"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.minimum_age.02.invalid_non_numeric",
+       "partition": "invalid_non_numeric",
+       "technique": "EP",
+       "value": "abc"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.minimum_age.03.invalid_decimal",
+       "partition": "invalid_decimal",
+       "technique": "EP",
+       "value": "1.5"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.minimum_age.04.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "below",
+        "value": 0
+       },
+       "expected": "invalid",
+       "id": "editShift.minimum_age.05.minimum_below",
+       "partition": "minimum_below",
+       "technique": "BVA",
+       "value": "-1"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "at",
+        "value": 0
+       },
+       "expected": "valid",
+       "id": "editShift.minimum_age.06.minimum_at",
+       "partition": "minimum_at",
+       "technique": "BVA",
+       "value": "0"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "above",
+        "value": 0
+       },
+       "expected": "valid",
+       "id": "editShift.minimum_age.07.minimum_above",
+       "partition": "minimum_above",
+       "technique": "BVA",
+       "value": "1"
+      },
+      {
+       "boundary": {
+        "limit": "maximum",
+        "point": "below",
+        "value": 999
+       },
+       "expected": "valid",
+       "id": "editShift.minimum_age.08.maximum_below",
+       "partition": "maximum_below",
+       "technique": "BVA",
+       "value": "998"
+      },
+      {
+       "boundary": {
+        "limit": "maximum",
+        "point": "at",
+        "value": 999
+       },
+       "expected": "valid",
+       "id": "editShift.minimum_age.09.maximum_at",
+       "partition": "maximum_at",
+       "technique": "BVA",
+       "value": "999"
+      },
+      {
+       "boundary": {
+        "limit": "maximum",
+        "point": "above",
+        "value": 999
+       },
+       "expected": "invalid",
+       "id": "editShift.minimum_age.10.maximum_above",
+       "partition": "maximum_above",
+       "technique": "BVA",
+       "value": "1000"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "minimum_number_of_participants": {
+     "baseline": 0,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "editShift.minimum_number_of_participants.01.valid_in_range",
+       "partition": "valid_in_range",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.minimum_number_of_participants.02.invalid_non_numeric",
+       "partition": "invalid_non_numeric",
+       "technique": "EP",
+       "value": "abc"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.minimum_number_of_participants.03.invalid_decimal",
+       "partition": "invalid_decimal",
+       "technique": "EP",
+       "value": "1.5"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.minimum_number_of_participants.04.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "below",
+        "value": 0
+       },
+       "expected": "invalid",
+       "id": "editShift.minimum_number_of_participants.05.minimum_below",
+       "partition": "minimum_below",
+       "technique": "BVA",
+       "value": "-1"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "at",
+        "value": 0
+       },
+       "expected": "valid",
+       "id": "editShift.minimum_number_of_participants.06.minimum_at",
+       "partition": "minimum_at",
+       "technique": "BVA",
+       "value": "0"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "above",
+        "value": 0
+       },
+       "expected": "valid",
+       "id": "editShift.minimum_number_of_participants.07.minimum_above",
+       "partition": "minimum_above",
+       "technique": "BVA",
+       "value": "1"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "pk": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "editShift.pk.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.pk.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.pk.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.pk.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.pk.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "path",
+     "required": true
+    },
+    "signup_flow_slug": {
+     "baseline": "instant_confirmation",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "editShift.signup_flow_slug.01.valid_enum_request_confirm",
+       "partition": "valid_enum_request_confirm",
+       "technique": "EP",
+       "value": "request_confirm"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.signup_flow_slug.02.valid_enum_instant_confirmation",
+       "partition": "valid_enum_instant_confirmation",
+       "technique": "EP",
+       "value": "instant_confirmation"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.signup_flow_slug.03.valid_enum_manual",
+       "partition": "valid_enum_manual",
+       "technique": "EP",
+       "value": "manual"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.signup_flow_slug.04.invalid_not_an_option",
+       "partition": "invalid_not_an_option",
+       "technique": "EP",
+       "value": "not-an-option"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.signup_flow_slug.05.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.signup_flow_slug.06.invalid_wrong_case",
+       "partition": "invalid_wrong_case",
+       "technique": "EP",
+       "value": "REQUEST_CONFIRM"
+      }
+     ],
+     "location": "body",
+     "required": true
+    },
+    "signup_until_0": {
+     "baseline": "2099-06-29",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "editShift.signup_until_0.01.valid_date",
+       "partition": "valid_date",
+       "technique": "EP",
+       "value": "2099-06-29"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.signup_until_0.02.valid_leap_day",
+       "partition": "valid_leap_day",
+       "technique": "EP",
+       "value": "2096-02-29"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.signup_until_0.03.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "not-a-date"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.signup_until_0.04.invalid_month_13",
+       "partition": "invalid_month_13",
+       "technique": "EP",
+       "value": "2099-13-45"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.signup_until_0.05.invalid_leap_day_in_common_year",
+       "partition": "invalid_leap_day_in_common_year",
+       "technique": "EP",
+       "value": "2099-02-29"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "signup_until_1": {
+     "baseline": "08:00",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "editShift.signup_until_1.01.valid_time",
+       "partition": "valid_time",
+       "technique": "EP",
+       "value": "08:00"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.signup_until_1.02.time_lower_edge",
+       "partition": "time_lower_edge",
+       "technique": "BVA",
+       "value": "00:00"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.signup_until_1.03.time_upper_edge",
+       "partition": "time_upper_edge",
+       "technique": "BVA",
+       "value": "23:59"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.signup_until_1.04.time_just_above_upper_edge",
+       "partition": "time_just_above_upper_edge",
+       "technique": "BVA",
+       "value": "24:00"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.signup_until_1.05.invalid_minutes",
+       "partition": "invalid_minutes",
+       "technique": "EP",
+       "value": "12:60"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.signup_until_1.06.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "start_time": {
+     "baseline": "10:00",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "editShift.start_time.01.valid_time",
+       "partition": "valid_time",
+       "technique": "EP",
+       "value": "10:00"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.start_time.02.time_just_above_upper_edge",
+       "partition": "time_just_above_upper_edge",
+       "technique": "BVA",
+       "value": "24:00"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.start_time.03.invalid_minutes",
+       "partition": "invalid_minutes",
+       "technique": "EP",
+       "value": "12:60"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.start_time.04.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "body",
+     "required": true
+    },
+    "structure_slug": {
+     "baseline": "uniform",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "editShift.structure_slug.01.valid_enum_uniform",
+       "partition": "valid_enum_uniform",
+       "technique": "EP",
+       "value": "uniform"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.structure_slug.02.invalid_not_an_option",
+       "partition": "invalid_not_an_option",
+       "technique": "EP",
+       "value": "not-an-option"
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.structure_slug.03.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "expected": "invalid",
+       "id": "editShift.structure_slug.04.invalid_wrong_case",
+       "partition": "invalid_wrong_case",
+       "technique": "EP",
+       "value": "UNIFORM"
+      }
+     ],
+     "location": "body",
+     "required": true
+    },
+    "user_can_customize_signup_times": {
+     "baseline": true,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "editShift.user_can_customize_signup_times.01.checked_on",
+       "partition": "checked_on",
+       "technique": "EP",
+       "value": "on"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.user_can_customize_signup_times.02.explicit_true",
+       "partition": "explicit_true",
+       "technique": "EP",
+       "value": "true"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.user_can_customize_signup_times.03.explicit_false",
+       "partition": "explicit_false",
+       "technique": "EP",
+       "value": "false"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.user_can_customize_signup_times.04.absent",
+       "partition": "absent",
+       "technique": "EP",
+       "value": null
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "user_can_decline_confirmed": {
+     "baseline": true,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "editShift.user_can_decline_confirmed.01.checked_on",
+       "partition": "checked_on",
+       "technique": "EP",
+       "value": "on"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.user_can_decline_confirmed.02.explicit_true",
+       "partition": "explicit_true",
+       "technique": "EP",
+       "value": "true"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.user_can_decline_confirmed.03.explicit_false",
+       "partition": "explicit_false",
+       "technique": "EP",
+       "value": "false"
+      },
+      {
+       "expected": "valid",
+       "id": "editShift.user_can_decline_confirmed.04.absent",
+       "partition": "absent",
+       "technique": "EP",
+       "value": null
+      }
+     ],
+     "location": "body",
+     "required": false
+    }
+   },
+   "method": "POST",
+   "path": "/shifts/{pk}/edit/"
+  },
+  "getEvent": {
+   "inputs": {
+    "id": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "getEvent.id.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "invalid",
+       "id": "getEvent.id.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "getEvent.id.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "getEvent.id.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "getEvent.id.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "path",
+     "required": true
+    }
+   },
+   "method": "GET",
+   "path": "/api/events/{id}/"
+  },
+  "getParticipation": {
+   "inputs": {
+    "id": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "getParticipation.id.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "invalid",
+       "id": "getParticipation.id.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "getParticipation.id.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "getParticipation.id.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "getParticipation.id.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "path",
+     "required": true
+    }
+   },
+   "method": "GET",
+   "path": "/api/participations/{id}/"
+  },
+  "getShift": {
+   "inputs": {
+    "id": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "getShift.id.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "invalid",
+       "id": "getShift.id.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "getShift.id.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "getShift.id.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "getShift.id.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "path",
+     "required": true
+    }
+   },
+   "method": "GET",
+   "path": "/api/shifts/{id}/"
+  },
+  "listEvents": {
+   "inputs": {
+    "end_time_after": {
+     "baseline": "2000-01-01T00:00:00Z",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listEvents.end_time_after.01.valid_datetime",
+       "partition": "valid_datetime",
+       "technique": "EP",
+       "value": "2000-01-01T00:00:00Z"
+      },
+      {
+       "expected": "invalid",
+       "id": "listEvents.end_time_after.02.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "garbage"
+      },
+      {
+       "expected": "invalid",
+       "id": "listEvents.end_time_after.03.invalid_date_part",
+       "partition": "invalid_date_part",
+       "technique": "EP",
+       "value": "2099-13-45T00:00:00Z"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "end_time_before": {
+     "baseline": "2100-01-01T00:00:00Z",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listEvents.end_time_before.01.valid_datetime",
+       "partition": "valid_datetime",
+       "technique": "EP",
+       "value": "2100-01-01T00:00:00Z"
+      },
+      {
+       "expected": "invalid",
+       "id": "listEvents.end_time_before.02.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "garbage"
+      },
+      {
+       "expected": "invalid",
+       "id": "listEvents.end_time_before.03.invalid_date_part",
+       "partition": "invalid_date_part",
+       "technique": "EP",
+       "value": "2099-13-45T00:00:00Z"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "limit": {
+     "baseline": 10,
+     "cases": [
+      {
+       "expected": "lenient",
+       "id": "listEvents.limit.01.valid_in_range",
+       "partition": "valid_in_range",
+       "technique": "EP",
+       "value": "10"
+      },
+      {
+       "expected": "lenient",
+       "id": "listEvents.limit.02.invalid_non_numeric",
+       "partition": "invalid_non_numeric",
+       "technique": "EP",
+       "value": "abc"
+      },
+      {
+       "expected": "lenient",
+       "id": "listEvents.limit.03.invalid_decimal",
+       "partition": "invalid_decimal",
+       "technique": "EP",
+       "value": "1.5"
+      },
+      {
+       "expected": "lenient",
+       "id": "listEvents.limit.04.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "below",
+        "value": 1
+       },
+       "expected": "lenient",
+       "id": "listEvents.limit.05.minimum_below",
+       "partition": "minimum_below",
+       "technique": "BVA",
+       "value": "0"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "at",
+        "value": 1
+       },
+       "expected": "lenient",
+       "id": "listEvents.limit.06.minimum_at",
+       "partition": "minimum_at",
+       "technique": "BVA",
+       "value": "1"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "above",
+        "value": 1
+       },
+       "expected": "lenient",
+       "id": "listEvents.limit.07.minimum_above",
+       "partition": "minimum_above",
+       "technique": "BVA",
+       "value": "2"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "offset": {
+     "baseline": 0,
+     "cases": [
+      {
+       "expected": "lenient",
+       "id": "listEvents.offset.01.valid_in_range",
+       "partition": "valid_in_range",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "lenient",
+       "id": "listEvents.offset.02.invalid_non_numeric",
+       "partition": "invalid_non_numeric",
+       "technique": "EP",
+       "value": "abc"
+      },
+      {
+       "expected": "lenient",
+       "id": "listEvents.offset.03.invalid_decimal",
+       "partition": "invalid_decimal",
+       "technique": "EP",
+       "value": "1.5"
+      },
+      {
+       "expected": "lenient",
+       "id": "listEvents.offset.04.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "below",
+        "value": 0
+       },
+       "expected": "lenient",
+       "id": "listEvents.offset.05.minimum_below",
+       "partition": "minimum_below",
+       "technique": "BVA",
+       "value": "-1"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "at",
+        "value": 0
+       },
+       "expected": "lenient",
+       "id": "listEvents.offset.06.minimum_at",
+       "partition": "minimum_at",
+       "technique": "BVA",
+       "value": "0"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "above",
+        "value": 0
+       },
+       "expected": "lenient",
+       "id": "listEvents.offset.07.minimum_above",
+       "partition": "minimum_above",
+       "technique": "BVA",
+       "value": "1"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "ordering": {
+     "baseline": "title",
+     "cases": [
+      {
+       "expected": "lenient",
+       "id": "listEvents.ordering.01.valid_enum_title",
+       "partition": "valid_enum_title",
+       "technique": "EP",
+       "value": "title"
+      },
+      {
+       "expected": "lenient",
+       "id": "listEvents.ordering.02.valid_enum_-title",
+       "partition": "valid_enum_-title",
+       "technique": "EP",
+       "value": "-title"
+      },
+      {
+       "expected": "lenient",
+       "id": "listEvents.ordering.03.valid_enum_start_time",
+       "partition": "valid_enum_start_time",
+       "technique": "EP",
+       "value": "start_time"
+      },
+      {
+       "expected": "lenient",
+       "id": "listEvents.ordering.04.valid_enum_-start_time",
+       "partition": "valid_enum_-start_time",
+       "technique": "EP",
+       "value": "-start_time"
+      },
+      {
+       "expected": "lenient",
+       "id": "listEvents.ordering.05.invalid_not_an_option",
+       "partition": "invalid_not_an_option",
+       "technique": "EP",
+       "value": "not-an-option"
+      },
+      {
+       "expected": "lenient",
+       "id": "listEvents.ordering.06.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "expected": "lenient",
+       "id": "listEvents.ordering.07.invalid_wrong_case",
+       "partition": "invalid_wrong_case",
+       "technique": "EP",
+       "value": "TITLE"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "search": {
+     "baseline": "Concert",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listEvents.search.01.valid_text",
+       "partition": "valid_text",
+       "technique": "EP",
+       "value": "Concert"
+      },
+      {
+       "expected": "valid",
+       "id": "listEvents.search.02.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "start_time_after": {
+     "baseline": "2000-01-01T00:00:00Z",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listEvents.start_time_after.01.valid_datetime",
+       "partition": "valid_datetime",
+       "technique": "EP",
+       "value": "2000-01-01T00:00:00Z"
+      },
+      {
+       "expected": "invalid",
+       "id": "listEvents.start_time_after.02.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "garbage"
+      },
+      {
+       "expected": "invalid",
+       "id": "listEvents.start_time_after.03.invalid_date_part",
+       "partition": "invalid_date_part",
+       "technique": "EP",
+       "value": "2099-13-45T00:00:00Z"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "start_time_before": {
+     "baseline": "2100-01-01T00:00:00Z",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listEvents.start_time_before.01.valid_datetime",
+       "partition": "valid_datetime",
+       "technique": "EP",
+       "value": "2100-01-01T00:00:00Z"
+      },
+      {
+       "expected": "invalid",
+       "id": "listEvents.start_time_before.02.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "garbage"
+      },
+      {
+       "expected": "invalid",
+       "id": "listEvents.start_time_before.03.invalid_date_part",
+       "partition": "invalid_date_part",
+       "technique": "EP",
+       "value": "2099-13-45T00:00:00Z"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "type": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listEvents.type.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "invalid",
+       "id": "listEvents.type.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "listEvents.type.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "listEvents.type.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "listEvents.type.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "query",
+     "required": false
+    }
+   },
+   "method": "GET",
+   "path": "/api/events/"
+  },
+  "listOwnParticipations": {
+   "inputs": {
+    "limit": {
+     "baseline": 10,
+     "cases": [
+      {
+       "expected": "lenient",
+       "id": "listOwnParticipations.limit.01.valid_in_range",
+       "partition": "valid_in_range",
+       "technique": "EP",
+       "value": "10"
+      },
+      {
+       "expected": "lenient",
+       "id": "listOwnParticipations.limit.02.invalid_non_numeric",
+       "partition": "invalid_non_numeric",
+       "technique": "EP",
+       "value": "abc"
+      },
+      {
+       "expected": "lenient",
+       "id": "listOwnParticipations.limit.03.invalid_decimal",
+       "partition": "invalid_decimal",
+       "technique": "EP",
+       "value": "1.5"
+      },
+      {
+       "expected": "lenient",
+       "id": "listOwnParticipations.limit.04.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "below",
+        "value": 1
+       },
+       "expected": "lenient",
+       "id": "listOwnParticipations.limit.05.minimum_below",
+       "partition": "minimum_below",
+       "technique": "BVA",
+       "value": "0"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "at",
+        "value": 1
+       },
+       "expected": "lenient",
+       "id": "listOwnParticipations.limit.06.minimum_at",
+       "partition": "minimum_at",
+       "technique": "BVA",
+       "value": "1"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "above",
+        "value": 1
+       },
+       "expected": "lenient",
+       "id": "listOwnParticipations.limit.07.minimum_above",
+       "partition": "minimum_above",
+       "technique": "BVA",
+       "value": "2"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "offset": {
+     "baseline": 0,
+     "cases": [
+      {
+       "expected": "lenient",
+       "id": "listOwnParticipations.offset.01.valid_in_range",
+       "partition": "valid_in_range",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "lenient",
+       "id": "listOwnParticipations.offset.02.invalid_non_numeric",
+       "partition": "invalid_non_numeric",
+       "technique": "EP",
+       "value": "abc"
+      },
+      {
+       "expected": "lenient",
+       "id": "listOwnParticipations.offset.03.invalid_decimal",
+       "partition": "invalid_decimal",
+       "technique": "EP",
+       "value": "1.5"
+      },
+      {
+       "expected": "lenient",
+       "id": "listOwnParticipations.offset.04.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "below",
+        "value": 0
+       },
+       "expected": "lenient",
+       "id": "listOwnParticipations.offset.05.minimum_below",
+       "partition": "minimum_below",
+       "technique": "BVA",
+       "value": "-1"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "at",
+        "value": 0
+       },
+       "expected": "lenient",
+       "id": "listOwnParticipations.offset.06.minimum_at",
+       "partition": "minimum_at",
+       "technique": "BVA",
+       "value": "0"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "above",
+        "value": 0
+       },
+       "expected": "lenient",
+       "id": "listOwnParticipations.offset.07.minimum_above",
+       "partition": "minimum_above",
+       "technique": "BVA",
+       "value": "1"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "state": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listOwnParticipations.state.01.valid_enum_0",
+       "partition": "valid_enum_0",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "valid",
+       "id": "listOwnParticipations.state.02.valid_enum_1",
+       "partition": "valid_enum_1",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "valid",
+       "id": "listOwnParticipations.state.03.valid_enum_2",
+       "partition": "valid_enum_2",
+       "technique": "EP",
+       "value": "2"
+      },
+      {
+       "expected": "valid",
+       "id": "listOwnParticipations.state.04.valid_enum_3",
+       "partition": "valid_enum_3",
+       "technique": "EP",
+       "value": "3"
+      },
+      {
+       "expected": "valid",
+       "id": "listOwnParticipations.state.05.valid_enum_4",
+       "partition": "valid_enum_4",
+       "technique": "EP",
+       "value": "4"
+      },
+      {
+       "expected": "invalid",
+       "id": "listOwnParticipations.state.06.invalid_not_an_option",
+       "partition": "invalid_not_an_option",
+       "technique": "EP",
+       "value": "not-an-option"
+      },
+      {
+       "expected": "valid",
+       "id": "listOwnParticipations.state.07.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      }
+     ],
+     "location": "query",
+     "required": false
+    }
+   },
+   "method": "GET",
+   "path": "/api/users/me/participations/"
+  },
+  "listParticipations": {
+   "inputs": {
+    "end_time_after": {
+     "baseline": "2000-01-01T00:00:00Z",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listParticipations.end_time_after.01.valid_datetime",
+       "partition": "valid_datetime",
+       "technique": "EP",
+       "value": "2000-01-01T00:00:00Z"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.end_time_after.02.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "garbage"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.end_time_after.03.invalid_date_part",
+       "partition": "invalid_date_part",
+       "technique": "EP",
+       "value": "2099-13-45T00:00:00Z"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "end_time_before": {
+     "baseline": "2100-01-01T00:00:00Z",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listParticipations.end_time_before.01.valid_datetime",
+       "partition": "valid_datetime",
+       "technique": "EP",
+       "value": "2100-01-01T00:00:00Z"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.end_time_before.02.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "garbage"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.end_time_before.03.invalid_date_part",
+       "partition": "invalid_date_part",
+       "technique": "EP",
+       "value": "2099-13-45T00:00:00Z"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "event": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listParticipations.event.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.event.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.event.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.event.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.event.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "event_type": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listParticipations.event_type.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.event_type.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.event_type.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.event_type.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.event_type.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "limit": {
+     "baseline": 10,
+     "cases": [
+      {
+       "expected": "lenient",
+       "id": "listParticipations.limit.01.valid_in_range",
+       "partition": "valid_in_range",
+       "technique": "EP",
+       "value": "10"
+      },
+      {
+       "expected": "lenient",
+       "id": "listParticipations.limit.02.invalid_non_numeric",
+       "partition": "invalid_non_numeric",
+       "technique": "EP",
+       "value": "abc"
+      },
+      {
+       "expected": "lenient",
+       "id": "listParticipations.limit.03.invalid_decimal",
+       "partition": "invalid_decimal",
+       "technique": "EP",
+       "value": "1.5"
+      },
+      {
+       "expected": "lenient",
+       "id": "listParticipations.limit.04.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "below",
+        "value": 1
+       },
+       "expected": "lenient",
+       "id": "listParticipations.limit.05.minimum_below",
+       "partition": "minimum_below",
+       "technique": "BVA",
+       "value": "0"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "at",
+        "value": 1
+       },
+       "expected": "lenient",
+       "id": "listParticipations.limit.06.minimum_at",
+       "partition": "minimum_at",
+       "technique": "BVA",
+       "value": "1"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "above",
+        "value": 1
+       },
+       "expected": "lenient",
+       "id": "listParticipations.limit.07.minimum_above",
+       "partition": "minimum_above",
+       "technique": "BVA",
+       "value": "2"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "offset": {
+     "baseline": 0,
+     "cases": [
+      {
+       "expected": "lenient",
+       "id": "listParticipations.offset.01.valid_in_range",
+       "partition": "valid_in_range",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "lenient",
+       "id": "listParticipations.offset.02.invalid_non_numeric",
+       "partition": "invalid_non_numeric",
+       "technique": "EP",
+       "value": "abc"
+      },
+      {
+       "expected": "lenient",
+       "id": "listParticipations.offset.03.invalid_decimal",
+       "partition": "invalid_decimal",
+       "technique": "EP",
+       "value": "1.5"
+      },
+      {
+       "expected": "lenient",
+       "id": "listParticipations.offset.04.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "below",
+        "value": 0
+       },
+       "expected": "lenient",
+       "id": "listParticipations.offset.05.minimum_below",
+       "partition": "minimum_below",
+       "technique": "BVA",
+       "value": "-1"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "at",
+        "value": 0
+       },
+       "expected": "lenient",
+       "id": "listParticipations.offset.06.minimum_at",
+       "partition": "minimum_at",
+       "technique": "BVA",
+       "value": "0"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "above",
+        "value": 0
+       },
+       "expected": "lenient",
+       "id": "listParticipations.offset.07.minimum_above",
+       "partition": "minimum_above",
+       "technique": "BVA",
+       "value": "1"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "shift": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listParticipations.shift.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.shift.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.shift.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.shift.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.shift.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "start_time_after": {
+     "baseline": "2000-01-01T00:00:00Z",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listParticipations.start_time_after.01.valid_datetime",
+       "partition": "valid_datetime",
+       "technique": "EP",
+       "value": "2000-01-01T00:00:00Z"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.start_time_after.02.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "garbage"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.start_time_after.03.invalid_date_part",
+       "partition": "invalid_date_part",
+       "technique": "EP",
+       "value": "2099-13-45T00:00:00Z"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "start_time_before": {
+     "baseline": "2100-01-01T00:00:00Z",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listParticipations.start_time_before.01.valid_datetime",
+       "partition": "valid_datetime",
+       "technique": "EP",
+       "value": "2100-01-01T00:00:00Z"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.start_time_before.02.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "garbage"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.start_time_before.03.invalid_date_part",
+       "partition": "invalid_date_part",
+       "technique": "EP",
+       "value": "2099-13-45T00:00:00Z"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "state": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listParticipations.state.01.valid_enum_0",
+       "partition": "valid_enum_0",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "valid",
+       "id": "listParticipations.state.02.valid_enum_1",
+       "partition": "valid_enum_1",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "valid",
+       "id": "listParticipations.state.03.valid_enum_2",
+       "partition": "valid_enum_2",
+       "technique": "EP",
+       "value": "2"
+      },
+      {
+       "expected": "valid",
+       "id": "listParticipations.state.04.valid_enum_3",
+       "partition": "valid_enum_3",
+       "technique": "EP",
+       "value": "3"
+      },
+      {
+       "expected": "valid",
+       "id": "listParticipations.state.05.valid_enum_4",
+       "partition": "valid_enum_4",
+       "technique": "EP",
+       "value": "4"
+      },
+      {
+       "expected": "invalid",
+       "id": "listParticipations.state.06.invalid_not_an_option",
+       "partition": "invalid_not_an_option",
+       "technique": "EP",
+       "value": "not-an-option"
+      },
+      {
+       "expected": "valid",
+       "id": "listParticipations.state.07.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      }
+     ],
+     "location": "query",
+     "required": false
+    }
+   },
+   "method": "GET",
+   "path": "/api/participations/"
+  },
+  "listShifts": {
+   "inputs": {
+    "end_time_after": {
+     "baseline": "2000-01-01T00:00:00Z",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listShifts.end_time_after.01.valid_datetime",
+       "partition": "valid_datetime",
+       "technique": "EP",
+       "value": "2000-01-01T00:00:00Z"
+      },
+      {
+       "expected": "invalid",
+       "id": "listShifts.end_time_after.02.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "garbage"
+      },
+      {
+       "expected": "invalid",
+       "id": "listShifts.end_time_after.03.invalid_date_part",
+       "partition": "invalid_date_part",
+       "technique": "EP",
+       "value": "2099-13-45T00:00:00Z"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "end_time_before": {
+     "baseline": "2100-01-01T00:00:00Z",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listShifts.end_time_before.01.valid_datetime",
+       "partition": "valid_datetime",
+       "technique": "EP",
+       "value": "2100-01-01T00:00:00Z"
+      },
+      {
+       "expected": "invalid",
+       "id": "listShifts.end_time_before.02.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "garbage"
+      },
+      {
+       "expected": "invalid",
+       "id": "listShifts.end_time_before.03.invalid_date_part",
+       "partition": "invalid_date_part",
+       "technique": "EP",
+       "value": "2099-13-45T00:00:00Z"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "limit": {
+     "baseline": 10,
+     "cases": [
+      {
+       "expected": "lenient",
+       "id": "listShifts.limit.01.valid_in_range",
+       "partition": "valid_in_range",
+       "technique": "EP",
+       "value": "10"
+      },
+      {
+       "expected": "lenient",
+       "id": "listShifts.limit.02.invalid_non_numeric",
+       "partition": "invalid_non_numeric",
+       "technique": "EP",
+       "value": "abc"
+      },
+      {
+       "expected": "lenient",
+       "id": "listShifts.limit.03.invalid_decimal",
+       "partition": "invalid_decimal",
+       "technique": "EP",
+       "value": "1.5"
+      },
+      {
+       "expected": "lenient",
+       "id": "listShifts.limit.04.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "below",
+        "value": 1
+       },
+       "expected": "lenient",
+       "id": "listShifts.limit.05.minimum_below",
+       "partition": "minimum_below",
+       "technique": "BVA",
+       "value": "0"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "at",
+        "value": 1
+       },
+       "expected": "lenient",
+       "id": "listShifts.limit.06.minimum_at",
+       "partition": "minimum_at",
+       "technique": "BVA",
+       "value": "1"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "above",
+        "value": 1
+       },
+       "expected": "lenient",
+       "id": "listShifts.limit.07.minimum_above",
+       "partition": "minimum_above",
+       "technique": "BVA",
+       "value": "2"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "offset": {
+     "baseline": 0,
+     "cases": [
+      {
+       "expected": "lenient",
+       "id": "listShifts.offset.01.valid_in_range",
+       "partition": "valid_in_range",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "lenient",
+       "id": "listShifts.offset.02.invalid_non_numeric",
+       "partition": "invalid_non_numeric",
+       "technique": "EP",
+       "value": "abc"
+      },
+      {
+       "expected": "lenient",
+       "id": "listShifts.offset.03.invalid_decimal",
+       "partition": "invalid_decimal",
+       "technique": "EP",
+       "value": "1.5"
+      },
+      {
+       "expected": "lenient",
+       "id": "listShifts.offset.04.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "below",
+        "value": 0
+       },
+       "expected": "lenient",
+       "id": "listShifts.offset.05.minimum_below",
+       "partition": "minimum_below",
+       "technique": "BVA",
+       "value": "-1"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "at",
+        "value": 0
+       },
+       "expected": "lenient",
+       "id": "listShifts.offset.06.minimum_at",
+       "partition": "minimum_at",
+       "technique": "BVA",
+       "value": "0"
+      },
+      {
+       "boundary": {
+        "limit": "minimum",
+        "point": "above",
+        "value": 0
+       },
+       "expected": "lenient",
+       "id": "listShifts.offset.07.minimum_above",
+       "partition": "minimum_above",
+       "technique": "BVA",
+       "value": "1"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "ordering": {
+     "baseline": "title",
+     "cases": [
+      {
+       "expected": "lenient",
+       "id": "listShifts.ordering.01.valid_enum_title",
+       "partition": "valid_enum_title",
+       "technique": "EP",
+       "value": "title"
+      },
+      {
+       "expected": "lenient",
+       "id": "listShifts.ordering.02.valid_enum_-title",
+       "partition": "valid_enum_-title",
+       "technique": "EP",
+       "value": "-title"
+      },
+      {
+       "expected": "lenient",
+       "id": "listShifts.ordering.03.valid_enum_start_time",
+       "partition": "valid_enum_start_time",
+       "technique": "EP",
+       "value": "start_time"
+      },
+      {
+       "expected": "lenient",
+       "id": "listShifts.ordering.04.valid_enum_-start_time",
+       "partition": "valid_enum_-start_time",
+       "technique": "EP",
+       "value": "-start_time"
+      },
+      {
+       "expected": "lenient",
+       "id": "listShifts.ordering.05.invalid_not_an_option",
+       "partition": "invalid_not_an_option",
+       "technique": "EP",
+       "value": "not-an-option"
+      },
+      {
+       "expected": "lenient",
+       "id": "listShifts.ordering.06.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "expected": "lenient",
+       "id": "listShifts.ordering.07.invalid_wrong_case",
+       "partition": "invalid_wrong_case",
+       "technique": "EP",
+       "value": "TITLE"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "search": {
+     "baseline": "Concert",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listShifts.search.01.valid_text",
+       "partition": "valid_text",
+       "technique": "EP",
+       "value": "Concert"
+      },
+      {
+       "expected": "valid",
+       "id": "listShifts.search.02.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "start_time_after": {
+     "baseline": "2000-01-01T00:00:00Z",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listShifts.start_time_after.01.valid_datetime",
+       "partition": "valid_datetime",
+       "technique": "EP",
+       "value": "2000-01-01T00:00:00Z"
+      },
+      {
+       "expected": "invalid",
+       "id": "listShifts.start_time_after.02.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "garbage"
+      },
+      {
+       "expected": "invalid",
+       "id": "listShifts.start_time_after.03.invalid_date_part",
+       "partition": "invalid_date_part",
+       "technique": "EP",
+       "value": "2099-13-45T00:00:00Z"
+      }
+     ],
+     "location": "query",
+     "required": false
+    },
+    "start_time_before": {
+     "baseline": "2100-01-01T00:00:00Z",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "listShifts.start_time_before.01.valid_datetime",
+       "partition": "valid_datetime",
+       "technique": "EP",
+       "value": "2100-01-01T00:00:00Z"
+      },
+      {
+       "expected": "invalid",
+       "id": "listShifts.start_time_before.02.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "garbage"
+      },
+      {
+       "expected": "invalid",
+       "id": "listShifts.start_time_before.03.invalid_date_part",
+       "partition": "invalid_date_part",
+       "technique": "EP",
+       "value": "2099-13-45T00:00:00Z"
+      }
+     ],
+     "location": "query",
+     "required": false
+    }
+   },
+   "method": "GET",
+   "path": "/api/shifts/"
+  },
+  "signup": {
+   "inputs": {
+    "comment": {
+     "baseline": "I bring a car",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "signup.comment.01.valid_text",
+       "partition": "valid_text",
+       "technique": "EP",
+       "value": "I bring a car"
+      },
+      {
+       "expected": "valid",
+       "id": "signup.comment.02.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "boundary": {
+        "limit": "maxLength",
+        "point": "below",
+        "value": 255
+       },
+       "expected": "valid",
+       "id": "signup.comment.03.maxLength_below",
+       "partition": "maxLength_below",
+       "technique": "BVA",
+       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      {
+       "boundary": {
+        "limit": "maxLength",
+        "point": "at",
+        "value": 255
+       },
+       "expected": "valid",
+       "id": "signup.comment.04.maxLength_at",
+       "partition": "maxLength_at",
+       "technique": "BVA",
+       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      {
+       "boundary": {
+        "limit": "maxLength",
+        "point": "above",
+        "value": 255
+       },
+       "expected": "invalid",
+       "id": "signup.comment.05.maxLength_above",
+       "partition": "maxLength_above",
+       "technique": "BVA",
+       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "comment_is_public": {
+     "baseline": false,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "signup.comment_is_public.01.checked_on",
+       "partition": "checked_on",
+       "technique": "EP",
+       "value": "on"
+      },
+      {
+       "expected": "valid",
+       "id": "signup.comment_is_public.02.explicit_true",
+       "partition": "explicit_true",
+       "technique": "EP",
+       "value": "true"
+      },
+      {
+       "expected": "valid",
+       "id": "signup.comment_is_public.03.explicit_false",
+       "partition": "explicit_false",
+       "technique": "EP",
+       "value": "false"
+      },
+      {
+       "expected": "valid",
+       "id": "signup.comment_is_public.04.absent",
+       "partition": "absent",
+       "technique": "EP",
+       "value": null
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "individual_end_time_0": {
+     "baseline": "2099-06-30",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "signup.individual_end_time_0.01.valid_date",
+       "partition": "valid_date",
+       "technique": "EP",
+       "value": "2099-06-30"
+      },
+      {
+       "expected": "valid",
+       "id": "signup.individual_end_time_0.02.valid_leap_day",
+       "partition": "valid_leap_day",
+       "technique": "EP",
+       "value": "2096-02-29"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.individual_end_time_0.03.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "not-a-date"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.individual_end_time_0.04.invalid_month_13",
+       "partition": "invalid_month_13",
+       "technique": "EP",
+       "value": "2099-13-45"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.individual_end_time_0.05.invalid_leap_day_in_common_year",
+       "partition": "invalid_leap_day_in_common_year",
+       "technique": "EP",
+       "value": "2099-02-29"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "individual_end_time_1": {
+     "baseline": "15:00",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "signup.individual_end_time_1.01.valid_time",
+       "partition": "valid_time",
+       "technique": "EP",
+       "value": "15:00"
+      },
+      {
+       "expected": "valid",
+       "id": "signup.individual_end_time_1.02.time_lower_edge",
+       "partition": "time_lower_edge",
+       "technique": "BVA",
+       "value": "00:00"
+      },
+      {
+       "expected": "valid",
+       "id": "signup.individual_end_time_1.03.time_upper_edge",
+       "partition": "time_upper_edge",
+       "technique": "BVA",
+       "value": "23:59"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.individual_end_time_1.04.time_just_above_upper_edge",
+       "partition": "time_just_above_upper_edge",
+       "technique": "BVA",
+       "value": "24:00"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.individual_end_time_1.05.invalid_minutes",
+       "partition": "invalid_minutes",
+       "technique": "EP",
+       "value": "12:60"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.individual_end_time_1.06.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "individual_start_time_0": {
+     "baseline": "2099-06-30",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "signup.individual_start_time_0.01.valid_date",
+       "partition": "valid_date",
+       "technique": "EP",
+       "value": "2099-06-30"
+      },
+      {
+       "expected": "valid",
+       "id": "signup.individual_start_time_0.02.valid_leap_day",
+       "partition": "valid_leap_day",
+       "technique": "EP",
+       "value": "2096-02-29"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.individual_start_time_0.03.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "not-a-date"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.individual_start_time_0.04.invalid_month_13",
+       "partition": "invalid_month_13",
+       "technique": "EP",
+       "value": "2099-13-45"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.individual_start_time_0.05.invalid_leap_day_in_common_year",
+       "partition": "invalid_leap_day_in_common_year",
+       "technique": "EP",
+       "value": "2099-02-29"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "individual_start_time_1": {
+     "baseline": "11:00",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "signup.individual_start_time_1.01.valid_time",
+       "partition": "valid_time",
+       "technique": "EP",
+       "value": "11:00"
+      },
+      {
+       "expected": "valid",
+       "id": "signup.individual_start_time_1.02.time_lower_edge",
+       "partition": "time_lower_edge",
+       "technique": "BVA",
+       "value": "00:00"
+      },
+      {
+       "expected": "valid",
+       "id": "signup.individual_start_time_1.03.time_upper_edge",
+       "partition": "time_upper_edge",
+       "technique": "BVA",
+       "value": "23:59"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.individual_start_time_1.04.time_just_above_upper_edge",
+       "partition": "time_just_above_upper_edge",
+       "technique": "BVA",
+       "value": "24:00"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.individual_start_time_1.05.invalid_minutes",
+       "partition": "invalid_minutes",
+       "technique": "EP",
+       "value": "12:60"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.individual_start_time_1.06.invalid_text",
+       "partition": "invalid_text",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "body",
+     "required": false
+    },
+    "pk": {
+     "baseline": 1,
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "signup.pk.01.existing_id",
+       "partition": "existing_id",
+       "technique": "EP",
+       "value": "1"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.pk.02.nonexistent_id",
+       "partition": "nonexistent_id",
+       "technique": "EP",
+       "value": "999999999"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.pk.03.zero_id",
+       "partition": "zero_id",
+       "technique": "EP",
+       "value": "0"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.pk.04.negative_id",
+       "partition": "negative_id",
+       "technique": "EP",
+       "value": "-1"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.pk.05.non_numeric_id",
+       "partition": "non_numeric_id",
+       "technique": "EP",
+       "value": "abc"
+      }
+     ],
+     "location": "path",
+     "required": true
+    },
+    "signup_choice": {
+     "baseline": "sign_up",
+     "cases": [
+      {
+       "expected": "valid",
+       "id": "signup.signup_choice.01.valid_enum_sign_up",
+       "partition": "valid_enum_sign_up",
+       "technique": "EP",
+       "value": "sign_up"
+      },
+      {
+       "expected": "valid",
+       "id": "signup.signup_choice.02.valid_enum_customize",
+       "partition": "valid_enum_customize",
+       "technique": "EP",
+       "value": "customize"
+      },
+      {
+       "expected": "valid",
+       "id": "signup.signup_choice.03.valid_enum_decline",
+       "partition": "valid_enum_decline",
+       "technique": "EP",
+       "value": "decline"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.signup_choice.04.invalid_not_an_option",
+       "partition": "invalid_not_an_option",
+       "technique": "EP",
+       "value": "not-an-option"
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.signup_choice.05.empty",
+       "partition": "empty",
+       "technique": "EP",
+       "value": ""
+      },
+      {
+       "expected": "invalid",
+       "id": "signup.signup_choice.06.invalid_wrong_case",
+       "partition": "invalid_wrong_case",
+       "technique": "EP",
+       "value": "SIGN_UP"
+      }
+     ],
+     "location": "body",
+     "required": true
+    }
+   },
+   "method": "POST",
+   "path": "/shifts/{pk}/signup/"
+  }
+ },
+ "spec": "openapi.yaml",
+ "summary": {
+  "BVA": 85,
+  "EP": 324,
+  "cases": 409,
+  "inputs": 80,
+  "invalid": 182,
+  "operations": 14
+ }
+}

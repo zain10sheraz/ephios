@@ -1,0 +1,355 @@
+openapi: 3.0.3
+info:
+  title: Ephios events and signup API (SQE team test basis)
+  version: 1.0.0-sqe
+  description: >
+    Test basis for workflows WF1 (event and shift management) and WF2 (participant signup) of Ephios,
+    baseline upstream commit d12e76cd2b5b422177176506b0b6b9393dbc10e5. Written from the running application and its source,
+    because the project's own schema (/api/schema/) documents only HTTP 200 responses and has no entry for the form endpoints
+    that perform every write. Reads use the REST API (read-only). Writes are HTML form POSTs (application/x-www-form-urlencoded)
+    with a session cookie and a CSRF token. Vendor extensions used by the team generator:
+    x-identifier (an id referring to an existing object, equivalence classes only),
+    x-lenient (the application ignores invalid values and answers 200; documented weakness),
+    x-success-status / x-reject-status (status for an accepted / rejected form POST).
+servers:
+  - url: http://localhost:8000
+security:
+  - sessionCookie: []
+components:
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: sessionid
+  schemas:
+    Page:
+      type: object
+      required: [count, next, previous, results]
+      properties:
+        count: {type: integer, minimum: 0}
+        next: {type: string, nullable: true}
+        previous: {type: string, nullable: true}
+        results: {type: array, items: {}}
+    SignupStats:
+      type: object
+      required: [requested_count, confirmed_count, missing, free, min_count, max_count]
+      properties:
+        requested_count: {type: integer}
+        confirmed_count: {type: integer}
+        missing: {type: integer}
+        free: {type: integer, nullable: true}
+        min_count: {type: integer, nullable: true}
+        max_count: {type: integer, nullable: true}
+    Shift:
+      type: object
+      required: [id, label, event_id, event_title, meeting_time, start_time, end_time, signup_flow_slug, signup_flow_configuration, structure_slug, structure_configuration, signup_stats]
+      properties:
+        id: {type: integer}
+        label: {type: string}
+        event_id: {type: integer}
+        event_title: {type: string}
+        meeting_time: {type: string, format: date-time}
+        start_time: {type: string, format: date-time}
+        end_time: {type: string, format: date-time}
+        signup_flow_slug: {type: string}
+        signup_flow_configuration: {type: object}
+        structure_slug: {type: string}
+        structure_configuration: {type: object}
+        signup_stats: {$ref: '#/components/schemas/SignupStats'}
+    Event:
+      type: object
+      required: [id, title, description, location, type, frontend_url, start_time, end_time, signup_stats, shifts]
+      properties:
+        id: {type: integer}
+        title: {type: string}
+        description: {type: string, nullable: true}
+        location: {type: string}
+        type:
+          type: object
+          required: [id, title]
+          properties: {id: {type: integer}, title: {type: string}}
+        frontend_url: {type: string}
+        start_time: {type: string, format: date-time, nullable: true}
+        end_time: {type: string, format: date-time, nullable: true}
+        signup_stats: {$ref: '#/components/schemas/SignupStats'}
+        shifts:
+          type: array
+          items: {$ref: '#/components/schemas/Shift'}
+    Participation:
+      type: object
+      required: [id, shift, event, event_title, event_type, state, start_time, end_time, duration, structure_data, user, participant]
+      properties:
+        id: {type: integer}
+        shift: {type: integer}
+        event: {type: integer}
+        event_title: {type: string}
+        event_type:
+          type: object
+          required: [id, title]
+          properties: {id: {type: integer}, title: {type: string}}
+        state:
+          type: object
+          required: [value, label]
+          properties:
+            value: {type: integer, enum: [0, 1, 2, 3, 4]}
+            label: {type: string}
+        start_time: {type: string, format: date-time}
+        end_time: {type: string, format: date-time}
+        duration: {type: number}
+        structure_data: {type: object}
+        user: {type: integer, nullable: true}
+        participant:
+          type: object
+          required: [display_name, is_minor, type, qualifications]
+          properties:
+            display_name: {type: string}
+            is_minor: {type: boolean}
+            type: {type: string}
+            qualifications: {type: array, items: {}}
+    Error:
+      type: object
+      properties:
+        detail: {type: string}
+    ShiftForm:
+      type: object
+      required: [date, meeting_time, start_time, end_time, signup_flow_slug, structure_slug]
+      properties:
+        date: {type: string, format: date, example: '2099-06-30'}
+        meeting_time: {type: string, format: time, example: '09:00', x-time-edges: [lower]}
+        start_time: {type: string, format: time, example: '10:00', x-time-edges: []}
+        end_time: {type: string, format: time, example: '16:00', x-time-edges: [upper]}
+        label: {type: string, maxLength: 255, example: Night shift}
+        signup_flow_slug: {type: string, enum: [request_confirm, instant_confirmation, manual], example: instant_confirmation}
+        structure_slug: {type: string, enum: [uniform], example: uniform}
+        maximum_number_of_participants: {type: integer, minimum: 1, example: 5}
+        minimum_number_of_participants: {type: integer, minimum: 0, example: 0}
+        minimum_age: {type: integer, minimum: 0, maximum: 999, example: 18}
+        signup_until_0: {type: string, format: date, example: '2099-06-29', x-paired: true}
+        signup_until_1: {type: string, format: time, example: '08:00', x-paired: true}
+        user_can_decline_confirmed: {type: boolean, example: true}
+        user_can_customize_signup_times: {type: boolean, example: true}
+    SignupForm:
+      type: object
+      required: [signup_choice]
+      properties:
+        signup_choice: {type: string, enum: [sign_up, customize, decline], example: sign_up}
+        individual_start_time_0: {type: string, format: date, example: '2099-06-30', x-paired: true}
+        individual_start_time_1: {type: string, format: time, example: '11:00', x-paired: true}
+        individual_end_time_0: {type: string, format: date, example: '2099-06-30', x-paired: true}
+        individual_end_time_1: {type: string, format: time, example: '15:00', x-paired: true}
+        comment: {type: string, maxLength: 255, example: I bring a car}
+        comment_is_public: {type: boolean, example: false}
+  parameters:
+    limit: {name: limit, in: query, required: false, schema: {type: integer, minimum: 1, example: 10, x-lenient: true}}
+    offset: {name: offset, in: query, required: false, schema: {type: integer, minimum: 0, example: 0, x-lenient: true}}
+    ordering: {name: ordering, in: query, required: false, schema: {type: string, enum: [title, -title, start_time, -start_time], example: title, x-lenient: true}}
+    search: {name: search, in: query, required: false, schema: {type: string, example: Concert}}
+    start_time_after: {name: start_time_after, in: query, required: false, schema: {type: string, format: date-time, example: '2000-01-01T00:00:00Z'}}
+    start_time_before: {name: start_time_before, in: query, required: false, schema: {type: string, format: date-time, example: '2100-01-01T00:00:00Z'}}
+    end_time_after: {name: end_time_after, in: query, required: false, schema: {type: string, format: date-time, example: '2000-01-01T00:00:00Z'}}
+    end_time_before: {name: end_time_before, in: query, required: false, schema: {type: string, format: date-time, example: '2100-01-01T00:00:00Z'}}
+    event_type: {name: type, in: query, required: false, schema: {type: integer, minimum: 1, example: 1, x-identifier: true}}
+    p_state: {name: state, in: query, required: false, schema: {type: integer, enum: [0, 1, 2, 3, 4], example: 1}}
+    p_shift: {name: shift, in: query, required: false, schema: {type: integer, minimum: 1, example: 1, x-identifier: true}}
+    p_event: {name: event, in: query, required: false, schema: {type: integer, minimum: 1, example: 1, x-identifier: true}}
+    p_event_type: {name: event_type, in: query, required: false, schema: {type: integer, minimum: 1, example: 1, x-identifier: true}}
+    id: {name: id, in: path, required: true, schema: {type: integer, minimum: 1, example: 1, x-identifier: true}}
+    type: {name: type, in: path, required: true, schema: {type: integer, minimum: 1, example: 1, x-identifier: true}}
+    pk: {name: pk, in: path, required: true, schema: {type: integer, minimum: 1, example: 1, x-identifier: true}}
+paths:
+  /api/events/:
+    get:
+      operationId: listEvents
+      summary: List events visible to the logged-in user (paginated)
+      parameters:
+        - {$ref: '#/components/parameters/limit'}
+        - {$ref: '#/components/parameters/offset'}
+        - {$ref: '#/components/parameters/ordering'}
+        - {$ref: '#/components/parameters/search'}
+        - {$ref: '#/components/parameters/start_time_after'}
+        - {$ref: '#/components/parameters/start_time_before'}
+        - {$ref: '#/components/parameters/end_time_after'}
+        - {$ref: '#/components/parameters/end_time_before'}
+        - {$ref: '#/components/parameters/event_type'}
+      responses:
+        '200': {description: Page of events, content: {application/json: {schema: {allOf: [{$ref: '#/components/schemas/Page'}]}}}}
+        '400': {description: Invalid filter value}
+        '403': {description: Not logged in}
+  /api/events/{id}/:
+    get:
+      operationId: getEvent
+      summary: Read one event with its shifts
+      parameters: [{$ref: '#/components/parameters/id'}]
+      responses:
+        '200': {description: The event, content: {application/json: {schema: {$ref: '#/components/schemas/Event'}}}}
+        '403': {description: Not logged in}
+        '404': {description: Unknown id, or event not visible to the user}
+  /api/shifts/:
+    get:
+      operationId: listShifts
+      summary: List shifts of visible events (paginated)
+      parameters:
+        - {$ref: '#/components/parameters/limit'}
+        - {$ref: '#/components/parameters/offset'}
+        - {$ref: '#/components/parameters/ordering'}
+        - {$ref: '#/components/parameters/search'}
+        - {$ref: '#/components/parameters/start_time_after'}
+        - {$ref: '#/components/parameters/start_time_before'}
+        - {$ref: '#/components/parameters/end_time_after'}
+        - {$ref: '#/components/parameters/end_time_before'}
+      responses:
+        '200': {description: Page of shifts}
+        '400': {description: Invalid filter value}
+        '403': {description: Not logged in}
+  /api/shifts/{id}/:
+    get:
+      operationId: getShift
+      summary: Read one shift
+      parameters: [{$ref: '#/components/parameters/id'}]
+      responses:
+        '200': {description: The shift, content: {application/json: {schema: {$ref: '#/components/schemas/Shift'}}}}
+        '403': {description: Not logged in}
+        '404': {description: Unknown id or not visible}
+  /api/participations/:
+    get:
+      operationId: listParticipations
+      summary: List participations the user may see (paginated)
+      parameters:
+        - {$ref: '#/components/parameters/limit'}
+        - {$ref: '#/components/parameters/offset'}
+        - {$ref: '#/components/parameters/p_state'}
+        - {$ref: '#/components/parameters/p_shift'}
+        - {$ref: '#/components/parameters/p_event'}
+        - {$ref: '#/components/parameters/p_event_type'}
+        - {$ref: '#/components/parameters/start_time_after'}
+        - {$ref: '#/components/parameters/start_time_before'}
+        - {$ref: '#/components/parameters/end_time_after'}
+        - {$ref: '#/components/parameters/end_time_before'}
+      responses:
+        '200': {description: Page of participations}
+        '400': {description: Invalid filter value}
+        '403': {description: Not logged in}
+  /api/participations/{id}/:
+    get:
+      operationId: getParticipation
+      summary: Read one participation
+      parameters: [{$ref: '#/components/parameters/id'}]
+      responses:
+        '200': {description: The participation, content: {application/json: {schema: {$ref: '#/components/schemas/Participation'}}}}
+        '403': {description: Not logged in}
+        '404': {description: Unknown id or not visible}
+  /api/users/me/participations/:
+    get:
+      operationId: listOwnParticipations
+      summary: List the logged-in user's own participations
+      parameters:
+        - {$ref: '#/components/parameters/limit'}
+        - {$ref: '#/components/parameters/offset'}
+        - {$ref: '#/components/parameters/p_state'}
+      responses:
+        '200': {description: Page of the user's participations}
+        '400': {description: Invalid filter value}
+        '403': {description: Not logged in}
+  /events/create/{type}/:
+    post:
+      operationId: createEvent
+      summary: Create an event of an event type (planner). Redirects to the add-shift form.
+      x-success-status: 302
+      x-reject-status: 200
+      parameters: [{$ref: '#/components/parameters/type'}]
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [title, location]
+              properties:
+                title: {type: string, minLength: 1, maxLength: 254, example: API created event}
+                description: {type: string, example: Created through the API tests}
+                location: {type: string, minLength: 1, maxLength: 254, example: Test hall}
+                visible_for: {type: integer, minimum: 1, example: 1, x-identifier: true}
+                responsible_groups: {type: integer, minimum: 1, example: 2, x-identifier: true}
+      responses:
+        '302': {description: 'Event created; redirect to the add-shift form of the new event'}
+        '200': {description: Validation errors; form shown again, nothing created}
+        '403': {description: Missing add_event permission, or CSRF failure}
+        '404': {description: Unknown event type}
+  /events/{pk}/createshift/:
+    post:
+      operationId: createShift
+      summary: Add a shift to an event (needs change_event on the event); saving activates the event
+      x-success-status: 302
+      x-reject-status: 200
+      parameters: [{$ref: '#/components/parameters/pk'}]
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema: {$ref: '#/components/schemas/ShiftForm'}
+      responses:
+        '302': {description: Shift created, event activated; redirect to the event}
+        '200': {description: Validation errors; nothing created}
+        '403': {description: Missing change_event permission, or CSRF failure}
+        '404': {description: Unknown event}
+  /shifts/{pk}/edit/:
+    post:
+      operationId: editShift
+      summary: Change a shift (needs change_event on its event)
+      x-success-status: 302
+      x-reject-status: 200
+      parameters: [{$ref: '#/components/parameters/pk'}]
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema: {$ref: '#/components/schemas/ShiftForm'}
+      responses:
+        '302': {description: Shift changed}
+        '200': {description: Validation errors; nothing changed}
+        '403': {description: Missing change_event permission, or CSRF failure}
+        '404': {description: Unknown shift}
+  /shifts/{pk}/signup/:
+    post:
+      operationId: signup
+      summary: Sign up, customise or decline for a shift (volunteer). Quick action when quick_action is posted.
+      x-success-status: 302
+      x-reject-status: 200
+      parameters: [{$ref: '#/components/parameters/pk'}]
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema: {$ref: '#/components/schemas/SignupForm'}
+      responses:
+        '302': {description: Action processed (success or rule rejection with a flash message); redirect to the event}
+        '200': {description: Form validation errors; nothing changed}
+        '403': {description: Not logged in with permission, or CSRF failure}
+        '404': {description: Unknown shift}
+  /shifts/{pk}/delete/:
+    post:
+      operationId: deleteShift
+      summary: Delete a shift; the last shift of an event cannot be deleted
+      parameters: [{$ref: '#/components/parameters/pk'}]
+      responses:
+        '302': {description: Deleted, or refused with a flash message (last shift)}
+        '403': {description: Missing change_event permission}
+        '404': {description: Unknown shift}
+  /events/{pk}/delete/:
+    post:
+      operationId: deleteEvent
+      summary: Delete an event with its shifts and participations (needs delete_event and change_event)
+      parameters: [{$ref: '#/components/parameters/pk'}]
+      responses:
+        '302': {description: Deleted}
+        '403': {description: Missing permission}
+        '404': {description: Unknown event}
+  /events/{pk}/activate/:
+    post:
+      operationId: activateEvent
+      summary: Activate an inactive event (needs add_event)
+      parameters: [{$ref: '#/components/parameters/pk'}]
+      responses:
+        '302': {description: Activated}
+        '403': {description: Missing permission}
+        '404': {description: Unknown event}

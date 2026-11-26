@@ -79,6 +79,10 @@ Fishbone: Code (truthiness), Tests (no zero partition), Design (optional number 
 Fishbone: Code (unguarded lookups), Tests (no invalid-parameter tests), Design (internal-only assumption), Process (no endpoint checklist), Environment (JS hides the problem), People (happy-path bias).
 
 ---
+## DEFECT-005..007 - API weaknesses found by area 2 (issues #12, #13, #14; all minor, open, not fixed)
+**5 Whys (DEFECT-005, rejection returns 302):** 1. clients cannot tell success from rejection -> 2. both answer 302 -> 3. rejections are shown as flash messages after a redirect -> 4. the endpoints were built for the HTML UI, not as an API -> 5. no API contract was specified. **Root cause class:** API contract not specified (framework defaults relied on). Same class for #13 (paginator/ordering defaults ignore invalid values) and #14 (permission check before method check; schema generated from code, not reviewed).
+**Fishbone categories:** Method (no contract), Machine (framework defaults), Material (generated schema lists only 200). **Corrective:** document the behaviour (done: `test_specs/openapi.yaml`); optional product decision to change status codes. Not fixed in code because it is design-level behaviour of the upstream HTML application; the tests assert the observed behaviour and read state back.
+
 ## Pareto of the four defects
 By **category label** (GitHub labels): business-logic 2 (50 %), validation 2 (50 %).
 By **root-cause class** (more informative):
