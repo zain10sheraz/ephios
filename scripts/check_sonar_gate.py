@@ -49,6 +49,17 @@ for metric, limit in THRESHOLDS.items():
     if not ok:
         failed.append(metric)
 
+if {"bugs", "vulnerabilities"} & set(
+    failed
+):  # name the offending lines so the failure can be acted upon
+    found = get(
+        f"/api/issues/search?componentKeys={key}&types=BUG,VULNERABILITY&resolved=false&ps=50"
+    )
+    for issue in found["issues"]:
+        print(
+            f"  {issue['type']} {issue['rule']} {issue['component']}:{issue.get('line')} {issue['message']}"
+        )
+
 tree = get(
     f"/api/measures/component_tree?component={key}&metricKeys=coverage&qualifiers=FIL&ps=500"
 )
