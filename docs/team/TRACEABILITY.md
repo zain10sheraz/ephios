@@ -1,7 +1,7 @@
 # Requirements traceability matrix (RTM) - status 2026-11-26
 
 Legend: **P** = executed and passing, **-** = no test yet (honest gap), **partial** = only part of the requirement is checked.
-Levels: U = unit/white-box (Zain, `tests/team/unit`), I = integration (`tests/team/integration`), A = API black-box over HTTP (Manan, `tests/team/api`, 462 tests all passing), E = browser E2E (Sujawal, not started).
+Levels: U = unit/white-box (Zain, `tests/team/unit`), I = integration (`tests/team/integration`), A = API black-box over HTTP (Manan, `tests/team/api`, 476 tests all passing), E = browser E2E (Sujawal, not started).
 Requirement text and rule definitions: `REQUIREMENTS.md`. Test names are real pytest names in this repository.
 
 ## Functional requirements
