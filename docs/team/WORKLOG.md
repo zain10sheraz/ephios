@@ -21,3 +21,4 @@ Efforts are approximate (reconstructed from session time) and will be marked as 
 | 2026-11-26 | Manan / OpenAPI + generator | spec of 14 operations, EP/BVA generator, regeneration demo | 2.0 (approximate) |
 | 2026-11-26 | Manan / API test harness and tests | real-server harness, 462 tests, 29 first-run failures analysed and corrected, post-conditions | 5.0 (approximate, includes long server runs) |
 | 2026-11-26 | Manan / API docs, issues #12-#14, coverage | `API_TESTING.md`, viva notes, coverage script | 1.5 (approximate) |
+| 2026-11-26 | Manan / follow-up tests | REST filters, concurrency, combined invalid values, state transitions (14 tests), rerun 476 passed | 2.0 (approximate, includes a 14 min suite run) |

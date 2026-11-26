@@ -5,7 +5,7 @@ Details: `API_TESTING.md`.
 
 ## 1. One-minute story
 Ephios has a read-only JSON REST API and form endpoints for writing (login cookie + CSRF token). I wrote an OpenAPI specification of 14 operations from the behaviour I observed
-(the project's own schema only lists 200 responses), a generator that derives equivalence classes and 3-point boundary values from that specification, and 462 black-box tests
+(the project's own schema only lists 200 responses), a generator that derives equivalence classes and 3-point boundary values from that specification, and 476 black-box tests
 that start the real application, log in, send real HTTP requests and read the stored state back. Nothing is mocked.
 
 ## 2. Component by component
@@ -29,7 +29,8 @@ that start the real application, log in, send real HTTP requests and read the st
 - *Why is `search` unlimited in your spec?* My first spec said 254; the test failed, the application accepts any length; I corrected the spec (a wrong specification is a test-basis defect, not an application defect).
 - *What does the lenient class mean?* `limit`, `offset`, `ordering` are ignored when invalid (200). The tests assert that as observed and issue #13 reports the inconsistency.
 - *Is the custom signup window beyond the shift a defect?* Not claimed: the application accepts it; the only rule I could observe is start before end. It would need the product owner's decision.
-- *What would you do differently?* Estimate effort beforehand, add a concurrency test for capacity, generate pairwise combinations of fields, and make `api-tests-black-box` a required check.
+- *What happens when two volunteers take the last place at the same moment?* `test_concurrency_api.py` sends both requests together five times. The stored state never exceeded the capacity. In the first run one request returned 500 with `database is locked`: SQLite has one writer at a time. I treat that as a limit of the test environment, say so in the test and the docs, and assert the stored state instead of hiding it.
+- *What would you do differently?* Estimate effort beforehand, test concurrency on PostgreSQL, generate pairwise combinations of fields, and make `api-tests-black-box` a required check.
 - *AI use?* Claude Code assisted; recorded in `AI_USE_RECORD.md`. Every test and document must be understood and defendable by the member (see section 4).
 
 ## 4. Live-task rehearsal
