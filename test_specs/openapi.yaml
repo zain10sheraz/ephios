@@ -115,9 +115,9 @@ components:
       required: [date, meeting_time, start_time, end_time, signup_flow_slug, structure_slug]
       properties:
         date: {type: string, format: date, example: '2099-06-30'}
-        meeting_time: {type: string, format: time, example: '09:00'}
-        start_time: {type: string, format: time, example: '10:00'}
-        end_time: {type: string, format: time, example: '16:00'}
+        meeting_time: {type: string, format: time, example: '09:00', x-time-edges: [lower]}
+        start_time: {type: string, format: time, example: '10:00', x-time-edges: []}
+        end_time: {type: string, format: time, example: '16:00', x-time-edges: [upper]}
         label: {type: string, maxLength: 255, example: Night shift}
         signup_flow_slug: {type: string, enum: [request_confirm, instant_confirmation, manual], example: instant_confirmation}
         structure_slug: {type: string, enum: [uniform], example: uniform}
@@ -143,7 +143,7 @@ components:
     limit: {name: limit, in: query, required: false, schema: {type: integer, minimum: 1, example: 10, x-lenient: true}}
     offset: {name: offset, in: query, required: false, schema: {type: integer, minimum: 0, example: 0, x-lenient: true}}
     ordering: {name: ordering, in: query, required: false, schema: {type: string, enum: [title, -title, start_time, -start_time], example: title, x-lenient: true}}
-    search: {name: search, in: query, required: false, schema: {type: string, maxLength: 254, example: Concert}}
+    search: {name: search, in: query, required: false, schema: {type: string, example: Concert}}
     start_time_after: {name: start_time_after, in: query, required: false, schema: {type: string, format: date-time, example: '2000-01-01T00:00:00Z'}}
     start_time_before: {name: start_time_before, in: query, required: false, schema: {type: string, format: date-time, example: '2100-01-01T00:00:00Z'}}
     end_time_after: {name: end_time_after, in: query, required: false, schema: {type: string, format: date-time, example: '2000-01-01T00:00:00Z'}}
@@ -275,7 +275,6 @@ paths:
         '200': {description: Validation errors; form shown again, nothing created}
         '403': {description: Missing add_event permission, or CSRF failure}
         '404': {description: Unknown event type}
-        '405': {description: Method not allowed}
   /events/{pk}/createshift/:
     post:
       operationId: createShift

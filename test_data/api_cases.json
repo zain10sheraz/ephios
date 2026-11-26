@@ -385,35 +385,28 @@
       },
       {
        "expected": "valid",
-       "id": "createShift.end_time.02.time_lower_edge",
-       "partition": "time_lower_edge",
-       "technique": "BVA",
-       "value": "00:00"
-      },
-      {
-       "expected": "valid",
-       "id": "createShift.end_time.03.time_upper_edge",
+       "id": "createShift.end_time.02.time_upper_edge",
        "partition": "time_upper_edge",
        "technique": "BVA",
        "value": "23:59"
       },
       {
        "expected": "invalid",
-       "id": "createShift.end_time.04.time_just_above_upper_edge",
+       "id": "createShift.end_time.03.time_just_above_upper_edge",
        "partition": "time_just_above_upper_edge",
        "technique": "BVA",
        "value": "24:00"
       },
       {
        "expected": "invalid",
-       "id": "createShift.end_time.05.invalid_minutes",
+       "id": "createShift.end_time.04.invalid_minutes",
        "partition": "invalid_minutes",
        "technique": "EP",
        "value": "12:60"
       },
       {
        "expected": "invalid",
-       "id": "createShift.end_time.06.invalid_text",
+       "id": "createShift.end_time.05.invalid_text",
        "partition": "invalid_text",
        "technique": "EP",
        "value": "abc"
@@ -568,29 +561,22 @@
        "value": "00:00"
       },
       {
-       "expected": "valid",
-       "id": "createShift.meeting_time.03.time_upper_edge",
-       "partition": "time_upper_edge",
-       "technique": "BVA",
-       "value": "23:59"
-      },
-      {
        "expected": "invalid",
-       "id": "createShift.meeting_time.04.time_just_above_upper_edge",
+       "id": "createShift.meeting_time.03.time_just_above_upper_edge",
        "partition": "time_just_above_upper_edge",
        "technique": "BVA",
        "value": "24:00"
       },
       {
        "expected": "invalid",
-       "id": "createShift.meeting_time.05.invalid_minutes",
+       "id": "createShift.meeting_time.04.invalid_minutes",
        "partition": "invalid_minutes",
        "technique": "EP",
        "value": "12:60"
       },
       {
        "expected": "invalid",
-       "id": "createShift.meeting_time.06.invalid_text",
+       "id": "createShift.meeting_time.05.invalid_text",
        "partition": "invalid_text",
        "technique": "EP",
        "value": "abc"
@@ -970,36 +956,22 @@
        "value": "10:00"
       },
       {
-       "expected": "valid",
-       "id": "createShift.start_time.02.time_lower_edge",
-       "partition": "time_lower_edge",
-       "technique": "BVA",
-       "value": "00:00"
-      },
-      {
-       "expected": "valid",
-       "id": "createShift.start_time.03.time_upper_edge",
-       "partition": "time_upper_edge",
-       "technique": "BVA",
-       "value": "23:59"
-      },
-      {
        "expected": "invalid",
-       "id": "createShift.start_time.04.time_just_above_upper_edge",
+       "id": "createShift.start_time.02.time_just_above_upper_edge",
        "partition": "time_just_above_upper_edge",
        "technique": "BVA",
        "value": "24:00"
       },
       {
        "expected": "invalid",
-       "id": "createShift.start_time.05.invalid_minutes",
+       "id": "createShift.start_time.03.invalid_minutes",
        "partition": "invalid_minutes",
        "technique": "EP",
        "value": "12:60"
       },
       {
        "expected": "invalid",
-       "id": "createShift.start_time.06.invalid_text",
+       "id": "createShift.start_time.04.invalid_text",
        "partition": "invalid_text",
        "technique": "EP",
        "value": "abc"
@@ -1269,35 +1241,28 @@
       },
       {
        "expected": "valid",
-       "id": "editShift.end_time.02.time_lower_edge",
-       "partition": "time_lower_edge",
-       "technique": "BVA",
-       "value": "00:00"
-      },
-      {
-       "expected": "valid",
-       "id": "editShift.end_time.03.time_upper_edge",
+       "id": "editShift.end_time.02.time_upper_edge",
        "partition": "time_upper_edge",
        "technique": "BVA",
        "value": "23:59"
       },
       {
        "expected": "invalid",
-       "id": "editShift.end_time.04.time_just_above_upper_edge",
+       "id": "editShift.end_time.03.time_just_above_upper_edge",
        "partition": "time_just_above_upper_edge",
        "technique": "BVA",
        "value": "24:00"
       },
       {
        "expected": "invalid",
-       "id": "editShift.end_time.05.invalid_minutes",
+       "id": "editShift.end_time.04.invalid_minutes",
        "partition": "invalid_minutes",
        "technique": "EP",
        "value": "12:60"
       },
       {
        "expected": "invalid",
-       "id": "editShift.end_time.06.invalid_text",
+       "id": "editShift.end_time.05.invalid_text",
        "partition": "invalid_text",
        "technique": "EP",
        "value": "abc"
@@ -1452,29 +1417,22 @@
        "value": "00:00"
       },
       {
-       "expected": "valid",
-       "id": "editShift.meeting_time.03.time_upper_edge",
-       "partition": "time_upper_edge",
-       "technique": "BVA",
-       "value": "23:59"
-      },
-      {
        "expected": "invalid",
-       "id": "editShift.meeting_time.04.time_just_above_upper_edge",
+       "id": "editShift.meeting_time.03.time_just_above_upper_edge",
        "partition": "time_just_above_upper_edge",
        "technique": "BVA",
        "value": "24:00"
       },
       {
        "expected": "invalid",
-       "id": "editShift.meeting_time.05.invalid_minutes",
+       "id": "editShift.meeting_time.04.invalid_minutes",
        "partition": "invalid_minutes",
        "technique": "EP",
        "value": "12:60"
       },
       {
        "expected": "invalid",
-       "id": "editShift.meeting_time.06.invalid_text",
+       "id": "editShift.meeting_time.05.invalid_text",
        "partition": "invalid_text",
        "technique": "EP",
        "value": "abc"
@@ -1854,36 +1812,22 @@
        "value": "10:00"
       },
       {
-       "expected": "valid",
-       "id": "editShift.start_time.02.time_lower_edge",
-       "partition": "time_lower_edge",
-       "technique": "BVA",
-       "value": "00:00"
-      },
-      {
-       "expected": "valid",
-       "id": "editShift.start_time.03.time_upper_edge",
-       "partition": "time_upper_edge",
-       "technique": "BVA",
-       "value": "23:59"
-      },
-      {
        "expected": "invalid",
-       "id": "editShift.start_time.04.time_just_above_upper_edge",
+       "id": "editShift.start_time.02.time_just_above_upper_edge",
        "partition": "time_just_above_upper_edge",
        "technique": "BVA",
        "value": "24:00"
       },
       {
        "expected": "invalid",
-       "id": "editShift.start_time.05.invalid_minutes",
+       "id": "editShift.start_time.03.invalid_minutes",
        "partition": "invalid_minutes",
        "technique": "EP",
        "value": "12:60"
       },
       {
        "expected": "invalid",
-       "id": "editShift.start_time.06.invalid_text",
+       "id": "editShift.start_time.04.invalid_text",
        "partition": "invalid_text",
        "technique": "EP",
        "value": "abc"
@@ -2417,42 +2361,6 @@
        "partition": "empty",
        "technique": "EP",
        "value": ""
-      },
-      {
-       "boundary": {
-        "limit": "maxLength",
-        "point": "below",
-        "value": 254
-       },
-       "expected": "valid",
-       "id": "listEvents.search.03.maxLength_below",
-       "partition": "maxLength_below",
-       "technique": "BVA",
-       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      },
-      {
-       "boundary": {
-        "limit": "maxLength",
-        "point": "at",
-        "value": 254
-       },
-       "expected": "valid",
-       "id": "listEvents.search.04.maxLength_at",
-       "partition": "maxLength_at",
-       "technique": "BVA",
-       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      },
-      {
-       "boundary": {
-        "limit": "maxLength",
-        "point": "above",
-        "value": 254
-       },
-       "expected": "invalid",
-       "id": "listEvents.search.05.maxLength_above",
-       "partition": "maxLength_above",
-       "technique": "BVA",
-       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       }
      ],
      "location": "query",
@@ -2755,13 +2663,6 @@
        "partition": "empty",
        "technique": "EP",
        "value": ""
-      },
-      {
-       "expected": "invalid",
-       "id": "listOwnParticipations.state.08.invalid_wrong_case",
-       "partition": "invalid_wrong_case",
-       "technique": "EP",
-       "value": "0"
       }
      ],
      "location": "query",
@@ -3204,13 +3105,6 @@
        "partition": "empty",
        "technique": "EP",
        "value": ""
-      },
-      {
-       "expected": "invalid",
-       "id": "listParticipations.state.08.invalid_wrong_case",
-       "partition": "invalid_wrong_case",
-       "technique": "EP",
-       "value": "0"
       }
      ],
      "location": "query",
@@ -3492,42 +3386,6 @@
        "partition": "empty",
        "technique": "EP",
        "value": ""
-      },
-      {
-       "boundary": {
-        "limit": "maxLength",
-        "point": "below",
-        "value": 254
-       },
-       "expected": "valid",
-       "id": "listShifts.search.03.maxLength_below",
-       "partition": "maxLength_below",
-       "technique": "BVA",
-       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      },
-      {
-       "boundary": {
-        "limit": "maxLength",
-        "point": "at",
-        "value": 254
-       },
-       "expected": "valid",
-       "id": "listShifts.search.04.maxLength_at",
-       "partition": "maxLength_at",
-       "technique": "BVA",
-       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      },
-      {
-       "boundary": {
-        "limit": "maxLength",
-        "point": "above",
-        "value": 254
-       },
-       "expected": "invalid",
-       "id": "listShifts.search.05.maxLength_above",
-       "partition": "maxLength_above",
-       "technique": "BVA",
-       "value": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       }
      ],
      "location": "query",
@@ -3967,11 +3825,11 @@
  },
  "spec": "openapi.yaml",
  "summary": {
-  "BVA": 99,
-  "EP": 326,
-  "cases": 425,
+  "BVA": 85,
+  "EP": 324,
+  "cases": 409,
   "inputs": 80,
-  "invalid": 186,
+  "invalid": 182,
   "operations": 14
  }
 }

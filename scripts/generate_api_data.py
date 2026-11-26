@@ -52,7 +52,11 @@ def iter_inputs(spec):
             operation = item.get(method)
             if not operation:
                 continue
-            base = {"operation_id": operation["operationId"], "method": method.upper(), "path": path}
+            base = {
+                "operation_id": operation["operationId"],
+                "method": method.upper(),
+                "path": path,
+            }
             for parameter in operation.get("parameters", []):
                 parameter = resolve(spec, parameter)
                 yield {
@@ -62,7 +66,12 @@ def iter_inputs(spec):
                     "required": bool(parameter.get("required")),
                     "schema": resolve(spec, parameter["schema"]),
                 }
-            body = operation.get("requestBody", {}).get("content", {}).get("application/x-www-form-urlencoded")
+            body = (
+                operation
+                .get("requestBody", {})
+                .get("content", {})
+                .get("application/x-www-form-urlencoded")
+            )
             if body:
                 schema = resolve(spec, body["schema"])
                 required = set(schema.get("required", []))
@@ -77,20 +86,32 @@ def iter_inputs(spec):
 
 
 def case(technique, partition, value, expected, **extra):
-    return {"technique": technique, "partition": partition, "value": value, "expected": expected, **extra}
+    return {
+        "technique": technique,
+        "partition": partition,
+        "value": value,
+        "expected": expected,
+        **extra,
+    }
 
 
 def integer_cases(schema, required, lenient):
     cases = [case("EP", "valid_in_range", str(schema.get("example", 1)), "valid")]
-    cases.append(case("EP", "invalid_non_numeric", "abc", "invalid"))
-    cases.append(case("EP", "invalid_decimal", "1.5", "invalid"))
-    cases.append(case("EP", "empty", "", "invalid" if required else "valid"))
+    cases.extend((
+        case("EP", "invalid_non_numeric", "abc", "invalid"),
+        case("EP", "invalid_decimal", "1.5", "invalid"),
+        case("EP", "empty", "", "invalid" if required else "valid"),
+    ))
     for limit_name in ("minimum", "maximum"):
         if limit_name not in schema:
             continue
         limit = schema[limit_name]
         below_ok, above_ok = (False, True) if limit_name == "minimum" else (True, False)
-        for point, value, ok in (("below", limit - 1, below_ok), ("at", limit, True), ("above", limit + 1, above_ok)):
+        for point, value, ok in (
+            ("below", limit - 1, below_ok),
+            ("at", limit, True),
+            ("above", limit + 1, above_ok),
+        ):
             cases.append(
                 case(
                     "BVA",
@@ -113,7 +134,7 @@ def identifier_cases(schema):
     ]
 
 
-def string_cases(schema, required):
+def string_cases(schema, required, wrong_case=True):
     example = str(schema.get("example", "x"))
     fmt = schema.get("format")
     if fmt == "date":
@@ -125,10 +146,15 @@ def string_cases(schema, required):
             case("EP", "invalid_leap_day_in_common_year", "2099-02-29", "invalid"),
         ]
     if fmt == "time":
-        return [
-            case("EP", "valid_time", example, "valid"),
-            case("BVA", "time_lower_edge", "00:00", "valid"),
-            case("BVA", "time_upper_edge", "23:59", "valid"),
+        # x-time-edges lists the day edges that are valid on their own; the others would break the cross-field rule
+        # meeting_time <= start_time <= end_time and are therefore not a boundary of this field alone
+        edges = schema.get("x-time-edges", ["lower", "upper"])
+        cases = [case("EP", "valid_time", example, "valid")]
+        if "lower" in edges:
+            cases.append(case("BVA", "time_lower_edge", "00:00", "valid"))
+        if "upper" in edges:
+            cases.append(case("BVA", "time_upper_edge", "23:59", "valid"))
+        return cases + [
             case("BVA", "time_just_above_upper_edge", "24:00", "invalid"),
             case("EP", "invalid_minutes", "12:60", "invalid"),
             case("EP", "invalid_text", "abc", "invalid"),
@@ -143,8 +169,10 @@ def string_cases(schema, required):
         cases = [case("EP", f"valid_enum_{value}", str(value), "valid") for value in schema["enum"]]
         cases.append(case("EP", "invalid_not_an_option", "not-an-option", "invalid"))
         cases.append(case("EP", "empty", "", "invalid" if required else "valid"))
-        if isinstance(schema["enum"][0], str):
-            cases.append(case("EP", "invalid_wrong_case", str(schema["enum"][0]).upper(), "invalid"))
+        if wrong_case and isinstance(schema["enum"][0], str):
+            cases.append(
+                case("EP", "invalid_wrong_case", str(schema["enum"][0]).upper(), "invalid")
+            )
         return cases
     cases = [case("EP", "valid_text", example, "valid")]
     min_length = schema.get("minLength", 1 if required else 0)
@@ -189,12 +217,18 @@ def cases_for(inp):
     elif schema.get("type") == "integer" and "enum" not in schema:
         cases = integer_cases(schema, inp["required"], lenient)
     elif schema.get("type") == "integer":
-        cases = string_cases({**schema, "enum": [str(v) for v in schema["enum"]], "example": str(schema["example"])}, inp["required"])
+        cases = string_cases(
+            {**schema, "enum": [str(v) for v in schema["enum"]], "example": str(schema["example"])},
+            inp["required"],
+            wrong_case=False,
+        )
     elif schema.get("type") == "boolean":
         cases = boolean_cases()
     else:
         cases = mark_lenient(string_cases(schema, inp["required"]), lenient)
-    if schema.get("x-paired"):  # half of a split date/time field: an empty half makes the pair incomplete
+    if schema.get(
+        "x-paired"
+    ):  # half of a split date/time field: an empty half makes the pair incomplete
         for item in cases:
             if item["partition"] == "empty":
                 item["expected"] = "invalid"
@@ -217,7 +251,14 @@ def generate(spec_path=SPEC_DEFAULT):
             "baseline": inp["schema"].get("example"),
             "cases": cases,
         }
-    summary = {"operations": len(operations), "inputs": 0, "cases": 0, "EP": 0, "BVA": 0, "invalid": 0}
+    summary = {
+        "operations": len(operations),
+        "inputs": 0,
+        "cases": 0,
+        "EP": 0,
+        "BVA": 0,
+        "invalid": 0,
+    }
     for op in operations.values():
         for data in op["inputs"].values():
             summary["inputs"] += 1
@@ -233,10 +274,20 @@ def diff(old, new):
     changes = {}
     for op_id, op in new["operations"].items():
         for name, data in op["inputs"].items():
-            before = {(c["partition"], c["value"], c["expected"]) for c in old["operations"].get(op_id, {}).get("inputs", {}).get(name, {}).get("cases", [])}
+            before = {
+                (c["partition"], c["value"], c["expected"])
+                for c in old["operations"]
+                .get(op_id, {})
+                .get("inputs", {})
+                .get(name, {})
+                .get("cases", [])
+            }
             after = {(c["partition"], c["value"], c["expected"]) for c in data["cases"]}
             if before != after:
-                changes[f"{op_id}.{name}"] = {"added": sorted(map(list, after - before)), "removed": sorted(map(list, before - after))}
+                changes[f"{op_id}.{name}"] = {
+                    "added": sorted(map(list, after - before)),
+                    "removed": sorted(map(list, before - after)),
+                }
     return changes
 
 
