@@ -216,7 +216,8 @@ class ShiftForm(forms.ModelForm):
             except ValueError:  # not installed
                 pass
         self.fields["signup_flow_slug"].widget = forms.Select(
-            choices=((flow.slug, flow.verbose_name) for flow in signup_flows)
+            choices=((flow.slug, flow.verbose_name) for flow in signup_flows),
+            attrs={"aria-label": _("Signup mode")},  # the visible heading is not tied to the select
         )
         # same for structure
         shift_structures = list(enabled_shift_structures())
@@ -230,7 +231,8 @@ class ShiftForm(forms.ModelForm):
             except ValueError:  # not installed
                 pass
         self.fields["structure_slug"].widget = forms.Select(
-            choices=((structure.slug, structure.verbose_name) for structure in shift_structures)
+            choices=((structure.slug, structure.verbose_name) for structure in shift_structures),
+            attrs={"aria-label": _("Structure")},
         )
         # this recorder may cause db queries, so it's not added on Shift init, but here in the form
         # pylint: disable=undefined-variable
