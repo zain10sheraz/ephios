@@ -29,3 +29,11 @@ def test_participation_state_filter_separates_confirmed_from_requested(planner, 
     assert requested_shift in requested
     assert requested_shift not in confirmed
     assert confirmed_shift not in requested
+
+
+def test_ordering_by_title_ascending_and_descending(planner):
+    token = "ordtest"
+    events = titled_events(planner, token, ["Aaa", "Mmm", "Zzz"])
+    expected = [events["Aaa"], events["Mmm"], events["Zzz"]]
+    assert listed_ids(planner, search=token, ordering="title") == expected
+    assert listed_ids(planner, search=token, ordering="-title") == expected[::-1]
