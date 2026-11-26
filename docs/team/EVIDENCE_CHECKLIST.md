@@ -52,3 +52,11 @@ Still missing screenshots (not yet supplied): the closed issues #1, #4, #6, #7 (
 | EV-037 | API coverage against the spec: 14/14 operations, 46/46 documented responses, 80/80 inputs | `reports/api/api_coverage.md`, `reports/api/observed_raw.json` | 2026-11-26 | captured (machine output) |
 | EV-038 | Generator output and regeneration demo (constraint change -> changed cases) | `test_data/api_cases.json`, `reports/api/regeneration_demo.txt` | 2026-11-26 | captured (machine output) |
 | EV-039 | Issues #12, #13, #14 (API weaknesses, minor, open) | https://github.com/zain10sheraz/ephios/issues/12 (13, 14) | 2026-11-26 | created by Manan; screenshot not yet taken |
+| EV-042 | Browser suite, full run (12 flows, usability, keyboard, access matrix, recovery, axe) | `reports/e2e/pytest_full_run.txt`, `reports/e2e/junit.xml` | 2026-11-27 | captured (machine output) |
+| EV-043 | Access matrix, observed vs expected (7 decisions) | `reports/e2e/access_matrix.md` | 2026-11-27 | captured (machine output) |
+| EV-044 | axe-core and Lighthouse reports before and after the fix, merged comparison | `reports/accessibility/` (`comparison.md`) | 2026-11-26 | captured (machine output); **screenshots of the tool results must be taken by the team member** |
+| EV-045 | Regression test failing before the fix | `reports/accessibility/regression_before_fix.txt` | 2026-11-26 | captured (machine output) |
+| EV-046 | k6 runs (1 and 5 users, 2 runs each, 60 s) | `reports/performance/` (`k6_summary.md`) | 2026-11-26 | captured (machine output); screenshot of the k6 summary to be taken by the team member |
+| EV-047 | pip-audit result | `reports/security/pip_audit.json` | 2026-11-26 | captured (machine output) |
+| EV-048 | Issues #17-#23 (area 3 defects) | https://github.com/zain10sheraz/ephios/issues/17 (to 23) | 2026-11-27 | created; screenshot not yet taken |
+| EV-049 | OWASP ZAP passive scan | - | - | **NOT RUN** (Docker not available) |
