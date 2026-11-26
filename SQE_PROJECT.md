@@ -21,7 +21,7 @@ folders listed below; upstream source is modified only where a documented defect
 | Sujawal | sajawalkhan01 | 3: use cases, usability, accessibility, security, performance | `sajawal` |
 Test management documents are shared. Branches are merged into `main` only through a pull request that must pass the quality gate.
 
-**Merge status of `main` (2026-11-25):** Zain's area was merged by PR #11 (merge commit `520edca3`) after the three required checks passed. `manan` and `sajawal` are still at the baseline and are merged the same way when their work is ready.
+**Merge status of `main` (2026-11-26):** Zain's area was merged by PR #11 (merge commit `520edca3`) and Manan's area (API testing, OpenAPI, EP/BVA generator, cross-workflow validation) by PR #15 (merge commit `195a9eb5`); in both cases the three required checks passed. `sajawal` is still at the baseline and is merged the same way when its work is ready.
 
 ## Where things are
 | Path | Content |
