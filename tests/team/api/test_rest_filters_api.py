@@ -37,3 +37,17 @@ def test_ordering_by_title_ascending_and_descending(planner):
     expected = [events["Aaa"], events["Mmm"], events["Zzz"]]
     assert listed_ids(planner, search=token, ordering="title") == expected
     assert listed_ids(planner, search=token, ordering="-title") == expected[::-1]
+
+
+def test_start_time_filters_split_events_at_a_date(planner):
+    token = "datetest"
+    events = titled_events(
+        planner,
+        token,
+        ["early", "late"],
+        early={"date": "2085-01-10", "signup_until_0": "2085-01-09"},
+        late={"date": "2086-01-10", "signup_until_0": "2086-01-09"},
+    )
+    cut = "2085-06-01T00:00:00Z"
+    assert listed_ids(planner, search=token, start_time_after=cut) == [events["late"]]
+    assert listed_ids(planner, search=token, start_time_before=cut) == [events["early"]]
