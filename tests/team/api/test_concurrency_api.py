@@ -42,3 +42,10 @@ def test_simultaneous_signups_for_one_place_never_exceed_capacity(planner, volun
         assert planner.rest(f"/api/shifts/{shift}/")["signup_stats"]["confirmed_count"] <= 1
         assert len(own_records(volunteer, shift)) <= 1
         assert len(own_records(volunteer2, shift)) <= 1
+
+
+def test_the_same_volunteer_clicking_twice_at_once_creates_one_record(planner, volunteer):
+    _, shift = planner.new_shift(signup_flow_slug="instant_confirmation")
+    statuses = simultaneous_signups(shift, volunteer, volunteer)
+    assert set(statuses) <= {302, 500}, statuses
+    assert len(own_records(volunteer, shift)) == 1
