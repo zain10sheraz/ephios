@@ -30,3 +30,5 @@ Author: Manan (GitHub MannanJafferyyy) with Claude Code assistance (recorded in 
 
 ## 4. Open items
 Area 3 (Sujawal) not started; final completion report, PDF and ZIP; `api-tests-black-box` is not a required check.
+
+**Update 2026-11-26 evening:** area 2 was merged into `main` by PR #15 (merge commit `195a9eb5`); all 21 checks passed, including the three required ones and the new `api-tests-black-box` job. Area 3 (Sujawal) is the only area still not started.
