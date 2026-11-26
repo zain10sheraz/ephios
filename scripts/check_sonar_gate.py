@@ -49,11 +49,11 @@ for metric, limit in THRESHOLDS.items():
     if not ok:
         failed.append(metric)
 
-if {"bugs", "vulnerabilities"} & set(
+if {"bugs", "vulnerabilities", "code_smells"} & set(
     failed
 ):  # name the offending lines so the failure can be acted upon
     found = get(
-        f"/api/issues/search?componentKeys={key}&types=BUG,VULNERABILITY&resolved=false&ps=50"
+        f"/api/issues/search?componentKeys={key}&types=BUG,VULNERABILITY,CODE_SMELL&resolved=false&ps=100"
     )
     for issue in found["issues"]:
         print(
