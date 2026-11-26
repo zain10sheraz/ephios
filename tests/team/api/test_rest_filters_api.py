@@ -51,3 +51,12 @@ def test_start_time_filters_split_events_at_a_date(planner):
     cut = "2085-06-01T00:00:00Z"
     assert listed_ids(planner, search=token, start_time_after=cut) == [events["late"]]
     assert listed_ids(planner, search=token, start_time_before=cut) == [events["early"]]
+
+
+def test_paging_with_limit_and_offset_walks_through_the_same_records(planner):
+    token = "pagetest"
+    events = titled_events(planner, token, ["p1", "p2", "p3"])
+    first = planner.rest("/api/events/", search=token, ordering="title", limit=1, offset=0)
+    second = planner.rest("/api/events/", search=token, ordering="title", limit=1, offset=1)
+    assert first["count"] == second["count"] == 3
+    assert [first["results"][0]["id"], second["results"][0]["id"]] == [events["p1"], events["p2"]]
