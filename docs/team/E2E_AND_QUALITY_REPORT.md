@@ -49,3 +49,6 @@ Flow-level detail: `USE_CASES_MANAN.md`, `USE_CASES_ZAIN.md`. Runs: `reports/e2e
 * ZAP ran in passive mode only. The use cases of this report were written for the two workflows chosen in `REQUIREMENTS.md`; the brief asks for two use cases **per member**, so the other members' own use cases are outside this report.
 * The browser tests run Chromium only, on the development server over HTTP.
 * Automated accessibility tools find only a part of the problems; no manual screen-reader test was done.
+
+## 5. Final run of the whole browser suite (2026-11-27)
+`reports/e2e/pytest_full_run.txt`: **51 passed, 0 failed** (`junit.xml`, `playwright_report.html`). The wall-clock time printed by pytest (4 h 45 min) includes periods in which the laptop was suspended; uninterrupted, the suite needs about 15-20 minutes. Two earlier attempts are kept as honest record: `run_interrupted_by_laptop_sleep.txt` (47 passed, 3 failed, 1 error caused by the suspended network and 60 s timeouts) and `rerun_of_four_tests.txt` (the four affected tests rerun alone: 4 passed in 112 s).
