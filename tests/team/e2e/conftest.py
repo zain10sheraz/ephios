@@ -4,6 +4,7 @@ Every page logs in through the real login form. No screenshots are taken or stor
 """
 
 import importlib
+import os
 from pathlib import Path
 
 import pytest
@@ -47,7 +48,15 @@ def server(tmp_path_factory):
 @pytest.fixture(scope="session")
 def chromium():
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch()
+        proxy = os.environ.get(
+            "E2E_PROXY"
+        )  # e.g. the OWASP ZAP proxy for the passive security scan
+        options = (
+            {"proxy": {"server": proxy}, "args": ["--proxy-bypass-list=<-loopback>"]}
+            if proxy
+            else {}
+        )
+        browser = playwright.chromium.launch(**options)
         yield browser
         browser.close()
 
@@ -97,14 +106,14 @@ def anonymous_page(make_page):
 @pytest.fixture(scope="session")
 def planner_api(server):
     """HTTP session used only to prepare data and to read stored state back after a browser step."""
-    return Browser(server.base, PLANNER)
+    return Browser(server.local_base, PLANNER)
 
 
 @pytest.fixture(scope="session")
 def volunteer_api(server):
-    return Browser(server.base, VOLUNTEER)
+    return Browser(server.local_base, VOLUNTEER)
 
 
 @pytest.fixture(scope="session")
 def volunteer2_api(server):
-    return Browser(server.base, VOLUNTEER2)
+    return Browser(server.local_base, VOLUNTEER2)
