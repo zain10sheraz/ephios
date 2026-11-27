@@ -6,6 +6,8 @@ file on GitHub, which provides the "evidence links" the brief asks for. The test
 hold decision is the last section, as required.
 """
 
+import base64
+import glob
 import html
 import importlib
 import os
@@ -68,6 +70,7 @@ SECTIONS = [
     (
         "7 Appendix: result tables and raw output",
         [
+            "docs/team/DATA_SOURCES.md",
             "reports/api/api_coverage.md",
             "reports/accessibility/comparison.md",
             "reports/security/zap_summary.md",
@@ -115,6 +118,8 @@ a { color: #0b4f9e; text-decoration: none; }
 .chapter { page-break-before: always; } .doc { margin-top: 12px; }
 .docpath { color: #666; font-size: 8pt; margin-bottom: 2px; }
 .toc li { margin: 2px 0; }
+figure { margin: 10px 0; page-break-inside: avoid; } figure img { max-width: 100%; border: 1px solid #bbb; }
+figcaption { font-size: 8.5pt; color: #333; margin-top: 2px; }
 """
 
 PATH = re.compile(
@@ -145,6 +150,40 @@ def render(relative):
     return f'<div class="doc"><div class="docpath">{html.escape(relative)}</div>{body}</div>'
 
 
+def evidence_captions():
+    """Map evidence ids (EV-005a, ...) to the description in the evidence checklist."""
+    captions = {}
+    with open(
+        os.path.join(ROOT, "docs", "team", "EVIDENCE_CHECKLIST.md"), encoding="utf-8"
+    ) as handle:
+        for line in handle:
+            cells = [cell.strip() for cell in line.split("|")]
+            if len(cells) > 3 and re.fullmatch(r"EV-\d+[a-z]?", cells[1]):
+                captions[cells[1]] = cells[2]
+    return captions
+
+
+def gallery():
+    """All screenshots in reports/evidence, embedded as images with their evidence id and description."""
+    captions = evidence_captions()
+    figures = []
+    for path in sorted(glob.glob(os.path.join(ROOT, "reports", "evidence", "*.png"))):
+        name = os.path.basename(path)
+        evidence_id = name.split("_")[0]
+        with open(path, "rb") as handle:
+            data = base64.b64encode(handle.read()).decode("ascii")
+        caption = f"{evidence_id}: {captions.get(evidence_id, name)}"
+        figures.append(
+            f'<figure><img src="data:image/png;base64,{data}" alt="{html.escape(name)}"/>'
+            f"<figcaption>{html.escape(caption)} <span class='docpath'>({html.escape(name)})</span></figcaption></figure>"
+        )
+    intro = (
+        "<h3>Screenshots taken by the team members</h3><p>Each screenshot was taken by a team member from the real tool or "
+        f"page (course rule). {len(figures)} screenshots are included; their files are in <code>reports/evidence/</code>.</p>"
+    )
+    return f'<div class="doc">{intro}{"".join(figures)}</div>'
+
+
 def build_html():
     toc = "".join(f"<li>{html.escape(title)}</li>" for title, _ in SECTIONS)
     parts = [f"<html><head><meta charset='utf-8'><style>{CSS}</style></head><body>", COVER]
@@ -152,6 +191,8 @@ def build_html():
     for title, files in SECTIONS:
         parts.append(f'<div class="chapter"><h2>{html.escape(title)}</h2>')
         parts.extend(render(name) for name in files)
+        if title.startswith("8 "):
+            parts.append(gallery())
         parts.append("</div>")
     parts.append("</body></html>")
     return "".join(parts)
