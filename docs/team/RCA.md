@@ -83,6 +83,27 @@ Fishbone: Code (unguarded lookups), Tests (no invalid-parameter tests), Design (
 **5 Whys (DEFECT-005, rejection returns 302):** 1. clients cannot tell success from rejection -> 2. both answer 302 -> 3. rejections are shown as flash messages after a redirect -> 4. the endpoints were built for the HTML UI, not as an API -> 5. no API contract was specified. **Root cause class:** API contract not specified (framework defaults relied on). Same class for #13 (paginator/ordering defaults ignore invalid values) and #14 (permission check before method check; schema generated from code, not reviewed).
 **Fishbone categories:** Method (no contract), Machine (framework defaults), Material (generated schema lists only 200). **Corrective:** document the behaviour (done: `test_specs/openapi.yaml`); optional product decision to change status codes. Not fixed in code because it is design-level behaviour of the upstream HTML application; the tests assert the observed behaviour and read state back.
 
+## DEFECT-008..011 - Accessibility defects of area 3 (issues #17 #18 #19 #20; all severity major)
+The four major findings share one analysis because the 5 Whys converge; each has its own fishbone entry.
+
+**5 Whys (DEFECT-008, unnamed selects and deadline inputs, FIXED on `sajawal`):**
+1. Why can a screen reader not name the controls? The selects and the two date/time inputs have no label or `aria-label`.
+2. Why? The template renders the selects with `show_labels=False` and relies on a visible `<h2>` heading ("Signup mode", "Structure") that is not associated with the control; the split date/time widget renders two bare inputs.
+3. Why was the heading used instead of a label? The layout groups a select and its dynamically loaded configuration under one heading, which looks right to sighted users.
+4. Why was it not noticed? The upstream test suite and CI contain no automated accessibility check.
+5. Why is there no check? Accessibility is not a stated quality requirement of the project (no acceptance criterion, no definition of done).
+**Root cause class:** accessibility not part of the definition of done and not measured. **Corrective:** `aria-label` on the two selects and on the shared split date/time widget (commit "Fix: accessible names ..."), regression test `test_shift_form_controls_have_accessible_names` (fails before, passes after). **Preventive:** run axe-core on the key screens in CI (`tests/team/e2e/test_axe_accessibility.py`).
+
+**DEFECT-009 (colour contrast):** the secondary grey `#76858f` on the card backgrounds `#f3f5f6` / `#fcfdfd` has a measured contrast of **3.47:1 / 3.73:1** (axe `data.contrastRatio`), below 4.5:1. Why? The theme's "secondary text" colour was chosen for a soft look. Why not corrected? No contrast criterion. Why? Same root cause (no accessibility acceptance criteria).
+**DEFECT-010 (positive tabindex):** `tabindex="1"` on the wrapper of the signup button. Why? Probably added to make the button focus first or to make a disabled-looking wrapper focusable for a tooltip (not verified in the source history). Why not caught? No keyboard-order check upstream. Root cause: same class.
+**DEFECT-011 (Select2 combobox without name):** the third-party Select2 widget renders its own combobox and does not copy the name of the original select. Root cause: **third-party component accessibility not verified** when integrated.
+
+**Fishbone (categories):** *Method* - no accessibility acceptance criteria, no automated check; *Material* - crispy-forms and Select2 defaults do not set names; *Machine/tools* - CI has no axe/Lighthouse step; *Measurement* - no accessibility metric tracked; *People* - the layout was designed for sighted users, no assistive-technology review; *Environment* - a development theme with soft greys.
+**Severity / risk:** major (axe critical/serious on the two key screens); risk PR-08 of the register (confirmed, likelihood 3 -> 5, impact 3). Fix of DEFECT-008 reduces the critical findings from 2 rules to 0 on the shift form.
+
+## DEFECT-013 (usability) and DEFECT-014 (dependency) - minor, no 5 Whys required
+DEFECT-013: generic message "This action is not allowed." for server-rule rejections raised from an already-open page; cause: one catch-all error message for all signup rejections. DEFECT-014: transitive dependency `soupsieve 2.9` with 4 advisories; not reachable (`find_all("img")` only).
+
 ## Pareto of the four defects
 By **category label** (GitHub labels): business-logic 2 (50 %), validation 2 (50 %).
 By **root-cause class** (more informative):
@@ -92,3 +113,11 @@ By **root-cause class** (more informative):
 | Unenforced error-signalling contract (`return` instead of `raise`) | DEFECT-001 | 1 | 25 % | 100 % |
 By **severity:** major 2 (001, 002), minor 2 (003, 004). By **detection technique:** all four were suspected while reading the source to design white-box tests, then confirmed by an executed test (DEFECT-002 and DEFECT-004 additionally against the live server).
 One root-cause class (input partitions not handled) explains three of four defects, which is why equivalence partitioning and invalid-value tests are the recommended preventive action. With only four defects the 80/20 pattern is indicative, not statistically meaningful; API/E2E/security/performance defects from teammates will be added when they exist.
+
+## Pareto of the area 3 findings (defects #17-#23)
+| Root-cause class | Defects | Count | Share | Cumulative |
+|---|---|---|---|---|
+| Accessibility not part of the definition of done / not measured | DEFECT-008, 009, 010, 012 | 4 | 57 % | 57 % |
+| Third-party component not verified | DEFECT-011, 014 | 2 | 29 % | 86 % |
+| Error-message design (one generic message) | DEFECT-013 | 1 | 14 % | 100 % |
+By category label: accessibility 5 (71 %), usability 1, security 1. By severity: major 4 (008-011), minor 3 (012-014). All seven were found by tools run on the real application (axe-core, Lighthouse, pip-audit) or by the Playwright flows (013); none by reading code first. Together with area 1 (4 defects) and area 2 (3 defects) the project has 14 defects; the dominant preventive action for area 3 is an automated accessibility check in CI.

@@ -27,7 +27,7 @@ jobs:
       - name: Run team tests with statement and branch coverage
         run: |
           INC="$(tr -d '\r' < scripts/gate_modules.txt | paste -sd, -)"
-          uv run coverage run --include="$INC" -m pytest tests/team --ignore=tests/team/api -q -p no:cacheprovider
+          uv run coverage run --include="$INC" -m pytest tests/team --ignore=tests/team/api --ignore=tests/team/e2e -q -p no:cacheprovider
           uv run coverage report -m --fail-under=100
 
   api-tests:
@@ -57,6 +57,35 @@ jobs:
         with:
           name: api-test-reports
           path: reports/api/
+
+  e2e-tests:
+    name: e2e-browser-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext
+          uv sync --dev --inexact --all-extras
+          uv pip install playwright axe-playwright-python
+          uv run python -m playwright install --with-deps chromium
+      - name: Prepare files
+        run: |
+          cp .env.example .env
+          uv run manage.py build
+      - name: Run browser tests (use cases, usability, keyboard, access matrix, recovery, axe) against a real server
+        run: uv run pytest tests/team/e2e -q -p no:cacheprovider
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-reports
+          path: |
+            reports/e2e/
+            reports/accessibility/
 
   mutation:
     name: mutation-score
@@ -115,7 +144,7 @@ jobs:
         run: |
           INC="$(tr -d '\r' < scripts/gate_modules.txt | paste -sd, -)"
           mkdir -p reports
-          uv run coverage run --include="$INC" -m pytest tests/team --ignore=tests/team/api -q -p no:cacheprovider
+          uv run coverage run --include="$INC" -m pytest tests/team --ignore=tests/team/api --ignore=tests/team/e2e -q -p no:cacheprovider
           uv run coverage xml -o reports/coverage.xml
       - name: Wait for SonarQube and create token
         run: |

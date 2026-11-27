@@ -1,0 +1,41 @@
+# Usability and accessibility (area 3)
+
+Screens tested (the key screen of each use case, logged in): **UC1** the shift form `/shifts/<id>/edit/` (planner) and **UC2** the event page with the signup buttons (volunteer).
+Tools: Lighthouse 13.6.0 (accessibility, best practices, SEO; `scripts/run_lighthouse.py`) and a full axe-core 4.14.0 scan driven from Playwright through the Python package `axe-playwright-python`, which bundles the same axe-core engine as `@axe-core/playwright` (`tests/team/e2e/test_axe_accessibility.py`).
+An issue found by both tools is counted once: Lighthouse's accessibility audits are axe-core rules, so issues are merged by rule id (`scripts/compare_accessibility.py` -> `reports/accessibility/comparison.md`).
+All numbers below come from the saved reports in `reports/accessibility/`.
+
+## 1. Usability tests (Playwright, `tests/team/e2e/test_usability_keyboard.py`)
+| Test | What it does | Result |
+|---|---|---|
+| WF1 | planner opens the shift form, enters a meeting time **after** the start time, saves; the page must say what is wrong; correct the value; save | error "Meeting time must not be after start time!" names the field and the rule, the entered values are kept, the correction succeeds with the banner "...has been saved" (pass) |
+| WF2 | volunteer opens the event page, clicks sign up | banner "You have successfully signed up for ..." (pass) |
+| Keyboard (WF1 form) | focus is placed on the first required field and Tab is pressed until the submit button; then Enter | focus reaches date, meeting time, start time, end time in document order, then "Save event"; Enter submits and the success banner appears (pass) |
+
+Usability finding (not an accessibility rule): when a click is rejected by a server rule from a page that was already open (shift filled up, window closed, second tab), the page shows only **"This action is not allowed."** without the reason, while a fresh page shows the reason ("The maximum number of participants is reached."). Reported as an issue (message does not say what to do).
+
+## 2. Findings (axe-core + Lighthouse, each issue once)
+| ID | Rule | Impact | Element(s) | User impact | Proposed fix | Status |
+|---|---|---|---|---|---|---|
+| A11Y-1 | `select-name` | critical | `#id_signup_flow_slug`, `#id_structure_slug` (shift form) | a screen reader announces a combobox without a name; the user cannot tell what the choice is for | give the selects an accessible name (`aria-label`) | **fixed** (before: 2 elements, after: 0) |
+| A11Y-2 | `label` | critical | `#id_signup_until_0`, `#id_signup_until_1` (signup deadline date and time) | the two inputs are announced as unnamed edit fields | `aria-label` "Date" / "Time" on the shared split date/time widget | **fixed** (2 -> 0) |
+| A11Y-3 | `color-contrast` | serious | shift form 6 elements, e.g. `#id_label_helptext`; event page 5 elements, e.g. `.card-text > p`, `9 a.m. Meetup` | low-vision users cannot read grey secondary text (below 4.5:1) | darken `text-body-secondary` to at least 4.5:1 | open (issue) |
+| A11Y-4 | `aria-input-field-name` | serious | `.select2-selection` (qualification multi-select) | combobox without a name | pass an accessible name to the Select2 widget | open (issue) |
+| A11Y-5 | `tabindex` | serious | `#signup-form-3 > .d-inline-block` (event page, wrapper of the signup button has `tabindex="1"`) | tab order jumps; positive tabindex breaks the natural order for keyboard users | remove the positive tabindex (use 0 or none) | open (issue) |
+| A11Y-6 | `heading-order` | moderate | `.card-title` (shift form), `.card-subtitle` (event page) | headings skip a level; screen reader navigation by headings is confusing | use the correct heading level or a styled non-heading | open (issue) |
+| A11Y-7 | `aria-allowed-role` | minor | `textarea` inside the Select2 search | invalid ARIA role on a third-party widget element | upstream widget; report or override | open (not reported separately) |
+| A11Y-8 | `aria-dialog-name` | (Lighthouse only) | 1 dialog element | an unnamed dialog | add `aria-label`/`aria-labelledby` | open (not reported separately) |
+
+## 3. Before and after (one screen fixed: the UC1 shift form)
+Fix (source of the MIS, `src/ephios/core/forms/events.py`, `src/ephios/extra/widgets.py`): accessible names for the two selects and the split date/time inputs.
+| Screen / tool | Before | After |
+|---|---|---|
+| UC1 shift form, Lighthouse accessibility score | **80** | **89** |
+| UC1 shift form, axe violated rules | 6 (`aria-allowed-role`, `aria-input-field-name`, `color-contrast`, `heading-order`, `label`, `select-name`) | **4** (`label` and `select-name`, both critical, gone) |
+| UC2 event page, Lighthouse accessibility score | 86 | 86 (not changed, not in scope of the fix) |
+| Lighthouse best practices / SEO (both screens) | 100 / 91 | 100 / 91 |
+Regression test `test_shift_form_controls_have_accessible_names`: **fails before** the fix (`reports/accessibility/regression_before_fix.txt`), **passes after** (`reports/accessibility/axe_after_run.txt`). The related unit tests (83) still pass.
+
+## 4. Limits
+Automated tools find only part of the accessibility problems (axe-core reports about 30-40 % of WCAG issues at best); no manual screen-reader test was done. Lighthouse ran on the logged-in pages through a session cookie. Colour contrast was measured on the rendered default theme only.
+Screenshots of the tool results must be taken by the team member himself (course rule); the reports are in `reports/accessibility/`.
