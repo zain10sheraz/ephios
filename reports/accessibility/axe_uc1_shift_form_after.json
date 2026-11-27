@@ -13,8 +13,8 @@
   "orientationAngle": 0,
   "orientationType": "landscape-primary"
  },
- "timestamp": "2026-11-27T07:39:25.991Z",
- "url": "http://127.0.0.1:58486/shifts/2/edit/",
+ "timestamp": "2026-11-27T10:36:56.618Z",
+ "url": "http://127.0.0.1:58799/shifts/2/edit/",
  "toolOptions": {
   "reporter": "v1"
  },
@@ -8967,7 +8967,7 @@
      "all": [],
      "none": [],
      "impact": null,
-     "html": "<span class=\"select2 select2-container select2-container--bootstrap-5\" dir=\"ltr\" data-select2-id=\"select2-data-2-b3nn\" style=\"width: 831px;\">",
+     "html": "<span class=\"select2 select2-container select2-container--bootstrap-5\" dir=\"ltr\" data-select2-id=\"select2-data-2-rge0\" style=\"width: 831px;\">",
      "target": [
       ".select2"
      ]

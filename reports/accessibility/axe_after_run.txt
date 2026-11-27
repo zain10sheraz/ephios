@@ -1,15 +1,4 @@
-Loading ephios environment from C:\ephios_sajawal\.env
-uc1_shift_form (after): 4 violated rules: ['aria-allowed-role', 'aria-input-field-name', 'color-contrast', 'heading-order']
-.uc2_event_page (after): 3 violated rules: ['color-contrast', 'heading-order', 'tabindex']
-..
-============================== warnings summary ===============================
-..\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\importlib\metadata\__init__.py:467
-  C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\importlib\metadata\__init__.py:467: DeprecationWarning: Implicit None on return values is deprecated and will raise KeyErrors.
-    return self.metadata['Version']
-
-..\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\django\conf\__init__.py:190
-  C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\django\conf\__init__.py:190: RemovedInDjango60Warning: The FORMS_URLFIELD_ASSUME_HTTPS transitional setting is deprecated.
-    warnings.warn(
-
--- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-3 passed, 2 warnings in 101.50s (0:01:41)
+uc1_shift_form after: 4 violated rules: aria-allowed-role(1), aria-input-field-name(1), color-contrast(6), heading-order(1)
+uc2_event_page after: 3 violated rules: color-contrast(3), heading-order(1), tabindex(1)
+uc5_shift_delete after: 1 violated rules: color-contrast(1)
+uc6_customize_page after: 1 violated rules: color-contrast(1)
