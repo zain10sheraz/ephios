@@ -7,7 +7,7 @@ Project: SE3002 final project on Ephios (upstream `ephios-dev/ephios`, baseline 
 |---|---|---|---|
 | Zain Sheraz | zain10sheraz | 1: static analysis, white-box, mutation, CI | UC5, UC6 (`USE_CASES_ZAIN.md`) |
 | Manan | MannanJafferyyy | 2: API testing, OpenAPI, EP/BVA generator, cross-workflow validation | UC3, UC4 (`USE_CASES_MANAN.md`) |
-| Sujawal | sajawalkhanfake | 3: use cases, usability, accessibility, security, performance | UC1, UC2 (`USE_CASES.md`) |
+| Sajawal | sajawalkhanfake | 3: use cases, usability, accessibility, security, performance | UC1, UC2 (`USE_CASES.md`) |
 Test management documents are shared. The AI-use record is `AI_USE_RECORD.md`.
 
 ## 2. What was tested (results)

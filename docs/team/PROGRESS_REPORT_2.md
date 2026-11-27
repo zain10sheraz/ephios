@@ -14,7 +14,7 @@ Author: Zain Sheraz with Claude Code assistance. Status time: 2026-11-25 midday.
 | CI gate, fix PR, blocked PR | Zain | **done**; early check of the final merge (draft PR #9) passed everything, upstream workflows included | `CI_GATES.md`, `reports/evidence/github/` |
 | Defects + RCA + Pareto | Zain (shared) | **done**: 4 defects, all closed | `RCA.md`, issues #1 #4 #6 #7 |
 | API tests, OpenAPI, generator | Manan | **NOT STARTED** (branch `manan` has 0 commits ahead of the baseline) | `git rev-list --count d12e76cd..origin/manan` = 0 |
-| Playwright use cases, usability, accessibility, security, performance | Sujawal | **NOT STARTED** (branch `sajawal` has 0 commits ahead of the baseline) | `git rev-list --count d12e76cd..origin/sajawal` = 0 |
+| Playwright use cases, usability, accessibility, security, performance | Sajawal | **NOT STARTED** (branch `sajawal` has 0 commits ahead of the baseline) | `git rev-list --count d12e76cd..origin/sajawal` = 0 |
 | Test completion report, final PDF/ZIP | shared | not started (depends on the two areas above) | - |
 
 ## 2. GQM metrics (updated)
@@ -32,7 +32,7 @@ Author: Zain Sheraz with Claude Code assistance. Status time: 2026-11-25 midday.
 ## 3. Variances and control actions
 | Variance | Cause | Control action |
 |---|---|---|
-| Areas 2 and 3 have produced no commits after two project days | not known to the author | **escalated to the group**: Manan and Sujawal must start immediately; interfaces are documented (`REQUIREMENTS.md`, `TEST_PLAN.md`, `RISK_REGISTER.md`, `SQE_PROJECT.md`); the author offers to pair on setup. If nothing is committed by the end of day 3 the missing activities are reported as NOT RUN with the reason in the completion report, and the release decision is HOLD |
+| Areas 2 and 3 have produced no commits after two project days | not known to the author | **escalated to the group**: Manan and Sajawal must start immediately; interfaces are documented (`REQUIREMENTS.md`, `TEST_PLAN.md`, `RISK_REGISTER.md`, `SQE_PROJECT.md`); the author offers to pair on setup. If nothing is committed by the end of day 3 the missing activities are reported as NOT RUN with the reason in the completion report, and the release decision is HOLD |
 | Mutation on 4 more modules took about 4 hours | 7.7 GB laptop, Windows; Docker/WSL memory | run in the background, one module at a time; finished; also found that Cosmic Ray mislabels kills as incompetent on non-UTF-8 output, corrected in the evaluation scripts |
 | GitHub network timeouts (twice) | external | retried, commits kept locally |
 | Lint errors on our `tools/` found only by the early draft PR to `main` | upstream's lint environment lacks our mutation tooling | fixed with targeted `ty: ignore`; early check re-run green |

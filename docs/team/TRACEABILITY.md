@@ -1,7 +1,7 @@
 # Requirements traceability matrix (RTM) - status 2026-11-26
 
 Legend: **P** = executed and passing, **-** = no test yet (honest gap), **partial** = only part of the requirement is checked.
-Levels: U = unit/white-box (Zain, `tests/team/unit`), I = integration (`tests/team/integration`), A = API black-box over HTTP (Manan, `tests/team/api`, 476 tests all passing), E = browser E2E (Sujawal, `tests/team/e2e`, 26 browser tests passing).
+Levels: U = unit/white-box (Zain, `tests/team/unit`), I = integration (`tests/team/integration`), A = API black-box over HTTP (Manan, `tests/team/api`, 476 tests all passing), E = browser E2E (Sajawal, `tests/team/e2e`, 26 browser tests passing).
 Requirement text and rule definitions: `REQUIREMENTS.md`. Test names are real pytest names in this repository.
 
 ## Functional requirements
@@ -20,7 +20,7 @@ Requirement text and rule definitions: `REQUIREMENTS.md`. Test names are real py
 **Requirements coverage (unit + HTTP integration + API levels):** **9 of 9 requirements** have executed passing tests; FR-04 (REST read) is covered by the API tests (area 2, 2026-11-26).
 Requirements coverage = **9 / 9 = 100 %** (strict, no half credit); before the API tests it was 8 / 9 = 89 %.
 Earlier today it was 61 % (4 full + 3 partial of 9); the HTTP tests closed FR-01, 05, 08 and 09.
-E2E tests (Sujawal, area 3) are listed in the E column: FR-01/02/03 by UC1 flows, FR-05..09 by UC2 flows (`docs/team/USE_CASES.md`, `E2E_AND_QUALITY_REPORT.md`); FR-04 (REST read) has no browser test by design.
+E2E tests (Sajawal, area 3) are listed in the E column: FR-01/02/03 by UC1 flows, FR-05..09 by UC2 flows (`docs/team/USE_CASES.md`, `E2E_AND_QUALITY_REPORT.md`); FR-04 (REST read) has no browser test by design.
 
 ## Business rules
 | ID | Rule | Tests (all executed, all passing on `zain`) | Techniques |

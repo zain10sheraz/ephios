@@ -13,7 +13,7 @@ Author: Manan (GitHub MannanJafferyyy) with Claude Code assistance (recorded in 
 | Cross-workflow validation | Manan | **done** (11 tests) | `tests/team/api/test_cross_workflow_api.py` |
 | API coverage criteria | Manan | **done**: operations 14/14, documented responses 46/46, inputs 80/80 | `reports/api/api_coverage.md` |
 | Endpoint weaknesses reported | Manan | **done**: issues #12 #13 #14 (minor, open, not fixed) | `API_TESTING.md` section 5 |
-| Playwright use cases, usability, accessibility, security, performance | Sujawal | not started (branch `sajawal` at baseline) | - |
+| Playwright use cases, usability, accessibility, security, performance | Sajawal | not started (branch `sajawal` at baseline) | - |
 
 ## 2. Metrics
 | Metric | Value |
@@ -31,6 +31,6 @@ Author: Manan (GitHub MannanJafferyyy) with Claude Code assistance (recorded in 
 | API suite needs a real server (8-15 min) | black-box requirement | separate CI job `api-tests-black-box`, excluded from the unit gate |
 
 ## 4. Open items
-Area 3 (Sujawal) not started; final completion report, PDF and ZIP; `api-tests-black-box` is not a required check.
+Area 3 (Sajawal) not started; final completion report, PDF and ZIP; `api-tests-black-box` is not a required check.
 
-**Update 2026-11-26 evening:** area 2 was merged into `main` by PR #15 (merge commit `195a9eb5`); all 21 checks passed, including the three required ones and the new `api-tests-black-box` job. Area 3 (Sujawal) is the only area still not started.
+**Update 2026-11-26 evening:** area 2 was merged into `main` by PR #15 (merge commit `195a9eb5`); all 21 checks passed, including the three required ones and the new `api-tests-black-box` job. Area 3 (Sajawal) is the only area still not started.

@@ -7,14 +7,14 @@ Author: Zain Sheraz with Claude Code assistance (see AI-use record). Status date
 ## 1. Progress against plan
 | Plan item (4-day plan) | Planned | Actual | Status |
 |---|---|---|---|
-| Day 1: setup, scope, requirements, risks | done by end Day 1 | environment, seed/reset, `REQUIREMENTS.md`, `RISK_REGISTER.md` draft | **done** (requirements not yet reviewed by Manan/Sujawal) |
+| Day 1: setup, scope, requirements, risks | done by end Day 1 | environment, seed/reset, `REQUIREMENTS.md`, `RISK_REGISTER.md` draft | **done** (requirements not yet reviewed by Manan/Sajawal) |
 | Day 2: unit tests + coverage + MCC/MC-DC | Zain | 197 team tests; 100 % statement and branch on 5 modules; 2 MCC/MC-DC tables | **done** |
 | Day 2: API tests, OpenAPI, generator | Manan | nothing committed on branch `manan` | **NOT STARTED** |
-| Day 2: Playwright use cases | Sujawal | nothing committed on branch `sajawal` | **NOT STARTED** |
+| Day 2: Playwright use cases | Sajawal | nothing committed on branch `sajawal` | **NOT STARTED** |
 | Day 3: SonarQube + complexity | Zain | two real scans (core / comprehensive profile); V(G) hand = 6 | **done early** |
 | Day 3: mutation + 2 custom operators + 15 survivors | Zain | 415 mutants, 3 custom operators, 92 survivors analysed, 97.3 % kill rate | **done early** |
 | Day 3: CI gate, fix PR, blocked PR | Zain | PR #2 (fix, green after a real Sonar block), PR #3 (blocked), PR #5 (DEFECT-002 fix, running) | **done** (PR #5 pending result) |
-| Day 3: Lighthouse/axe, ZAP, pip-audit, k6, recovery | Sujawal | nothing | **NOT STARTED** |
+| Day 3: Lighthouse/axe, ZAP, pip-audit, k6, recovery | Sajawal | nothing | **NOT STARTED** |
 | Day 4: defects, RCA, Pareto, reports | shared | 2 defects filed and RCA written; this report; PDF not started | in progress |
 
 ## 2. Defects (GitHub Issues)
@@ -50,7 +50,7 @@ Quality-gate indicators: SonarQube comprehensive profile 18 smells initially, 13
 ## 4. Variances, causes and control actions
 | Variance | Cause | Control action |
 |---|---|---|
-| Teammates' areas (API, E2E, security, performance, usability) not started; branches at baseline | availability unknown to the author | ask Manan and Sujawal to start today; interfaces given in `REQUIREMENTS.md`, plan, risk register; if not started by Day 3 evening, report NOT RUN and cut scope |
+| Teammates' areas (API, E2E, security, performance, usability) not started; branches at baseline | availability unknown to the author | ask Manan and Sajawal to start today; interfaces given in `REQUIREMENTS.md`, plan, risk register; if not started by Day 3 evening, report NOT RUN and cut scope |
 | Docker/WSL froze twice, SonarQube scan failed twice | 7.7 GB RAM, SonarQube + Docker + mutation together | capped WSL memory, run heavy tools sequentially, narrowed Sonar scope, shut Docker down when idle |
 | GitHub network outage during PR #5 | external | retried; commits kept locally |
 | CI blocked PR #2 on first run (21 > 18 smells) | our own new tests added 3 smells | fixed the tests and tightened the ratchet to 13 (the gate worked as intended) |
@@ -76,4 +76,4 @@ Quality-gate indicators: SonarQube comprehensive profile 18 smells initially, 13
 
 GQM update: defect density 4 / 4.747 KLOC = **0.84 per KLOC**; reopen rate 0 / 4 = **0 %**; severity mix 2 major / 2 minor.
 Pareto by root cause: input/partition not handled 3 of 4 defects (75 %).
-Remaining schedule risk unchanged: Manan's (API) and Sujawal's (E2E, usability, security, performance) areas not started.
+Remaining schedule risk unchanged: Manan's (API) and Sajawal's (E2E, usability, security, performance) areas not started.

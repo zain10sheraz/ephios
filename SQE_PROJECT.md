@@ -18,10 +18,10 @@ folders listed below; upstream source is modified only where a documented defect
 |---|---|---|---|
 | Zain Sheraz | zain10sheraz | 1: static analysis, white-box, mutation, CI | `zain` |
 | Manan | MannanJafferyyy | 2: API testing, integration, OpenAPI, EP/BVA generator, cross-workflow validation | `manan` |
-| Sujawal | sajawalkhan01 | 3: use cases, usability, accessibility, security, performance | `sajawal` |
+| Sajawal | sajawalkhanfake | 3: use cases, usability, accessibility, security, performance | `sajawal` |
 Test management documents are shared. Branches are merged into `main` only through a pull request that must pass the quality gate.
 
-**Merge status of `main` (2026-11-27):** all three areas are merged through pull requests that passed the required checks: Zain's area by PR #11, Manan's by #15, #16 and #28, Sujawal's by #24, #27 and #30, Zain's use cases and the completion report by #29. Pull request #3 is the deliberately blocked demonstration.
+**Merge status of `main` (2026-11-27):** all three areas are merged through pull requests that passed the required checks: Zain's area by PR #11, Manan's by #15, #16 and #28, Sajawal's by #24, #27 and #30, Zain's use cases and the completion report by #29. Pull request #3 is the deliberately blocked demonstration.
 
 ## Where things are
 | Path | Content |

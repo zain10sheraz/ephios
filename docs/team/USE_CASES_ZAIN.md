@@ -1,7 +1,7 @@
 # Use cases of Zain (browser end-to-end, area 1 member)
 
 The brief asks for two use cases **per member**. Zain's two use cases extend the two workflows of `REQUIREMENTS.md` and are written from the requirements and from the behaviour of the running application. Each has a main flow, 2 alternative flows and 3 exception flows; every flow is a Playwright test (real Chromium, real login form) that asserts the **result shown on the screen** and the **post-conditions** read back from stored state (REST API and database row counts).
-Tests: `tests/team/e2e/test_uc5_planner_deletes.py`, `tests/team/e2e/test_uc6_volunteer_customizes.py`. Other use cases: `USE_CASES.md` (Sujawal, UC1-UC2) and `USE_CASES_MANAN.md` (Manan, UC3-UC4).
+Tests: `tests/team/e2e/test_uc5_planner_deletes.py`, `tests/team/e2e/test_uc6_volunteer_customizes.py`. Other use cases: `USE_CASES.md` (Sajawal, UC1-UC2) and `USE_CASES_MANAN.md` (Manan, UC3-UC4).
 
 ## UC5 - Planner deletes a shift or an event (FR-02, BR-W7 last shift cannot be deleted, BR-W9 delete permission)
 | | |
