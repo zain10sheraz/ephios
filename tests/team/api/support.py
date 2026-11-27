@@ -74,7 +74,12 @@ class Server:
     def __init__(self, workdir):
         self.workdir = Path(workdir)
         self.port = free_port()
-        self.base = f"http://127.0.0.1:{self.port}"
+        # The server can bind to another address and be reached under another name (used to let the ZAP container
+        # reach it through host.docker.internal); by default everything is 127.0.0.1.
+        self.bind_host = os.environ.get("E2E_BIND", "127.0.0.1")
+        self.public_host = os.environ.get("E2E_PUBLIC_HOST", "127.0.0.1")
+        self.base = f"http://{self.public_host}:{self.port}"
+        self.local_base = f"http://127.0.0.1:{self.port}"  # for helpers that run on the host (data preparation, read-back)
         self.process = None
         self.env = {
             **os.environ,
@@ -118,7 +123,13 @@ class Server:
         log = open(self.workdir / "server.log", "wb")  # noqa: SIM115 - closed by stop()
         self.log = log
         self.process = subprocess.Popen(
-            [sys.executable, "manage.py", "runserver", f"127.0.0.1:{self.port}", "--noreload"],
+            [
+                sys.executable,
+                "manage.py",
+                "runserver",
+                f"{self.bind_host}:{self.port}",
+                "--noreload",
+            ],
             cwd=ROOT,
             env=self.env,
             stdout=log,
@@ -127,7 +138,9 @@ class Server:
         deadline = time.time() + 120
         while time.time() < deadline:
             try:
-                status = requests.get(self.base + "/accounts/login/", timeout=60).status_code
+                status = requests.get(
+                    f"http://127.0.0.1:{self.port}/accounts/login/", timeout=60
+                ).status_code
             except (requests.ConnectionError, requests.Timeout):
                 status = None
             if status == 200:

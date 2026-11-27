@@ -26,10 +26,13 @@ def write_matrix():
     yield
     out = ROOT / "reports" / "e2e"
     out.mkdir(parents=True, exist_ok=True)
-    lines = ["| Role | Action | Expected | Observed | Result |", "|---|---|---|---|---|"]
+    lines = [
+        "| Role | Action | Expected | Observed | Result | Evidence |",
+        "|---|---|---|---|---|---|",
+    ]
     lines += [
-        f"| {role} | {action} | {expected} | {observed} | {'PASS' if expected == observed else 'FAIL'} |"
-        for role, action, expected, observed in RESULTS
+        f"| {role} | {action} | {expected} | {observed} | {'PASS' if expected == observed else 'FAIL'} | {evidence} |"
+        for role, action, expected, observed, evidence in RESULTS
     ]
     (out / "access_matrix.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -49,5 +52,6 @@ def test_access_decision(role, action, path, expected, meaning, make_page, plann
     observed_status = response.status
     if role == "anonymous":
         assert "/accounts/login/" in page.url  # the login page replaced the protected page
-    RESULTS.append((role, f"{action} ({meaning})", expected, observed_status))
+    evidence = f"`test_access_decision[{role}-{action}]`, HTTP {observed_status}, final URL `{page.url.replace(server.base, '')}`"
+    RESULTS.append((role, f"{action} ({meaning})", expected, observed_status, evidence))
     assert observed_status == expected

@@ -27,7 +27,7 @@
 | Rule | Impact | Found by | Elements before | Elements after | Example element |
 |---|---|---|---|---|---|
 | aria-dialog-name | - | Lighthouse | 1 | 1 | `-` |
-| color-contrast | serious | axe + Lighthouse | 5 | 5 | `['.card-text > p']` |
+| color-contrast | serious | axe + Lighthouse | 5 | 5 | `['small:nth-child(4) > .d-inline-block']` |
 | heading-order | moderate | axe + Lighthouse | 1 | 1 | `['.card-subtitle']` |
-| tabindex | serious | axe + Lighthouse | 1 | 1 | `['#signup-form-3 > .d-inline-block']` |
+| tabindex | serious | axe + Lighthouse | 1 | 1 | `['#signup-form-2 > .d-inline-block']` |
 
