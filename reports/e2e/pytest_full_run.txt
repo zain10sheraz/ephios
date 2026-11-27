@@ -1,4 +1,4 @@
-..........................                                               [100%]
+...................................................                      [100%]
 ============================== warnings summary ===============================
 ..\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\importlib\metadata\__init__.py:467
   C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\importlib\metadata\__init__.py:467: DeprecationWarning: Implicit None on return values is deprecated and will raise KeyErrors.
@@ -9,4 +9,5 @@
     warnings.warn(
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-26 passed, 2 warnings in 1007.48s (0:16:47)
+- Generated html report: file:///C:/ephios_sajawal/reports/e2e/playwright_report.html -
+51 passed, 2 warnings in 17078.30s (4:44:38)
