@@ -5,8 +5,8 @@ Author: Sujawal (committed through the account `sajawalkhanfake`) with Claude Co
 ## 1. Progress against plan
 | Plan item | Owner | Status | Evidence |
 |---|---|---|---|
-| S1 use cases (2 use cases, 12 flows) | Sujawal | **done** | `USE_CASES.md` |
-| S2 Playwright automation of every flow, post-conditions | Sujawal | **done**: 12 flow tests | `tests/team/e2e/`, `reports/e2e/` |
+| S1 use cases (2 use cases, 12 flows; team total 6 use cases, 36 flows) | Sujawal | **done** (UC3-UC6 of Manan and Zain: `USE_CASES_MANAN.md`, `USE_CASES_ZAIN.md`) | `USE_CASES.md` |
+| S2 Playwright automation of every flow, post-conditions | Sujawal | **done**: 12 flow tests (36 for the team) | `tests/team/e2e/`, `reports/e2e/` |
 | S3 usability tests (2) | Sujawal | **done** | `test_usability_keyboard.py` |
 | S4 keyboard test | Sujawal | **done** | same file |
 | S5 Lighthouse + axe-core | Sujawal | **done** (2 screens, both tools) | `reports/accessibility/`, `ACCESSIBILITY.md` |
