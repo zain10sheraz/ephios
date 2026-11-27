@@ -25,7 +25,7 @@ Techniques applied wherever they fit: equivalence partitioning (one invalid valu
 |---|---|---|
 | Zain Sheraz (zain10sheraz) | 1: static analysis, white-box, mutation, CI | SonarQube, complexity, unit tests, MCC/MC-DC, Cosmic Ray, CI gate, defects #1 #4 |
 | Manan (MannanJafferyyy) | 2: API testing and data generation | OpenAPI spec, EP/BVA generator, API + integration tests, cross-workflow checks |
-| Sujawal (sajawalkhan01; branch `sajawal`) | 3: use cases, usability, accessibility, security, performance | 4 use cases with 2 alt + 2 exception flows, Playwright, Lighthouse/axe, ZAP, pip-audit, k6, recovery test |
+| Sajawal (sajawalkhanfake; branch `sajawal`) | 3: use cases, usability, accessibility, security, performance | 4 use cases with 2 alt + 2 exception flows, Playwright, Lighthouse/axe, ZAP, pip-audit, k6, recovery test |
 Shared: requirements, test plan, estimates, risks, traceability, reports, RCA, final PDF/ZIP.
 
 ## 4. Environment
@@ -39,7 +39,7 @@ Synthetic only: accounts in `scripts/seed_test_data.py` (admin, planner, two vol
 |---|---|---|
 | 1 Setup/planning | install, seed, scope, requirements, risks | done (setup, requirements, risk register draft) |
 | 2 Core testing | unit + coverage + MCC, API tests, generator, Playwright | **done** (unit and mutation: Zain; API and generator: Manan; Playwright use cases: all three members) |
-| 3 Advanced | Sonar, mutation, CI, Lighthouse/axe, ZAP, audit, k6, recovery | **done** (Sonar, mutation, CI: Zain; Lighthouse, axe, ZAP, pip-audit, k6, recovery: Sujawal) |
+| 3 Advanced | Sonar, mutation, CI, Lighthouse/axe, ZAP, audit, k6, recovery | **done** (Sonar, mutation, CI: Zain; Lighthouse, axe, ZAP, pip-audit, k6, recovery: Sajawal) |
 | 4 Defects/final | issues, RCA, Pareto, reports, PDF, ZIP | defects, RCA, Pareto, reports and completion report done; PDF built 2026-11-27 with `scripts/build_report_pdf.py`, ZIP created from the final main |
 
 ## 7. Entry, exit, suspension and resumption criteria
@@ -62,7 +62,7 @@ Honesty note: estimates for Zain's areas below were written **after** the work (
 | Mutation testing + analysis | 3 | 5 | 8 | 5.2 | ~8.5 (4 modules, 113 survivors analysed) | worklog (retrospective) |
 | CI gate + PRs | 2 | 4 | 7 | 4.2 | ~8 (four PR cycles incl. real blocks and a GitHub outage) | worklog (retrospective) |
 | API tests + generator + OpenAPI (Manan) | 5 | 8 | 14 | 8.5 | **~13.5** = 8.5 (suite) + 2.0 (follow-up tests) + 3.0 (use cases UC3, UC4); 1.6 times the estimate | prospective estimate, actual from `WORKLOG.md` (approximate) |
-| E2E + use cases (Sujawal) | 5 | 8 | 12 | 8.2 | area 3 rows together: see the total below | prospective |
+| E2E + use cases (Sajawal) | 5 | 8 | 12 | 8.2 | area 3 rows together: see the total below | prospective |
 | Usability/accessibility | 2 | 3 | 5 | 3.2 | in the area 3 total | prospective |
 | Security | 2 | 3 | 5 | 3.2 | in the area 3 total | prospective |
 | Performance + recovery | 2 | 4 | 6 | 4.0 | in the area 3 total | prospective |

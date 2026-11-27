@@ -1,22 +1,22 @@
 # Weekly progress report 4 (project day 5: 2026-11-27) - area 3
 
-Author: Sujawal (committed through the account `sajawalkhanfake`) with Claude Code assistance (recorded in `AI_USE_RECORD.md`). Previous: `PROGRESS_REPORT_3.md`.
+Author: Sajawal (committed through the account `sajawalkhanfake`) with Claude Code assistance (recorded in `AI_USE_RECORD.md`). Previous: `PROGRESS_REPORT_3.md`.
 
 ## 1. Progress against plan
 | Plan item | Owner | Status | Evidence |
 |---|---|---|---|
-| S1 use cases (2 use cases, 12 flows; team total 6 use cases, 36 flows) | Sujawal | **done** (UC3-UC6 of Manan and Zain: `USE_CASES_MANAN.md`, `USE_CASES_ZAIN.md`) | `USE_CASES.md` |
-| S2 Playwright automation of every flow, post-conditions | Sujawal | **done**: 12 flow tests (36 for the team) | `tests/team/e2e/`, `reports/e2e/` |
-| S3 usability tests (2) | Sujawal | **done** | `test_usability_keyboard.py` |
-| S4 keyboard test | Sujawal | **done** | same file |
-| S5 Lighthouse + axe-core | Sujawal | **done** (2 screens, both tools) | `reports/accessibility/`, `ACCESSIBILITY.md` |
-| S6 fix one screen, before/after | Sujawal | **done** (shift form 80 -> 89, 2 critical rules 0) | `reports/accessibility/comparison.md` |
-| S7 access matrix + role checks | Sujawal | **done** (7 decisions) | `SECURITY.md`, `reports/e2e/access_matrix.md` |
-| S8 OWASP ZAP passive scan | Sujawal | **done** (ZAP 2.17.0 in Docker, 22 browser tests through the proxy, 166 URLs, 299 alerts; issues #25 and #26) | `SECURITY.md` section 5, `reports/security/zap_summary.md` |
-| S9 dependency audit | Sujawal | **done** (177 packages, 4 advisories, not reachable) | `reports/security/pip_audit.json`, `pip_audit_packages.txt` |
-| S10 performance k6 | Sujawal | **done** (limits met; EC-04 as written not met/not comparable) | `PERFORMANCE.md` |
-| S11 failure and recovery | Sujawal | **done** (API/integration test with HTTP requests, as the brief asks, and the same scenario in the browser) | `tests/team/api/test_failure_recovery_api.py`, `tests/team/e2e/test_failure_recovery.py` |
-| S12 management items | Sujawal | **done**: issues #17-#23, RCA, risk register, traceability | `RCA.md`, `RISK_REGISTER.md`, `TRACEABILITY.md` |
+| S1 use cases (2 use cases, 12 flows; team total 6 use cases, 36 flows) | Sajawal | **done** (UC3-UC6 of Manan and Zain: `USE_CASES_MANAN.md`, `USE_CASES_ZAIN.md`) | `USE_CASES.md` |
+| S2 Playwright automation of every flow, post-conditions | Sajawal | **done**: 12 flow tests (36 for the team) | `tests/team/e2e/`, `reports/e2e/` |
+| S3 usability tests (2) | Sajawal | **done** | `test_usability_keyboard.py` |
+| S4 keyboard test | Sajawal | **done** | same file |
+| S5 Lighthouse + axe-core | Sajawal | **done** (2 screens, both tools) | `reports/accessibility/`, `ACCESSIBILITY.md` |
+| S6 fix one screen, before/after | Sajawal | **done** (shift form 80 -> 89, 2 critical rules 0) | `reports/accessibility/comparison.md` |
+| S7 access matrix + role checks | Sajawal | **done** (7 decisions) | `SECURITY.md`, `reports/e2e/access_matrix.md` |
+| S8 OWASP ZAP passive scan | Sajawal | **done** (ZAP 2.17.0 in Docker, 22 browser tests through the proxy, 166 URLs, 299 alerts; issues #25 and #26) | `SECURITY.md` section 5, `reports/security/zap_summary.md` |
+| S9 dependency audit | Sajawal | **done** (177 packages, 4 advisories, not reachable) | `reports/security/pip_audit.json`, `pip_audit_packages.txt` |
+| S10 performance k6 | Sajawal | **done** (limits met; EC-04 as written not met/not comparable) | `PERFORMANCE.md` |
+| S11 failure and recovery | Sajawal | **done** (API/integration test with HTTP requests, as the brief asks, and the same scenario in the browser) | `tests/team/api/test_failure_recovery_api.py`, `tests/team/e2e/test_failure_recovery.py` |
+| S12 management items | Sajawal | **done**: issues #17-#23, RCA, risk register, traceability | `RCA.md`, `RISK_REGISTER.md`, `TRACEABILITY.md` |
 
 ## 2. GQM metrics (updated)
 | Goal | Metric | Value |

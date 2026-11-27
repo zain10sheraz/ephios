@@ -1,4 +1,4 @@
-# Viva notes - Area 3 (use cases, Playwright, usability, accessibility, security, performance) - Sujawal
+# Viva notes - Area 3 (use cases, Playwright, usability, accessibility, security, performance) - Sajawal
 
 Re-run things yourself before the viva; do not rely on this page alone. You must be able to explain every test, number and decision below. Details: `E2E_AND_QUALITY_REPORT.md`.
 

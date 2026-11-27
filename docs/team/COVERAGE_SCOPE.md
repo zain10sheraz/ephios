@@ -30,7 +30,7 @@ Evidence: `scripts/run_unit_coverage.ps1` output; CI job `unit-tests-100pct-cove
 ## 3. Outside the 100 % gate (measured with `tests/team`, 2026-11-24) and why
 | Module | Measured | Why it is outside the gate | Residual risk |
 |---|---|---|---|
-| `core/views/event.py` (WF1 views) | 46 % stmt (create/edit/activate/delete covered by 32 HTTP tests in `test_wf1_http.py`) | Uncovered: the event **list/calendar rendering** (month grid, day view, CSS context) and **event copy with recurrence** (`EventCopyView`). Neither is among our requirements FR-01..FR-09; rendering is presentation logic best checked by browser tests | medium: calendar/copy bugs would not be caught; E2E tests (Sujawal) cover the list only |
+| `core/views/event.py` (WF1 views) | 46 % stmt (create/edit/activate/delete covered by 32 HTTP tests in `test_wf1_http.py`) | Uncovered: the event **list/calendar rendering** (month grid, day view, CSS context) and **event copy with recurrence** (`EventCopyView`). Neither is among our requirements FR-01..FR-09; rendering is presentation logic best checked by browser tests | medium: calendar/copy bugs would not be caught; E2E tests (Sajawal) cover the list only |
 | `core/views/shift.py` | 74 % (create/edit/delete, fragments covered) | Uncovered: **shift copy with recurrence** (`ShiftCopyView`) and a plugin-less error branch of shift creation (needs all signup-flow plugins disabled) | low |
 | `core/views/bulk.py` | 39 % | bulk delete of events; outside the selected requirements | low |
 | `core/signup/disposition.py` | 37 % | the responsible's **disposition** UI (assigning participants) is not WF2 self-service signup | medium: separate workflow |

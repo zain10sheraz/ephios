@@ -1,7 +1,7 @@
 # Use cases of Manan (browser end-to-end, area 2 member)
 
 The brief asks for two use cases **per member**. Manan's two use cases extend the two workflows of `REQUIREMENTS.md` (WF1 event and shift management, WF2 signup) and are written from the requirements and from the behaviour of the running application. Each has a main flow, 2 alternative flows and 3 exception flows; every flow is a Playwright test (real Chromium, real login form) that asserts the **result shown on the screen** and the **post-conditions** read back from stored state (REST API).
-Tests: `tests/team/e2e/test_uc3_planner_changes_shift.py`, `tests/team/e2e/test_uc4_volunteer_declines.py`. Sujawal's use cases UC1 and UC2: `USE_CASES.md`.
+Tests: `tests/team/e2e/test_uc3_planner_changes_shift.py`, `tests/team/e2e/test_uc4_volunteer_declines.py`. Sajawal's use cases UC1 and UC2: `USE_CASES.md`.
 
 ## UC3 - Planner changes the signup configuration of a shift and a volunteer sees the effect (FR-03, FR-09, BR4)
 | | |
