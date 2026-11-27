@@ -76,7 +76,10 @@ def make_page(chromium, server):
 
     def factory(credentials=None):
         context = chromium.new_context()
-        context.set_default_timeout(20000)
+        context.set_default_timeout(
+            60000
+        )  # generous: the laptop has 7.7 GB RAM and slows down under memory pressure
+        context.set_default_navigation_timeout(60000)
         contexts.append(context)
         page = context.new_page()
         if credentials:

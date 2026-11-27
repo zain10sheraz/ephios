@@ -78,7 +78,7 @@ jobs:
           cp .env.example .env
           uv run manage.py build
       - name: Run browser tests (use cases, usability, keyboard, access matrix, recovery, axe) against a real server
-        run: uv run pytest tests/team/e2e -q -p no:cacheprovider
+        run: uv run pytest tests/team/e2e -q -p no:cacheprovider --html=reports/e2e/playwright_report.html --self-contained-html
       - uses: actions/upload-artifact@v4
         if: always()
         with:
