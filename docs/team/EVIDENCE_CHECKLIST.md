@@ -17,7 +17,7 @@ Status values: `captured` (file exists, produced by a real run), `verified` (a g
 | EV-009 | Volunteer view of the same event | **TO TAKE by Zain**: log in as volunteer@sqe.test, open "Concert Medical Service" -> `reports/evidence/EV-009_volunteer_event.png` | – | pending |
 | EV-010 | Mutation round 1 raw data (3 modules) | `reports/mutation/round1_*.jsonl`, summary in `docs/team/MUTATION.md` | 2026-11-24 | captured |
 | EV-013 | Mutation round 2 raw data and survivor analysis CSV | `reports/mutation/round2_*.jsonl`, `reports/mutation/survivor_analysis.csv` | 2026-11-24 | captured |
-| EV-011 | Risk register + exit criteria draft | `docs/team/RISK_REGISTER.md` | 2026-11-24 | draft - team review pending |
+| EV-011 | Risk register + exit criteria draft | `docs/team/RISK_REGISTER.md` | 2026-11-24 | written - members to confirm |
 | EV-012 | CI workflow + gate scripts | `.github/workflows/team-quality-gate.yml`, `docs/team/CI_GATES.md` | 2026-11-24 | captured (ran on GitHub) |
 | EV-014 | Fix PR #2 (red Sonar run -> green) | https://github.com/zain10sheraz/ephios/pull/2 | 2026-11-24 | captured by Zain: `reports/evidence/EV-014_pr2_checks_all_green.png` (PR #2 Checks tab, 3 jobs green, merged into zain). The earlier RED run is not in this image; its evidence is the CI log in docs/team/CI_GATES.md |
 | EV-015 | Blocked PR #3 (merge blocked by required checks) | https://github.com/zain10sheraz/ephios/pull/3 | 2026-11-24 | PARTIAL: `reports/evidence/EV-015a_pr3_demo_description_commits.png` shows PR #3 description and commits only. STILL NEEDED: scroll down to the checks box showing 'Merging is blocked' / failing checks -> `EV-015b_pr3_blocked.png` |
@@ -29,7 +29,7 @@ Status values: `captured` (file exists, produced by a real run), `verified` (a g
 | EV-020 | PR #5 (DEFECT-002 fix): Merged into zain, description with before/after evidence | `reports/evidence/EV-020_pr5_merged_defect_002.png` | 2026-11-25 | captured by Zain (shows the PR page; its Checks tab is not in this image, see `reports/evidence/github/pr_5.json` for the check results) |
 | EV-021 | Issue #4 closed with evidence | https://github.com/zain10sheraz/ephios/issues/4 | 2026-11-24 | **TO SCREENSHOT by Zain** |
 | EV-022 | Live probe before/after DEFECT-002 | `reports/defect002_live_probe_before_fix.txt` (500 x4), `reports/defect002_live_probe_after_fix.txt` (200 x4) | 2026-11-24 | captured |
-| EV-023 | RCA, test plan, RTM, progress report 1 | `docs/team/RCA.md`, `TEST_PLAN.md`, `TRACEABILITY.md`, `PROGRESS_REPORT_1.md` | 2026-11-24 | draft - team review pending |
+| EV-023 | RCA, test plan, RTM, progress report 1 | `docs/team/RCA.md`, `TEST_PLAN.md`, `TRACEABILITY.md`, `PROGRESS_REPORT_1.md` | 2026-11-24 | written - members to confirm |
 | EV-024 | DEFECT-003/004 before/after tests and live probe | `reports/defect003_004_before_fix.txt` (5 failed), `reports/defect003_004_after_fix.txt` (57 passed), `reports/defect004_live_probe_before_fix.txt` (500 x4), `reports/defect004_live_probe_after_fix.txt` (404 x2, 200 x2), `reports/defect003_004_regression.txt` | 2026-11-24 | captured |
 | EV-025 | PR #8 (DEFECT-003 + DEFECT-004 fix): Merged into zain, description with before/after evidence | `reports/evidence/EV-025_pr8_merged_defects_003_004.png` | 2026-11-25 | captured by Zain (check results in `reports/evidence/github/pr_8.json`) |
 | EV-026 | Coverage scope + 16-module 100 % run | `docs/team/COVERAGE_SCOPE.md`, rerun `scripts/run_unit_coverage.ps1` | 2026-11-24 | captured (rerun by Claude; not yet verified by a member) |

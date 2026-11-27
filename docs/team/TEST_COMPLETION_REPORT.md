@@ -59,7 +59,7 @@ Root-cause analyses (5 Whys, fishbone, Pareto): `RCA.md`.
 | PR-10 WF1 change not reflected in WF2 | 11 cross-workflow API tests, UC3 | Low |
 | PR-11 / PR-12 input crashes | DEFECT-002/003/004 fixed, EP/BVA suites | Low |
 | PR-13 vulnerable dependency | soupsieve not reachable | Low |
-| PJ-01 / PJ-02 / PJ-03 project risks | occurred (laptop memory, late start of areas 2 and 3); handled (sequential runs, documented NOT RUN, areas completed) | closed |
+| PJ-01 / PJ-02 / PJ-03 project risks | occurred (laptop memory, late start of areas 2 and 3); handled (heavy tools run one at a time, areas 2 and 3 completed) | closed |
 
 ## 7. Release criteria: actual versus target
 | ID | Criterion | Target | Actual | Met |
