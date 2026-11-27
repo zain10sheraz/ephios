@@ -1,5 +1,7 @@
 # Weekly progress report 1 (project days 1-2: 2026-11-23 .. 2026-11-24)
 
+*Historical report: it states the status on the date above. Areas 2 and 3 were completed later; the current status is in `PROGRESS_REPORT_4.md` section 5.*
+
 Author: Zain Sheraz with Claude Code assistance (see AI-use record). Status date: 2026-11-24 evening.
 
 ## 1. Progress against plan
