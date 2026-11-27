@@ -71,7 +71,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y gettext
           uv sync --dev --inexact --all-extras
-          uv pip install playwright axe-playwright-python
+          uv pip install playwright pytest-html
           uv run python -m playwright install --with-deps chromium
       - name: Prepare files
         run: |
