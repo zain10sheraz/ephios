@@ -61,12 +61,13 @@ Honesty note: estimates for Zain's areas below were written **after** the work (
 | SonarQube + complexity | 1 | 2 | 4 | 2.2 | ~2.5 | worklog (retrospective) |
 | Mutation testing + analysis | 3 | 5 | 8 | 5.2 | ~8.5 (4 modules, 113 survivors analysed) | worklog (retrospective) |
 | CI gate + PRs | 2 | 4 | 7 | 4.2 | ~8 (four PR cycles incl. real blocks and a GitHub outage) | worklog (retrospective) |
-| API tests + generator + OpenAPI (Manan) | 5 | 8 | 14 | 8.5 | done; about 8.5 h actual (approximate, session time) | prospective estimate, actual approximate |
-| E2E + use cases (Sujawal) | 5 | 8 | 12 | 8.2 | not started | prospective |
-| Usability/accessibility | 2 | 3 | 5 | 3.2 | not started | prospective |
-| Security | 2 | 3 | 5 | 3.2 | not started | prospective |
-| Performance + recovery | 2 | 4 | 6 | 4.0 | not started | prospective |
+| API tests + generator + OpenAPI (Manan) | 5 | 8 | 14 | 8.5 | **~13.5** = 8.5 (suite) + 2.0 (follow-up tests) + 3.0 (use cases UC3, UC4); 1.6 times the estimate | prospective estimate, actual from `WORKLOG.md` (approximate) |
+| E2E + use cases (Sujawal) | 5 | 8 | 12 | 8.2 | area 3 rows together: see the total below | prospective |
+| Usability/accessibility | 2 | 3 | 5 | 3.2 | in the area 3 total | prospective |
+| Security | 2 | 3 | 5 | 3.2 | in the area 3 total | prospective |
+| Performance + recovery | 2 | 4 | 6 | 4.0 | in the area 3 total | prospective |
 | Documents + PDF | 4 | 6 | 10 | 6.3 | ~6 so far, PDF not started | prospective |
+Area 3 total (rows E2E, usability, security, performance): three-point E = 18.6 h, actual **about 14.0 h** (4.0 use cases and browser tests + 2.5 accessibility + 2.0 performance and security + 2.0 management items + 3.5 follow-up with the real axe, ZAP and API-level recovery; approximate, from `WORKLOG.md`), 0.75 times the estimate. Zain's use cases UC5 and UC6 and the completion report took about 3.5 h that no estimate covered. All effort figures after area 1 are approximate and reconstructed from session activity.
 Reading: for Zain's area the actual effort (about 38 h, approximate and reconstructed from session activity) is well above the retrospective three-point total (about 17 h) because the scope grew during the work (more modules, HTTP tests, four defect cycles) and because machine stalls from RAM pressure cost hours. The final actual-versus-estimate comparison, including the other members' areas, belongs in the test completion report.
 
 ## 10. Plan changes
