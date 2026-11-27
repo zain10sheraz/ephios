@@ -69,6 +69,8 @@ def audit(base, phase):
     run(f"{base}/shifts/{shift_id}/edit/", planner, "uc1_shift_form", phase)
     frontend = planner.rest(f"/api/events/{event_id}/")["frontend_url"]
     run(base + "/" + frontend.split("/", 3)[3], volunteer, "uc2_event_page", phase)
+    run(f"{base}/shifts/{shift_id}/delete/", planner, "uc5_shift_delete", phase)
+    run(f"{base}/shifts/{shift_id}/signup/", volunteer, "uc6_customize_page", phase)
 
 
 if __name__ == "__main__":

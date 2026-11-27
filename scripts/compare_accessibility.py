@@ -9,7 +9,10 @@ import json
 import os
 
 FOLDER = os.path.join(os.path.dirname(__file__), "..", "reports", "accessibility")
-SCREENS = ["uc1_shift_form", "uc2_event_page"]
+SCREENS = ["uc1_shift_form", "uc2_event_page", "uc5_shift_delete", "uc6_customize_page"]
+FIXED_SCREENS = {
+    "uc1_shift_form"
+}  # the screens that were fixed have a before and an after run; the others one measurement
 
 
 def load(name):
@@ -58,7 +61,8 @@ def main():
             "|---|---|---|---|---|",
         ]
         merged = {}
-        for phase in ("before", "after"):
+        phases = ("before", "after") if screen in FIXED_SCREENS else ("after",)
+        for phase in phases:
             scores, failing = lighthouse(screen, phase)
             lines.append(
                 f"| Lighthouse | {phase} | {scores['accessibility']} | {scores['best-practices']} | {scores['seo']} |"
@@ -77,10 +81,14 @@ def main():
         for rule, info in sorted(merged.items()):
             tools = [
                 name
-                for key, name in (("axe_before", "axe"), ("lh_before", "Lighthouse"))
+                for key, name in ((f"axe_{phases[0]}", "axe"), (f"lh_{phases[0]}", "Lighthouse"))
                 if key in info
             ]
-            before = max(info.get("axe_before", 0), info.get("lh_before", 0))
+            before = (
+                max(info.get("axe_before", 0), info.get("lh_before", 0))
+                if len(phases) == 2
+                else "- (not fixed, single measurement)"
+            )
             after = max(info.get("axe_after", 0), info.get("lh_after", 0))
             lines.append(
                 f"| {rule} | {info.get('impact', '-')} | {' + '.join(tools) or 'after only'} | {before} | {after} | `{info.get('first', '-')}` |"
