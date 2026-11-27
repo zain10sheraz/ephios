@@ -1,0 +1,4 @@
+Run 1 (UC5 + UC6, 2026-11-27): 11 passed, 2 warnings, 1 error in 1301.19s (0:21:41)
+ERROR tests/team/e2e/test_uc6_volunteer_customizes.py::test_uc6_main_volunteer_signs_up_with_her_own_times_and_a_comment
+  cause of the error: Page.click timeout of 20 s on the login button while the laptop had about 600 MB of free memory (infrastructure, not a logic failure; the 60 s timeout is now in the e2e fixtures)
+Rerun of that test alone after merging main: 1 passed in 77.77 s
