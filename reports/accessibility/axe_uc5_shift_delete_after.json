@@ -13,8 +13,8 @@
   "orientationAngle": 0,
   "orientationType": "landscape-primary"
  },
- "timestamp": "2026-11-27T10:37:06.200Z",
- "url": "http://127.0.0.1:58799/shifts/2/delete/",
+ "timestamp": "2026-11-27T19:51:33.934Z",
+ "url": "http://127.0.0.1:52642/shifts/2/delete/",
  "toolOptions": {
   "reporter": "v1"
  },

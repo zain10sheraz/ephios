@@ -1,8 +1,8 @@
-# ZAP passive scan summary (ZAP 2.17.0, 166 URLs seen, 299 alerts, 10 alert types)
+# ZAP passive scan summary (ZAP 2.17.0, 166 URLs seen, 298 alerts, 10 alert types)
 
 | Risk | Alert | CWE | URLs | Evidence recorded by ZAP | Assessment after checking source/configuration |
 |---|---|---|---|---|---|
-| Medium | CSP: Failure to Define Directive with No Fallback | 693 | 43 | `script-src 'self'; default-src 'self'; style-src 'self' 'nonce-O+SAWZl` | CONFIRMED in source: `CONTENT_SECURITY_POLICY` (`settings.py:344`) defines only default-src, style-src, img-src, frame-src, script-src; no frame-ancestors, form-action, base-uri. Framing is still blocked by `X-Frame-Options: DENY`. Reported (issue #25). |
+| Medium | CSP: Failure to Define Directive with No Fallback | 693 | 43 | `style-src 'self' 'nonce-lUYaHJvGPLaFhKYnmgL86Q=='; default-src 'self';` | CONFIRMED in source: `CONTENT_SECURITY_POLICY` (`settings.py:344`) defines only default-src, style-src, img-src, frame-src, script-src; no frame-ancestors, form-action, base-uri. Framing is still blocked by `X-Frame-Options: DENY`. Reported (issue #25). |
 | Low | Cookie No HttpOnly Flag | 1004 | 22 | `Set-Cookie: csrftoken` | csrftoken only. Django default (`CSRF_COOKIE_HTTPONLY` not set); the session cookie is HttpOnly and was not flagged. Accepted design, not reported. |
 | Low | Cookie without SameSite Attribute | 1275 | 1 | `Set-Cookie: django_language` | django_language only. No `LANGUAGE_COOKIE_SAMESITE` in `settings.py`, so Django's default (none) applies. Low impact (language preference). Reported (issue #26). |
 | Low | Server Leaks Version Information via "Server" HTTP Response Header Field | 497 | 59 | `WSGIServer/0.2 CPython/3.12.10` | `WSGIServer/0.2 CPython/3.12.10` is the Django development server used for the test; a production deployment sits behind another server. Not reported. |
