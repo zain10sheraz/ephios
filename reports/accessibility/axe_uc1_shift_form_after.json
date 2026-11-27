@@ -13,8 +13,8 @@
   "orientationAngle": 0,
   "orientationType": "landscape-primary"
  },
- "timestamp": "2026-11-26T18:51:21.873Z",
- "url": "http://127.0.0.1:60618/shifts/2/edit/",
+ "timestamp": "2026-11-27T06:27:44.698Z",
+ "url": "http://127.0.0.1:55661/shifts/9/edit/",
  "toolOptions": {
   "resultTypes": [
    "violations"
@@ -1623,7 +1623,7 @@
       }
      ],
      "impact": null,
-     "html": "<input type=\"date\" name=\"date\" value=\"2090-01-02\" class=\"customdateinput form-control\" required=\"\" id=\"id_date\">",
+     "html": "<input type=\"date\" name=\"date\" value=\"2090-01-09\" class=\"customdateinput form-control\" required=\"\" id=\"id_date\">",
      "target": [
       "#id_date"
      ]
@@ -1877,7 +1877,7 @@
       }
      ],
      "impact": null,
-     "html": "<input type=\"date\" name=\"date\" value=\"2090-01-02\" class=\"customdateinput form-control\" required=\"\" id=\"id_date\">",
+     "html": "<input type=\"date\" name=\"date\" value=\"2090-01-09\" class=\"customdateinput form-control\" required=\"\" id=\"id_date\">",
      "target": [
       "#id_date"
      ]
@@ -1935,7 +1935,7 @@
       }
      ],
      "impact": null,
-     "html": "<input type=\"date\" name=\"date\" value=\"2090-01-02\" class=\"customdateinput form-control\" required=\"\" id=\"id_date\">",
+     "html": "<input type=\"date\" name=\"date\" value=\"2090-01-09\" class=\"customdateinput form-control\" required=\"\" id=\"id_date\">",
      "target": [
       "#id_date"
      ]

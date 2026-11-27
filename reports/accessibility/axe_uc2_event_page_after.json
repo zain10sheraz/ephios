@@ -13,8 +13,8 @@
   "orientationAngle": 0,
   "orientationType": "landscape-primary"
  },
- "timestamp": "2026-11-26T18:51:44.571Z",
- "url": "http://127.0.0.1:60618/events/3-api-created-event/",
+ "timestamp": "2026-11-27T06:28:40.511Z",
+ "url": "http://127.0.0.1:55661/events/10-api-created-event/",
  "toolOptions": {
   "resultTypes": [
    "violations"
@@ -2746,7 +2746,7 @@
      "impact": "serious",
      "html": "<span class=\"d-inline-block\" tabindex=\"1\">\n                                    <button type=\"submit\" name=\"signup_choice\" value=\"decline\" class=\"btn btn-secondary\">\n                                        Decline\n                                    </button>\n                                </span>",
      "target": [
-      "#signup-form-3 > .d-inline-block"
+      "#signup-form-10 > .d-inline-block"
      ],
      "failureSummary": "Fix any of the following:\n  Element has a tabindex greater than 0"
     }
