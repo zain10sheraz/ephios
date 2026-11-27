@@ -1,6 +1,6 @@
 # Usability and accessibility (area 3)
 
-Screens tested (the key screen of each use case, logged in): **UC1** the shift form `/shifts/<id>/edit/` (planner) and **UC2** the event page with the signup buttons (volunteer).
+Screens tested (the key screen of each use case, logged in). The six use cases of the team share four key screens: **UC1 and UC3** the shift form `/shifts/<id>/edit/` (planner), **UC2 and UC4** the event page with the signup buttons (volunteer), **UC5** the shift deletion confirmation page `/shifts/<id>/delete/` (planner), **UC6** the customize-signup-times page `/shifts/<id>/signup/` (volunteer).
 Tools: Lighthouse 13.6.0 (accessibility, best practices, SEO; `scripts/run_lighthouse.py`, logged in through a session cookie) and a full axe-core 4.14.0 scan with **`@axe-core/playwright`** (npm, Node Playwright; `scripts/axe_scan.mjs`, which logs in through the real login form and scans the key screen of each use case).
 An issue found by both tools is counted once: Lighthouse's accessibility audits are axe-core rules, so issues are merged by rule id (`scripts/compare_accessibility.py` -> `reports/accessibility/comparison.md`).
 All numbers below come from the saved reports in `reports/accessibility/`.
@@ -25,6 +25,12 @@ Usability finding (not an accessibility rule): when a click is rejected by a ser
 | A11Y-6 | `heading-order` | moderate | `.card-title` (shift form), `.card-subtitle` (event page) | headings skip a level; screen reader navigation by headings is confusing | use the correct heading level or a styled non-heading | open (issue) |
 | A11Y-7 | `aria-allowed-role` | minor | `textarea` inside the Select2 search | invalid ARIA role on a third-party widget element | upstream widget; report or override | open (not reported separately) |
 | A11Y-8 | `aria-dialog-name` | (Lighthouse only) | 1 dialog element | an unnamed dialog | add `aria-label`/`aria-labelledby` | open (not reported separately) |
+
+### Additional key screens (one measurement, not fixed)
+| Screen | Lighthouse accessibility / best practices / SEO | axe-core violated rules | Findings |
+|---|---|---|---|
+| UC5 shift deletion confirmation | 90 / 100 / 91 | `color-contrast` (1 element, `.text-body-secondary`) | same cause as A11Y-3 (issue #18); Lighthouse also lists `aria-dialog-name` and `heading-order` (1 element each, not reported by axe) |
+| UC6 customize signup times | 90 / 100 / 91 | `color-contrast` (1 element, `.text-body-secondary`) | same cause as A11Y-3 (issue #18); Lighthouse also lists `aria-dialog-name` and `heading-order` |
 
 ## 3. Before and after (one screen fixed: the UC1 shift form)
 Fix (source of the MIS, `src/ephios/core/forms/events.py`, `src/ephios/extra/widgets.py`): accessible names for the two selects and the split date/time inputs.
