@@ -3,12 +3,20 @@
 Every page logs in through the real login form. No screenshots are taken or stored by these tests.
 """
 
+import importlib
 from pathlib import Path
 
 import pytest
-from playwright.sync_api import sync_playwright
 
 from tests.team.api.support import PLANNER, VOLUNTEER, VOLUNTEER2, Browser, Server
+
+try:  # loaded dynamically: the upstream test jobs and the lint job do not install the browser tooling
+    sync_playwright = importlib.import_module("playwright.sync_api").sync_playwright
+except ImportError:
+    sync_playwright = None
+    collect_ignore_glob = [
+        "test_*.py"
+    ]  # browser tests run in the job e2e-browser-tests, which installs Playwright
 
 HERE = Path(__file__).parent
 

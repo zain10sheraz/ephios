@@ -5,15 +5,16 @@ and the saved report is readable; it does NOT hide findings: they are analysed i
 Set AXE_PHASE=after to write the post-fix reports next to the pre-fix ones.
 """
 
+import importlib
 import json
 import os
 
 import pytest
-from axe_playwright_python.sync_playwright import Axe
 
 from tests.team.api.support import ROOT
 from tests.team.e2e.pages import event_path
 
+Axe = importlib.import_module("axe_playwright_python.sync_playwright").Axe
 PHASE = os.environ.get("AXE_PHASE", "before")
 OUT = ROOT / "reports" / "accessibility"
 
