@@ -1,0 +1,4 @@
+Run 1 (UC3 + UC4, 2026-11-27): 11 passed, 2 warnings, 1 error in 2723.05s (0:45:23)
+ERROR tests/team/e2e/test_uc4_volunteer_declines.py::test_uc4_a1_signing_up_again_after_declining_reuses_the_same_record
+  cause of the error: Page.goto timeout of 20 s on the login page while the laptop had about 600 MB of free memory (infrastructure, not a logic failure)
+Rerun of that test alone: 1 passed in 49.93 s
