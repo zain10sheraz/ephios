@@ -3,10 +3,11 @@
 #
 # Run from PowerShell (does not change git, only runs the project's own commands):
 #   powershell -ExecutionPolicy Bypass -File C:\ephios_sajawal\scripts\evidence_walkthrough.ps1 -Phase A
-# Phases: A = terminal (no server), B = browser pages, C = server needed (k6 and axe), D = Docker (ZAP).
+# Phases: A = terminal (no server), B = browser pages, C = server needed (k6 and axe), D = Docker (ZAP),
+#         E = static analysis / unit / mutation / CI evidence, F = screenshots of the application itself.
 # Screenshot: Windows key + Shift + S, drag around the whole PowerShell window, click the pop-up, Save as PNG into
 #   C:\ephios_sajawal\reports\evidence\  with the file name shown on the screen.
-param([ValidateSet("A", "B", "C", "D")][string]$Phase = "A")
+param([ValidateSet("A", "B", "C", "D", "E", "F")][string]$Phase = "A")
 
 $Repo = "C:\ephios_sajawal"
 $Py = "C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Scripts\python.exe"
@@ -43,6 +44,12 @@ function Browser-Step($file, $what, $target) {
     Start-Process $target
     Write-Host ""
     Write-Host ">>> Take the screenshot in the browser (include the address bar) and save it as: $file" -ForegroundColor Yellow
+    [void](Read-Host "When it is saved, press Enter for the next step")
+}
+
+function Manual-Step($file, $what) {
+    Show-Task $file $what
+    Write-Host ">>> Do the actions in your browser now, then take the screenshot (include the address bar) and save it as: $file" -ForegroundColor Yellow
     [void](Read-Host "When it is saved, press Enter for the next step")
 }
 
@@ -102,6 +109,40 @@ switch ($Phase) {
         & docker version --format "{{.Server.Version}}"
         Terminal-Step "EV-049_zap_run.png" "'22 passed' and '166 URLs seen ... alerts' (takes about 10 minutes)" { & $Py scripts\run_zap_passive.py }
         Terminal-Step "EV-049b_zap_summary.png" "the ZAP summary table header with the alert types" { & $Py scripts\zap_summary.py }
+    }
+    "E" {
+        $inc = (Get-Content scripts\gate_modules.txt | ForEach-Object { $_.Trim() } | Where-Object { $_ }) -join ","
+        Terminal-Step "EV-066_unit_coverage.png" "the coverage table of the 16 gate modules, every line 100 %, and 'Required test coverage of 100% reached' (takes several minutes)" {
+            & $Py -m coverage run --include=$inc -m pytest tests/team --ignore=tests/team/api --ignore=tests/team/e2e -q -p no:cacheprovider
+            & $Py -m coverage report -m --fail-under=100
+        }
+        Terminal-Step "EV-067_mutation_summary.png" "the mutation table: 1079 mutants, 78.2 % -> 97.7 % overall" { & $Py scripts\mutation_summary.py }
+        Browser-Step "EV-068_branch_protection.png" "the protection rule of branch main with the required status checks (you must be logged in as the repository owner)" "https://github.com/zain10sheraz/ephios/settings/branches"
+        Browser-Step "EV-069_actions_runs.png" "the list of GitHub Actions workflow runs (team-quality-gate)" "https://github.com/zain10sheraz/ephios/actions"
+        Write-Host "Optional: open https://googlechrome.github.io/lighthouse/viewer/ and drop in" -ForegroundColor DarkGray
+        Write-Host "  reportsccessibility\lighthouse_uc1_shift_form_before.json  (score 80)  -> EV-044b_lighthouse_before.png" -ForegroundColor DarkGray
+        Write-Host "  reportsccessibility\lighthouse_uc1_shift_form_after.json   (score 89)  -> EV-044c_lighthouse_after.png" -ForegroundColor DarkGray
+        [void](Read-Host "Press Enter to finish phase E")
+    }
+    "F" {
+        $server = Start-AuditServer
+        try {
+            $url = $server.Url
+            Write-Host "App is running at $url  (synthetic accounts, local only)" -ForegroundColor Green
+            Write-Host "  planner:   planner@sqe.test   / Planner#2026"
+            Write-Host "  volunteer: volunteer@sqe.test / Volunteer#2026   (use a private/incognito window for the second user)"
+            [void](Read-Host "Press Enter to start")
+            Browser-Step "EV-070_app_login_page.png" "the login page of the application (before logging in)" "$url/accounts/login/"
+            Manual-Step "EV-071_planner_home.png" "log in as planner@sqe.test; the page after login (home / events list)"
+            Browser-Step "EV-072_create_event_form.png" "the Create event form (title, location, visible for, responsible groups)" "$url/events/create/1/"
+            Manual-Step "EV-073_shift_form_empty.png" "fill title 'Demo event', location 'Hall', click Next: the empty 'Create new shift' form with the Signup mode section"
+            Manual-Step "EV-074_shift_form_error.png" "fill date (a future date), meeting time 11:00, start 10:00, end 16:00, click Save: the red error 'Meeting time must not be after start time!'"
+            Manual-Step "EV-075_event_page_saved.png" "set meeting time 09:00 and click Save: the event page with the green banner 'The event ... has been saved' and the shift"
+            Manual-Step "EV-076_volunteer_event_page.png" "in a private window log in as volunteer@sqe.test and open the event: the shift with the Sign up / Request button"
+            Manual-Step "EV-077_volunteer_signup_success.png" "click Sign up / Request: the green confirmation banner"
+            Browser-Step "EV-078_volunteer_permission_denied.png" "as the volunteer (private window) open this page: 'Permission denied'" "$url/events/create/1/"
+        }
+        finally { Stop-AuditServer $server }
     }
 }
 Write-Host "Phase $Phase finished. Tell Claude which files you saved." -ForegroundColor Green

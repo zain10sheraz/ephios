@@ -164,25 +164,54 @@ def evidence_captions():
     return captions
 
 
+GALLERY_GROUPS = [
+    ("The application under test (screens of the two workflows)", lambda n: 70 <= n <= 79),
+    ("Area 1: static analysis, unit tests and mutation", lambda n: n in {5, 66, 67}),
+    ("Area 2: API testing and test data generation", lambda n: n in {36, 37, 38}),
+    (
+        "Area 3: browser tests, accessibility, security and performance",
+        lambda n: n in {42, 43, 44, 46, 47, 49},
+    ),
+    ("Defects: GitHub issues", lambda n: n in {16, 21, 39} or 55 <= n <= 62),
+    (
+        "CI, pull requests and branch protection",
+        lambda n: n in {14, 15, 20, 25, 30, 32, 33, 34, 41, 63, 64, 65, 68, 69},
+    ),
+]
+
+
 def gallery():
-    """All screenshots in reports/evidence, embedded as images with their evidence id and description."""
+    """All screenshots in reports/evidence, grouped by topic, each with its evidence id and description."""
     captions = evidence_captions()
-    figures = []
+    entries = []
     for path in sorted(glob.glob(os.path.join(ROOT, "reports", "evidence", "*.png"))):
         name = os.path.basename(path)
         evidence_id = name.split("_")[0]
+        number = int(re.match(r"EV-(\d+)", evidence_id).group(1))
+        group = next(
+            (i for i, (_, test) in enumerate(GALLERY_GROUPS) if test(number)), len(GALLERY_GROUPS)
+        )
+        entries.append((group, evidence_id, name, path))
+    entries.sort(key=lambda entry: (entry[0], entry[1]))
+    intro = (
+        "<h3>Screenshots taken by the team members</h3><p>Each screenshot was taken by a team member from the real tool "
+        f"or page (course rule). {len(entries)} screenshots are included; the files are in <code>reports/evidence/</code>.</p>"
+    )
+    parts = [intro]
+    current = None
+    for group, evidence_id, name, path in entries:
+        if group != current:
+            current = group
+            title = GALLERY_GROUPS[group][0] if group < len(GALLERY_GROUPS) else "Other"
+            parts.append(f"<h4>{html.escape(title)}</h4>")
         with open(path, "rb") as handle:
             data = base64.b64encode(handle.read()).decode("ascii")
         caption = f"{evidence_id}: {captions.get(evidence_id, name)}"
-        figures.append(
+        parts.append(
             f'<figure><img src="data:image/png;base64,{data}" alt="{html.escape(name)}"/>'
             f"<figcaption>{html.escape(caption)} <span class='docpath'>({html.escape(name)})</span></figcaption></figure>"
         )
-    intro = (
-        "<h3>Screenshots taken by the team members</h3><p>Each screenshot was taken by a team member from the real tool or "
-        f"page (course rule). {len(figures)} screenshots are included; their files are in <code>reports/evidence/</code>.</p>"
-    )
-    return f'<div class="doc">{intro}{"".join(figures)}</div>'
+    return f'<div class="doc">{"".join(parts)}</div>'
 
 
 def build_html():

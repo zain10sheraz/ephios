@@ -60,11 +60,18 @@ def focus_trail(page, stop_text):
 def test_keyboard_navigation_reaches_required_fields_and_submits(planner_page, server):
     create_event_in_ui(planner_page, server.base, "Keyboard WF1")
     fill_shift_form(planner_page)
+    planner_page.wait_for_load_state(
+        "networkidle"
+    )  # choosing a flow reloads the settings part of the form
     planner_page.focus("#id_date")
     trail = ["id_date"] + focus_trail(planner_page, "Save event")
     positions = [trail.index(field) for field in REQUIRED_IN_ORDER]
     assert positions == sorted(positions)  # required fields are reached in document order
     assert "Save event" in trail[-1]  # the submit button is reached by keyboard
+    planner_page.wait_for_load_state("networkidle")
+    assert "Save event" in planner_page.evaluate(
+        "document.activeElement.innerText"
+    )  # focus is still on the button
     with planner_page.expect_navigation():
         planner_page.keyboard.press(
             "Enter"
