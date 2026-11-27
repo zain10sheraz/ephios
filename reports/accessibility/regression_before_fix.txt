@@ -1,12 +1,57 @@
-F                                                                        [100%]
+FFFF                                                                     [100%]
 ================================== FAILURES ===================================
-_______________ test_shift_form_controls_have_accessible_names ________________
-tests\team\e2e\test_axe_accessibility.py:59: in test_shift_form_controls_have_accessible_names
-    assert unnamed == []
-E   AssertionError: assert [['#id_signup...ucture_slug']] == []
-E     
-E     Left contains 4 more items, first extra item: ['#id_signup_until_0']
-E     Use -v to get more diff
+E   AssertionError: Locator expected to have accessible name
+    Actual value:  
+    Call log:
+      - Expect "to_have_accessible_name" locator("#id_signup_flow_slug") with timeout 5000ms
+      - waiting for locator("#id_signup_flow_slug")
+        14 × locator resolved to <select name="signup_flow_slug" id="id_signup_flow_slug" class="select form-select">…</select>
+           - unexpected value ""
+    
+    Aria snapshot:
+    - combobox:
+      - option "Instant confirmation" [selected]
+      - option "Request and confirm"
+      - option "Manual disposition"
+      - option "coupled to another shift"
+C:\ephios_prefix\tests\team\e2e\test_accessible_names.py:25: AssertionError: Locator expected to have accessible name
+E   AssertionError: Locator expected to have accessible name
+    Actual value:  
+    Call log:
+      - Expect "to_have_accessible_name" locator("#id_structure_slug") with timeout 5000ms
+      - waiting for locator("#id_structure_slug")
+        13 × locator resolved to <select name="structure_slug" id="id_structure_slug" class="select form-select">…</select>
+           - unexpected value ""
+    
+    Aria snapshot:
+    - combobox:
+      - option "Uniform" [selected]
+      - option "Qualification mix"
+      - option "Named teams"
+      - option "Preconfigured Structure (experimental)"
+C:\ephios_prefix\tests\team\e2e\test_accessible_names.py:25: AssertionError: Locator expected to have accessible name
+E   AssertionError: Locator expected to have accessible name
+    Actual value:  
+    Call log:
+      - Expect "to_have_accessible_name" locator("#id_signup_until_0") with timeout 5000ms
+      - waiting for locator("#id_signup_until_0")
+        14 × locator resolved to <input type="date" value="2090-01-03" name="signup_until_0" id="id_signup_until_0" class="form-control customdateinput"/>
+           - unexpected value ""
+    
+    Aria snapshot:
+    - textbox: 2090-01-03
+C:\ephios_prefix\tests\team\e2e\test_accessible_names.py:25: AssertionError: Locator expected to have accessible name
+E   AssertionError: Locator expected to have accessible name
+    Actual value:  
+    Call log:
+      - Expect "to_have_accessible_name" locator("#id_signup_until_1") with timeout 5000ms
+      - waiting for locator("#id_signup_until_1")
+        14 × locator resolved to <input type="time" value="08:00" name="signup_until_1" id="id_signup_until_1" class="form-control customtimeinput"/>
+           - unexpected value ""
+    
+    Aria snapshot:
+    - textbox: 08:00
+C:\ephios_prefix\tests\team\e2e\test_accessible_names.py:25: AssertionError: Locator expected to have accessible name
 ============================== warnings summary ===============================
 ..\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\importlib\metadata\__init__.py:467
   C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\importlib\metadata\__init__.py:467: DeprecationWarning: Implicit None on return values is deprecated and will raise KeyErrors.
@@ -18,5 +63,8 @@ E     Use -v to get more diff
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
 =========================== short test summary info ===========================
-FAILED tests/team/e2e/test_axe_accessibility.py::test_shift_form_controls_have_accessible_names
-1 failed, 2 deselected, 2 warnings in 63.16s (0:01:03)
+FAILED tests/team/e2e/test_accessible_names.py::test_shift_form_control_has_an_accessible_name[#id_signup_flow_slug]
+FAILED tests/team/e2e/test_accessible_names.py::test_shift_form_control_has_an_accessible_name[#id_structure_slug]
+FAILED tests/team/e2e/test_accessible_names.py::test_shift_form_control_has_an_accessible_name[#id_signup_until_0]
+FAILED tests/team/e2e/test_accessible_names.py::test_shift_form_control_has_an_accessible_name[#id_signup_until_1]
+4 failed, 2 warnings in 203.64s (0:03:23)

@@ -1,7 +1,7 @@
 {
  "testEngine": {
   "name": "axe-core",
-  "version": "4.14.0"
+  "version": "4.14.1"
  },
  "testRunner": {
   "name": "axe"
@@ -13,12 +13,9 @@
   "orientationAngle": 0,
   "orientationType": "landscape-primary"
  },
- "timestamp": "2026-11-27T06:28:40.511Z",
- "url": "http://127.0.0.1:55661/events/10-api-created-event/",
+ "timestamp": "2026-11-27T07:39:30.111Z",
+ "url": "http://127.0.0.1:58486/events/2-axe-scan-event/",
  "toolOptions": {
-  "resultTypes": [
-   "violations"
-  ],
   "reporter": "v1"
  },
  "inapplicable": [
@@ -31,7 +28,7 @@
    ],
    "description": "Ensure every accesskey attribute value is unique",
    "help": "accesskey attribute value should be unique",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/accesskeys?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/accesskeys?application=playwright",
    "nodes": []
   },
   {
@@ -55,7 +52,7 @@
    ],
    "description": "Ensure <area> elements of image maps have alternative text",
    "help": "Active <area> elements must have alternative text",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/area-alt?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/area-alt?application=playwright",
    "nodes": []
   },
   {
@@ -70,7 +67,7 @@
    ],
    "description": "Ensure aria-braillelabel and aria-brailleroledescription have a non-braille equivalent",
    "help": "aria-braille attributes must have a non-braille equivalent",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-braille-equivalent?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-braille-equivalent?application=playwright",
    "nodes": []
   },
   {
@@ -90,7 +87,7 @@
    ],
    "description": "Ensure every ARIA button, link and menuitem has an accessible name",
    "help": "ARIA commands must have an accessible name",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-command-name?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-command-name?application=playwright",
    "nodes": []
   },
   {
@@ -102,7 +99,7 @@
    ],
    "description": "Ensure every ARIA dialog and alertdialog node has an accessible name",
    "help": "ARIA dialog and alertdialog nodes should have an accessible name",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-dialog-name?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-dialog-name?application=playwright",
    "nodes": []
   },
   {
@@ -121,7 +118,7 @@
    ],
    "description": "Ensure aria-hidden elements are not focusable nor contain focusable elements",
    "help": "ARIA hidden element must not be focusable or contain focusable elements",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-hidden-focus?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-hidden-focus?application=playwright",
    "nodes": []
   },
   {
@@ -141,7 +138,7 @@
    ],
    "description": "Ensure every ARIA input field has an accessible name",
    "help": "ARIA input fields must have an accessible name",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-input-field-name?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-input-field-name?application=playwright",
    "nodes": []
   },
   {
@@ -158,7 +155,7 @@
    ],
    "description": "Ensure every ARIA meter node has an accessible name",
    "help": "ARIA meter nodes must have an accessible name",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-meter-name?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-meter-name?application=playwright",
    "nodes": []
   },
   {
@@ -175,7 +172,7 @@
    ],
    "description": "Ensure every ARIA progressbar node has an accessible name",
    "help": "ARIA progressbar nodes must have an accessible name",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-progressbar-name?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-progressbar-name?application=playwright",
    "nodes": []
   },
   {
@@ -192,7 +189,7 @@
    ],
    "description": "Ensure elements with an ARIA role that require child roles contain them",
    "help": "Certain ARIA roles must contain particular children",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-required-children?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-required-children?application=playwright",
    "nodes": []
   },
   {
@@ -209,7 +206,7 @@
    ],
    "description": "Ensure elements with an ARIA role that require parent roles are contained by them",
    "help": "Certain ARIA roles must be contained by particular parents",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-required-parent?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-required-parent?application=playwright",
    "nodes": []
   },
   {
@@ -229,7 +226,7 @@
    ],
    "description": "Ensure every ARIA tab node has an accessible name",
    "help": "ARIA tab nodes must have an accessible name",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-tab-name?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-tab-name?application=playwright",
    "nodes": []
   },
   {
@@ -241,7 +238,7 @@
    ],
    "description": "Ensure role=\"text\" is used on elements with no focusable descendants",
    "help": "\"role=text\" should have no focusable descendants",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-text?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-text?application=playwright",
    "nodes": []
   },
   {
@@ -261,7 +258,7 @@
    ],
    "description": "Ensure every ARIA toggle field has an accessible name",
    "help": "ARIA toggle fields must have an accessible name",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-toggle-field-name?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-toggle-field-name?application=playwright",
    "nodes": []
   },
   {
@@ -276,7 +273,7 @@
    ],
    "description": "Ensure every ARIA tooltip node has an accessible name",
    "help": "ARIA tooltip nodes must have an accessible name",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-tooltip-name?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-tooltip-name?application=playwright",
    "nodes": []
   },
   {
@@ -288,7 +285,7 @@
    ],
    "description": "Ensure every ARIA treeitem node has an accessible name",
    "help": "ARIA treeitem nodes should have an accessible name",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-treeitem-name?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-treeitem-name?application=playwright",
    "nodes": []
   },
   {
@@ -306,7 +303,7 @@
    ],
    "description": "Ensure the autocomplete attribute is correct and suitable for the form field",
    "help": "autocomplete attribute must be used correctly",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/autocomplete-valid?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/autocomplete-valid?application=playwright",
    "nodes": []
   },
   {
@@ -322,7 +319,7 @@
    ],
    "description": "Ensure that text spacing set through style attributes can be adjusted with custom stylesheets",
    "help": "Inline text spacing must be adjustable with custom stylesheets",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/avoid-inline-spacing?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/avoid-inline-spacing?application=playwright",
    "nodes": []
   },
   {
@@ -343,7 +340,7 @@
    ],
    "description": "Ensure <blink> elements are not used",
    "help": "<blink> elements are deprecated and must not be used",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/blink?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/blink?application=playwright",
    "nodes": []
   },
   {
@@ -360,7 +357,7 @@
    ],
    "description": "Ensure <dl> elements are structured correctly",
    "help": "<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script>, <template> or <div> elements",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/definition-list?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/definition-list?application=playwright",
    "nodes": []
   },
   {
@@ -377,7 +374,7 @@
    ],
    "description": "Ensure <dt> and <dd> elements are contained by a <dl>",
    "help": "<dt> and <dd> elements must be contained by a <dl>",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/dlitem?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/dlitem?application=playwright",
    "nodes": []
   },
   {
@@ -389,7 +386,7 @@
    ],
    "description": "Ensure table headers have discernible text",
    "help": "Table header text should not be empty",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/empty-table-header?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/empty-table-header?application=playwright",
    "nodes": []
   },
   {
@@ -408,7 +405,7 @@
    ],
    "description": "Ensure form field does not have multiple label elements",
    "help": "Form field must not have multiple label elements",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/form-field-multiple-labels?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/form-field-multiple-labels?application=playwright",
    "nodes": []
   },
   {
@@ -427,7 +424,7 @@
    ],
    "description": "Ensure <frame> and <iframe> elements with focusable content do not have tabindex=-1",
    "help": "Frames with focusable content must not have tabindex=-1",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/frame-focusable-content?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/frame-focusable-content?application=playwright",
    "nodes": []
   },
   {
@@ -440,7 +437,7 @@
    ],
    "description": "Ensure <iframe> and <frame> elements contain the axe-core script",
    "help": "Frames should be tested with axe-core",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/frame-tested?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/frame-tested?application=playwright",
    "nodes": []
   },
   {
@@ -459,7 +456,7 @@
    ],
    "description": "Ensure <iframe> and <frame> elements contain a unique title attribute",
    "help": "Frames must have a unique title attribute",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/frame-title-unique?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/frame-title-unique?application=playwright",
    "nodes": []
   },
   {
@@ -480,7 +477,7 @@
    ],
    "description": "Ensure <iframe> and <frame> elements have an accessible name",
    "help": "Frames must have an accessible name",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/frame-title?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/frame-title?application=playwright",
    "nodes": []
   },
   {
@@ -498,7 +495,7 @@
    ],
    "description": "Ensure that HTML elements with both valid lang and xml:lang attributes agree on the base language of the page",
    "help": "HTML elements with lang and xml:lang must have the same base language",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/html-xml-lang-mismatch?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/html-xml-lang-mismatch?application=playwright",
    "nodes": []
   },
   {
@@ -520,7 +517,7 @@
    ],
    "description": "Ensure input buttons have discernible text",
    "help": "Input buttons must have discernible text",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/input-button-name?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/input-button-name?application=playwright",
    "nodes": []
   },
   {
@@ -544,7 +541,7 @@
    ],
    "description": "Ensure <input type=\"image\"> elements have alternative text",
    "help": "Image buttons must have alternative text",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/input-image-alt?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/input-image-alt?application=playwright",
    "nodes": []
   },
   {
@@ -561,7 +558,7 @@
    ],
    "description": "Ensure that elements labelled through their content must have their visible text as part of their accessible name",
    "help": "Elements must have their visible text as part of their accessible name",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=playwright",
    "nodes": []
   },
   {
@@ -573,7 +570,7 @@
    ],
    "description": "Ensure that every form element has a visible label and is not solely labeled using hidden labels, or the title or aria-describedby attributes",
    "help": "Form elements should have a visible label",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-title-only?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-title-only?application=playwright",
    "nodes": []
   },
   {
@@ -595,7 +592,7 @@
    ],
    "description": "Ensure every form element has a label",
    "help": "Form elements must have labels",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label?application=playwright",
    "nodes": []
   },
   {
@@ -614,7 +611,7 @@
    ],
    "description": "Ensure <marquee> elements are not used",
    "help": "<marquee> elements are deprecated and must not be used",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/marquee?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/marquee?application=playwright",
    "nodes": []
   },
   {
@@ -633,7 +630,7 @@
    ],
    "description": "Ensure <meta http-equiv=\"refresh\"> is not used for delayed refresh",
    "help": "Delayed refresh under 20 hours must not be used",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/meta-refresh?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/meta-refresh?application=playwright",
    "nodes": []
   },
   {
@@ -652,7 +649,7 @@
    ],
    "description": "Ensure <object> elements have alternative text",
    "help": "<object> elements must have alternative text",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/object-alt?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/object-alt?application=playwright",
    "nodes": []
   },
   {
@@ -665,7 +662,7 @@
    ],
    "description": "Ensure elements marked as presentational do not have global ARIA or tabindex so that all screen readers ignore them",
    "help": "Elements marked as presentational should be consistently ignored",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/presentation-role-conflict?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/presentation-role-conflict?application=playwright",
    "nodes": []
   },
   {
@@ -687,7 +684,7 @@
    ],
    "description": "Ensure [role=\"img\"] and [role=\"image\"] elements have alternative text",
    "help": "[role=\"img\"] and [role=\"image\"] elements must have alternative text",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/role-img-alt?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/role-img-alt?application=playwright",
    "nodes": []
   },
   {
@@ -699,7 +696,7 @@
    ],
    "description": "Ensure the scope attribute is used correctly on tables",
    "help": "scope attribute should be used correctly",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/scope-attr-valid?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/scope-attr-valid?application=playwright",
    "nodes": []
   },
   {
@@ -720,7 +717,7 @@
    ],
    "description": "Ensure elements that have scrollable content are accessible by keyboard in Safari",
    "help": "Scrollable region must have keyboard access",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/scrollable-region-focusable?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/scrollable-region-focusable?application=playwright",
    "nodes": []
   },
   {
@@ -742,7 +739,7 @@
    ],
    "description": "Ensure select element has an accessible name",
    "help": "Select element must have an accessible name",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/select-name?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/select-name?application=playwright",
    "nodes": []
   },
   {
@@ -763,7 +760,7 @@
    ],
    "description": "Ensure that server-side image maps are not used",
    "help": "Server-side image maps must not be used",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/server-side-image-map?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/server-side-image-map?application=playwright",
    "nodes": []
   },
   {
@@ -777,7 +774,7 @@
    ],
    "description": "Ensure all skip links have a focusable target",
    "help": "The skip-link target should exist and be focusable",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/skip-link?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/skip-link?application=playwright",
    "nodes": []
   },
   {
@@ -796,7 +793,7 @@
    ],
    "description": "Ensure summary elements have discernible text",
    "help": "Summary elements must have discernible text",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/summary-name?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/summary-name?application=playwright",
    "nodes": []
   },
   {
@@ -818,7 +815,7 @@
    ],
    "description": "Ensure <svg> elements with an img, image, graphics-document or graphics-symbol role have accessible text",
    "help": "<svg> elements with an img or image role must have alternative text",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/svg-img-alt?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/svg-img-alt?application=playwright",
    "nodes": []
   },
   {
@@ -832,7 +829,7 @@
    ],
    "description": "Ensure the <caption> element does not contain the same text as the summary attribute",
    "help": "Tables should not have the same summary and caption",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/table-duplicate-name?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/table-duplicate-name?application=playwright",
    "nodes": []
   },
   {
@@ -853,7 +850,7 @@
    ],
    "description": "Ensure that each cell in a table that uses the headers attribute refers only to other <th> elements in that table",
    "help": "Table cell headers attributes must refer to other <th> elements in the same table",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/td-headers-attr?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/td-headers-attr?application=playwright",
    "nodes": []
   },
   {
@@ -874,7 +871,7 @@
    ],
    "description": "Ensure that <th> elements and elements with role=columnheader/rowheader have data cells they describe",
    "help": "Table headers in a data table must refer to data cells",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/th-has-data-cells?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/th-has-data-cells?application=playwright",
    "nodes": []
   },
   {
@@ -894,7 +891,7 @@
    ],
    "description": "Ensure lang attributes have valid values",
    "help": "lang attribute must have a valid value",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/valid-lang?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/valid-lang?application=playwright",
    "nodes": []
   },
   {
@@ -915,7 +912,7 @@
    ],
    "description": "Ensure <video> elements have captions",
    "help": "<video> elements must have captions",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/video-caption?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/video-caption?application=playwright",
    "nodes": []
   },
   {
@@ -935,7 +932,7 @@
    ],
    "description": "Ensure <video> or <audio> elements do not autoplay audio for more than 3 seconds without a control mechanism to stop or mute the audio",
    "help": "<video> or <audio> elements must not play automatically",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/no-autoplay-audio?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/no-autoplay-audio?application=playwright",
    "nodes": []
   }
  ],
@@ -954,7 +951,7 @@
    ],
    "description": "Ensure an element's role supports its ARIA attributes",
    "help": "Elements must only use supported ARIA attributes",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-allowed-attr?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-allowed-attr?application=playwright",
    "nodes": [
     {
      "any": [],
@@ -1007,7 +1004,7 @@
    ],
    "description": "Ensure role attribute has an appropriate value for the element",
    "help": "ARIA role should be appropriate for the element",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-allowed-role?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-allowed-role?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1026,6 +1023,24 @@
      "target": [
       "#navbarDropdownAccount"
      ]
+    },
+    {
+     "any": [
+      {
+       "id": "aria-allowed-role",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "minor",
+       "message": "ARIA role is allowed for given element"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"spinner-grow\" role=\"status\">\n                    <span class=\"visually-hidden\">Loading...</span>\n                </div>",
+     "target": [
+      ".spinner-grow"
+     ]
     }
    ]
   },
@@ -1043,7 +1058,7 @@
    ],
    "description": "Ensure ARIA attributes are used as described in the specification of the element's role",
    "help": "ARIA attributes must be used as specified for the element's role",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-conditional-attr?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-conditional-attr?application=playwright",
    "nodes": [
     {
      "any": [],
@@ -1079,7 +1094,7 @@
    ],
    "description": "Ensure elements do not use deprecated roles",
    "help": "Deprecated ARIA roles must not be used",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-deprecated-role?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-deprecated-role?application=playwright",
    "nodes": [
     {
      "any": [],
@@ -1117,7 +1132,7 @@
    ],
    "description": "Ensure aria-hidden=\"true\" is not present on the document body.",
    "help": "aria-hidden=\"true\" must not be present on the document body",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-hidden-body?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-hidden-body?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1153,7 +1168,7 @@
    ],
    "description": "Ensure ARIA attributes are not prohibited for an element's role",
    "help": "Elements must only use permitted ARIA attributes",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=playwright",
    "nodes": [
     {
      "any": [],
@@ -1189,7 +1204,7 @@
    ],
    "description": "Ensure elements with ARIA roles have all required ARIA attributes",
    "help": "Required ARIA attributes must be provided",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-required-attr?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-required-attr?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1225,7 +1240,7 @@
    ],
    "description": "Ensure all elements with a role attribute use a valid value",
    "help": "ARIA roles used must conform to valid values",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-roles?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-roles?application=playwright",
    "nodes": [
     {
      "any": [],
@@ -1275,7 +1290,7 @@
    ],
    "description": "Ensure all ARIA attributes have valid values",
    "help": "ARIA attributes must conform to valid values",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-valid-attr-value?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-valid-attr-value?application=playwright",
    "nodes": [
     {
      "any": [],
@@ -1325,7 +1340,7 @@
    ],
    "description": "Ensure attributes that begin with aria- are valid ARIA attributes",
    "help": "ARIA attributes must conform to valid names",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-valid-attr?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-valid-attr?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1366,7 +1381,7 @@
    ],
    "description": "Ensure buttons have discernible text",
    "help": "Buttons must have discernible text",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/button-name?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/button-name?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1384,6 +1399,24 @@
      "html": "<button type=\"submit\" name=\"signup_choice\" value=\"sign_up\" class=\"btn btn-success\">Sign up</button>",
      "target": [
       "button[value=\"sign_up\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "button-has-visible-text",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "critical",
+       "message": "Element has inner text that is visible to screen readers"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<button type=\"submit\" name=\"signup_choice\" value=\"decline\" class=\"btn btn-secondary\">\n                                        Decline\n                                    </button>",
+     "target": [
+      ".btn-secondary"
      ]
     }
    ]
@@ -1406,7 +1439,7 @@
    ],
    "description": "Ensure each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
    "help": "Page must have means to bypass repeated blocks",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/bypass?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/bypass?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1415,7 +1448,7 @@
        "data": null,
        "relatedNodes": [
         {
-         "html": "<h1 class=\"card-title fw-bold fs-1\">\n                \n                API created event\n            </h1>",
+         "html": "<h1 class=\"card-title fw-bold fs-1\">\n                \n                Axe scan event\n            </h1>",
          "target": [
           "h1"
          ]
@@ -1472,7 +1505,7 @@
    ],
    "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
    "help": "Elements must meet minimum color contrast ratio thresholds",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1484,10 +1517,7 @@
         "contrastRatio": 6.51,
         "fontSize": "12.0pt (16px)",
         "fontWeight": "normal",
-        "messageKey": null,
-        "expectedContrastRatio": "4.5:1",
-        "shadowColor": null,
-        "colorParse": null
+        "expectedContrastRatio": "4.5:1"
        },
        "relatedNodes": [],
        "impact": "serious",
@@ -1500,6 +1530,281 @@
      "html": "<a class=\"nav-link\" href=\"/\">Home</a>",
      "target": [
       ".nav-link[href=\"/\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "color-contrast",
+       "data": {
+        "fgColor": "#525353",
+        "bgColor": "#eaecee",
+        "contrastRatio": 6.51,
+        "fontSize": "12.0pt (16px)",
+        "fontWeight": "normal",
+        "expectedContrastRatio": "4.5:1"
+       },
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has sufficient color contrast of 6.51"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<a class=\"nav-link\" href=\"/events/\">Events</a>",
+     "target": [
+      "a[href$=\"events/\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "color-contrast",
+       "data": {
+        "fgColor": "#525353",
+        "bgColor": "#eaecee",
+        "contrastRatio": 6.51,
+        "fontSize": "12.0pt (16px)",
+        "fontWeight": "normal",
+        "expectedContrastRatio": "4.5:1"
+       },
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has sufficient color contrast of 6.51"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownAccount\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">\n                                            Victor Volunteer\n                                        </a>",
+     "target": [
+      "#navbarDropdownAccount"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "color-contrast",
+       "data": {
+        "fgColor": "#0c1012",
+        "bgColor": "#fcfdfd",
+        "contrastRatio": 18.76,
+        "fontSize": "30.0pt (40px)",
+        "fontWeight": "bold",
+        "expectedContrastRatio": "3:1"
+       },
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has sufficient color contrast of 18.76"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<h1 class=\"card-title fw-bold fs-1\">\n                \n                Axe scan event\n            </h1>",
+     "target": [
+      "h1"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "color-contrast",
+       "data": {
+        "fgColor": "#ffffff",
+        "bgColor": "#343a40",
+        "contrastRatio": 11.5,
+        "fontSize": "11.3pt (15px)",
+        "fontWeight": "bold",
+        "expectedContrastRatio": "4.5:1"
+       },
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has sufficient color contrast of 11.5"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<span class=\"me-1 badge badge-eventtype eventtype-1-color\">Service</span>",
+     "target": [
+      ".badge"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "color-contrast",
+       "data": {
+        "fgColor": "#76858f",
+        "bgColor": "#fcfdfd",
+        "contrastRatio": 3.73,
+        "fontSize": "15.0pt (20px)",
+        "fontWeight": "bold",
+        "expectedContrastRatio": "3:1"
+       },
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has sufficient color contrast of 3.73"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<span class=\"text-body-secondary me-1 d-inline-block\">\n                    <i class=\"fas fa-map-marker-alt\"></i>\n                    Test hall\n                </span>",
+     "target": [
+      ".me-1.d-inline-block.text-body-secondary"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "color-contrast",
+       "data": {
+        "fgColor": "#76858f",
+        "bgColor": "#fcfdfd",
+        "contrastRatio": 3.73,
+        "fontSize": "15.0pt (20px)",
+        "fontWeight": "bold",
+        "expectedContrastRatio": "3:1"
+       },
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has sufficient color contrast of 3.73"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<span class=\"text-body-secondary d-inline-block\">",
+     "target": [
+      ".d-inline-block.text-body-secondary:nth-child(3)"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "color-contrast",
+       "data": {
+        "fgColor": "#0c1012",
+        "bgColor": "#fcfdfd",
+        "contrastRatio": 18.76,
+        "fontSize": "10.5pt (14px)",
+        "fontWeight": "bold",
+        "expectedContrastRatio": "4.5:1"
+       },
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has sufficient color contrast of 18.76"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<small class=\"fw-bold\">\n                    \n                        Thursday, 05/05/2095\n                    \n                </small>",
+     "target": [
+      ".lh-1 > small:nth-child(1)"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "color-contrast",
+       "data": {
+        "fgColor": "#0c1012",
+        "bgColor": "#fcfdfd",
+        "contrastRatio": 18.76,
+        "fontSize": "24.0pt (32px)",
+        "fontWeight": "bold",
+        "expectedContrastRatio": "3:1"
+       },
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has sufficient color contrast of 18.76"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<span class=\"fw-bold fs-2 shift-time\">\n                \n                    10 a.m.\n                \n                -\n                \n                    4 p.m.\n                \n            </span>",
+     "target": [
+      ".fs-2"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "color-contrast",
+       "data": {
+        "fgColor": "#ffffff",
+        "bgColor": "#00742c",
+        "contrastRatio": 5.94,
+        "fontSize": "12.0pt (16px)",
+        "fontWeight": "normal",
+        "expectedContrastRatio": "4.5:1"
+       },
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has sufficient color contrast of 5.94"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<button type=\"submit\" name=\"signup_choice\" value=\"sign_up\" class=\"btn btn-success\">Sign up</button>",
+     "target": [
+      "button[value=\"sign_up\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "color-contrast",
+       "data": {
+        "fgColor": "#000000",
+        "bgColor": "#cad0d3",
+        "contrastRatio": 13.47,
+        "fontSize": "12.0pt (16px)",
+        "fontWeight": "normal",
+        "expectedContrastRatio": "4.5:1"
+       },
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has sufficient color contrast of 13.47"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<button type=\"submit\" name=\"signup_choice\" value=\"decline\" class=\"btn btn-secondary\">\n                                        Decline\n                                    </button>",
+     "target": [
+      ".btn-secondary"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "color-contrast",
+       "data": {
+        "fgColor": "#014065",
+        "bgColor": "#f3f5f6",
+        "contrastRatio": 9.98,
+        "fontSize": "10.5pt (14px)",
+        "fontWeight": "normal",
+        "expectedContrastRatio": "4.5:1"
+       },
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has sufficient color contrast of 9.98"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<a href=\"https://ephios.de/\" rel=\"noreferrer\" target=\"_blank\">ephios</a>",
+     "target": [
+      "a[href$=\"ephios.de/\"]"
      ]
     }
    ]
@@ -1521,7 +1826,7 @@
    ],
    "description": "Ensure each HTML document contains a non-empty <title> element",
    "help": "Documents must have <title> element to aid in navigation",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/document-title?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/document-title?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1557,7 +1862,7 @@
    ],
    "description": "Ensure every id attribute value used in ARIA and in labels is unique",
    "help": "IDs used in ARIA and labels must be unique",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/duplicate-id-aria?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/duplicate-id-aria?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1576,6 +1881,24 @@
      "target": [
       "#navbarSupportedContent"
      ]
+    },
+    {
+     "any": [
+      {
+       "id": "duplicate-id-aria",
+       "data": "navbarDropdownAccount",
+       "relatedNodes": [],
+       "impact": "critical",
+       "message": "Document has no elements referenced with ARIA or labels that share the same id attribute"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownAccount\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">\n                                            Victor Volunteer\n                                        </a>",
+     "target": [
+      "#navbarDropdownAccount"
+     ]
     }
    ]
   },
@@ -1588,7 +1911,7 @@
    ],
    "description": "Ensure headings have discernible text",
    "help": "Headings should not be empty",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/empty-heading?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/empty-heading?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1603,9 +1926,27 @@
      "all": [],
      "none": [],
      "impact": null,
-     "html": "<h1 class=\"card-title fw-bold fs-1\">\n                \n                API created event\n            </h1>",
+     "html": "<h1 class=\"card-title fw-bold fs-1\">\n                \n                Axe scan event\n            </h1>",
      "target": [
       "h1"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "has-visible-text",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "minor",
+       "message": "Element has text that is visible to screen readers"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<h5 class=\"card-subtitle mb-2 text-body-secondary fw-bolder lh-base\">",
+     "target": [
+      ".card-subtitle"
      ]
     }
    ]
@@ -1619,7 +1960,7 @@
    ],
    "description": "Ensure the order of headings is semantically correct",
    "help": "Heading levels should only increase by one",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/heading-order?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/heading-order?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1649,7 +1990,7 @@
      "all": [],
      "none": [],
      "impact": null,
-     "html": "<h1 class=\"card-title fw-bold fs-1\">\n                \n                API created event\n            </h1>",
+     "html": "<h1 class=\"card-title fw-bold fs-1\">\n                \n                Axe scan event\n            </h1>",
      "target": [
       "h1"
      ]
@@ -1673,7 +2014,7 @@
    ],
    "description": "Ensure every HTML document has a lang attribute",
    "help": "<html> element must have a lang attribute",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/html-has-lang?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/html-has-lang?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1712,7 +2053,7 @@
    ],
    "description": "Ensure the lang attribute of the <html> element has a valid value",
    "help": "<html> element must have a valid value for the lang attribute",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/html-lang-valid?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/html-lang-valid?application=playwright",
    "nodes": [
     {
      "any": [],
@@ -1754,7 +2095,7 @@
    ],
    "description": "Ensure <img> elements have alternative text or a role of none or presentation",
    "help": "Images must have alternative text",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/image-alt?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/image-alt?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1781,6 +2122,32 @@
      "target": [
       "img[alt=\"ephios\"]"
      ]
+    },
+    {
+     "any": [
+      {
+       "id": "has-alt",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "critical",
+       "message": "Element has an alt attribute"
+      }
+     ],
+     "all": [],
+     "none": [
+      {
+       "id": "alt-space-value",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "critical",
+       "message": "Element has a valid alt attribute value"
+      }
+     ],
+     "impact": null,
+     "html": "<img src=\"/static/ephios/img/mannequin_neutral.svg\" alt=\"neutral mannequin icon\">",
+     "target": [
+      "img[alt=\"neutral mannequin icon\"]"
+     ]
     }
    ]
   },
@@ -1793,7 +2160,7 @@
    ],
    "description": "Ensure image alternative is not repeated as text",
    "help": "Alternative text of images should not be repeated as text",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/image-redundant-alt?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/image-redundant-alt?application=playwright",
    "nodes": [
     {
      "any": [],
@@ -1812,6 +2179,24 @@
      "target": [
       "img[alt=\"ephios\"]"
      ]
+    },
+    {
+     "any": [],
+     "all": [],
+     "none": [
+      {
+       "id": "duplicate-img-label",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "minor",
+       "message": "Element does not duplicate existing text in <img> alt text"
+      }
+     ],
+     "impact": null,
+     "html": "<img src=\"/static/ephios/img/mannequin_neutral.svg\" alt=\"neutral mannequin icon\">",
+     "target": [
+      "img[alt=\"neutral mannequin icon\"]"
+     ]
     }
    ]
   },
@@ -1824,7 +2209,7 @@
    ],
    "description": "Ensure the banner landmark is at top level",
    "help": "Banner landmark should not be contained in another landmark",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-banner-is-top-level?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-banner-is-top-level?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1857,7 +2242,7 @@
    ],
    "description": "Ensure the contentinfo landmark is at top level",
    "help": "Contentinfo landmark should not be contained in another landmark",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-contentinfo-is-top-level?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-contentinfo-is-top-level?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1890,7 +2275,7 @@
    ],
    "description": "Ensure the main landmark is at top level",
    "help": "Main landmark should not be contained in another landmark",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-main-is-top-level?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-main-is-top-level?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1923,7 +2308,7 @@
    ],
    "description": "Ensure the document has at most one banner landmark",
    "help": "Document should not have more than one banner landmark",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-no-duplicate-banner?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-no-duplicate-banner?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1954,7 +2339,7 @@
    ],
    "description": "Ensure the document has at most one contentinfo landmark",
    "help": "Document should not have more than one contentinfo landmark",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-no-duplicate-contentinfo?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-no-duplicate-contentinfo?application=playwright",
    "nodes": [
     {
      "any": [
@@ -1985,7 +2370,7 @@
    ],
    "description": "Ensure the document has at most one main landmark",
    "help": "Document should not have more than one main landmark",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-no-duplicate-main?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-no-duplicate-main?application=playwright",
    "nodes": [
     {
      "any": [
@@ -2016,7 +2401,7 @@
    ],
    "description": "Ensure the document has a main landmark",
    "help": "Document should have one main landmark",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-one-main?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-one-main?application=playwright",
    "nodes": [
     {
      "any": [],
@@ -2054,7 +2439,7 @@
    ],
    "description": "Ensure landmarks are unique",
    "help": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-unique?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/landmark-unique?application=playwright",
    "nodes": [
     {
      "any": [
@@ -2076,6 +2461,69 @@
      "target": [
       "header"
      ]
+    },
+    {
+     "any": [
+      {
+       "id": "landmark-is-unique",
+       "data": {
+        "role": "navigation",
+        "accessibleText": null
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "Landmarks must have a unique role or role/label/title (i.e. accessible name) combination"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<nav class=\"navbar navbar-expand-lg navbar-light bg-light shadow\">",
+     "target": [
+      "nav"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "landmark-is-unique",
+       "data": {
+        "role": "main",
+        "accessibleText": null
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "Landmarks must have a unique role or role/label/title (i.e. accessible name) combination"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<main class=\"row blur-on-unload\">",
+     "target": [
+      "main"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "landmark-is-unique",
+       "data": {
+        "role": "contentinfo",
+        "accessibleText": null
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "Landmarks must have a unique role or role/label/title (i.e. accessible name) combination"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<footer class=\"row blur-on-unload mt-2\">",
+     "target": [
+      "footer"
+     ]
     }
    ]
   },
@@ -2095,7 +2543,7 @@
    ],
    "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
    "help": "Links must be distinguishable without relying on color",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/link-in-text-block?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/link-in-text-block?application=playwright",
    "nodes": [
     {
      "any": [
@@ -2145,7 +2593,7 @@
    ],
    "description": "Ensure links have discernible text",
    "help": "Links must have discernible text",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/link-name?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/link-name?application=playwright",
    "nodes": [
     {
      "any": [
@@ -2172,6 +2620,136 @@
      "target": [
       ".navbar-brand"
      ]
+    },
+    {
+     "any": [
+      {
+       "id": "has-visible-text",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has text that is visible to screen readers"
+      }
+     ],
+     "all": [],
+     "none": [
+      {
+       "id": "focusable-no-name",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element is not in tab order or has accessible text"
+      }
+     ],
+     "impact": null,
+     "html": "<a class=\"nav-link\" href=\"/\">Home</a>",
+     "target": [
+      ".nav-link[href=\"/\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "has-visible-text",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has text that is visible to screen readers"
+      }
+     ],
+     "all": [],
+     "none": [
+      {
+       "id": "focusable-no-name",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element is not in tab order or has accessible text"
+      }
+     ],
+     "impact": null,
+     "html": "<a class=\"nav-link\" href=\"/events/\">Events</a>",
+     "target": [
+      "a[href$=\"events/\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "has-visible-text",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has text that is visible to screen readers"
+      }
+     ],
+     "all": [],
+     "none": [
+      {
+       "id": "focusable-no-name",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element is not in tab order or has accessible text"
+      }
+     ],
+     "impact": null,
+     "html": "<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownAccount\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">\n                                            Victor Volunteer\n                                        </a>",
+     "target": [
+      "#navbarDropdownAccount"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "has-visible-text",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has text that is visible to screen readers"
+      }
+     ],
+     "all": [],
+     "none": [
+      {
+       "id": "focusable-no-name",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element is not in tab order or has accessible text"
+      }
+     ],
+     "impact": null,
+     "html": "<a class=\"btn btn-success\" href=\"/shifts/2/signup/\">\n                                        <i class=\"fas fa-cog\"></i>\n                                        <span class=\"visually-hidden\">Customize</span>\n                                    </a>",
+     "target": [
+      "a[href$=\"signup/\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "has-visible-text",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element has text that is visible to screen readers"
+      }
+     ],
+     "all": [],
+     "none": [
+      {
+       "id": "focusable-no-name",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element is not in tab order or has accessible text"
+      }
+     ],
+     "impact": null,
+     "html": "<a href=\"https://ephios.de/\" rel=\"noreferrer\" target=\"_blank\">ephios</a>",
+     "target": [
+      "a[href$=\"ephios.de/\"]"
+     ]
     }
    ]
   },
@@ -2189,7 +2767,7 @@
    ],
    "description": "Ensure that lists are structured correctly",
    "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/list?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/list?application=playwright",
    "nodes": [
     {
      "any": [],
@@ -2208,6 +2786,24 @@
      "target": [
       ".me-auto"
      ]
+    },
+    {
+     "any": [],
+     "all": [],
+     "none": [
+      {
+       "id": "only-listitems",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "List element only has direct children that are allowed inside <li> elements"
+      }
+     ],
+     "impact": null,
+     "html": "<ul class=\"navbar-nav ms-auto\">",
+     "target": [
+      "ul:nth-child(2)"
+     ]
     }
    ]
   },
@@ -2225,7 +2821,7 @@
    ],
    "description": "Ensure <li> elements are used semantically",
    "help": "<li> elements must be contained in a <ul> or <ol>",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/listitem?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/listitem?application=playwright",
    "nodes": [
     {
      "any": [
@@ -2244,6 +2840,42 @@
      "target": [
       ".me-auto > li:nth-child(1)"
      ]
+    },
+    {
+     "any": [
+      {
+       "id": "listitem",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "List item has a <ul>, <ol> or role=\"list\" parent element"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<li class=\"nav-item \">\n                                            <a class=\"nav-link\" href=\"/events/\">Events</a>\n                                        </li>",
+     "target": [
+      "li:nth-child(2)"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "listitem",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "List item has a <ul>, <ol> or role=\"list\" parent element"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<li class=\"nav-item dropdown\">",
+     "target": [
+      ".dropdown"
+     ]
     }
    ]
   },
@@ -2256,7 +2888,7 @@
    ],
    "description": "Ensure <meta name=\"viewport\"> can scale a significant amount",
    "help": "Users should be able to zoom and scale the text up to 500%",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/meta-viewport-large?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/meta-viewport-large?application=playwright",
    "nodes": [
     {
      "any": [
@@ -2293,7 +2925,7 @@
    ],
    "description": "Ensure <meta name=\"viewport\"> does not disable text scaling and zooming",
    "help": "Zooming and scaling must not be disabled",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/meta-viewport?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/meta-viewport?application=playwright",
    "nodes": [
     {
      "any": [
@@ -2331,7 +2963,7 @@
    ],
    "description": "Ensure interactive controls are not nested as they are not always announced by screen readers or can cause focus problems for assistive technologies",
    "help": "Interactive controls must not be nested",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/nested-interactive?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/nested-interactive?application=playwright",
    "nodes": [
     {
      "any": [
@@ -2350,6 +2982,78 @@
      "target": [
       "img[alt=\"ephios\"]"
      ]
+    },
+    {
+     "any": [
+      {
+       "id": "no-focusable-content",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element does not have focusable descendants"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownAccount\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">\n                                            Victor Volunteer\n                                        </a>",
+     "target": [
+      "#navbarDropdownAccount"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "no-focusable-content",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element does not have focusable descendants"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<img src=\"/static/ephios/img/mannequin_neutral.svg\" alt=\"neutral mannequin icon\">",
+     "target": [
+      "img[alt=\"neutral mannequin icon\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "no-focusable-content",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element does not have focusable descendants"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<button type=\"submit\" name=\"signup_choice\" value=\"sign_up\" class=\"btn btn-success\">Sign up</button>",
+     "target": [
+      "button[value=\"sign_up\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "no-focusable-content",
+       "data": null,
+       "relatedNodes": [],
+       "impact": "serious",
+       "message": "Element does not have focusable descendants"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<button type=\"submit\" name=\"signup_choice\" value=\"decline\" class=\"btn btn-secondary\">\n                                        Decline\n                                    </button>",
+     "target": [
+      ".btn-secondary"
+     ]
     }
    ]
   },
@@ -2362,7 +3066,7 @@
    ],
    "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
    "help": "Page should contain a level-one heading",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/page-has-heading-one?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/page-has-heading-one?application=playwright",
    "nodes": [
     {
      "any": [],
@@ -2372,7 +3076,7 @@
        "data": null,
        "relatedNodes": [
         {
-         "html": "<h1 class=\"card-title fw-bold fs-1\">\n                \n                API created event\n            </h1>",
+         "html": "<h1 class=\"card-title fw-bold fs-1\">\n                \n                Axe scan event\n            </h1>",
          "target": [
           "h1"
          ]
@@ -2402,7 +3106,7 @@
    ],
    "description": "Ensure all page content is contained by landmarks",
    "help": "All page content should be contained by landmarks",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/region?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/region?application=playwright",
    "nodes": [
     {
      "any": [
@@ -2422,6 +3126,1406 @@
      "html": "<header>",
      "target": [
       "header"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<nav class=\"navbar navbar-expand-lg navbar-light bg-light shadow\">",
+     "target": [
+      "nav"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"container\">",
+     "target": [
+      "nav > .container"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<a class=\"navbar-brand\" href=\"/\">\n                        <img src=\"/static/ephios/img/brand/nav_logo.png\" alt=\"ephios\" class=\"d-inline-block\" width=\"75\">\n                    </a>",
+     "target": [
+      ".navbar-brand"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<img src=\"/static/ephios/img/brand/nav_logo.png\" alt=\"ephios\" class=\"d-inline-block\" width=\"75\">",
+     "target": [
+      "img[alt=\"ephios\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">",
+     "target": [
+      "#navbarSupportedContent"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<ul class=\"navbar-nav me-auto\">",
+     "target": [
+      ".me-auto"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<li class=\"nav-item \">\n                                            <a class=\"nav-link\" href=\"/\">Home</a>\n                                        </li>",
+     "target": [
+      ".me-auto > li:nth-child(1)"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<a class=\"nav-link\" href=\"/\">Home</a>",
+     "target": [
+      ".nav-link[href=\"/\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<li class=\"nav-item \">\n                                            <a class=\"nav-link\" href=\"/events/\">Events</a>\n                                        </li>",
+     "target": [
+      "li:nth-child(2)"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<a class=\"nav-link\" href=\"/events/\">Events</a>",
+     "target": [
+      "a[href$=\"events/\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<ul class=\"navbar-nav ms-auto\">",
+     "target": [
+      "ul:nth-child(2)"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<li class=\"nav-item dropdown\">",
+     "target": [
+      ".dropdown"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownAccount\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">\n                                            Victor Volunteer\n                                        </a>",
+     "target": [
+      "#navbarDropdownAccount"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"container container-main pt-3\">",
+     "target": [
+      ".container-main"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<main class=\"row blur-on-unload\">",
+     "target": [
+      "main"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"col-12\">",
+     "target": [
+      "main > .col-12"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div id=\"messages\">\n                        \n                        \n                    </div>",
+     "target": [
+      "#messages"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"card mb-3\">",
+     "target": [
+      ".card.mb-3"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"card-body pb-0\">",
+     "target": [
+      ".pb-0"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<h1 class=\"card-title fw-bold fs-1\">\n                \n                Axe scan event\n            </h1>",
+     "target": [
+      "h1"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<h5 class=\"card-subtitle mb-2 text-body-secondary fw-bolder lh-base\">",
+     "target": [
+      ".card-subtitle"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<span class=\"me-1 badge badge-eventtype eventtype-1-color\">Service</span>",
+     "target": [
+      ".badge"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<span class=\"text-body-secondary me-1 d-inline-block\">\n                    <i class=\"fas fa-map-marker-alt\"></i>\n                    Test hall\n                </span>",
+     "target": [
+      ".me-1.d-inline-block.text-body-secondary"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<i class=\"fas fa-map-marker-alt\"></i>",
+     "target": [
+      ".fa-map-marker-alt"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<span class=\"text-body-secondary d-inline-block\">",
+     "target": [
+      ".d-inline-block.text-body-secondary:nth-child(3)"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<i class=\"far fa-calendar\"></i>",
+     "target": [
+      ".fa-calendar"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"card-text text-body-secondary\">\n                \n            </div>",
+     "target": [
+      ".card-text"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"event-plugin-content\">\n                \n            </div>",
+     "target": [
+      ".event-plugin-content"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"row row-cols-1  g-3 pb-4\">",
+     "target": [
+      ".row-cols-1"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"col\">",
+     "target": [
+      ".row-cols-1 > .col"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div id=\"shift-2\" class=\"card h-100 shift_box\">",
+     "target": [
+      "#shift-2"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"card-header d-flex\">",
+     "target": [
+      ".card-header.d-flex"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"mannequin mannequin-neutral\">\n            <img src=\"/static/ephios/img/mannequin_neutral.svg\" alt=\"neutral mannequin icon\">\n        </div>",
+     "target": [
+      ".mannequin"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<img src=\"/static/ephios/img/mannequin_neutral.svg\" alt=\"neutral mannequin icon\">",
+     "target": [
+      "img[alt=\"neutral mannequin icon\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"lh-1 ms-2 flex-grow-1\">",
+     "target": [
+      ".lh-1"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<small class=\"fw-bold\">\n                    \n                        Thursday, 05/05/2095\n                    \n                </small>",
+     "target": [
+      ".lh-1 > small:nth-child(1)"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<br>",
+     "target": [
+      ".lh-1 > br"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<span class=\"fw-bold fs-2 shift-time\">\n                \n                    10 a.m.\n                \n                -\n                \n                    4 p.m.\n                \n            </span>",
+     "target": [
+      ".fs-2"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<small class=\"fw-bold text-body-secondary d-inline-block\">\n                <span class=\"d-inline-block\">\n                    9 a.m. Meetup\n                </span>\n            </small>",
+     "target": [
+      "small:nth-child(4)"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<span class=\"d-inline-block\">\n                    9 a.m. Meetup\n                </span>",
+     "target": [
+      "small:nth-child(4) > .d-inline-block"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"card-header\">",
+     "target": [
+      ".card-header:nth-child(2)"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<span class=\"text-body-secondary float-end\" data-bs-container=\"body\" data-bs-toggle=\"popover\" data-bs-trigger=\"hover\" data-bs-placement=\"right\" data-bs-content-ref=\"#statsexplainer-popover-content-2\" data-bs-title-ref=\"#statsexplainer-popover-title-2\">",
+     "target": [
+      "span[data-bs-container=\"body\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<i class=\"fas fa-users\"></i>",
+     "target": [
+      ".fa-users"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<strong>0/5</strong>",
+     "target": [
+      "strong"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<span>\n                    \n                        <i class=\"far fa-check-circle\"></i>\n                    \n                </span>",
+     "target": [
+      "span[data-bs-container=\"body\"] > span"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<i class=\"far fa-check-circle\"></i>",
+     "target": [
+      "span > .fa-check-circle.far"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"card-body\">\n        \n\n<div class=\"mb-3\">\n    \n    \n</div>\n        <div class=\"shift-plugin-content\">\n            \n        </div>\n    </div>",
+     "target": [
+      "#shift-2 > .card-body"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"mb-3\">\n    \n    \n</div>",
+     "target": [
+      ".card-body > .mb-3"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"shift-plugin-content\">\n            \n        </div>",
+     "target": [
+      ".shift-plugin-content"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"card-footer no-print\">",
+     "target": [
+      ".card-footer"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"row gy-1\">",
+     "target": [
+      ".gy-1"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"col-auto order-1\">",
+     "target": [
+      ".order-1"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<form method=\"POST\" class=\"form\" id=\"signup-form-2\" action=\"/shifts/2/signup/\">",
+     "target": [
+      "#signup-form-2"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"btn-group\">",
+     "target": [
+      ".btn-group"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<button type=\"submit\" name=\"signup_choice\" value=\"sign_up\" class=\"btn btn-success\">Sign up</button>",
+     "target": [
+      "button[value=\"sign_up\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<a class=\"btn btn-success\" href=\"/shifts/2/signup/\">\n                                        <i class=\"fas fa-cog\"></i>\n                                        <span class=\"visually-hidden\">Customize</span>\n                                    </a>",
+     "target": [
+      "a[href$=\"signup/\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<i class=\"fas fa-cog\"></i>",
+     "target": [
+      ".fa-cog"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<span class=\"visually-hidden\">Customize</span>",
+     "target": [
+      "a[href$=\"signup/\"] > .visually-hidden"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<span class=\"d-inline-block\" tabindex=\"1\">\n                                    <button type=\"submit\" name=\"signup_choice\" value=\"decline\" class=\"btn btn-secondary\">\n                                        Decline\n                                    </button>\n                                </span>",
+     "target": [
+      "#signup-form-2 > .d-inline-block"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<button type=\"submit\" name=\"signup_choice\" value=\"decline\" class=\"btn btn-secondary\">\n                                        Decline\n                                    </button>",
+     "target": [
+      ".btn-secondary"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"col-auto ms-auto order-3\">\n                    <span class=\"float-end\">\n                        \n\n                        \n                    </span>\n                </div>",
+     "target": [
+      ".order-3"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<span class=\"float-end\">\n                        \n\n                        \n                    </span>",
+     "target": [
+      ".order-3 > .float-end"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"d-flex align-items-center col-12 order-4 col-md order-md-2\">\n                    <div>\n                        \n                        \n                    </div>\n                </div>",
+     "target": [
+      ".order-4"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div>\n                        \n                        \n                    </div>",
+     "target": [
+      ".order-4 > div"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<footer class=\"row blur-on-unload mt-2\">",
+     "target": [
+      "footer"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<div class=\"col-md-12 text-center\">",
+     "target": [
+      ".col-md-12"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<small>",
+     "target": [
+      ".col-md-12 > small"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<span class=\"text-body-secondary\">\n                            powered by <a href=\"https://ephios.de/\" rel=\"noreferrer\" target=\"_blank\">ephios</a>\n                            <samp>v</samp>\n                        </span>",
+     "target": [
+      "small > .text-body-secondary"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<a href=\"https://ephios.de/\" rel=\"noreferrer\" target=\"_blank\">ephios</a>",
+     "target": [
+      "a[href$=\"ephios.de/\"]"
+     ]
+    },
+    {
+     "any": [
+      {
+       "id": "region",
+       "data": {
+        "isIframe": false
+       },
+       "relatedNodes": [],
+       "impact": "moderate",
+       "message": "All page content is contained by landmarks"
+      }
+     ],
+     "all": [],
+     "none": [],
+     "impact": null,
+     "html": "<samp>v</samp>",
+     "target": [
+      "samp"
      ]
     }
    ]
@@ -2445,7 +4549,7 @@
    ],
    "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
    "help": "Elements must meet minimum color contrast ratio thresholds",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
    "nodes": [
     {
      "any": [
@@ -2458,9 +4562,7 @@
         "fontSize": "10.5pt (14px)",
         "fontWeight": "normal",
         "messageKey": "shortTextContent",
-        "expectedContrastRatio": "4.5:1",
-        "shadowColor": null,
-        "colorParse": null
+        "expectedContrastRatio": "4.5:1"
        },
        "relatedNodes": [
         {
@@ -2504,44 +4606,8 @@
    ],
    "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
    "help": "Elements must meet minimum color contrast ratio thresholds",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=playwright",
    "nodes": [
-    {
-     "any": [
-      {
-       "id": "color-contrast",
-       "data": {
-        "fgColor": "#76858f",
-        "bgColor": "#fcfdfd",
-        "contrastRatio": 3.73,
-        "fontSize": "12.0pt (16px)",
-        "fontWeight": "normal",
-        "messageKey": null,
-        "expectedContrastRatio": "4.5:1",
-        "shadowColor": null,
-        "colorParse": null
-       },
-       "relatedNodes": [
-        {
-         "html": "<div class=\"card mb-3\">",
-         "target": [
-          ".card.mb-3"
-         ]
-        }
-       ],
-       "impact": "serious",
-       "message": "Element has insufficient color contrast of 3.73 (foreground color: #76858f, background color: #fcfdfd, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
-      }
-     ],
-     "all": [],
-     "none": [],
-     "impact": "serious",
-     "html": "<p>Created by API tests</p>",
-     "target": [
-      ".card-text > p"
-     ],
-     "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.73 (foreground color: #76858f, background color: #fcfdfd, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
-    },
     {
      "any": [
       {
@@ -2553,9 +4619,7 @@
         "fontSize": "10.5pt (14px)",
         "fontWeight": "bold",
         "messageKey": null,
-        "expectedContrastRatio": "4.5:1",
-        "shadowColor": null,
-        "colorParse": null
+        "expectedContrastRatio": "4.5:1"
        },
        "relatedNodes": [
         {
@@ -2589,45 +4653,7 @@
         "fontSize": "12.0pt (16px)",
         "fontWeight": "bold",
         "messageKey": null,
-        "expectedContrastRatio": "4.5:1",
-        "shadowColor": null,
-        "colorParse": null
-       },
-       "relatedNodes": [
-        {
-         "html": "<div class=\"card-header\">",
-         "target": [
-          ".card-header:nth-child(2)"
-         ]
-        }
-       ],
-       "impact": "serious",
-       "message": "Element has insufficient color contrast of 3.73 (foreground color: #76858f, background color: #fcfdfd, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
-      }
-     ],
-     "all": [],
-     "none": [],
-     "impact": "serious",
-     "html": "<span class=\"fw-bold card-title text-body-secondary mb-0\">\n                <i class=\"fas fa-tag\"></i> Night shift\n            </span>",
-     "target": [
-      ".mb-0"
-     ],
-     "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.73 (foreground color: #76858f, background color: #fcfdfd, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
-    },
-    {
-     "any": [
-      {
-       "id": "color-contrast",
-       "data": {
-        "fgColor": "#76858f",
-        "bgColor": "#fcfdfd",
-        "contrastRatio": 3.73,
-        "fontSize": "12.0pt (16px)",
-        "fontWeight": "bold",
-        "messageKey": null,
-        "expectedContrastRatio": "4.5:1",
-        "shadowColor": null,
-        "colorParse": null
+        "expectedContrastRatio": "4.5:1"
        },
        "relatedNodes": [
         {
@@ -2661,9 +4687,7 @@
         "fontSize": "10.5pt (14px)",
         "fontWeight": "normal",
         "messageKey": null,
-        "expectedContrastRatio": "4.5:1",
-        "shadowColor": null,
-        "colorParse": null
+        "expectedContrastRatio": "4.5:1"
        },
        "relatedNodes": [
         {
@@ -2697,14 +4721,21 @@
    ],
    "description": "Ensure the order of headings is semantically correct",
    "help": "Heading levels should only increase by one",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/heading-order?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/heading-order?application=playwright",
    "nodes": [
     {
      "any": [
       {
        "id": "heading-order",
        "data": null,
-       "relatedNodes": [],
+       "relatedNodes": [
+        {
+         "html": "<h1 class=\"card-title fw-bold fs-1\">\n                \n                Axe scan event\n            </h1>",
+         "target": [
+          "h1"
+         ]
+        }
+       ],
        "impact": "moderate",
        "message": "Heading order invalid"
       }
@@ -2729,7 +4760,7 @@
    ],
    "description": "Ensure tabindex attribute values are not greater than 0",
    "help": "Elements should not have tabindex greater than zero",
-   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/tabindex?application=axeAPI",
+   "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/tabindex?application=playwright",
    "nodes": [
     {
      "any": [
@@ -2746,7 +4777,7 @@
      "impact": "serious",
      "html": "<span class=\"d-inline-block\" tabindex=\"1\">\n                                    <button type=\"submit\" name=\"signup_choice\" value=\"decline\" class=\"btn btn-secondary\">\n                                        Decline\n                                    </button>\n                                </span>",
      "target": [
-      "#signup-form-10 > .d-inline-block"
+      "#signup-form-2 > .d-inline-block"
      ],
      "failureSummary": "Fix any of the following:\n  Element has a tabindex greater than 0"
     }
