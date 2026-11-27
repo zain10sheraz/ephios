@@ -1,0 +1,102 @@
+..........................F..........F.........FE..                      [100%]
+=================================== ERRORS ====================================
+_ ERROR at setup of test_usability_wf1_error_explains_what_to_correct_then_success _
+tests\team\e2e\conftest.py:96: in planner_page
+    return make_page(PLANNER)
+           ^^^^^^^^^^^^^^^^^^
+tests\team\e2e\conftest.py:86: in factory
+    login(page, server.base, credentials)
+tests\team\e2e\conftest.py:65: in login
+    page.goto(f"{base}/accounts/login/")
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\sync_api\_generated.py:18561: in goto
+    self._sync(
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\page.py:600: in goto
+    return await self._main_frame.goto(
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\frame.py:217: in goto
+    await self._channel.goto(
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\channel_owner.py:398: in _mapped
+    return mapper(await awaitable)
+                  ^^^^^^^^^^^^^^^
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\channel_owner.py:387: in finish
+    raise e from None
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\channel_owner.py:352: in finish
+    result = await zone.run_async(lambda: awaitable)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\utils\zones.py:58: in run_async
+    return await func()
+           ^^^^^^^^^^^^
+E   playwright._impl._errors.Error: Page.goto: net::ERR_NETWORK_IO_SUSPENDED at http://127.0.0.1:50506/accounts/login/
+E   Call log:
+E     - navigating to "http://127.0.0.1:50506/accounts/login/", waiting until "load"
+================================== FAILURES ===================================
+_ test_uc3_a2_changing_the_flow_to_request_and_confirm_makes_signups_requested _
+tests\team\e2e\test_uc3_planner_changes_shift.py:78: in test_uc3_a2_changing_the_flow_to_request_and_confirm_makes_signups_requested
+    planner_page.wait_for_load_state("networkidle")
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\sync_api\_generated.py:21329: in wait_for_load_state
+    self._sync(
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\page.py:694: in wait_for_load_state
+    return await self._main_frame.wait_for_load_state(state=state, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\channel_owner.py:387: in finish
+    raise e from None
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\channel_owner.py:352: in finish
+    result = await zone.run_async(lambda: awaitable)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\utils\zones.py:58: in run_async
+    return await func()
+           ^^^^^^^^^^^^
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\frame.py:338: in wait_for_load_state
+    await waiter.wait_for_event(self._event_emitter, "loadstate", predicate)
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\waiter.py:201: in wait_for_promise
+    raise rewrite_error_message(
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\waiter.py:184: in wait_for_promise
+    result = await race([promise, *self._failures])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\utils\tasks.py:131: in race
+    return winner.result()
+           ^^^^^^^^^^^^^^^
+E   playwright._impl._errors.TimeoutError: Page.wait_for_load_state: Timeout 60000ms exceeded.
+_________ test_uc5_a1_planner_deletes_the_whole_event_with_its_shifts _________
+tests\team\e2e\test_uc5_planner_deletes.py:40: in test_uc5_a1_planner_deletes_the_whole_event_with_its_shifts
+    assert planner_page.url == f"{server.base}/events/"
+E   AssertionError: assert 'http://127.0...ts/37/delete/' == 'http://127.0...50506/events/'
+E     
+E     - http://127.0.0.1:50506/events/
+E     + http://127.0.0.1:50506/accounts/login/?next=/events/37/delete/
+_______ test_uc6_e3_empty_start_time_is_rejected_and_nothing_is_stored ________
+tests\team\e2e\test_uc6_volunteer_customizes.py:113: in test_uc6_e3_empty_start_time_is_rejected_and_nothing_is_stored
+    volunteer_page.fill("#id_individual_start_time_1", "")
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\sync_api\_generated.py:17731: in fill
+    self._sync(
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\page.py:1229: in fill
+    return await self._main_frame.fill(
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\frame.py:736: in fill
+    return await self._channel.fill(
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\channel_owner.py:387: in finish
+    raise e from None
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\channel_owner.py:352: in finish
+    result = await zone.run_async(lambda: awaitable)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\playwright\_impl\utils\zones.py:58: in run_async
+    return await func()
+           ^^^^^^^^^^^^
+E   playwright._impl._errors.TimeoutError: Page.fill: Timeout 60000ms exceeded.
+E   Call log:
+E     - waiting for locator("#id_individual_start_time_1")
+============================== warnings summary ===============================
+..\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\importlib\metadata\__init__.py:467
+  C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\importlib\metadata\__init__.py:467: DeprecationWarning: Implicit None on return values is deprecated and will raise KeyErrors.
+    return self.metadata['Version']
+
+..\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\django\conf\__init__.py:190
+  C:\Users\Admin\OneDrive\Desktop\ephios\.venv\Lib\site-packages\django\conf\__init__.py:190: RemovedInDjango60Warning: The FORMS_URLFIELD_ASSUME_HTTPS transitional setting is deprecated.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- Generated html report: file:///C:/ephios_sajawal/reports/e2e/playwright_report.html -
+=========================== short test summary info ===========================
+FAILED tests/team/e2e/test_uc3_planner_changes_shift.py::test_uc3_a2_changing_the_flow_to_request_and_confirm_makes_signups_requested
+FAILED tests/team/e2e/test_uc5_planner_deletes.py::test_uc5_a1_planner_deletes_the_whole_event_with_its_shifts
+FAILED tests/team/e2e/test_uc6_volunteer_customizes.py::test_uc6_e3_empty_start_time_is_rejected_and_nothing_is_stored
+ERROR tests/team/e2e/test_usability_keyboard.py::test_usability_wf1_error_explains_what_to_correct_then_success
+3 failed, 47 passed, 2 warnings, 1 error in 8979.80s (2:29:39)

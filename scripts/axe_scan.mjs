@@ -67,4 +67,10 @@ await planner.goto(`${base}/shifts/${shiftId}/edit/`);
 await scan(planner, 'uc1_shift_form');
 await volunteer.goto(eventUrl);
 await scan(volunteer, 'uc2_event_page');
+// UC5 key screen (planner): the confirmation page of a shift deletion
+await planner.goto(`${base}/shifts/${shiftId}/delete/`);
+await scan(planner, 'uc5_shift_delete');
+// UC6 key screen (volunteer): the "customize signup times" page
+await volunteer.goto(`${base}/shifts/${shiftId}/signup/`);
+await scan(volunteer, 'uc6_customize_page');
 await browser.close();

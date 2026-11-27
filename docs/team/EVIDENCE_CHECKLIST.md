@@ -52,7 +52,7 @@ Still missing screenshots (not yet supplied): the closed issues #1, #4, #6, #7 (
 | EV-037 | API coverage against the spec: 14/14 operations, 46/46 documented responses, 80/80 inputs | `reports/api/api_coverage.md`, `reports/api/observed_raw.json` | 2026-11-26 | captured (machine output) |
 | EV-038 | Generator output and regeneration demo (constraint change -> changed cases) | `test_data/api_cases.json`, `reports/api/regeneration_demo.txt` | 2026-11-26 | captured (machine output) |
 | EV-039 | Issues #12, #13, #14 (API weaknesses, minor, open) | https://github.com/zain10sheraz/ephios/issues/12 (13, 14) | 2026-11-26 | created by Manan; screenshot not yet taken |
-| EV-042 | Browser suite, full run (12 flows, usability, keyboard, access matrix, recovery, axe) | `reports/e2e/pytest_full_run.txt`, `reports/e2e/junit.xml` | 2026-11-27 | captured (machine output) |
+| EV-042 | Browser suite, final full run: 51 passed (6 use cases, usability, keyboard, access matrix, recovery, accessible-name regression), Playwright HTML report | `reports/e2e/pytest_full_run.txt`, `reports/e2e/junit.xml`, `reports/e2e/playwright_report.html` | 2026-11-27 | captured (machine output) |
 | EV-043 | Access matrix, observed vs expected (7 decisions) | `reports/e2e/access_matrix.md` | 2026-11-27 | captured (machine output) |
 | EV-044 | axe-core and Lighthouse reports before and after the fix, merged comparison | `reports/accessibility/` (`comparison.md`) | 2026-11-26 | captured (machine output); **screenshots of the tool results must be taken by the team member** |
 | EV-045 | Regression test failing before the fix | `reports/accessibility/regression_before_fix.txt` | 2026-11-26 | captured (machine output) |
@@ -62,3 +62,6 @@ Still missing screenshots (not yet supplied): the closed issues #1, #4, #6, #7 (
 | EV-049 | OWASP ZAP 2.17.0 passive scan while the browser tests ran both workflows (166 URLs, 299 alerts, 10 types) | `reports/security/zap_summary.md`, `zap_alerts.json`, `zap_urls.json`, `zap_run.txt` | 2026-11-27 | captured (machine output); **screenshot of the ZAP result to be taken by the team member** |
 | EV-050 | pip-audit: packages and versions checked | `reports/security/pip_audit_packages.txt` | 2026-11-27 | captured (machine output) |
 | EV-051 | axe-core via `@axe-core/playwright` before/after reports; regression test before (4 failed) and after (4 passed) | `reports/accessibility/axe_*_{before,after}.json`, `regression_before_fix.txt`, `regression_after_fix.txt` | 2026-11-27 | captured (machine output) |
+| EV-052 | Run of Manan's UC3 and UC4 (11 passed, 1 login-timeout under memory pressure, rerun passed) | `reports/e2e/manan_uc3_uc4_run.txt` | 2026-11-27 | captured (machine output) |
+| EV-053 | Run of Zain's UC5 and UC6 (same pattern) | `reports/e2e/zain_uc5_uc6_run.txt` | 2026-11-27 | captured (machine output) |
+| EV-054 | Test completion report with release criteria actual vs target (HOLD) | `docs/team/TEST_COMPLETION_REPORT.md` | 2026-11-27 | written |

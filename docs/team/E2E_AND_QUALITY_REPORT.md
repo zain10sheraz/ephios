@@ -20,6 +20,15 @@ Each use case has a main flow, 2 alternative and 3 exception flows. Every flow i
 | UC2-E3 | `test_uc2_e3_second_signup_from_a_stale_tab_creates_no_duplicate` | "This action is not allowed." | exactly one CONFIRMED participation |
 The UC2 rejection flows use a **stale page** (the page was opened before something changed behind it) because a fresh page no longer offers the button: this is how a real user reaches the server-side rules. The empty-title flow (UC1-E1) switches off the browser's own `required` check (`novalidate`) to exercise the server rule; this is stated in the test.
 
+### Use cases of the other members (same structure: main + 2 alternative + 3 exception flows, screen result and post-conditions asserted)
+| Use case | Member | Flows | Tests |
+|---|---|---|---|
+| UC3 planner changes the signup configuration of a shift, a volunteer sees the effect | Manan | 6 | `test_uc3_planner_changes_shift.py` |
+| UC4 volunteer declines a place | Manan | 6 | `test_uc4_volunteer_declines.py` |
+| UC5 planner deletes a shift or an event | Zain | 6 | `test_uc5_planner_deletes.py` |
+| UC6 volunteer signs up with her own times | Zain | 6 | `test_uc6_volunteer_customizes.py` |
+Flow-level detail: `USE_CASES_MANAN.md`, `USE_CASES_ZAIN.md`. Runs: `reports/e2e/manan_uc3_uc4_run.txt`, `reports/e2e/zain_uc5_uc6_run.txt` (each: 11 passed in the first run and one test that had hit a login-page timeout under memory pressure, passed when rerun alone).
+
 ## 2. Further tests of area 3
 | Requirement of the brief | Test / document | Result |
 |---|---|---|
@@ -40,3 +49,6 @@ The UC2 rejection flows use a **stale page** (the page was opened before somethi
 * ZAP ran in passive mode only. The use cases of this report were written for the two workflows chosen in `REQUIREMENTS.md`; the brief asks for two use cases **per member**, so the other members' own use cases are outside this report.
 * The browser tests run Chromium only, on the development server over HTTP.
 * Automated accessibility tools find only a part of the problems; no manual screen-reader test was done.
+
+## 5. Final run of the whole browser suite (2026-11-27)
+`reports/e2e/pytest_full_run.txt`: **51 passed, 0 failed** (`junit.xml`, `playwright_report.html`). The wall-clock time printed by pytest (4 h 45 min) includes periods in which the laptop was suspended; uninterrupted, the suite needs about 15-20 minutes. Two earlier attempts are kept as honest record: `run_interrupted_by_laptop_sleep.txt` (47 passed, 3 failed, 1 error caused by the suspended network and 60 s timeouts) and `rerun_of_four_tests.txt` (the four affected tests rerun alone: 4 passed in 112 s).

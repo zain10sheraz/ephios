@@ -21,13 +21,36 @@
 
 | Tool | Phase | Accessibility | Best practices | SEO |
 |---|---|---|---|---|
-| Lighthouse | before | 86 | 100 | 91 |
 | Lighthouse | after | 86 | 100 | 91 |
 
 | Rule | Impact | Found by | Elements before | Elements after | Example element |
 |---|---|---|---|---|---|
-| aria-dialog-name | - | Lighthouse | 1 | 1 | `-` |
-| color-contrast | serious | axe + Lighthouse | 5 | 5 | `['small:nth-child(4) > .d-inline-block']` |
-| heading-order | moderate | axe + Lighthouse | 1 | 1 | `['.card-subtitle']` |
-| tabindex | serious | axe + Lighthouse | 1 | 1 | `['#signup-form-2 > .d-inline-block']` |
+| aria-dialog-name | - | Lighthouse | - (not fixed, single measurement) | 1 | `-` |
+| color-contrast | serious | axe + Lighthouse | - (not fixed, single measurement) | 5 | `['small:nth-child(4) > .d-inline-block']` |
+| heading-order | moderate | axe + Lighthouse | - (not fixed, single measurement) | 1 | `['.card-subtitle']` |
+| tabindex | serious | axe + Lighthouse | - (not fixed, single measurement) | 1 | `['#signup-form-2 > .d-inline-block']` |
+
+## uc5_shift_delete
+
+| Tool | Phase | Accessibility | Best practices | SEO |
+|---|---|---|---|---|
+| Lighthouse | after | 90 | 100 | 91 |
+
+| Rule | Impact | Found by | Elements before | Elements after | Example element |
+|---|---|---|---|---|---|
+| aria-dialog-name | - | Lighthouse | - (not fixed, single measurement) | 1 | `-` |
+| color-contrast | serious | axe + Lighthouse | - (not fixed, single measurement) | 1 | `['.text-body-secondary']` |
+| heading-order | - | Lighthouse | - (not fixed, single measurement) | 1 | `-` |
+
+## uc6_customize_page
+
+| Tool | Phase | Accessibility | Best practices | SEO |
+|---|---|---|---|---|
+| Lighthouse | after | 90 | 100 | 91 |
+
+| Rule | Impact | Found by | Elements before | Elements after | Example element |
+|---|---|---|---|---|---|
+| aria-dialog-name | - | Lighthouse | - (not fixed, single measurement) | 1 | `-` |
+| color-contrast | serious | axe + Lighthouse | - (not fixed, single measurement) | 1 | `['.text-body-secondary']` |
+| heading-order | - | Lighthouse | - (not fixed, single measurement) | 1 | `-` |
 

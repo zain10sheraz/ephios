@@ -1,29 +1,4 @@
 uc1_shift_form after {'accessibility': 89, 'best-practices': 100, 'seo': 91}
 uc2_event_page after {'accessibility': 86, 'best-practices': 100, 'seo': 91}
-Traceback (most recent call last):
-  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 633, in _rmtree_unsafe
-    os.unlink(fullname)
-PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Admin\\AppData\\Local\\Temp\\tmpcx49csn0\\private\\logs\\ephios.log'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\ephios_sajawal\scripts\run_lighthouse.py", line 75, in <module>
-    main()
-  File "C:\ephios_sajawal\scripts\run_lighthouse.py", line 55, in main
-    with tempfile.TemporaryDirectory() as folder:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 950, in __exit__
-    self.cleanup()
-  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 954, in cleanup
-    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
-  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 934, in _rmtree
-    _shutil.rmtree(name, onexc=onexc)
-  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 781, in rmtree
-    return _rmtree_unsafe(path, onexc)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\shutil.py", line 635, in _rmtree_unsafe
-    onexc(os.unlink, fullname, err)
-  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 909, in onexc
-    _os.unlink(path)
-PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Admin\\AppData\\Local\\Temp\\tmpcx49csn0\\private\\logs\\ephios.log'
+uc5_shift_delete after {'accessibility': 90, 'best-practices': 100, 'seo': 91}
+uc6_customize_page after {'accessibility': 90, 'best-practices': 100, 'seo': 91}

@@ -44,3 +44,32 @@ Tool versions: pytest 9.0.3, pytest-django 4.14.0, coverage 7.17.2, Cosmic Ray 8
     docker start sonarqube ; bash scripts/run_sonar.sh ; python scripts/check_sonar_gate.py http://127.0.0.1:9000 <token>
 Secrets (`data/sonar.env`, `.env`) are git-ignored.
 Live probes of defects against the running app: `scripts/probe_shift_form_live.py`, `scripts/probe_config_fragments_live.py` (run after `scripts/reset_env.ps1` and `manage.py runserver`).
+
+## Areas 2 and 3: tools, versions and commands (added 2026-11-27)
+| Tool | Version | Installed how | Used for |
+|---|---|---|---|
+| Playwright (Python) | 1.65.2 | `uv pip install playwright pytest-html` then `python -m playwright install chromium` (Chromium 159.0.8154.6) | browser tests, `tests/team/e2e/` |
+| Playwright (Node) and `@axe-core/playwright` | 1.65.1 / 4.14.1 (axe-core 4.14.0) | `npm install playwright @axe-core/playwright` in `C:\sqe_tools`, then `npx playwright install chromium` | full axe scan, `scripts/axe_scan.mjs` |
+| Lighthouse | 13.6.0 | `npm install lighthouse` in `C:\sqe_tools` | `scripts/run_lighthouse.py` |
+| Grafana k6 OSS | 2.4.0 | release zip from github.com/grafana/k6 (no installer) | `scripts/k6_events_list.js` |
+| pip-audit | 2.10.1 | `uv pip install pip-audit` | `python -m pip_audit --local` |
+| OWASP ZAP | 2.17.0 | Docker image `ghcr.io/zaproxy/zaproxy:stable` (the official image; a local ZAP installation would do the same) | passive scan, `scripts/run_zap_passive.py` |
+| SonarQube Community | 26.11 | Docker image `sonarqube:community` (a local installation from the zip would do the same) | static analysis, `scripts/run_sonar.sh` |
+| requests, pytest, coverage | 2.34.2, 9.0.3, 7.17.2 | project environment | API tests, runner, coverage |
+Docker is only a way to run SonarQube and ZAP without installing Java and the tools on Windows; the tools and their results are the same as a local installation.
+
+Commands (PowerShell/Git Bash from the repository root, `PYTHONPATH=src` set):
+    # API tests (start their own server on a temporary database): about 8-15 minutes
+    python -m pytest tests/team/api -q -p no:cacheprovider
+    # browser tests with the Playwright report
+    python -m pytest tests/team/e2e -q -p no:cacheprovider --html=reports/e2e/playwright_report.html --self-contained-html
+    # seeded server for audits (prints READY <url>), then axe and Lighthouse
+    python scripts/serve_seeded.py ; node scripts/axe_scan.mjs <url> before|after ; python scripts/run_lighthouse.py <url|start> before|after ; python scripts/compare_accessibility.py
+    # ZAP passive scan while the browser tests of both workflows run (Docker must be running)
+    docker pull ghcr.io/zaproxy/zaproxy:stable ; python scripts/run_zap_passive.py ; python scripts/zap_summary.py
+    # k6: one user and five users, each twice, 60 s per run (server running on <url>)
+    k6 run -e BASE=<url> -e VUS=1 -e DURATION=60s --summary-export=reports/performance/k6_vus1_run1.json scripts/k6_events_list.js
+    # dependency audit
+    python -m pip_audit --local --format json -o reports/security/pip_audit.json
+    # test data generator and its regeneration demo
+    python scripts/generate_api_data.py ; python scripts/demo_regeneration.py
