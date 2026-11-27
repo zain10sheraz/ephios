@@ -43,3 +43,10 @@ Unit tests passed (1m) and mutation passed (10m39s) in both runs.
 
 ## PR #8 run (DEFECT-003 + DEFECT-004 fix, first run on the 16-module gate)
 All three checks passed on the first run: unit-tests 1m19 (16 modules at 100 %), sonarqube-thresholds 2m44 (smells still <= 14: the new test files added none after the pre-emptive cleanup), mutation-score 9m03. PR #8 merged into `zain`; issues #6 and #7 closed. The coverage list now lives in one file (`scripts/gate_modules.txt`) read by the workflow, the Sonar gate script, `sonar-project.properties` and the local script, so they cannot drift apart.
+
+## Red runs of the upstream deployment workflows (`docker`, `staging`) - explained
+The Actions page (screenshots `EV-069`, `EV-069b`) shows red crosses for the workflows `docker` and `staging` on every push to `main`. They are **upstream's deployment pipelines**, inherited with the fork, and they are not part of our quality gate (`team-quality-gate`):
+* `docker` builds the image and then fails at the push: `failed to push ghcr.io/ephios-dev/ephios:main: denied: permission_denied` - the fork has no right to publish to the upstream project's registry (checked in the run log of 2026-11-27).
+* `staging` fails with `Failed to connect to the host via ssh` - the upstream staging server and its credentials do not exist for this fork.
+Relation to "block merge and deployment": merging into `main` is blocked by the three required checks (branch protection, enforced for admins), so only gated commits ever reach `main`, and these deployment workflows start only after such a merge; they cannot deploy anything from the fork because they have no credentials. They were left enabled, not hidden, so that the history stays honest.
+A red run of `team-quality-gate` on PR #34 (run #29) is a real gate result: the browser job failed once because of a flaky keyboard test (the Enter key did not submit within 60 s in CI); the test was made robust (commit `8c5984b1`) and the rerun is the following entry.
