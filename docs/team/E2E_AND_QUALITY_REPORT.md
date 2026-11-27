@@ -36,8 +36,8 @@ Flow-level detail: `USE_CASES_MANAN.md`, `USE_CASES_ZAIN.md`. Runs: `reports/e2e
 | Keyboard navigation test (focus order to the required fields and submit button, keyboard submit) | `test_keyboard_navigation_reaches_required_fields_and_submits` | pass |
 | Lighthouse + axe-core (`@axe-core/playwright`), issues counted once, element/impact/fix, one screen fixed, before/after | `ACCESSIBILITY.md`, `reports/accessibility/comparison.md` | UC1 shift form accessibility 80 -> 89, 2 critical rules fixed |
 | Access matrix (>= 4 decisions, allowed and denied) | `test_access_matrix.py`, `SECURITY.md` | 7 decisions pass |
-| OWASP ZAP passive scan while the browser tests run both workflows | `SECURITY.md` section 5, `reports/security/zap_summary.md` | done: 22 browser tests through ZAP 2.17.0, 166 URLs, 299 alerts of 10 types; 2 findings reported (#25, #26) |
-| Dependency audit | `SECURITY.md` section 4, `reports/security/pip_audit.json` | 177 packages, 4 advisories in soupsieve, not reachable |
+| OWASP ZAP passive scan while the browser tests run both workflows | `SECURITY.md` section 5, `reports/security/zap_summary.md` | done: 22 browser tests through ZAP 2.17.0, 166 URLs, 298 alerts of 10 types; 2 findings reported (#25, #26) |
+| Dependency audit | `SECURITY.md` section 4, `reports/security/pip_audit.json` | 175 audited packages (2 local packages skipped), 4 advisories in soupsieve, not reachable |
 | Performance (k6) with limits set before testing, 1 and 5 users twice, >= 60 s | `PERFORMANCE.md`, `reports/performance/` | limits met; throughput flat at about 15 req/s |
 | Failure and recovery | `test_failure_recovery.py`, `PERFORMANCE.md` section 5 | pass, no duplicate after retry |
 | Management: issues, 5 Whys + fishbone, risk register, traceability, progress report, evidence checklist, AI-use record | issues #17-#23, `RCA.md`, `RISK_REGISTER.md`, `TRACEABILITY.md`, `PROGRESS_REPORT_4.md`, `EVIDENCE_CHECKLIST.md`, `AI_USE_RECORD.md` | done |

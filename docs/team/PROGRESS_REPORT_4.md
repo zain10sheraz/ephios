@@ -12,8 +12,8 @@ Author: Sajawal (committed through the account `sajawalkhanfake`) with Claude Co
 | S5 Lighthouse + axe-core | Sajawal | **done** (2 screens, both tools) | `reports/accessibility/`, `ACCESSIBILITY.md` |
 | S6 fix one screen, before/after | Sajawal | **done** (shift form 80 -> 89, 2 critical rules 0) | `reports/accessibility/comparison.md` |
 | S7 access matrix + role checks | Sajawal | **done** (7 decisions) | `SECURITY.md`, `reports/e2e/access_matrix.md` |
-| S8 OWASP ZAP passive scan | Sajawal | **done** (ZAP 2.17.0 in Docker, 22 browser tests through the proxy, 166 URLs, 299 alerts; issues #25 and #26) | `SECURITY.md` section 5, `reports/security/zap_summary.md` |
-| S9 dependency audit | Sajawal | **done** (177 packages, 4 advisories, not reachable) | `reports/security/pip_audit.json`, `pip_audit_packages.txt` |
+| S8 OWASP ZAP passive scan | Sajawal | **done** (ZAP 2.17.0 in Docker, 22 browser tests through the proxy, 166 URLs, 298 alerts; issues #25 and #26) | `SECURITY.md` section 5, `reports/security/zap_summary.md` |
+| S9 dependency audit | Sajawal | **done** (175 audited packages (2 local packages skipped), 4 advisories, not reachable) | `reports/security/pip_audit.json`, `pip_audit_packages.txt` |
 | S10 performance k6 | Sajawal | **done** (limits met; EC-04 as written not met/not comparable) | `PERFORMANCE.md` |
 | S11 failure and recovery | Sajawal | **done** (API/integration test with HTTP requests, as the brief asks, and the same scenario in the browser) | `tests/team/api/test_failure_recovery_api.py`, `tests/team/e2e/test_failure_recovery.py` |
 | S12 management items | Sajawal | **done**: issues #17-#23, RCA, risk register, traceability | `RCA.md`, `RISK_REGISTER.md`, `TRACEABILITY.md` |
