@@ -89,6 +89,7 @@ COVER = f"""
 <h2>Automated testing of the open-source MIS Ephios<br/>(module: events and signup)</h2>
 <table class="meta">
 <tr><th>Group</th><td>Zain Sheraz (24I-3115), Sajawal Khan (24K-3068), Abdul Manan (24I-3038)</td></tr>
+<tr><th>GitHub accounts</th><td>Zain: <b>zain10sheraz</b>; Manan: <b>MannanJafferyyy</b>; Sajawal: <b>sajawalkhanfake</b> (the accounts the commits were made with)</td></tr>
 <tr><th>Area ownership</th><td>Zain: area 1, static analysis, white-box, mutation, CI (use cases UC5, UC6).
 Manan: area 2, API testing and data generation (use cases UC3, UC4).
 Sajawal: area 3, use cases, usability, accessibility, security, performance (use cases UC1, UC2).</td></tr>
