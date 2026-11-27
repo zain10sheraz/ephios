@@ -1,5 +1,7 @@
 # Weekly progress report 3 (project day 4: 2026-11-26) - area 2
 
+*Historical report: status on the date above; current status in `PROGRESS_REPORT_4.md` section 5.*
+
 Author: Manan (GitHub MannanJafferyyy) with Claude Code assistance (recorded in `AI_USE_RECORD.md`). Previous: `PROGRESS_REPORT_2.md`.
 
 ## 1. Progress against plan

@@ -1,5 +1,7 @@
 # Weekly progress report 2 (project day 3: 2026-11-25)
 
+*Historical report: status on the date above; current status in `PROGRESS_REPORT_4.md` section 5.*
+
 Author: Zain Sheraz with Claude Code assistance. Status time: 2026-11-25 midday. Previous report: `PROGRESS_REPORT_1.md`.
 
 ## 1. Progress against plan

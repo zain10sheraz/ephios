@@ -39,3 +39,6 @@ Author: Sujawal (committed through the account `sajawalkhanfake`) with Claude Co
 
 ## 4. Open items
 Pull requests for the follow-up work (real `@axe-core/playwright`, ZAP, API-level recovery test, use cases of the other two members); screenshots by the team members (course rule); final completion report, PDF and ZIP.
+
+## 5. Final status (2026-11-27 evening)
+All three areas are merged into `main` through gated pull requests (#11, #15, #16, #24, #27, #28, #29, #30) and the PDF report is built; the zip is created from the final `main`. Final browser run: 51 passed. Total defects: 16 (5 closed, 11 open: 3 major accessibility defects #18-#20 and 8 minor). Release decision: **HOLD** (`TEST_COMPLETION_REPORT.md`). Remaining before the viva: screenshots by the members, each member's own review and commits.

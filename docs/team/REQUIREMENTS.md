@@ -2,7 +2,7 @@
 
 Application: Ephios (upstream https://github.com/ephios-dev/ephios, MIT, baseline `d12e76cd`).
 Test basis: source code (validators in `participant_validation.py`, views in `core/views/`), upstream docs,
-and justified assumptions marked **[A]**. Status: DRAFT for team review.
+and justified assumptions marked **[A]**. Status: version of 2026-11-27, written by Zain and refined by the team; each member must be able to explain it in the viva.
 
 ## Workflows (module: events and signup)
 

@@ -1,4 +1,4 @@
-# Risk register and exit criteria (DRAFT for team review)
+# Risk register and exit criteria (version of 2026-11-27)
 
 Scoring: Likelihood (L) and Impact (I) 1-5; score = L x I. Level: 1-6 low, 8-12 medium, 15-25 high.
 Level decides technique and depth. Evidence column cites real findings from runs so far; rows without evidence
