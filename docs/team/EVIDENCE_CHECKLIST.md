@@ -62,3 +62,6 @@ Still missing screenshots (not yet supplied): the closed issues #1, #4, #6, #7 (
 | EV-049 | OWASP ZAP 2.17.0 passive scan while the browser tests ran both workflows (166 URLs, 299 alerts, 10 types) | `reports/security/zap_summary.md`, `zap_alerts.json`, `zap_urls.json`, `zap_run.txt` | 2026-11-27 | captured (machine output); **screenshot of the ZAP result to be taken by the team member** |
 | EV-050 | pip-audit: packages and versions checked | `reports/security/pip_audit_packages.txt` | 2026-11-27 | captured (machine output) |
 | EV-051 | axe-core via `@axe-core/playwright` before/after reports; regression test before (4 failed) and after (4 passed) | `reports/accessibility/axe_*_{before,after}.json`, `regression_before_fix.txt`, `regression_after_fix.txt` | 2026-11-27 | captured (machine output) |
+| EV-052 | Run of Manan's UC3 and UC4 (11 passed, 1 login-timeout under memory pressure, rerun passed) | `reports/e2e/manan_uc3_uc4_run.txt` | 2026-11-27 | captured (machine output) |
+| EV-053 | Run of Zain's UC5 and UC6 (same pattern) | `reports/e2e/zain_uc5_uc6_run.txt` | 2026-11-27 | captured (machine output) |
+| EV-054 | Test completion report with release criteria actual vs target (HOLD) | `docs/team/TEST_COMPLETION_REPORT.md` | 2026-11-27 | written |

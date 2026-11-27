@@ -26,3 +26,6 @@ Efforts are approximate (reconstructed from session time) and will be marked as 
 | 2026-11-26 | Sujawal / accessibility | axe + Lighthouse before/after, fix, regression test, report | 2.5 (approximate) |
 | 2026-11-26 | Sujawal / performance, security | k6 runs, pip-audit, security report | 2.0 (approximate, includes 4 minutes of load runs) |
 | 2026-11-27 | Sujawal / management items | issues #17-#23, RCA, risk register, traceability, progress report 4, viva notes, CI job | 2.0 (approximate) |
+| 2026-11-27 | Manan / UC3, UC4 | specification, 12 Playwright flows, run and rerun, PR #28 | 3.0 (approximate, long runs under memory pressure) |
+| 2026-11-27 | Zain / UC5, UC6, completion report | specification, 12 Playwright flows, test completion report, PR #29 | 3.5 (approximate) |
+| 2026-11-27 | Sujawal / follow-up | `@axe-core/playwright`, ZAP in Docker, API-level recovery, four-screen scans, PRs #27 | 3.5 (approximate) |
