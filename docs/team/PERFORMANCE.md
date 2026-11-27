@@ -26,6 +26,6 @@ Comparison with the limits: p95 is 99-104 ms with 1 user (13 % of the limit) and
 * No performance defect was raised because the limits set beforehand were met; EC-04 of the risk register (performance) is therefore **met for this operation in this environment**, with the limits above.
 
 ## 5. Failure and recovery (S11)
-Test `tests/team/e2e/test_failure_recovery.py` (real browser, real server):
+The brief asks for the recovery test to run with the API or integration test runner: `tests/team/api/test_failure_recovery_api.py` (pytest + Requests, real server) makes the database file read-only, sends the signup (HTTP 5xx), reads the persisted state back (row count and REST unchanged), restores the file, retries (302, exactly one CONFIRMED record) and retries once more (still one record). The same scenario is also automated in the browser, `tests/team/e2e/test_failure_recovery.py`:
 1. the volunteer opens the event page; 2. the database file is made read-only (the storage dependency fails before the write can complete); 3. the volunteer clicks "sign up": the application cannot write, the user is not told that it worked, and the stored state is read back unchanged (participation count identical, none for the user); 4. the database is restored; 5. the volunteer retries: the signup succeeds and the final state is exactly one participation, CONFIRMED, **no duplicate**.
 Result: pass. Limit: the failure is simulated with a read-only SQLite file; other dependency failures (mail server, a second database server) were not simulated.

@@ -13,7 +13,7 @@ Scope: the two workflows (WF1 event and shift management, WF2 signup) on a local
 | `/shifts/<id>/signup/` | POST | WF2 | creates/changes `LocalParticipation` | login, event visible |
 | `/api/events/`, `/api/shifts/`, `/api/participations/`, `/api/users/me/participations/` | GET | both | reads the shared records | login (403 otherwise) |
 
-## 2. Access matrix (Playwright, `tests/team/e2e/test_access_matrix.py`; observed values saved in `reports/e2e/access_matrix.md`)
+## 2. Access matrix (Playwright, `tests/team/e2e/test_access_matrix.py`; role, action, expected, observed, result **and evidence** of every check are written to `reports/e2e/access_matrix.md` by the test run; the table below shows role, action, expected and observed)
 | Role | Action | Expected | Observed | Result |
 |---|---|---|---|---|
 | anonymous | open create-event page | login page (HTTP 200 after redirect) | 200, URL is `/accounts/login/` | pass (denied) |
@@ -42,8 +42,16 @@ Checked: **177 packages** of the project environment (installed versions of the 
 | `soupsieve 2.9` (transitive: `ephios -> beautifulsoup4 -> soupsieve`; also `webtest`) | CVE-2026-126190 (descendant combinator, polynomial time), CVE-2026-126191 (regex backtracking), CVE-2026-126192 (`:has()` sibling combinator), CVE-2026-126193 (recursion on nested pseudo-classes) | `pip_audit.json`; `uv pip show soupsieve` (required by beautifulsoup4, ephios, webtest) | denial of service (CPU/recursion) **when attacker-controlled CSS selectors or documents are matched**. The application uses BeautifulSoup only as `email.find_all("img")` (`src/ephios/core/services/mail/cid.py:46`), never the CSS selector API, so the vulnerable code paths are **not reachable** from the application. Severity for this project: **low**. | upgrade `soupsieve` to the fixed versions named in the advisories (2.10.0 / 3.0.2 / 4.0.0) after checking compatibility with `beautifulsoup4` (`uv lock --upgrade-package soupsieve`); not applied here because the lock file is upstream's and the path is unreachable. |
 No other package had a known vulnerability at the time of the run (2026-11-26); the audit depends on the vulnerability database available at that time.
 
-## 5. OWASP ZAP passive scan
-**Status: NOT RUN yet.** ZAP needs Docker (or a local ZAP installation) and Docker Desktop was not running on the machine. Plan once available: start ZAP as a proxy, run the Playwright suite (both workflows) through it, then read the passive alerts and review at least two controls against source (cookie attributes and CSRF are already reviewed above and will be compared with the ZAP alerts). This section will be completed with the real alert list; nothing is claimed until it has run.
+## 5. OWASP ZAP passive scan (ZAP 2.17.0, `reports/security/zap_summary.md`, `zap_alerts.json`, `zap_urls.json`)
+How: `scripts/run_zap_passive.py` starts ZAP in Docker as a proxy (passive scanners only, nothing is attacked), then runs the browser tests of **both workflows** (use cases UC1 and UC2, access matrix, usability and keyboard tests) with every browser request routed through ZAP. All **22 browser tests passed** through the proxy; ZAP saw **166 URLs** and raised **299 alerts of 10 types** (1 medium, 4 low, 5 informational), assessed one by one against the source in `zap_summary.md`:
+| Risk | Alert | Our assessment |
+|---|---|---|
+| Medium | CSP: failure to define directive with no fallback (`frame-ancestors`, `form-action`, `base-uri`) | **confirmed** in `settings.py:344`; mitigated by `X-Frame-Options: DENY`; reported as issue #25 (DEFECT-015, minor) |
+| Low | `django_language` cookie without SameSite | **confirmed** (no `LANGUAGE_COOKIE_SAMESITE`); issue #26 (DEFECT-016, minor) |
+| Low | `csrftoken` cookie without HttpOnly | Django default; the session cookie is HttpOnly and was not flagged; accepted |
+| Low | Server header leaks version; X-Content-Type-Options missing on `/static/` files | development server only; pages carry `nosniff`; not reported |
+| Informational (5) | authentication request, modern web application, session management, suspicious comment (`TODO` in a JS file), potential XSS attribute | no action; ZAP's "user-controllable attribute" lists reflected form fields, no XSS was observed (passive mode, nothing exploited) |
+Controls reviewed with the ZAP evidence: **session cookie attributes** (ZAP did not flag `sessionid`, which is HttpOnly + SameSite=Lax, and did flag the two other cookies) and **role checks** (the access matrix ran through ZAP; ZAP does not test authorisation, the matrix does).
 
 ## 6. Limits
-Authentication brute force, session fixation on a production deployment, file upload and the webhook/federation features were not tested; only the two workflows were in scope. The security tests use the development server over HTTP.
+Authentication brute force, session fixation on a production deployment, file upload and the webhook/federation features were not tested; only the two workflows were in scope. The security tests use the development server over HTTP. ZAP ran in passive mode only (no active scan, as the brief requires).

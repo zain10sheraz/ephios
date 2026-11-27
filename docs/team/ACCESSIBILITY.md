@@ -1,7 +1,7 @@
 # Usability and accessibility (area 3)
 
 Screens tested (the key screen of each use case, logged in): **UC1** the shift form `/shifts/<id>/edit/` (planner) and **UC2** the event page with the signup buttons (volunteer).
-Tools: Lighthouse 13.6.0 (accessibility, best practices, SEO; `scripts/run_lighthouse.py`) and a full axe-core 4.14.0 scan driven from Playwright through the Python package `axe-playwright-python`, which bundles the same axe-core engine as `@axe-core/playwright` (`tests/team/e2e/test_axe_accessibility.py`).
+Tools: Lighthouse 13.6.0 (accessibility, best practices, SEO; `scripts/run_lighthouse.py`, logged in through a session cookie) and a full axe-core 4.14.0 scan with **`@axe-core/playwright`** (npm, Node Playwright; `scripts/axe_scan.mjs`, which logs in through the real login form and scans the key screen of each use case).
 An issue found by both tools is counted once: Lighthouse's accessibility audits are axe-core rules, so issues are merged by rule id (`scripts/compare_accessibility.py` -> `reports/accessibility/comparison.md`).
 All numbers below come from the saved reports in `reports/accessibility/`.
 
@@ -34,7 +34,7 @@ Fix (source of the MIS, `src/ephios/core/forms/events.py`, `src/ephios/extra/wid
 | UC1 shift form, axe violated rules | 6 (`aria-allowed-role`, `aria-input-field-name`, `color-contrast`, `heading-order`, `label`, `select-name`) | **4** (`label` and `select-name`, both critical, gone) |
 | UC2 event page, Lighthouse accessibility score | 86 | 86 (not changed, not in scope of the fix) |
 | Lighthouse best practices / SEO (both screens) | 100 / 91 | 100 / 91 |
-Regression test `test_shift_form_controls_have_accessible_names`: **fails before** the fix (`reports/accessibility/regression_before_fix.txt`), **passes after** (`reports/accessibility/axe_after_run.txt`). The related unit tests (83) still pass.
+Regression test `tests/team/e2e/test_accessible_names.py` (Playwright accessible-name assertion on the four controls): **4 of 4 fail before** the fix (run on a worktree of the commit before the fix, `reports/accessibility/regression_before_fix.txt`), **4 of 4 pass after** (`reports/accessibility/regression_after_fix.txt`). The related unit tests (83) still pass.
 
 ## 4. Limits
 Automated tools find only part of the accessibility problems (axe-core reports about 30-40 % of WCAG issues at best); no manual screen-reader test was done. Lighthouse ran on the logged-in pages through a session cookie. Colour contrast was measured on the rendered default theme only.

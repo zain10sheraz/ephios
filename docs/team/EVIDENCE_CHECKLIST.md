@@ -59,4 +59,6 @@ Still missing screenshots (not yet supplied): the closed issues #1, #4, #6, #7 (
 | EV-046 | k6 runs (1 and 5 users, 2 runs each, 60 s) | `reports/performance/` (`k6_summary.md`) | 2026-11-26 | captured (machine output); screenshot of the k6 summary to be taken by the team member |
 | EV-047 | pip-audit result | `reports/security/pip_audit.json` | 2026-11-26 | captured (machine output) |
 | EV-048 | Issues #17-#23 (area 3 defects) | https://github.com/zain10sheraz/ephios/issues/17 (to 23) | 2026-11-27 | created; screenshot not yet taken |
-| EV-049 | OWASP ZAP passive scan | - | - | **NOT RUN** (Docker not available) |
+| EV-049 | OWASP ZAP 2.17.0 passive scan while the browser tests ran both workflows (166 URLs, 299 alerts, 10 types) | `reports/security/zap_summary.md`, `zap_alerts.json`, `zap_urls.json`, `zap_run.txt` | 2026-11-27 | captured (machine output); **screenshot of the ZAP result to be taken by the team member** |
+| EV-050 | pip-audit: packages and versions checked | `reports/security/pip_audit_packages.txt` | 2026-11-27 | captured (machine output) |
+| EV-051 | axe-core via `@axe-core/playwright` before/after reports; regression test before (4 failed) and after (4 passed) | `reports/accessibility/axe_*_{before,after}.json`, `regression_before_fix.txt`, `regression_after_fix.txt` | 2026-11-27 | captured (machine output) |
