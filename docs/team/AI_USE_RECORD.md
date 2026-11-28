@@ -3,6 +3,19 @@
 Tool: Claude Code (Claude Sonnet 5.5) used as an assistant in the VS Code extension. Policy: all AI-generated code and
 text is reviewed by the owning member; test results come only from real executions; the AI never commits as another member.
 
+## Summary per member
+
+| Member | GitHub account | Area and use cases | AI tool and who prompted | Prompts (file) | What the AI produced (record rows) | How it was checked | Sign-off |
+|---|---|---|---|---|---|---|---|
+| Zain Sheraz | `zain10sheraz` | Area 1 (static analysis, white-box, mutation, CI), UC5, UC6 | Claude Code (Sonnet 5.5), prompted by Zain | 52 prompts, `AREA1_ZAIN_prompts_1-52.md`; second session 35, `SESSION2_ZAIN_prompts_28Nov_review_fixes.md` | unit and HTTP tests, MCC/MC-DC, Sonar and mutation setup, CI gate, four defect fixes, use cases UC5 and UC6, the course-review fixes (rows A1-A11) | tests, coverage, mutation and CI rerun; real GitHub runs read back | not yet signed off |
+| Manan | `MannanJafferyyy` | Area 2 (API testing, OpenAPI, EP/BVA generator), UC3, UC4 | Claude Code (Sonnet 5.5), **prompted by Zain** (account switched to Manan's for the commits) | 24 prompts, `AREA2_MANAN_prompts_53-76.md`; UC3/UC4 in `AREA3_SAJAWAL_and_shared_prompts_77-144.md` | OpenAPI spec, generator, API harness and 477 tests, API documents, issues #12-#14, UC3 and UC4 (rows B1-B3) | full suite against a real server, API coverage script, concurrency log read | not yet signed off |
+| Sajawal | `sajawalkhanfake` | Area 3 (usability, accessibility, security, performance), UC1, UC2 | Claude Code (Sonnet 5.5), **prompted by Zain** (account switched to Sajawal's for the commits) | 68 prompts, `AREA3_SAJAWAL_and_shared_prompts_77-144.md` (includes the shared later work) | Playwright suite, axe/Lighthouse and the accessibility fix, k6, pip-audit, ZAP, recovery tests, issues #17-#26 (rows C1-C2) | browser, k6 and ZAP runs on the real app; regression test fails before, passes after | not yet signed off |
+
+All three areas were built in one Claude Code session on one laptop (see Prompts below); the commits of each area were made with
+that member's own GitHub account (`docs/team/AUTHORSHIP.md`). Screenshots of the three prompt files: EV-081, EV-081b, EV-081c.
+
+## Detailed record
+
 | ID | Date | Member and account | What the AI produced | Prompt log | Verification done by the member (real run or check) |
 |---|---|---|---|---|---|
 | A1 | 2026-11-23 | Zain `zain10sheraz` | Repo inspection, plan, setup scripts (`scripts/`), seed data | `prompts/AREA1_ZAIN_prompts_1-52.md` | Ran the setup and reset scripts, logged in with the seeded accounts, checked `/api/events/` 403 and `/accounts/login/` 200 |

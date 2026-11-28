@@ -29,7 +29,10 @@ OUTPUT = (
 
 SECTIONS = [
     ("1 Scope, requirements and test basis", ["docs/team/REQUIREMENTS.md", "docs/team/SETUP.md"]),
-    ("2 Area ownership and AI-use record", ["docs/team/AI_USE_RECORD.md"]),
+    (
+        "2 Area ownership and AI-use record",
+        ["docs/team/AI_USE_RECORD.md", "docs/team/AUTHORSHIP.md"],
+    ),
     (
         "3 Test plan, risk register and traceability",
         ["docs/team/TEST_PLAN.md", "docs/team/RISK_REGISTER.md", "docs/team/TRACEABILITY.md"],
@@ -189,7 +192,7 @@ GALLERY_GROUPS = [
         "Area 3: browser tests, accessibility, security and performance",
         lambda n: n in {42, 43, 44, 46, 47, 49, 79},
     ),
-    ("AI use: prompt log of the session", lambda n: n == 80),
+    ("AI use: prompt log of the session", lambda n: n in {80, 81}),
     ("Defects: GitHub issues", lambda n: n in {16, 21, 39} or 55 <= n <= 62),
     (
         "CI, pull requests and branch protection",
