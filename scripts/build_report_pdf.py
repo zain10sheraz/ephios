@@ -148,7 +148,9 @@ def inline_svgs(text, relative):
     folder = os.path.dirname(os.path.join(ROOT, relative))
 
     def replace(match):
-        with open(os.path.normpath(os.path.join(folder, match.group(2))), encoding="utf-8") as handle:
+        with open(
+            os.path.normpath(os.path.join(folder, match.group(2))), encoding="utf-8"
+        ) as handle:
             return f'\n\n<div class="diagram">{handle.read()}</div>\n\n'
 
     return SVG_IMAGE.sub(replace, text)

@@ -1,3 +1,4 @@
+# ruff: noqa: FURB113  (SVG strings are built up one element at a time on purpose)
 """Generate the SVG diagrams used in the report (reports/diagrams/*.svg): control-flow graph, fishbones, Pareto, risk matrix.
 
 Usage: python scripts/make_diagrams.py
@@ -65,23 +66,47 @@ def cfg():
     for a, c in ((1, 2), (2, 3), (3, 4), (4, 6), (6, 8)):
         label = None if a == 1 else ("F" if a == 4 or a == 6 else "T")
         # N2->N3 T, N3->N4 T, N4->N6 F, N6->N8 F
-        b.append(edge([(cx, chain[a] + 20), (cx, chain[c] - 20)], label, cx + 12, (chain[a] + chain[c]) / 2 + 4))
+        b.append(
+            edge(
+                [(cx, chain[a] + 20), (cx, chain[c] - 20)],
+                label,
+                cx + 12,
+                (chain[a] + chain[c]) / 2 + 4,
+            )
+        )
     b.append(edge([(cx + 100, chain[4]), (rx - 75, chain[4])], "T", 255, chain[4] - 6))
     b.append(edge([(cx + 100, chain[6]), (rx - 75, chain[6])], "T", 255, chain[6] - 6))
     b.append(edge([(cx + 100, chain[8]), (rx - 75, chain[8])], "T", 255, chain[8] - 6))
     for y in (280, 360, 440):
         b.append(edge([(rx + 75, y), (ex - 80, y)]))
     b.append(edge([(cx + 100, chain[2]), (ex, chain[2]), (ex, 200)], "F", 250, chain[2] - 6))
-    b.append(edge([(cx - 100, chain[3]), (20, chain[3]), (20, chain[6]), (cx - 100, chain[6])], "F", 30, chain[3] + 16))
+    b.append(
+        edge(
+            [(cx - 100, chain[3]), (20, chain[3]), (20, chain[6]), (cx - 100, chain[6])],
+            "F",
+            30,
+            chain[3] + 16,
+        )
+    )
     b.append(edge([(cx, chain[8] + 20), (cx, 500), (ex, 500), (ex, 460)], "F", cx + 12, 492))
-    b.append(text(370, 534, "V(G) = E - N + 2P = 14 - 10 + 2 = 6 (5 decision nodes + 1). T = condition true, F = false.", 11, fill=MUTED))
+    b.append(
+        text(
+            370,
+            534,
+            "V(G) = E - N + 2P = 14 - 10 + 2 = 6 (5 decision nodes + 1). T = condition true, F = false.",
+            11,
+            fill=MUTED,
+        )
+    )
     return svg(740, 546, "".join(b), "Control-flow graph of check_participation_state, V(G) = 6")
 
 
 def fishbone(title, effect, causes):
     """causes: list of (category, text); the first half is drawn above the spine, the rest below."""
     w, h, spine = 920, 470, 235
-    b = [f"<line x1='30' y1='{spine}' x2='700' y2='{spine}' stroke='{INK}' stroke-width='3' marker-end='url(#a)'/>"]
+    b = [
+        f"<line x1='30' y1='{spine}' x2='700' y2='{spine}' stroke='{INK}' stroke-width='3' marker-end='url(#a)'/>"
+    ]
     b.append(box(810, spine, 190, 110, effect, "#fbe9e7", WARN))
     half = (len(causes) + 1) // 2
     for idx, (cat, cause) in enumerate(causes):
@@ -90,7 +115,9 @@ def fishbone(title, effect, causes):
         x = 190 + col * 215
         y_label = 28 if top else h - 20
         y_bone = 95 if top else h - 85
-        b.append(f"<line x1='{x - 30}' y1='{y_bone}' x2='{x + 40}' y2='{spine}' stroke='{LINE}' stroke-width='2'/>")
+        b.append(
+            f"<line x1='{x - 30}' y1='{y_bone}' x2='{x + 40}' y2='{spine}' stroke='{LINE}' stroke-width='2'/>"
+        )
         b.append(text(x - 30, y_label, cat, 13, "middle", "bold", ACCENT))
         lines = textwrap.wrap(cause, 30)
         base = 60 if top else h - 150
@@ -131,9 +158,13 @@ def pareto():
         y = top + plot_h - k / total * plot_h
         b.append(f"<line x1='{left}' y1='{y}' x2='{left + plot_w}' y2='{y}' stroke='#e3e6ea'/>")
         b.append(text(left - 8, y + 4, str(k), 10, "end", fill=MUTED))
-        b.append(text(left + plot_w + 8, y + 4, f"{round(k / total * 100)} %", 10, "start", fill=MUTED))
+        b.append(
+            text(left + plot_w + 8, y + 4, f"{round(k / total * 100)} %", 10, "start", fill=MUTED)
+        )
     y80 = top + plot_h - 0.8 * plot_h
-    b.append(f"<line x1='{left}' y1='{y80}' x2='{left + plot_w}' y2='{y80}' stroke='{WARN}' stroke-dasharray='5 4'/>")
+    b.append(
+        f"<line x1='{left}' y1='{y80}' x2='{left + plot_w}' y2='{y80}' stroke='{WARN}' stroke-dasharray='5 4'/>"
+    )
     b.append(text(left + plot_w - 4, y80 - 4, "80 %", 10, "end", fill=WARN))
     slot = plot_w / len(ordered)
     cum, pts = 0, []
@@ -142,18 +173,37 @@ def pareto():
         bw = slot * 0.6
         x = left + i * slot + (slot - bw) / 2
         bh = n / total * plot_h
-        b.append(f"<rect x='{x}' y='{top + plot_h - bh}' width='{bw}' height='{bh}' fill='#9db8d6' stroke='{ACCENT}'/>")
+        b.append(
+            f"<rect x='{x}' y='{top + plot_h - bh}' width='{bw}' height='{bh}' fill='#9db8d6' stroke='{ACCENT}'/>"
+        )
         inside = bh >= 30
-        b.append(text(x + bw / 2, top + plot_h - bh + (16 if inside else -5), str(n), 11, weight="bold"))
+        b.append(
+            text(x + bw / 2, top + plot_h - bh + (16 if inside else -5), str(n), 11, weight="bold")
+        )
         pts.append((x + bw / 2, top + plot_h - cum / total * plot_h, cum))
         for j, line in enumerate(textwrap.wrap(cls, 24)[:4]):
             b.append(text(x + bw / 2, top + plot_h + 16 + j * 12, line, 10))
-    b.append(f"<polyline points='{' '.join(f'{x},{y}' for x, y, _ in pts)}' fill='none' stroke='{WARN}' stroke-width='2'/>")
+    b.append(
+        f"<polyline points='{' '.join(f'{x},{y}' for x, y, _ in pts)}' fill='none' stroke='{WARN}' stroke-width='2'/>"
+    )
     for x, y, c in pts:
         b.append(f"<circle cx='{x}' cy='{y}' r='3.5' fill='{WARN}'/>")
         b.append(text(x, y - 8, f"{round(c / total * 100)} %", 10, fill=WARN))
-    b.append(text(left, 16, f"Pareto of the {total} defects by root-cause class (bars: count, line: cumulative share)", 12, "start", "bold"))
-    return svg(w, h, "".join(b), f"Pareto chart of {total} defects by root-cause class"), counts, total
+    b.append(
+        text(
+            left,
+            16,
+            f"Pareto of the {total} defects by root-cause class (bars: count, line: cumulative share)",
+            12,
+            "start",
+            "bold",
+        )
+    )
+    return (
+        svg(w, h, "".join(b), f"Pareto chart of {total} defects by root-cause class"),
+        counts,
+        total,
+    )
 
 
 def main():
@@ -161,9 +211,15 @@ def main():
     f1 = [
         ("Code", "return instead of raise in one checker; inconsistent with siblings"),
         ("Tests", "line never executed by upstream tests; no negative test for inactive events"),
-        ("Design", "error signalling relies on convention (exceptions collected by a loop), not types"),
+        (
+            "Design",
+            "error signalling relies on convention (exceptions collected by a loop), not types",
+        ),
         ("Process", "no mutation testing, no contract test, coverage not gated on this file"),
-        ("Environment / data", "inactive events hidden in the UI hide the path from manual testing"),
+        (
+            "Environment / data",
+            "inactive events hidden in the UI hide the path from manual testing",
+        ),
         ("People", "defensive code written without a failing test first (inference)"),
     ]
     f2 = [
@@ -171,13 +227,22 @@ def main():
         ("Tests", "only valid-input form tests upstream; no invalid-partition tests"),
         ("Design", "date and time split into separate fields combined later"),
         ("Process", "no input-validation checklist or EP technique in upstream review"),
-        ("Environment / data", "UI widgets prevent invalid input in manual use, so it never surfaced"),
+        (
+            "Environment / data",
+            "UI widgets prevent invalid input in manual use, so it never surfaced",
+        ),
         ("People", "happy-path bias (inference)"),
     ]
     files = {
         "cfg_check_participation_state.svg": cfg(),
-        "fishbone_defect001.svg": fishbone("Fishbone DEFECT-001", ["DEFECT-001", "inactive event", "still accepts", "signup"], f1),
-        "fishbone_defect002.svg": fishbone("Fishbone DEFECT-002", ["DEFECT-002", "ShiftForm KeyError", "(HTTP 500) on", "invalid date/time"], f2),
+        "fishbone_defect001.svg": fishbone(
+            "Fishbone DEFECT-001", ["DEFECT-001", "inactive event", "still accepts", "signup"], f1
+        ),
+        "fishbone_defect002.svg": fishbone(
+            "Fishbone DEFECT-002",
+            ["DEFECT-002", "ShiftForm KeyError", "(HTTP 500) on", "invalid date/time"],
+            f2,
+        ),
     }
     pareto_svg, counts, total = pareto()
     files["pareto_defects.svg"] = pareto_svg

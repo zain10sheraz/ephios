@@ -28,7 +28,7 @@ def user_messages(path):
                     if isinstance(part, dict) and part.get("type") == "text"
                 )
             content = re.sub(
-                r"<system-reminder>.*?</system-reminder>", "", content or "", flags=re.S
+                r"<system-reminder>.*?</system-reminder>", "", content or "", flags=re.DOTALL
             ).strip()
             if content and not content.startswith("<"):
                 yield row.get("timestamp", ""), content
@@ -44,8 +44,10 @@ def main():
             f"# Prompt log of {member}\n\nExported with scripts/export_prompts.py; "
             f"{len(messages)} prompts, unchanged.\n"
         )
-        for number, (stamp, text) in enumerate(messages, 1):
-            out.write(f"\n## Prompt {number} ({stamp})\n\n````text\n{text}\n````\n")
+        out.writelines(
+            f"\n## Prompt {number} ({stamp})\n\n````text\n{text}\n````\n"
+            for number, (stamp, text) in enumerate(messages, 1)
+        )
     print("wrote", len(messages), "prompts to", sys.argv[2])
 
 
