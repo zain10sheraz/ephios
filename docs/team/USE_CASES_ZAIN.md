@@ -4,6 +4,7 @@ The brief asks for two use cases **per member**. Zain's two use cases extend the
 Tests: `tests/team/e2e/test_uc5_planner_deletes.py`, `tests/team/e2e/test_uc6_volunteer_customizes.py`. Other use cases: `USE_CASES.md` (Sajawal, UC1-UC2) and `USE_CASES_MANAN.md` (Manan, UC3-UC4).
 
 ## UC5 - Planner deletes a shift or an event (FR-02, BR-W7 last shift cannot be deleted, BR-W9 delete permission)
+
 | | |
 |---|---|
 | Goal | the planner removes a shift or a whole event that is no longer needed |
@@ -23,6 +24,7 @@ Tests: `tests/team/e2e/test_uc5_planner_deletes.py`, `tests/team/e2e/test_uc6_vo
 | UC5-E3 | an anonymous user opens the delete page | redirected to `/accounts/login/?next=/shifts/<id>/delete/`; no shift row removed |
 
 ## UC6 - Volunteer signs up with her own times ("Customize") (FR-05, BR1, BR3)
+
 | | |
 |---|---|
 | Goal | a volunteer takes part for only a part of the shift |
@@ -40,6 +42,7 @@ Tests: `tests/team/e2e/test_uc5_planner_deletes.py`, `tests/team/e2e/test_uc6_vo
 | UC6-E1 | end time before start time | "End time must not be before start time."; no participation |
 | UC6-E2 | the planner closes the signup window while the customize page is open | "This action is not allowed."; no participation |
 | UC6-E3 | the start time is empty | "Enter a valid time."; no participation |
+
 UC6-E2 uses a stale page and UC6-E3 switches off the browser's own checks (`novalidate`) so that the server-side rule is exercised; the tests say so.
 
 ## Flow inventory

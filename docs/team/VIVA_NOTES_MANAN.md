@@ -5,10 +5,11 @@ Details: `API_TESTING.md`.
 
 ## 1. One-minute story
 Ephios has a read-only JSON REST API and form endpoints for writing (login cookie + CSRF token). I wrote an OpenAPI specification of 14 operations from the behaviour I observed
-(the project's own schema only lists 200 responses), a generator that derives equivalence classes and 3-point boundary values from that specification, and 476 black-box tests
+(the project's own schema only lists 200 responses), a generator that derives equivalence classes and 3-point boundary values from that specification, and 477 black-box tests (476 plus the recovery test)
 that start the real application, log in, send real HTTP requests and read the stored state back. Nothing is mocked.
 
 ## 2. Component by component
+
 | Component | What to say | Where |
 |---|---|---|
 | **OpenAPI spec** | 14 operations (7 REST reads, 7 form writes); constraints (min, max, maxLength, enum, format) drive the generator; vendor extensions mark ids (`x-identifier`), parameters the app ignores when invalid (`x-lenient`), split date/time fields (`x-paired`), valid time edges (`x-time-edges`) | `test_specs/openapi.yaml` |

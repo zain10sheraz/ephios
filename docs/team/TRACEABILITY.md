@@ -1,10 +1,11 @@
 # Requirements traceability matrix (RTM) - status 2026-11-26
 
 Legend: **P** = executed and passing, **-** = no test yet (honest gap), **partial** = only part of the requirement is checked.
-Levels: U = unit/white-box (Zain, `tests/team/unit`), I = integration (`tests/team/integration`), A = API black-box over HTTP (Manan, `tests/team/api`, 476 tests all passing), E = browser E2E (Sajawal, `tests/team/e2e`, 26 browser tests passing).
+Levels: U = unit/white-box (Zain, `tests/team/unit`), I = integration (`tests/team/integration`), A = API black-box over HTTP (Manan, `tests/team/api`, 477 tests all passing), E = browser E2E (Sajawal, `tests/team/e2e`, 51 browser tests passing (final run of 2026-11-27)).
 Requirement text and rule definitions: `REQUIREMENTS.md`. Test names are real pytest names in this repository.
 
 ## Functional requirements
+
 | ID | Requirement (short) | U | I | A | E | Main tests (examples) | Status |
 |---|---|---|---|---|---|---|---|
 | FR-01 | Planner creates an event | P | P | P | P | `test_planner_creates_an_event_and_is_sent_on_to_add_a_shift`, `test_creating_events_needs_the_add_event_permission`, `test_new_event_form_assigns_permissions`; API: `test_generated_inputs[createEvent.*]` (29 cases) | covered (unit + HTTP) |
@@ -23,6 +24,7 @@ Earlier today it was 61 % (4 full + 3 partial of 9); the HTTP tests closed FR-01
 E2E tests (Sajawal, area 3) are listed in the E column: FR-01/02/03 by UC1 flows, FR-05..09 by UC2 flows (`docs/team/USE_CASES.md`, `E2E_AND_QUALITY_REPORT.md`); FR-04 (REST read) has no browser test by design.
 
 ## Business rules
+
 | ID | Rule | Tests (all executed, all passing on `zain`) | Techniques |
 |---|---|---|---|
 | BR1 | Signup window boundary | `test_br1_signup_until_boundary[just_before/exactly_at/just_after]`, `test_br1_end_time_is_limit_without_signup_until`, `test_br1_signup_until_after_end_time_is_capped_by_end_time` | 3-point BVA |
@@ -47,6 +49,7 @@ E2E tests (Sajawal, area 3) are listed in the E column: FR-01/02/03 by UC1 flows
 PR-01 -> DEFECT-001 tests + fix; PR-02 -> BR1 tests; PR-03 -> BR4 tests (concurrency untested); PR-04 -> BR3; PR-05 -> BR6; PR-11 (shift time input validation) -> DEFECT-002 tests.
 
 ## Structural and mutation evidence per module
+
 | Module | Statement / branch coverage | Mutation kill rate (final) |
 |---|---|---|
 | `core/signup/flow/participant_validation.py` | 100 % / 100 % | 98.3 % (100 % in CI after DEFECT-001 fix) |

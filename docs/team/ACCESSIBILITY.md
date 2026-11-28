@@ -6,6 +6,7 @@ An issue found by both tools is counted once: Lighthouse's accessibility audits 
 All numbers below come from the saved reports in `reports/accessibility/`.
 
 ## 1. Usability tests (Playwright, `tests/team/e2e/test_usability_keyboard.py`)
+
 | Test | What it does | Result |
 |---|---|---|
 | WF1 | planner opens the shift form, enters a meeting time **after** the start time, saves; the page must say what is wrong; correct the value; save | error "Meeting time must not be after start time!" names the field and the rule, the entered values are kept, the correction succeeds with the banner "...has been saved" (pass) |
@@ -15,6 +16,7 @@ All numbers below come from the saved reports in `reports/accessibility/`.
 Usability finding (not an accessibility rule): when a click is rejected by a server rule from a page that was already open (shift filled up, window closed, second tab), the page shows only **"This action is not allowed."** without the reason, while a fresh page shows the reason ("The maximum number of participants is reached."). Reported as an issue (message does not say what to do).
 
 ## 2. Findings (axe-core + Lighthouse, each issue once)
+
 | ID | Rule | Impact | Element(s) | User impact | Proposed fix | Status |
 |---|---|---|---|---|---|---|
 | A11Y-1 | `select-name` | critical | `#id_signup_flow_slug`, `#id_structure_slug` (shift form) | a screen reader announces a combobox without a name; the user cannot tell what the choice is for | give the selects an accessible name (`aria-label`) | **fixed** (before: 2 elements, after: 0) |
@@ -27,6 +29,7 @@ Usability finding (not an accessibility rule): when a click is rejected by a ser
 | A11Y-8 | `aria-dialog-name` | (Lighthouse only) | 1 dialog element | an unnamed dialog | add `aria-label`/`aria-labelledby` | open (not reported separately) |
 
 ### Additional key screens (one measurement, not fixed)
+
 | Screen | Lighthouse accessibility / best practices / SEO | axe-core violated rules | Findings |
 |---|---|---|---|
 | UC5 shift deletion confirmation | 90 / 100 / 91 | `color-contrast` (1 element, `.text-body-secondary`) | same cause as A11Y-3 (issue #18); Lighthouse also lists `aria-dialog-name` and `heading-order` (1 element each, not reported by axe) |
@@ -34,12 +37,14 @@ Usability finding (not an accessibility rule): when a click is rejected by a ser
 
 ## 3. Before and after (one screen fixed: the UC1 shift form)
 Fix (source of the MIS, `src/ephios/core/forms/events.py`, `src/ephios/extra/widgets.py`): accessible names for the two selects and the split date/time inputs.
+
 | Screen / tool | Before | After |
 |---|---|---|
 | UC1 shift form, Lighthouse accessibility score | **80** | **89** |
 | UC1 shift form, axe violated rules | 6 (`aria-allowed-role`, `aria-input-field-name`, `color-contrast`, `heading-order`, `label`, `select-name`) | **4** (`label` and `select-name`, both critical, gone) |
 | UC2 event page, Lighthouse accessibility score | 86 | 86 (not changed, not in scope of the fix) |
 | Lighthouse best practices / SEO (both screens) | 100 / 91 | 100 / 91 |
+
 Regression test `tests/team/e2e/test_accessible_names.py` (Playwright accessible-name assertion on the four controls): **4 of 4 fail before** the fix (run on a worktree of the commit before the fix, `reports/accessibility/regression_before_fix.txt`), **4 of 4 pass after** (`reports/accessibility/regression_after_fix.txt`). The related unit tests (83) still pass.
 
 ## 4. Limits

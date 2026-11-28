@@ -3,20 +3,23 @@
 Project: SE3002 final project on Ephios (upstream `ephios-dev/ephios`, baseline `d12e76cd2b5b422177176506b0b6b9393dbc10e5`, tag `baseline-upstream-d12e76cd`). Scope: module "events and signup", workflows **WF1** event and shift management and **WF2** participant signup (`REQUIREMENTS.md`). All numbers below come from real runs; the evidence is linked.
 
 ## 1. Area ownership (who is examined on what)
+
 | Member | GitHub | Area | Browser use cases (two per member) |
 |---|---|---|---|
 | Zain Sheraz | zain10sheraz | 1: static analysis, white-box, mutation, CI | UC5, UC6 (`USE_CASES_ZAIN.md`) |
 | Manan | MannanJafferyyy | 2: API testing, OpenAPI, EP/BVA generator, cross-workflow validation | UC3, UC4 (`USE_CASES_MANAN.md`) |
 | Sajawal | sajawalkhanfake | 3: use cases, usability, accessibility, security, performance | UC1, UC2 (`USE_CASES.md`) |
+
 Test management documents are shared. The AI-use record is `AI_USE_RECORD.md`.
 
 ## 2. What was tested (results)
+
 | Activity | Result | Evidence |
 |---|---|---|
 | Unit and coverage | 458 tests; 16 modules at 100 % statement and branch coverage; MCC and MC/DC of the critical module | `COVERAGE_SCOPE.md`, `MCC_MCDC.md` |
 | Static analysis | SonarQube: 0 bugs, 0 vulnerabilities, 0 hotspots, 14 smells (all upstream's), 0.5 % duplication | `SONARQUBE.md`, `reports/sonar_metrics_final.txt` |
 | Mutation | Cosmic Ray, 8 modules, 1,079 mutants, 78.2 % -> 97.7 %; 235 survivors analysed; 3 custom operators | `MUTATION.md` |
-| CI gate | three required checks (unit 100 %, mutation, SonarQube thresholds) plus API and browser jobs; a blocked demonstration PR (#3) and fix PRs | `CI_GATES.md`, PRs #2 #3 #5 #8 #11 |
+| CI gate | three required checks (unit 100 %, mutation, SonarQube thresholds) plus API and browser jobs, which must also become required (`scripts/require_all_checks.ps1`, status in CI_GATES.md); a blocked demonstration PR (#3) and fix PRs | `CI_GATES.md`, PRs #2 #3 #5 #8 #11 |
 | API and integration | OpenAPI of 14 operations, generator (409 EP/BVA cases), 477 black-box tests, operation coverage 14/14, documented responses 46/46, inputs 80/80, post-conditions read back | `API_TESTING.md`, `reports/api/` |
 | Browser end to end | 6 use cases, 36 flows, plus usability, keyboard, access matrix, recovery, accessible-name regression: 51 Playwright tests in real Chromium | `USE_CASES*.md`, `reports/e2e/` |
 | Usability and accessibility | axe-core (`@axe-core/playwright`) and Lighthouse on 4 key screens; 2 critical rules fixed on the shift form (Lighthouse 80 -> 89) | `ACCESSIBILITY.md`, `reports/accessibility/` |
@@ -29,12 +32,13 @@ Signup (a write) under load; capacity races on PostgreSQL/MySQL (only SQLite: a 
 ## 4. Deviations from the plan
 * Estimates for area 1 were written after the work (retrospective, labelled in `TEST_PLAN.md`); area 2 and 3 efforts in `WORKLOG.md` are approximate.
 * The unit scope is 16 business-logic modules, not every server-side file; the exclusions are justified in `COVERAGE_SCOPE.md`.
-* k6 limits were set once for both workloads (p95 < 800 ms, < 1 % failures) before testing, not separately per workload. The register's EC-04 (signup p95 <= 500 ms at 5 users) concerns signup; the measured operation was the event list.
+* k6 limits were set once for both workloads (p95 < 800 ms, < 1 % failures) before testing, not separately per workload. The register's EC-04 (signup p95 <= 500 ms at 5 users) concerns signup; the measured operation was the event list. Separate limits for the signup write (p95 < 500 ms, < 1 % failures) and the script `scripts/k6_signup.js` were added in the course review (`PERFORMANCE.md` section 1b); the signup run itself is **NOT RUN** yet.
 * The recovery failure is simulated with a read-only SQLite file, not with a test double of an external dependency.
 * The use cases of Zain and Manan were added after the first areas were merged; they were not part of the first plan.
 * SonarQube and ZAP were run through Docker as a convenience; the tools are the same as a local installation.
 
 ## 5. Defects (16 reported, 5 closed, 11 open)
+
 | Area | Issues | Status |
 |---|---|---|
 | 1 | #1 #4 #6 #7 (DEFECT-001..004) | closed, fixed through PRs #2 #5 #8, with regression tests |
@@ -42,9 +46,11 @@ Signup (a write) under load; capacity races on PostgreSQL/MySQL (only SQLite: a 
 | 3 | #17 (DEFECT-008, major, accessible names) | closed, fixed and merged (PR #24) |
 | 3 | #18 #19 #20 (DEFECT-009..011, major, accessibility: contrast, positive tabindex, Select2 name) | **open** |
 | 3 | #21 #22 #23 #25 #26 (minor: heading order, generic rejection message, soupsieve, CSP directives, language cookie) | open |
+
 Root-cause analyses (5 Whys, fishbone, Pareto): `RCA.md`.
 
 ## 6. Residual risk per risk (`RISK_REGISTER.md`)
+
 | Risk | Evidence | Residual |
 |---|---|---|
 | PR-01 inactive event accepts signup | DEFECT-001 fixed, unit and integration tests, mutation | Low |
@@ -62,6 +68,7 @@ Root-cause analyses (5 Whys, fishbone, Pareto): `RCA.md`.
 | PJ-01 / PJ-02 / PJ-03 project risks | occurred (laptop memory, late start of areas 2 and 3); handled (heavy tools run one at a time, areas 2 and 3 completed) | closed |
 
 ## 7. Release criteria: actual versus target
+
 | ID | Criterion | Target | Actual | Met |
 |---|---|---|---|---|
 | EC-01 | coverage of the business-logic modules | 100 % statement and branch | 100 % / 100 % on 16 modules | yes |

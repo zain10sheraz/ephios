@@ -16,6 +16,7 @@ and justified assumptions marked **[A]**. Status: version of 2026-11-27, written
 and `Event.active`. WF1 changes them; WF2 reads them in `participant_validation`.
 
 ## Functional requirements
+
 | ID | Workflow | Requirement |
 |---|---|---|
 | FR-01 | WF1 | A Planner with `add_event` can create an event with title, type, location and active flag. |
@@ -29,6 +30,7 @@ and `Event.active`. WF1 changes them; WF2 reads them in `participant_validation`
 | FR-09 | Both | Signup availability reflects WF1 configuration changes (capacity, deadline, active flag). |
 
 ## Business rules
+
 | ID | Rule | Type |
 |---|---|---|
 | BR1 | Signup closes when `now > min(shift.end_time, signup_until)` (equal instant is still open). | boundary/limit |
@@ -39,6 +41,7 @@ and `Event.active`. WF1 changes them; WF2 reads them in `participant_validation`
 | BR6 (extra) | Overlapping CONFIRMED participation blocks signup; minimum age and required qualifications block signup. | decision |
 
 ## Roles and permissions (access matrix, to be verified by Playwright)
+
 | Action | Planner (`planner@sqe.test`) | Volunteer (`volunteer@sqe.test`) |
 |---|---|---|
 | View event list / detail | allowed | allowed (events visible to Volunteers group) |

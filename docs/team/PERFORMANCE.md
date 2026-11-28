@@ -6,11 +6,28 @@
 * **Failure limit: < 1 % failed requests.** A shift-planning tool for a medical service is not safety critical for reads, but a user must be able to rely on 99 % of reads; a failure is any non-2xx/3xx response or connection error (k6 `http_req_failed`).
 * Script: `scripts/k6_events_list.js` (the thresholds are in the script and fail the run when broken). Tool: k6 v2.4.0.
 
+## 1b. Second workload: signup (write), own limits (added in the course review, not yet run)
+
+The review noted that one limit was used for both workloads and that signup under load was never measured. The two workloads
+have different cost and different consequences, so each gets its own limits, **fixed here before the first signup run**:
+
+| Workload | Operation | p95 limit | Failure limit | Why | Script | Status |
+|---|---|---|---|---|---|---|
+| Read | `GET /api/events/` (event list) | 800 ms | < 1 % | repeated read, user waits for a page | `scripts/k6_events_list.js` | **run**, limits met (sections 3 and 4b) |
+| Write | `POST /shifts/<id>/signup/` (sign up and decline alternating) | **500 ms** at 5 users (the register's EC-04) | **< 1 %**; HTTP 5xx and connection errors count, so SQLite's `database is locked` is visible | a write the volunteer waits for after pressing the button; it must also not lose or duplicate data | `scripts/k6_signup.js` | **NOT RUN** |
+
+How the signup run is done: start `scripts/serve_seeded.py`, then `k6 run -e BASE=... -e SHIFT=1 -e VUS=1|5 -e DURATION=60s
+scripts/k6_signup.js`, each setup twice, 60 s per run, like the read workload. Two accounts share the 5 users, so
+concurrent writes of the same account also exercise the rejection path (302 as well). After the run, read the
+participation count back (one record per volunteer) to confirm no duplicate. Until the member has run it and saved
+`reports/performance/k6_signup_*.json`, **EC-04 stays "not demonstrated"**; no number for signup is claimed here.
+
 ## 2. Method
 1 virtual user and 5 virtual users, **each configuration twice, 60 s per run** (4 runs, one after the other, no other load on the machine). Each virtual user repeats the request in a loop without think time (a worst-case, closed-loop load). Login once in `setup()`.
 Environment: Windows 11 laptop, 7.7 GB RAM, Django `runserver` (development server), SQLite, 16 events and 15 shifts in the database (small data set: with more data the list would be slower); k6 on the same machine. Results are therefore **relative indicators for this environment**, not production capacity.
 
 ## 3. Results (`reports/performance/k6_vus*_run*.json`, summary `k6_summary.md`)
+
 | VUs | run | requests | req/s | avg ms | p95 ms | max ms | failed % | limits |
 |---|---|---|---|---|---|---|---|---|
 | 1 | 1 | 903 | 14.1 | 71 | 104 | 3742 | 0.00 | met |
@@ -27,10 +44,12 @@ Comparison with the limits: p95 is 99-104 ms with 1 user (13 % of the limit) and
 
 ## 4b. Second set of runs on a quiet machine (the member's own runs, screenshots `EV-046`, `EV-046b`)
 After closing other applications, the member ran the same script again, one run for each setup, with `scripts/evidence_walkthrough.ps1` (60 s per run, same limits, a freshly started seeded server). These runs have no JSON export; the values below are read from the screenshots.
+
 | VUs | requests | req/s | avg ms | p95 ms | max | failed % | limits |
 |---|---|---|---|---|---|---|---|
 | 1 | 4000 | 64.2 | 13.45 | 17.8 | 2.2 s | 0.00 | met |
 | 5 | 4177 | 67.0 | 72.29 | 115.04 | 2.22 s | 0.00 | met |
+
 Reading: the limits are met again, and **the absolute numbers are about 5 times better than in the first set** (p95 17.8 ms against 99-104 ms with 1 user; 115 ms against 505-506 ms with 5 users; 64-67 requests/s against 14-15). The operation, the code and the limits are the same; what differs is the state of the laptop (the first runs were taken while it had about 600 MB of free memory and Docker running; the cause was not isolated, so this explanation is a likely one, not a proof). The finding that **throughput does not grow with the number of users** holds in both sets (64.2 against 67.0 requests/s, a factor of 1.04), and the average response time grows 5.4 times from 1 to 5 users (13.45 to 72.29 ms). Lesson for the report: single p95 values of this kind depend strongly on machine load, so the limits and the conclusions must be read together with the environment.
 
 ## 5. Failure and recovery (S11)

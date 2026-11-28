@@ -9,6 +9,7 @@ Ephios = shift management for medical services. WF1: planners create events and 
 checked test strength with mutation testing, and built a GitHub Actions gate that blocks bad pull requests.
 
 ## 2. Component by component
+
 | Component | What to say | Where / how to rerun |
 |---|---|---|
 | **SonarQube** | Community 26.11 in Docker, scope = business-logic folders (the whole app froze this 7.7 GB laptop). Two runs: default profile found 0 issues, "comprehensive" profile 18 smells (13 are upstream's, 1 more joined with `forms/events.py`). Default quality gate FAILED (coverage 9.5 % of scope < 80 %): honest result, because only 16 modules are unit-tested | `docs/team/SONARQUBE.md`, `scripts/run_sonar.sh`, screenshots EV-005a/b |

@@ -3,6 +3,7 @@
 Every number, table and result in this report was produced by a tool run or read from a recorded source in this repository; none was typed in from memory without a source. This page names the source of each kind of data, how it was produced, and which parts are **judgement** (made by the team, with Claude Code assistance as recorded in `AI_USE_RECORD.md`) and not measurement. Each member should be able to open the raw file behind any number in the viva.
 
 ## 1. Measured data (raw output is committed)
+
 | Data in the report | Raw source in the repository | How it was produced |
 |---|---|---|
 | Unit tests, statement and branch coverage of the 16 gate modules | `reports/coverage_unit.txt`; `scripts/run_unit_coverage.ps1` | coverage.py run of `tests/team` (`scripts/gate_modules.txt` lists the modules) |
@@ -23,6 +24,7 @@ Every number, table and result in this report was produced by a tool run or read
 | Request/response facts (cookie attributes, headers, CSRF refusal) | quoted in `docs/team/SECURITY.md` from real responses of the running app | HTTP requests to a local server; confirmed against `src/ephios/settings.py` |
 
 ## 2. Judgement (not measurement)
+
 | Data | What it is |
 |---|---|
 | Likelihood and impact scores, risk levels (`RISK_REGISTER.md`) | the team's estimate on a 1-5 scale; the evidence column cites the runs |

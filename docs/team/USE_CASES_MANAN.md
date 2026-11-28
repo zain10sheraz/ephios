@@ -4,6 +4,7 @@ The brief asks for two use cases **per member**. Manan's two use cases extend th
 Tests: `tests/team/e2e/test_uc3_planner_changes_shift.py`, `tests/team/e2e/test_uc4_volunteer_declines.py`. Sajawal's use cases UC1 and UC2: `USE_CASES.md`.
 
 ## UC3 - Planner changes the signup configuration of a shift and a volunteer sees the effect (FR-03, FR-09, BR4)
+
 | | |
 |---|---|
 | Goal | the planner adapts capacity or signup flow after publishing; volunteers see the new rule at once |
@@ -21,9 +22,11 @@ Tests: `tests/team/e2e/test_uc3_planner_changes_shift.py`, `tests/team/e2e/test_
 | UC3-E1 | planner enters capacity 0 | "Ensure this value is greater than or equal to 1."; shift unchanged (capacity still 5) |
 | UC3-E2 | planner clears the date | "This field is required."; start time unchanged |
 | UC3-E3 | a volunteer opens the edit page | HTTP 403 "Permission denied"; shift unchanged |
+
 (UC3-E1 and UC3-E2 switch off the browser's own `required`/`min` checks to exercise the server-side rule; the tests say so.)
 
 ## UC4 - Volunteer declines a place (FR-06, BR2, BR3)
+
 | | |
 |---|---|
 | Goal | a volunteer gives a place back |
@@ -41,6 +44,7 @@ Tests: `tests/team/e2e/test_uc3_planner_changes_shift.py`, `tests/team/e2e/test_
 | UC4-E1 | the shift forbids declining (flag off) | after signing up the page says "You cannot decline by yourself." and offers no Decline button; state stays CONFIRMED |
 | UC4-E2 | the page is open, the planner forbids declining meanwhile, the volunteer clicks Decline | "This action is not allowed."; state stays CONFIRMED |
 | UC4-E3 | the signup window is closed meanwhile (BR2: the window must be open), the volunteer clicks Decline | "This action is not allowed."; state stays CONFIRMED |
+
 UC4-E2 and UC4-E3 use a stale page (the button was visible when the page was loaded), the way a real user reaches the server-side rule.
 
 ## Flow inventory

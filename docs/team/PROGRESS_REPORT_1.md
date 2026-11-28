@@ -5,6 +5,7 @@
 Author: Zain Sheraz with Claude Code assistance (see AI-use record). Status date: 2026-11-24 evening.
 
 ## 1. Progress against plan
+
 | Plan item (4-day plan) | Planned | Actual | Status |
 |---|---|---|---|
 | Day 1: setup, scope, requirements, risks | done by end Day 1 | environment, seed/reset, `REQUIREMENTS.md`, `RISK_REGISTER.md` draft | **done** (requirements not yet reviewed by Manan/Sajawal) |
@@ -18,14 +19,17 @@ Author: Zain Sheraz with Claude Code assistance (see AI-use record). Status date
 | Day 4: defects, RCA, Pareto, reports | shared | 2 defects filed and RCA written; this report; PDF not started | in progress |
 
 ## 2. Defects (GitHub Issues)
+
 | ID | Title | Severity | Priority | Status | Found by |
 |---|---|---|---|---|---|
 | #1 DEFECT-001 | inactive event still accepts signup | major | high | closed (fixed PR #2) | white-box unit test |
 | #4 DEFECT-002 | ShiftForm KeyError / HTTP 500 on invalid date or start time | major | medium | fix in PR #5 (pending CI) | EP probe + live server |
+
 Triage decisions: both confirmed, fixed with regression tests, no duplicates, none rejected. Root cause analysis: `RCA.md`.
 
 ## 3. GQM metrics
 **Goal G1 - white-box quality of the business-logic modules.**
+
 | Question | Metric | Value | Reading |
 |---|---|---|---|
 | Is the logic executed by tests? | statement / branch coverage (5 modules, 672 statements, 94 branches) | 100 % / 100 % | meets EC-01 |
@@ -33,6 +37,7 @@ Triage decisions: both confirmed, fixed with regression tests, no duplicates, no
 | Is the code simple enough to test? | cyclomatic complexity, scope total (Sonar) | 707 (cognitive 419) | highest files: `models/events.py` 66, `named_teams.py` 66, `views/event.py` 63 |
 
 **Goal G2 - defects found and their handling.**
+
 | Question | Metric | Value | Reading |
 |---|---|---|---|
 | How dense are defects? | defects per KLOC (2 / 4.747 ncloc in scope) | **0.42 per KLOC** | low absolute number; only white-box area tested so far |
@@ -40,6 +45,7 @@ Triage decisions: both confirmed, fixed with regression tests, no duplicates, no
 | Severity mix | major / minor | 2 / 0 | both major: unhandled error and unenforced rule |
 
 **Goal G3 - requirement coverage.**
+
 | Question | Metric | Value | Reading |
 |---|---|---|---|
 | How many requirements have an executed test? | requirements coverage | **61 %** (5.5 / 9; strict 44 %) | gaps FR-04 (REST), FR-08 (duplicates) need API tests |
@@ -48,6 +54,7 @@ Triage decisions: both confirmed, fixed with regression tests, no duplicates, no
 Quality-gate indicators: SonarQube comprehensive profile 18 smells initially, 13 after cleanup (upstream-owned); 0 bugs, 0 vulnerabilities; duplication 0.5 %; default Sonar gate FAILED (coverage 9.5 % of scope < 80 %, evidence EV-005a).
 
 ## 4. Variances, causes and control actions
+
 | Variance | Cause | Control action |
 |---|---|---|
 | Teammates' areas (API, E2E, security, performance, usability) not started; branches at baseline | availability unknown to the author | ask Manan and Sajawal to start today; interfaces given in `REQUIREMENTS.md`, plan, risk register; if not started by Day 3 evening, report NOT RUN and cut scope |
@@ -64,6 +71,7 @@ Quality-gate indicators: SonarQube comprehensive profile 18 smells initially, 13
 
 ---
 ## Update 2026-11-24 late evening (same reporting period, after the first version of this report)
+
 | Item | Earlier today | Now |
 |---|---|---|
 | Team tests | 197 | **367** (unit + HTTP integration; run in CI) |

@@ -6,6 +6,7 @@ each automated test asserts the result **shown on the screen** and the **postcon
 Test account names: see `SETUP.md` (synthetic, local only).
 
 ## UC1 - Planner creates an event with a shift (WF1; FR-01, FR-02, FR-03, FR-04, BR-W6, BR-W7)
+
 | | |
 |---|---|
 | Goal | A planner publishes an event with one shift that volunteers can sign up for |
@@ -23,12 +24,14 @@ Test account names: see `SETUP.md` (synthetic, local only).
 *Postconditions:* event and shift persisted; event active; event page shows the title and the shift; `/api/events/<id>/` lists the shift with `max_count` 5; planner stays logged in.
 
 **Alternative flows**
+
 | ID | Branch at step | Flow | Expected result and postconditions |
 |---|---|---|---|
 | UC1-A1 | 4 | Planner chooses the flow "request and confirm" instead of instant confirmation | Shift saved with that flow; a later signup is REQUESTED, not CONFIRMED (checked through WF2 afterwards) |
 | UC1-A2 | after 5 | Planner edits the shift and raises the maximum from 5 to 8 | Event page shows the new capacity; REST read-back shows `max_count` 8; no second shift is created |
 
 **Exception flows**
+
 | ID | Branch at step | Condition | Expected result and postconditions |
 |---|---|---|---|
 | UC1-E1 | 2 | Title is empty | Form shown again with a "required" error next to the field; no event stored |
@@ -36,6 +39,7 @@ Test account names: see `SETUP.md` (synthetic, local only).
 | UC1-E3 | 1 | A volunteer without `add_event` opens the create-event page | "Permission denied" page (HTTP 403); nothing stored |
 
 ## UC2 - Volunteer signs up for a shift (WF2; FR-05, FR-06, FR-07, FR-08, FR-09, BR1-BR4)
+
 | | |
 |---|---|
 | Goal | A volunteer takes a place on a shift |
@@ -51,12 +55,14 @@ Test account names: see `SETUP.md` (synthetic, local only).
 *Postconditions:* exactly one participation of the volunteer for the shift, state REQUESTED (request flow) or CONFIRMED (instant flow) as configured; the confirmation message names that outcome; `/api/users/me/participations/` lists it.
 
 **Alternative flows**
+
 | ID | Branch at step | Flow | Expected result and postconditions |
 |---|---|---|---|
 | UC2-A1 | 2 | Shift uses instant confirmation | Participation is CONFIRMED at once; the shift's confirmed count increases by 1 |
 | UC2-A2 | after 3 | Volunteer declines a confirmed participation where the shift allows it (BR2) | State DECLINED by the user; still one record; the confirmed count decreases by 1 |
 
 **Exception flows**
+
 | ID | Branch at step | Condition | Expected result and postconditions |
 |---|---|---|---|
 | UC2-E1 | 2 | Shift is full (BR4) | Rejection message; no participation stored for this volunteer; confirmed count unchanged |

@@ -10,6 +10,7 @@ validators and state rules, forms and their validation, models and their query/d
 view and signup flows, participants (age rules), and shift structures used by the selected `uniform` structure.
 
 ## 2. Inside the 100 % gate: 16 modules, 1,343 statements, 174 branches (re-measured 2026-11-25 with 458 tests, after the defect fixes), **100 % statement and 100 % branch**
+
 | Module | Role | Statements | Branches |
 |---|---|---|---|
 | `core/signup/flow/participant_validation.py` | critical module: all signup rules (BR1-BR5) | 98 | 30 |
@@ -25,9 +26,11 @@ view and signup flows, participants (age rules), and shift structures used by th
 | `core/signup/structure/base.py`, `structure/abstract.py` | structure contract | 65 + 54 | 6 + 0 |
 | `core/views/signup.py` | signup entry view | 22 | 2 |
 | `plugins/basesignupflows/flow/participant.py`, `flow/manual.py` | the selected signup flows | 31 + 20 | 0 |
+
 Evidence: `scripts/run_unit_coverage.ps1` output; CI job `unit-tests-100pct-coverage`; SonarQube per-file coverage check.
 
 ## 3. Outside the 100 % gate (measured with `tests/team`, 2026-11-24) and why
+
 | Module | Measured | Why it is outside the gate | Residual risk |
 |---|---|---|---|
 | `core/views/event.py` (WF1 views) | 46 % stmt (create/edit/activate/delete covered by 32 HTTP tests in `test_wf1_http.py`) | Uncovered: the event **list/calendar rendering** (month grid, day view, CSS context) and **event copy with recurrence** (`EventCopyView`). Neither is among our requirements FR-01..FR-09; rendering is presentation logic best checked by browser tests | medium: calendar/copy bugs would not be caught; E2E tests (Sajawal) cover the list only |
