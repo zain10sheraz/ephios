@@ -6,6 +6,7 @@ Re-run things yourself before the viva; do not rely on this page alone. You must
 Ephios has two workflows: a planner creates an event with a shift (WF1) and a volunteer signs up for it (WF2). I wrote two use cases with 12 flows, automated each flow in a real browser (Playwright) with checks of the screen and of the stored state, ran accessibility tools (axe-core, Lighthouse) and found and fixed two critical problems on one screen, checked who may do what (access matrix), audited the dependencies, measured performance with k6 against limits set beforehand, and tested that a storage failure leaves no half-written signup.
 
 ## 2. Component by component
+
 | Component | What to say | Where |
 |---|---|---|
 | **Use cases** | UC1 planner creates event + shift, UC2 volunteer signs up; each: goal, actor, preconditions, main flow, 2 alternative, 3 exception flows, postconditions | `USE_CASES.md` |

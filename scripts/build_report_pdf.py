@@ -117,6 +117,7 @@ a { color: #0b4f9e; text-decoration: none; }
 .cover { padding-top: 40mm; } .cover h1 { font-size: 26pt; } .cover h2 { border: none; font-size: 15pt; font-weight: normal; }
 .cover table.meta th { width: 24%; } .small { color: #555; font-size: 9pt; }
 .chapter { page-break-before: always; } .doc { margin-top: 12px; }
+.diagram { margin: 8px 0; page-break-inside: avoid; } .diagram svg { max-width: 100%; height: auto; }
 .docpath { color: #666; font-size: 8pt; margin-bottom: 2px; }
 .toc li { margin: 2px 0; }
 figure { margin: 10px 0; page-break-inside: avoid; } figure img { max-width: 100%; border: 1px solid #bbb; }
@@ -139,9 +140,25 @@ def link_paths(text):
     return PATH.sub(replace, text)
 
 
+SVG_IMAGE = re.compile(r"!\[([^\]]*)\]\(([^)]+\.svg)\)")
+
+
+def inline_svgs(text, relative):
+    """Replace ![alt](path.svg) by the SVG itself so the diagram is drawn in the PDF."""
+    folder = os.path.dirname(os.path.join(ROOT, relative))
+
+    def replace(match):
+        with open(
+            os.path.normpath(os.path.join(folder, match.group(2))), encoding="utf-8"
+        ) as handle:
+            return f'\n\n<div class="diagram">{handle.read()}</div>\n\n'
+
+    return SVG_IMAGE.sub(replace, text)
+
+
 def render(relative):
     with open(os.path.join(ROOT, relative), encoding="utf-8") as handle:
-        text = handle.read()
+        text = inline_svgs(handle.read(), relative)
     if relative.endswith(".txt"):
         body = f"<pre>{html.escape(text)}</pre>"
     else:

@@ -106,6 +106,7 @@ MC/DC: X = D7-F-/D7-TT, Y = D7-TF/D7-TT.
 Value-level `or` with two feasible inputs each (argument given / None); covered by `test_explicit_start_time_is_used_not_shift_start`, `test_explicit_end_time_is_used_not_shift_end` and the default-argument test (mutation survivors killed).
 
 ### Error-class routing (decision table, 6 classes x 3 queries)
+
 | Error class | in signup errors | in decline errors | in action errors |
 |---|---|---|---|
 | SignupDisallowedError | yes | no | yes |

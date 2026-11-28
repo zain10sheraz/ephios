@@ -5,6 +5,7 @@
 Author: Zain Sheraz with Claude Code assistance. Status time: 2026-11-25 midday. Previous report: `PROGRESS_REPORT_1.md`.
 
 ## 1. Progress against plan
+
 | Plan item | Owner | Status | Evidence |
 |---|---|---|---|
 | Setup, scope, requirements, risks | all | done | `SETUP.md`, `REQUIREMENTS.md`, `RISK_REGISTER.md` |
@@ -18,6 +19,7 @@ Author: Zain Sheraz with Claude Code assistance. Status time: 2026-11-25 midday.
 | Test completion report, final PDF/ZIP | shared | not started (depends on the two areas above) | - |
 
 ## 2. GQM metrics (updated)
+
 | Goal | Metric | Value |
 |---|---|---|
 | G1 white-box quality | statement / branch coverage of the 16 gate modules | 100 % / 100 % |
@@ -30,6 +32,7 @@ Author: Zain Sheraz with Claude Code assistance. Status time: 2026-11-25 midday.
 | Quality gate | PRs run through the gate | 6 (#2, #3, #5, #8, #9, plus the two Sonar blocks inside #2 and #5); all fix PRs green, the demo PR #3 BLOCKED |
 
 ## 3. Variances and control actions
+
 | Variance | Cause | Control action |
 |---|---|---|
 | Areas 2 and 3 have produced no commits after two project days | not known to the author | **escalated to the group**: Manan and Sajawal must start immediately; interfaces are documented (`REQUIREMENTS.md`, `TEST_PLAN.md`, `RISK_REGISTER.md`, `SQE_PROJECT.md`); the author offers to pair on setup. If nothing is committed by the end of day 3 the missing activities are reported as NOT RUN with the reason in the completion report, and the release decision is HOLD |

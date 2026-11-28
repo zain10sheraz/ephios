@@ -10,8 +10,6 @@
 | 2026-11-24 | Zain / CI runs | DEFECT-001 fix branch, PR #2 (red then green), demo PR #3 (blocked), branch protection, Sonar smell cleanup, ruff cleanup | 2.5 |
 | 2026-11-24 | Zain / CI | quality-gate workflow + check scripts (not yet run on GitHub) | 1.0 |
 | 2026-11-24 | Shared | risk register + exit criteria draft | 0.5 |
-
-Efforts are approximate (reconstructed from session time) and will be marked as such in the report.
 | 2026-11-24 | Zain / WF1 unit tests | forms and models tests, 100 % on 2 more modules, DEFECT-002 found | 2.0 |
 | 2026-11-24 | Zain / DEFECT-002 | live probe, fix, PR #5 with 2 real Sonar blocks, merge | 2.0 (incl. ~0.5 h GitHub outage) |
 | 2026-11-24 | Shared docs | RCA, test plan, RTM, progress report | 1.5 |
@@ -29,3 +27,5 @@ Efforts are approximate (reconstructed from session time) and will be marked as 
 | 2026-11-27 | Manan / UC3, UC4 | specification, 12 Playwright flows, run and rerun, PR #28 | 3.0 (approximate, long runs under memory pressure) |
 | 2026-11-27 | Zain / UC5, UC6, completion report | specification, 12 Playwright flows, test completion report, PR #29 | 3.5 (approximate) |
 | 2026-11-27 | Sajawal / follow-up | `@axe-core/playwright`, ZAP in Docker, API-level recovery, four-screen scans, PRs #27 | 3.5 (approximate) |
+
+Efforts are approximate (reconstructed from session time) and will be marked as such in the report.

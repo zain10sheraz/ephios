@@ -3,10 +3,17 @@
 Workflow: `.github/workflows/team-quality-gate.yml`, trigger: every `pull_request`. No `continue-on-error`, no `|| true`.
 Branch protection on `main` (set 2026-11-24): required checks `unit-tests-100pct-coverage`, `mutation-score`,
 `sonarqube-thresholds`; **enforced for admins**; force pushes and deletions disallowed.
+**Gap found in the course review and its correction:** the two other jobs of the workflow, `api-tests-black-box` (area 2) and
+`e2e-browser-tests` (area 3), ran on every pull request but did not block a merge, so a failing API or browser test could still
+reach `main`. The target rule requires **all five jobs**; `scripts/require_all_checks.ps1` applies it (repository owner,
+admin rights). **Status: applied on 2026-11-28 from the owner account; `reports/evidence/github/branch_protection_main.json` (re-exported) lists
+the five contexts and `enforce_admins` is still on.** The browser job was flaky once (run #29, see below), so it is made
+required only together with the robust keyboard test of commit `8c5984b1`.
 `zain`, `manan`, `sajawal` are deliberately unprotected working branches (protecting them would reject direct pushes from members);
 the final merge into `main` must pass the gate.
 
 ## Gates and why these thresholds
+
 | Job | Gate | Threshold | Justification (from our own evidence) |
 |---|---|---|---|
 | unit-tests-100pct-coverage | team tests pass; statement+branch coverage of 16 business-logic modules listed in `scripts/gate_modules.txt` (rationale: `COVERAGE_SCOPE.md`) | 100 % | We reached 100 % (EV-001); the assignment targets 100 % of business logic; anything lower means untested rule code |
@@ -17,6 +24,7 @@ the final merge into `main` must pass the gate.
 | | line coverage of the 16 modules | 100 % each | same as the unit gate, measured independently by Sonar |
 
 ## Real run history (all on https://github.com/zain10sheraz/ephios)
+
 | When (UTC, 2026-11-24) | PR | Result | What it shows |
 |---|---|---|---|
 | 13:40 | #2 fix (base `zain`), run 45405890738 | unit **pass** (50 s), mutation **pass** (8m27s, 118/118 killed), sonar **FAIL**: `code_smells = 21 (max 18)` | **The gate blocked a real problem**: the killer tests I added had 3 more Sonar smells (composite assertions). Fixed by splitting the assertions (commit 84d59b33), threshold tightened to 13 |
@@ -35,10 +43,12 @@ the final merge into `main` must pass the gate.
 - The Sonar gate script (`scripts/check_sonar_gate.py`) is custom because a SonarQube Community server in CI starts with the default gate, which fails on first analysis (as seen locally: coverage 9.5 % < 80 %).
 
 ## PR #5 run history (DEFECT-002 fix)
+
 | Run | Result | Cause |
 |---|---|---|
 | 1 | sonar FAIL: `coverage forms/events.py = None` | gate required coverage of a file that was not in `sonar.sources` (our configuration slip, caught by the gate) |
 | 2 | sonar FAIL: `code_smells = 14 (max 13)` | scope now included upstream `forms/events.py` with 1 upstream smell; ratchet raised to 14 with the justification above |
+
 Unit tests passed (1m) and mutation passed (10m39s) in both runs.
 
 ## PR #8 run (DEFECT-003 + DEFECT-004 fix, first run on the 16-module gate)
@@ -48,5 +58,5 @@ All three checks passed on the first run: unit-tests 1m19 (16 modules at 100 %),
 The Actions page (screenshots `EV-069`, `EV-069b`) shows red crosses for the workflows `docker` and `staging` on every push to `main`. They are **upstream's deployment pipelines**, inherited with the fork, and they are not part of our quality gate (`team-quality-gate`):
 * `docker` builds the image and then fails at the push: `failed to push ghcr.io/ephios-dev/ephios:main: denied: permission_denied` - the fork has no right to publish to the upstream project's registry (checked in the run log of 2026-11-27).
 * `staging` fails with `Failed to connect to the host via ssh` - the upstream staging server and its credentials do not exist for this fork.
-Relation to "block merge and deployment": merging into `main` is blocked by the three required checks (branch protection, enforced for admins), so only gated commits ever reach `main`, and these deployment workflows start only after such a merge; they cannot deploy anything from the fork because they have no credentials. They were left enabled, not hidden, so that the history stays honest.
+Relation to "block merge and deployment": merging into `main` is blocked by the required checks (branch protection, enforced for admins; five jobs since 2026-11-28), so only gated commits ever reach `main`, and these deployment workflows start only after such a merge; they cannot deploy anything from the fork because they have no credentials. They were left enabled, not hidden, so that the history stays honest.
 A red run of `team-quality-gate` on PR #34 (run #29) is a real gate result: the browser job failed once because of a flaky keyboard test (the Enter key did not submit within 60 s in CI); the test was made robust (commit `8c5984b1`) and the rerun is the following entry.

@@ -15,6 +15,7 @@ of a test run that had **failed** (`UnicodeDecodeError`, a non-UTF-8 byte such a
 this document supersedes them. CI runs on Linux with UTF-8 and is not affected. Kill rate = killed / (killed + survived + timeout).
 
 ## Results
+
 | Module | Mutants | Round 1 (before killer tests) | Final (after killer tests) |
 |---|---|---|---|
 | `core/signup/flow/participant_validation.py` | 117 | 107 killed, 10 survived -> 91.5 % | 115 killed, 2 survived -> **98.3 %** |
@@ -31,16 +32,19 @@ All eight modules were already at **100 % statement and branch coverage** before
 Final rounds took 2-3 passes for some modules (a first killer test sometimes used data on which the mutated and original code agree; the survivor was investigated and the test strengthened).
 
 ## Custom operators (`tools/team_mutation/`), 105 mutants over the eight modules
+
 | Operator | Business rule | Mutants | Round 1 outcome |
 |---|---|---|---|
 | `team/RaiseToReturn` | error signalling (the DEFECT-001 class) | 27 | 25 killed, 2 survived (both killed after the tests were strengthened) |
 | `team/StateConstantSwap` | BR3 participation states | 72 | 64 killed, 8 survived (the default `state` of a new participation, untested; killed afterwards) |
 | `team/RuleBoundaryShift` | BR1/BR4/age boundaries | 6 | 6 killed |
+
 The two `RaiseToReturn` survivors were `raise ValidationError` -> `return ValidationError` in `EventTypeForm.clean_color` (the model's `max_length` check still made the form invalid, so a test asserting only `is_valid()` could not tell; asserting the message killed it)
 and `raise NotImplementedError` in `AbstractParticipation.participant` (a `str()` test only asserted a truthy value). Both are weak assertions of the same slip class as DEFECT-001, so the operator proved useful.
 The operators are narrow (RuleBoundaryShift matched only 6 comparisons); most survivors came from generic core operators.
 
 ## Analysis of all 235 round-1 survivors (full per-mutant table: `survivor_analysis.csv`)
+
 | Category | Count | Meaning |
 |---|---|---|
 | Killable - missing test or weak assertion | 210 | killed in the final rounds by the tests named in the CSV rationale |
@@ -54,6 +58,7 @@ Root causes of the 210 (feeds the defect/RCA section): (1) tests used zeros and 
 (7) mutation test commands that did not include a unit test that already covered the behaviour (11 form survivors).
 
 ### Equivalent survivors (23)
+
 | Module:line | Mutation | Why equivalent |
 |---|---|---|
 | participant_validation:47 (x2) | negate `if not shift.event.active` | **Masked by DEFECT-001** while the checker returned instead of raised; killed in CI after the fix (118/118) |
@@ -65,6 +70,7 @@ Root causes of the 210 (feeds the defect/RCA section): (1) tests used zeros and 
 | signup/forms:61, 144 | unused `commit` default; `!=` -> `is not` | parameter is never used; CPython interns both strings |
 | models/events:200, 203 | `\|` -> `^` between event-type conditions | one event type cannot be INSTANCE_USERS and PUBLIC (or PUBLIC and CONFIRMED) at once |
 | models/events:542 (x2) | `!=` -> `is not` / `<` | small ints are interned; GETTING_DISPATCHED (4) is the largest state value |
+
 Equivalence is argued by reading the code, not formally proven. Two earlier equivalence guesses were wrong and were corrected by evidence (forms/events lines 212 and 226 turned out killable).
 
 ### Unresolved survivors (2) - stated honestly

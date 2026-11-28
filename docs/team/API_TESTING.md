@@ -12,7 +12,7 @@ Ephios has a **read-only JSON REST API** (`/api/...`, DRF) and **write endpoints
 | EP and 3-point BVA generator | `scripts/generate_api_data.py` -> `test_data/api_cases.json` (80 inputs, 409 cases: 324 EP, 85 BVA, 182 invalid) |
 | Regeneration for a changed specification | `scripts/demo_regeneration.py` -> `reports/api/regeneration_demo.txt` |
 | Test harness: starts the real app (temporary SQLite DB, migrate, seed, `runserver`), logs in like a browser, sends CSRF token | `tests/team/api/support.py`, `conftest.py` |
-| Tests | `tests/team/api/` (476 tests, below) |
+| Tests | `tests/team/api/` (**477 tests**: 476 in the table below, plus 1 API-level recovery test `test_failure_recovery_api.py` added 2026-11-27) |
 | API coverage against the spec | `scripts/api_coverage.py` -> `reports/api/api_coverage.md` |
 | CI | job `api-tests-black-box` in `team-quality-gate.yml` (excluded from the unit gate with `--ignore=tests/team/api` because it needs a server) |
 
@@ -42,7 +42,7 @@ Ephios has a **read-only JSON REST API** (`/api/...`, DRF) and **write endpoints
 * **Cross-workflow**: see the table above; each test changes something through WF1 and reads the effect on WF2 through the REST API and vice versa.
 
 ## 3. Results (one clean run, 2026-11-26)
-`reports/api/pytest_full_run.txt`: **476 passed, 0 failed** in 14 min 21 s on the 7.7 GB laptop (`reports/api/junit.xml`); the first clean run before the later additions had 462 passed in 7 min 39 s.
+`reports/api/pytest_full_run.txt`: **476 passed, 0 failed** in 14 min 21 s on the 7.7 GB laptop (`reports/api/junit.xml`; the suite of that date, before the recovery test was added). Final count of the suite: **477** (476 + the recovery test), shown by the member's own run of 2026-11-28 in screenshot `EV-036` (477 passed); the first clean run before the later additions had 462 passed in 7 min 39 s.
 `reports/api/api_coverage.md`: **operation coverage 14/14 = 100 %**, **documented-response coverage 46/46 = 100 %**, **input coverage 80/80**.
 
 ## 4. What the first runs found (honest account)
@@ -55,18 +55,20 @@ Running the generated cases the first time gave 29 failures out of 425. None was
 * further corrections: participation state is an object `{value,label}`, the last shift of an event cannot be deleted (a rule, BR-W7), `PUT` on the create endpoint gives 403 not 405 (spec corrected).
 
 ## 5. Weaknesses of the API found and reported (all minor, not fixed: design decisions of the upstream HTML application)
+
 | Issue | Weakness | Severity |
 |---|---|---|
 | #12 DEFECT-005 | business-rule rejections answer 302, the same status as success; only read-back tells them apart | minor |
 | #13 DEFECT-006 | invalid `limit`/`offset`/`ordering` silently ignored (200) while other invalid filters return 400 | minor |
 | #14 DEFECT-007 | 403 vs 405 inconsistent, 403 instead of 401, project schema documents only 200 | minor |
+
 No source code of the application was changed in area 2. Root cause class for all three: **API contract not specified** (defaults of the framework relied on).
 
 ## 6. Limits and what was not done
 * Business rule BR5 (inactive event rejects signup) cannot be reached over HTTP: saving a shift activates its event, and an event without a shift has nothing to sign up for. It stays covered by `tests/team/integration/test_inactive_event_signup.py` (DEFECT-001).
 * Concurrency over HTTP is tested only with two simultaneous requests. On SQLite one of two truly simultaneous writes can fail with `database is locked` (HTTP 500); that is a property of SQLite, so the test tolerates a 500 and asserts the stored state instead (never more confirmed participants than places, never two records for one volunteer). It was observed once in the first concurrency run; the application runs on PostgreSQL/MySQL in production, which was not tested here. No load test (area 3).
 * The generated tests send one value at a time; `test_combined_invalid_api.py` adds only four combined-value cases, not pairwise coverage.
-* `api-tests-black-box` is not a required check on `main`; the three required checks are unchanged.
+* `api-tests-black-box` was not a required check on `main` (course review: it must block merging); `scripts/require_all_checks.ps1` adds it and `e2e-browser-tests` to the required checks (see `docs/team/CI_GATES.md` for the status).
 
 ## 7. Re-run
     .venv\Scripts\python.exe scripts\generate_api_data.py

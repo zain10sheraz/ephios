@@ -3,6 +3,7 @@
 Author: Sajawal (committed through the account `sajawalkhanfake`) with Claude Code assistance (recorded in `AI_USE_RECORD.md`). Previous: `PROGRESS_REPORT_3.md`.
 
 ## 1. Progress against plan
+
 | Plan item | Owner | Status | Evidence |
 |---|---|---|---|
 | S1 use cases (2 use cases, 12 flows; team total 6 use cases, 36 flows) | Sajawal | **done** (UC3-UC6 of Manan and Zain: `USE_CASES_MANAN.md`, `USE_CASES_ZAIN.md`) | `USE_CASES.md` |
@@ -19,6 +20,7 @@ Author: Sajawal (committed through the account `sajawalkhanfake`) with Claude Co
 | S12 management items | Sajawal | **done**: issues #17-#23, RCA, risk register, traceability | `RCA.md`, `RISK_REGISTER.md`, `TRACEABILITY.md` |
 
 ## 2. GQM metrics (updated)
+
 | Goal | Metric | Value |
 |---|---|---|
 | G3 requirements | requirements with an executed passing test | 9 / 9 = 100 % (unchanged); E-level (browser) coverage 8 of 9 (FR-04 by design not) |
@@ -29,7 +31,23 @@ Author: Sajawal (committed through the account `sajawalkhanfake`) with Claude Co
 | G6 performance | p95 at 5 users, GET /api/events/ | 505-506 ms (limit 800 ms met; EC-04 row 500 ms not comparable) |
 | Defects | total in the project | 16 (area 1: 4 closed; area 2: 3 open minor; area 3: 9, 1 fixed and merged) |
 
+### Final GQM for goal G2 (defects) - all 16 defects, status 2026-11-28
+
+The metrics of reports 1 and 2 covered only the 4 defects of area 1 (0.84 and 0.80 per KLOC, reopen rate 0 / 4). They are
+replaced by the figures below, which cover all 16 defects of the project.
+
+| Question | Metric | Value | Reading |
+|---|---|---|---|
+| How dense are defects? | defects per KLOC = 16 / 5.01 KLOC (Sonar scope, ncloc 5,010) | **3.19 per KLOC** (area 1 alone: 4 / 5.01 = 0.80) | approximate: the API, accessibility and security defects partly lie outside the Sonar scope (templates, settings, dependencies), so the density is an upper bound for that scope |
+| How well do fixes hold? | reopen rate = reopened / closed | **0 / 5 = 0 %** | five closed (#1 #4 #6 #7 #17), none reopened |
+| How much is fixed? | closed / reported | **5 / 16 = 31 %**; major 3 / 6 = 50 % | 11 open: 3 major (#18 #19 #20) and 8 minor |
+| What is the severity mix? | major / minor | **6 / 10** | major: 001, 002, 008, 009, 010, 011 |
+| Where were they found? | defects by technique | white-box / EP / BVA / live probes 4; API black-box 3; axe + Lighthouse 5; browser usability flow 1; pip-audit 1; ZAP 2 | every technique of the plan found something; only the first four came from reading code first |
+| What do defects cost to find? | defects per hour of effort (about 69 h in total, `WORKLOG.md`, approximate) | about **0.23 per hour** | effort is reconstructed, not timed |
+| What explains most of them? | Pareto by root-cause class | four classes cover 88 % (`RCA.md`, `reports/diagrams/pareto_defects.svg`) | framework defaults 5, accessibility not in the definition of done 4, input partitions 3, third-party components 2 |
+
 ## 3. Variances and control actions
+
 | Variance | Cause | Control action |
 |---|---|---|
 | ZAP first run: 17 tests errored through the proxy | the host-side helpers tried to resolve the Docker-only name `host.docker.internal` | helpers use 127.0.0.1, only the browser uses the proxy name; rerun: 22 of 22 passed through ZAP |
