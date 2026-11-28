@@ -41,7 +41,7 @@ Author: Zain Sheraz with Claude Code assistance. Status time: 2026-11-25 midday.
 | Lint errors on our `tools/` found only by the early draft PR to `main` | upstream's lint environment lacks our mutation tooling | fixed with targeted `ty: ignore`; early check re-run green |
 
 ## 4. Risk register changes
-PR-01/PR-11/PR-12 are confirmed and fixed; EC-01, EC-02, EC-03 are met; EC-04 (performance) and EC-05 (role matrix) are **not run** because they belong to area 3. PJ-03 (teammates late) has **occurred**: likelihood raised to 5, impact 5 (score 25).
+PR-01/PR-11/PR-12 are confirmed and fixed; EC-01, EC-02, EC-03 are met (status of that day; EC-02 is no longer met since areas 2 and 3 were merged, see `RISK_REGISTER.md`); EC-04 (performance) and EC-05 (role matrix) are **not run** because they belong to area 3. PJ-03 (teammates late) has **occurred**: likelihood raised to 5, impact 5 (score 25).
 
 ## 5. Plan for the rest of day 3 and day 4
 1. Get area 2 and area 3 started (the only real schedule risk).
