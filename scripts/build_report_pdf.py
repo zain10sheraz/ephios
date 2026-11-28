@@ -192,7 +192,7 @@ GALLERY_GROUPS = [
         "Area 3: browser tests, accessibility, security and performance",
         lambda n: n in {42, 43, 44, 46, 47, 49, 79},
     ),
-    ("AI use: prompt log of the session", lambda n: n in {80, 81}),
+    ("AI use: prompt log of the session", lambda n: n in {80, 81, 82}),
     ("Defects: GitHub issues", lambda n: n in {16, 21, 39} or 55 <= n <= 62),
     (
         "CI, pull requests and branch protection",
