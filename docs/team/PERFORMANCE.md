@@ -14,13 +14,36 @@ have different cost and different consequences, so each gets its own limits, **f
 | Workload | Operation | p95 limit | Failure limit | Why | Script | Status |
 |---|---|---|---|---|---|---|
 | Read | `GET /api/events/` (event list) | 800 ms | < 1 % | repeated read, user waits for a page | `scripts/k6_events_list.js` | **run**, limits met (sections 3 and 4b) |
-| Write | `POST /shifts/<id>/signup/` (sign up and decline alternating) | **500 ms** at 5 users (the register's EC-04) | **< 1 %**; HTTP 5xx and connection errors count, so SQLite's `database is locked` is visible | a write the volunteer waits for after pressing the button; it must also not lose or duplicate data | `scripts/k6_signup.js` | **NOT RUN** |
+| Write | `POST /shifts/<id>/signup/` (sign up and decline alternating) | **500 ms** at 5 users (the register's EC-04) | **< 1 %**; HTTP 5xx and connection errors count, so SQLite's `database is locked` is visible | a write the volunteer waits for after pressing the button; it must also not lose or duplicate data | `scripts/k6_signup.js` | **run 2026-11-28**: 1 user met, 5 users NOT met (section 1c) |
 
 How the signup run is done: start `scripts/serve_seeded.py`, then `k6 run -e BASE=... -e SHIFT=1 -e VUS=1|5 -e DURATION=60s
 scripts/k6_signup.js`, each setup twice, 60 s per run, like the read workload. Two accounts share the 5 users, so
 concurrent writes of the same account also exercise the rejection path (302 as well). After the run, read the
-participation count back (one record per volunteer) to confirm no duplicate. Until the member has run it and saved
-`reports/performance/k6_signup_*.json`, **EC-04 stays "not demonstrated"**; no number for signup is claimed here.
+participation count back (one record per volunteer) to confirm no duplicate (this read-back was **not** done in the first run).
+
+## 1c. Result of the signup workload (run 2026-11-28, `reports/performance/k6_signup_vus*_run*.json` and `.txt`)
+
+Same machine and the same freshly started seeded server for all four runs (Django `runserver`, SQLite, k6 on the same laptop,
+60 s per run). Values are for the tagged signup POST (`http_req_duration{name:signup_post}`); a failed request is anything
+other than 200/302.
+
+| VUs | run | signup requests | avg ms | p95 ms | failed % | limits (p95 < 500 ms, < 1 %) |
+|---|---|---|---|---|---|---|
+| 1 | 1 | 715 | 83 | 138 | 0.00 | met |
+| 1 | 2 | 1,039 | 57 | 114 | 0.00 | met |
+| 5 | 1 | 824 | 366 | 757 | **27.30** | **NOT met** (both limits) |
+| 5 | 2 | 679 | 442 | 1,020 | **28.57** | **NOT met** (both limits) |
+
+Cause of the failures, read from the server log (`server.log` of the run): every failed request is HTTP 500 with
+`sqlite3.OperationalError: database is locked` (419 such responses in the log of the whole session, all 5xx). SQLite lets one
+writer at a time; with 5 virtual users writing continuously, the writers collide. This is the same behaviour that
+`API_TESTING.md` section 6 recorded with two simultaneous signups; the load test shows it at a rate of about 28 %. It is a
+property of the test environment (development server and SQLite), not proof of a defect in the signup rules, but it is also not
+something to hide: **EC-04 is measured and NOT met in this environment.** Not measured: PostgreSQL/MySQL (the production
+databases), where a rerun is the next step; and the data integrity after the 500s (participation read-back not done).
+At 1 user the write is fast (p95 114-138 ms in the runs above), so a single volunteer is not affected. The member's own 1-user run on a quiet machine (screenshot `EV-079`, no JSON export) gave p95 45.56 ms, 0.00 % failed, 1,722 requests; as in section 4b the absolute numbers depend strongly on machine load.
+
+The member's own 5-user run (screenshot `EV-079b`, same server and script): **p95 410.32 ms (limit 500 ms met), but 22.33 % of the signup requests failed (297 of 1,330; limit 1 % NOT met)**; the p95 of the successful responses alone was 234.83 ms. So on a quiet machine the time limit can be met while the failure limit is still broken: the failures come from the SQLite write lock, not from slowness. Overall verdict for the 5-user workload in all three runs: **failure limit not met, so EC-04 is not met**.
 
 ## 2. Method
 1 virtual user and 5 virtual users, **each configuration twice, 60 s per run** (4 runs, one after the other, no other load on the machine). Each virtual user repeats the request in a loop without think time (a worst-case, closed-loop load). Login once in `setup()`.

@@ -1,0 +1,172 @@
+{
+    "metrics": {
+        "iteration_duration": {
+            "med": 38.2608,
+            "max": 218.3537,
+            "p(90)": 108.46998,
+            "p(95)": 114.34089999999999,
+            "avg": 57.74631684311827,
+            "min": 20.9425
+        },
+        "http_req_connecting": {
+            "min": 0,
+            "med": 0,
+            "max": 4.1277,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0.004780268199233716
+        },
+        "http_req_failed{name:signup_post}": {
+            "passes": 0,
+            "fails": 1039,
+            "thresholds": {
+                "rate<0.01": false
+            },
+            "value": 0
+        },
+        "http_req_tls_handshaking": {
+            "max": 0,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0,
+            "min": 0,
+            "med": 0
+        },
+        "http_req_duration": {
+            "min": 5.6562,
+            "med": 37.983450000000005,
+            "max": 4678.8964,
+            "p(90)": 107.99994,
+            "p(95)": 114.19849999999998,
+            "avg": 65.11742624521078
+        },
+        "http_req_waiting": {
+            "min": 5.6562,
+            "med": 36.43895,
+            "max": 4676.9702,
+            "p(90)": 105.73611000000001,
+            "p(95)": 112.437715,
+            "avg": 62.4973437739464
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 1044,
+            "value": 0
+        },
+        "http_req_blocked": {
+            "min": 0,
+            "med": 0,
+            "max": 4.1277,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0.007011111111111111
+        },
+        "iterations": {
+            "count": 1039,
+            "rate": 15.21251776035826
+        },
+        "http_reqs": {
+            "count": 1044,
+            "rate": 15.285725256798866
+        },
+        "http_req_duration{name:signup_post}": {
+            "max": 217.8675,
+            "p(90)": 107.79191999999999,
+            "p(95)": 114.01969,
+            "avg": 57.47889451395577,
+            "min": 20.9449,
+            "med": 37.9831,
+            "thresholds": {
+                "p(95)<500": false
+            }
+        },
+        "data_sent": {
+            "count": 393024,
+            "rate": 5754.460616214672
+        },
+        "checks": {
+            "passes": 1041,
+            "fails": 0,
+            "value": 1
+        },
+        "data_received": {
+            "count": 794732,
+            "rate": 11636.068012247391
+        },
+        "http_req_duration{expected_response:true}": {
+            "med": 37.983450000000005,
+            "max": 4678.8964,
+            "p(90)": 107.99994,
+            "p(95)": 114.19849999999998,
+            "avg": 65.11742624521078,
+            "min": 5.6562
+        },
+        "vus": {
+            "value": 1,
+            "min": 0,
+            "max": 1
+        },
+        "http_req_receiving": {
+            "avg": 2.5939667624521094,
+            "min": 0,
+            "med": 1.30705,
+            "max": 14.9284,
+            "p(90)": 7.63119,
+            "p(95)": 10.471889999999997
+        },
+        "vus_max": {
+            "value": 1,
+            "min": 1,
+            "max": 1
+        },
+        "http_req_sending": {
+            "max": 2.317,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0.026115708812260535,
+            "min": 0,
+            "med": 0
+        }
+    },
+    "setup_data": [
+        {
+            "csrf": "Fhcq8wocJisiJDg7GEb4tbX8csVBrWGg",
+            "session": "om2ldbnk1e4bjl9t8rwn2w2qberyc1zy"
+        },
+        {
+            "csrf": "Fhcq8wocJisiJDg7GEb4tbX8csVBrWGg",
+            "session": "om2ldbnk1e4bjl9t8rwn2w2qberyc1zy"
+        }
+    ],
+    "root_group": {
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {
+            "setup": {
+                "name": "setup",
+                "path": "::setup",
+                "id": "5c0f8025f7e0b6654089e5b00e950f1a",
+                "groups": {},
+                "checks": {
+                    "login redirects": {
+                        "name": "login redirects",
+                        "path": "::setup::login redirects",
+                        "id": "de48325edc5a42f2b43c212d2b44596a",
+                        "passes": 2,
+                        "fails": 0
+                    }
+                }
+            }
+        },
+        "checks": {
+            "signup answered 302 or 200": {
+                "name": "signup answered 302 or 200",
+                "path": "::signup answered 302 or 200",
+                "id": "3e8ebf39941973c609a247ea381628a0",
+                "passes": 1039,
+                "fails": 0
+            }
+        },
+        "name": ""
+    }
+}

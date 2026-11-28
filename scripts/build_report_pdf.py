@@ -187,12 +187,12 @@ GALLERY_GROUPS = [
     ("Area 2: API testing and test data generation", lambda n: n in {36, 37, 38}),
     (
         "Area 3: browser tests, accessibility, security and performance",
-        lambda n: n in {42, 43, 44, 46, 47, 49},
+        lambda n: n in {42, 43, 44, 46, 47, 49, 79},
     ),
     ("Defects: GitHub issues", lambda n: n in {16, 21, 39} or 55 <= n <= 62),
     (
         "CI, pull requests and branch protection",
-        lambda n: n in {14, 15, 20, 25, 30, 32, 33, 34, 41, 63, 64, 65, 68, 69},
+        lambda n: n in {14, 15, 20, 25, 30, 32, 33, 34, 41, 63, 64, 65, 68, 69, 78},
     ),
 ]
 
